@@ -4,3 +4,84 @@ Author: Tom Skarbek-Wazynski (skarbek-wazynski.co.uk)
 
 Stylesheet: Base - Mobile Stylings
 ========================================================================== */
+
+
+/* ==========================================================================
+  Base
+   ========================================================================== */
+
+html,
+body {
+  background: $background;
+}
+
+/* ==========================================================================
+  Header
+   ========================================================================== */
+
+.header {
+  margin: 3rem auto;
+
+  text-align: center;
+
+  h1 {
+    font-family: $secondary-font;
+    font-size: 1rem;
+    font-weight: 700;
+
+    margin: 0;
+
+    letter-spacing: .02rem;
+    text-transform: uppercase;
+  }
+
+  span {
+    font-size: .825rem;
+    font-style: italic;
+
+    display: block;
+  }
+}
+
+/* ==========================================================================
+  Intro
+   ========================================================================== */
+
+.banner {
+  position: relative;
+
+  overflow: hidden;
+
+  width: 100%;
+  height: 600px;
+
+  img {
+    position: relative;
+    top: 0;
+
+    width: 100%;
+  }
+}
+
+
+.content {
+  font-size: 1.125rem;
+
+  width: 50%;
+  margin: 0 auto;
+  padding: 1rem;
+
+  background: $secondary;
+
+  h2 {
+    font-family: $secondary-font;
+    font-size: .825rem;
+    font-weight: 700;
+
+    margin: 0 0 .25rem;
+
+    text-transform: uppercase;
+
+    color: $background;
+  }
+}

@@ -9,9 +9,11 @@ Stylesheet: Variables
 ========================================================================== */
 
 //Branding
-$base: #FFFFFF;
-$secondary: #252525;
+$base: #252525;
+$background: #EFEFEF;
+$secondary: #FFFFFF;
 $tertiary: #E1E1E1;
+
 // Buttons
 $btn-color: $base;
 $background-btn: $secondary;
@@ -25,4 +27,5 @@ $placeholder: $secondary;
   Fonts
 ========================================================================== */
 
-$base-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$base-font: 'freight-text-pro-1', 'freight-text-pro-2';
+$secondary-font: 'sofia-pro-1', 'sofia-pro-2';

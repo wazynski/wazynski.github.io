@@ -7,6 +7,9 @@ Stylesheet: Buttons
 
 input[type='submit'],
 .btn {
+  font-size: .625em;
+  font-weight: 700;
+
   display: inline-block;
 
   margin-bottom: 1rem;
@@ -23,9 +26,6 @@ input[type='submit'],
   outline: none;
   background: $background-btn;
 
-  font-size: .625em;
-  font-weight: 700;
-
   &.mt {
     margin-top: 2rem;
   }
@@ -33,7 +33,7 @@ input[type='submit'],
   &:active,
   &:focus,
   &:hover {
-    color: $white;
+    color: $secondary;
     background: $base;
   }
 }
@@ -65,7 +65,7 @@ input[type='submit'].btn-alt,
   &:active,
   &:focus,
   &:hover {
-    color: $white;
+    color: $secondary;
     background: $base;
   }
 }
