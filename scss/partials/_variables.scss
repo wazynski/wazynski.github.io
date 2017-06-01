@@ -1,0 +1,28 @@
+/* ==========================================================================
+Site Name: SITENAME
+Author: Tom Skarbek-Wazynski (skarbek-wazynski.co.uk)
+
+Stylesheet: Variables
+========================================================================== */
+/* ==========================================================================
+  Colors
+========================================================================== */
+
+//Branding
+$base: #FFFFFF;
+$secondary: #252525;
+$tertiary: #E1E1E1;
+// Buttons
+$btn-color: $base;
+$background-btn: $secondary;
+$btn-alt-color: $base;
+$background-btn-alt: $secondary;
+// Forms
+$error: #ED2E2E;
+$placeholder: $secondary;
+
+/* ==========================================================================
+  Fonts
+========================================================================== */
+
+$base-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
