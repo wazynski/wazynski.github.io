@@ -4,9 +4,7 @@ var nine = {};
   cgts.homepageSnap
 ========================================================================== */
 
-(function() {
-  // 'use strict';
-
+nine.scrollSpy = () => {
   var section = document.querySelectorAll(".section");
   var sections = {};
   var i = 0;
@@ -29,25 +27,20 @@ var nine = {};
 
     for (i in sections) {
       if (sections[i].top <= scrollPosition) {
-
-
         if (sections[i].classes.includes('light')) {
-          console.log('menu dark');
-          document.querySelector('.header').setAttribute('class', 'header dark');
+          nine.changeHeaderClass('dark');
         } else {
-          console.log('menu light');
-          document.querySelector('.header').setAttribute('class', 'header light');
+          nine.changeHeaderClass('light');
         }
-        //string.includes(substring); //ES6
-
-        // document.querySelector('.active').setAttribute('class', ' ');
-        // document.querySelector('a[href*=' + i + ']').setAttribute('class', 'active');
       }
     }
   };
-})();
+}
 
+nine.changeHeaderClass = (className) => {
+  document.querySelector('.header').setAttribute('class', `header ${className}`);
+}
 
 document.addEventListener("DOMContentLoaded", function() {
-
+  nine.scrollSpy();
 });
