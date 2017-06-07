@@ -1,6 +1,6 @@
 /* ==========================================================================
 Site Name: SITENAME
-Author: Tom Skarbek-Wazynski (skarbek-wazynski.co.uk)
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Variables
 ========================================================================== */
@@ -8,11 +8,22 @@ Stylesheet: Variables
   Colors
 ========================================================================== */
 
-//Branding
-$base: #252525;
-$background: #EFEFEF;
-$secondary: #FFFFFF;
-$tertiary: #E1E1E1;
+// Branding
+$platinum: #E6E6E4;
+$paynes-grey: #414141;
+$linen: #F5F2E3;
+$dim-gray: #707070;
+$saffron: #FCC826;
+$mustard: #FFD657;
+$beau-blue: #C0DAEA;
+$gainsboro: #D6E4E1;
+$mango-tango: #FD7F44;
+$white: #FFFFFF;
+
+//Colors
+$base: $paynes-grey;
+$secondary: $dim-gray;
+$background: $platinum;
 
 // Buttons
 $btn-color: $base;
@@ -27,5 +38,4 @@ $placeholder: $secondary;
   Fonts
 ========================================================================== */
 
-$base-font: 'freight-text-pro-1', 'freight-text-pro-2';
-$secondary-font: 'sofia-pro-1', 'sofia-pro-2';
+$base-font: 'sofia-pro-1', 'sofia-pro-2', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
