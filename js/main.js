@@ -9,14 +9,10 @@ nine.scrollSpy = () => {
   var sections = {};
   var i = 0;
 
-  console.log(section);
-
   Array.prototype.forEach.call(section, function(el, i) {
-    console.log(el.className);
-    console.log(el.offsetTop);
     sections[i] = {
       classes: el.className.replace('section', '').trim(),
-      top: el.offsetTop,
+      top: el.offsetTop - 50,
     }
   });
 
@@ -41,6 +37,20 @@ nine.changeHeaderClass = (className) => {
   document.querySelector('.header').setAttribute('class', `header ${className}`);
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
   nine.scrollSpy();
 });
+
+window.onload = () => {
+  var hidden = document.querySelectorAll(".hide-left");
+  Array.prototype.forEach.call(hidden, function(el, i) {
+    console.log(el);
+    el.classList.remove('hide-left');
+  });
+
+  var hidden = document.querySelectorAll(".hide-down");
+  Array.prototype.forEach.call(hidden, function(el, i) {
+    console.log(el);
+    el.classList.remove('hide-down');
+  });
+};
