@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 window.onload = () => {
   document.body.className = '';
 
+
   window.setTimeout(() => {
     var hidden = document.querySelectorAll(".hide-left");
     Array.prototype.forEach.call(hidden, function(el, i) {

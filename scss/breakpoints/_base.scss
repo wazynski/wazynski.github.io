@@ -17,12 +17,15 @@ Stylesheet: Base - Mobile Stylings
 html,
 body {
   background: $background;
+  // TODO: do this as a gradient so scroll on mac
+  // shows background at top and bottom
 }
 
 body {
-  transition: opacity 2s linear;
+  transition: opacity 500ms linear;
 
   opacity: 1;
+  background: $background;
 
   &.faded {
     opacity: 0;
@@ -101,9 +104,9 @@ body {
   position: relative;
 
   width: 100%;
-  height: 95vh;
+  min-height: calc(100vh - 50px);
   // padding: 3.125rem;
-  padding: 1.25rem;
+  padding: 4.125rem 1.25rem 1.25rem;
 
   &.intro {
     background: $platinum;
@@ -143,6 +146,7 @@ body {
   font-size: 1.25rem;
   // position: absolute;
   // bottom: 3.125rem;
+  // bottom: 1.25rem;
   // width: 50%;
 
   width: 100%;
@@ -173,10 +177,12 @@ body {
 
 .about {
   .image {
-    float: right;
-
-    width: 50%;
-    height: 100%;
+    // float: right;
+    //
+    // width: 50%;
+    // height: 100%;
+    width: 100%;
+    height: 540px;
 
     background-image: url('../img/tom.jpg');
     background-position: top center;
@@ -189,11 +195,11 @@ body {
 
   dl {
     font-size: .875rem;
+    // display: inline-block;
+    //
+    // width: 50%;
 
-    display: inline-block;
-
-    width: 50%;
-    margin: 0;
+    margin: 1.5rem 0;
     padding: 0;
   }
 }
