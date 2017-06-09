@@ -574,15 +574,15 @@ body {
   Header
    ========================================================================== */
 .header {
+  line-height: 1;
   position: fixed;
   z-index: 9999;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 3.125rem;
+  padding: 1.25rem;
   transition: color .5s ease;
-  text-transform: uppercase;
-  line-height: 1; }
+  text-transform: uppercase; }
   .header a {
     position: relative;
     left: 0;
@@ -596,12 +596,12 @@ body {
       padding-top: 20px; }
   .header h1,
   .header span {
-    margin: 0;
     font-size: .875rem;
-    font-weight: 600; }
+    font-weight: 600;
+    margin: 0; }
   .header span {
-    color: #707070;
-    font-weight: 400; }
+    font-weight: 400;
+    color: #707070; }
   .header.light a {
     color: #FFFFFF; }
   .header.dark a {
@@ -614,7 +614,7 @@ body {
   position: relative;
   width: 100%;
   height: 95vh;
-  padding: 3.125rem; }
+  padding: 1.25rem; }
   .section.intro {
     background: #E6E6E4; }
   .section.about {
@@ -631,10 +631,8 @@ body {
     color: #414141; }
 
 .content {
-  position: absolute;
-  bottom: 3.125rem;
-  width: 50%;
-  font-size: 1.875rem; }
+  font-size: 1.25rem;
+  width: 100%; }
   .content .inner {
     position: relative;
     bottom: 0;
@@ -642,9 +640,9 @@ body {
     .content .inner.hide-down {
       bottom: -500px; }
   .content p {
+    font-weight: 400;
     position: relative;
-    color: #707070;
-    font-weight: 400; }
+    color: #707070; }
 
 /* ==========================================================================
   About
@@ -660,11 +658,11 @@ body {
 .experience {
   font-size: 0; }
   .experience dl {
+    font-size: .875rem;
     display: inline-block;
     width: 50%;
     margin: 0;
-    padding: 0;
-    font-size: .875rem; }
+    padding: 0; }
 
 @media screen and (min-width: 48rem) {
   /* ==========================================================================
