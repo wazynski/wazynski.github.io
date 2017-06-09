@@ -42,15 +42,19 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 window.onload = () => {
-  var hidden = document.querySelectorAll(".hide-left");
-  Array.prototype.forEach.call(hidden, function(el, i) {
-    console.log(el);
-    el.classList.remove('hide-left');
-  });
+  document.body.className = '';
 
-  var hidden = document.querySelectorAll(".hide-down");
-  Array.prototype.forEach.call(hidden, function(el, i) {
-    console.log(el);
-    el.classList.remove('hide-down');
-  });
+  window.setTimeout(() => {
+    var hidden = document.querySelectorAll(".hide-left");
+    Array.prototype.forEach.call(hidden, function(el, i) {
+      console.log(el);
+      el.classList.remove('hide-left');
+    });
+
+    var hidden = document.querySelectorAll(".hide-down");
+    Array.prototype.forEach.call(hidden, function(el, i) {
+      console.log(el);
+      el.classList.remove('hide-down');
+    });
+  }, 1000)
 };
