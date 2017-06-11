@@ -1,15 +1,21 @@
-var nine = {};
+var nine = {
+  canScroll: true,
+  duration: 1000,
+  scrollContainer: document.getElementById('scroll'),
+  scrollStart: 0,
+  pages: document.querySelectorAll(".section"),
+  currentPage: 0,
+};
 
 /* ==========================================================================
   nine.scrollSpy()
 ========================================================================== */
 
 nine.scrollSpy = () => {
-  var section = document.querySelectorAll(".section");
   var sections = {};
   var i = 0;
 
-  Array.prototype.forEach.call(section, function(el, i) {
+  Array.prototype.forEach.call(nine.pages, function(el, i) {
     sections[i] = {
       classes: el.className.replace('section', '').trim(),
       top: el.offsetTop - 50,
@@ -17,11 +23,10 @@ nine.scrollSpy = () => {
   });
 
   console.log(sections);
-  var scrolled = document.getElementById('scroll');
 
-  scrolled.addEventListener('scroll', function(event) {
+  nine.scrollContainer.addEventListener('scroll', function(event) {
 
-    var scrollPosition = document.documentElement.scrollTop || scrolled.scrollTop;
+    var scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
 
     for (i in sections) {
       if (sections[i].top <= scrollPosition) {
@@ -63,6 +68,49 @@ nine.changeHeaderClass = (className) => {
    }, 1000)
  };
 
+nine.scrollTo = (startLocation, endLocation) => {
+  nine.canScroll = false;
+
+  // Calculate how far to scroll
+  // var startLocation = viewStart;
+  // var endLocation = pageStart;
+  var distance = endLocation - startLocation;
+
+  var runAnimation;
+
+  // Set the animation variables to 0/undefined.
+  var timeLapsed = 0;
+  var percentage, position;
+
+  var easing = function (progress) {
+   return progress < 0.5 ? 4 * progress * progress * progress : (progress - 1) * (2 * progress - 2) * (2 * progress - 2) + 1; // acceleration until halfway, then deceleration
+  };
+
+  function stopAnimationIfRequired(pos) {
+   if (pos == endLocation) {
+     cancelAnimationFrame(runAnimation);
+     nine.canScroll = true;
+   }
+  }
+
+  var animate = function () {
+   timeLapsed += 16;
+   percentage = timeLapsed / nine.duration;
+   if (percentage > 1) {
+     percentage = 1;
+     position = endLocation;
+   } else {
+     position = startLocation + distance * easing(percentage);
+   }
+   nine.scrollContainer.scrollTop = position;
+   runAnimation = requestAnimationFrame(animate);
+   stopAnimationIfRequired(position);
+  };
+
+  // Loop the animation function
+  runAnimation = requestAnimationFrame(animate);
+}
+
  /* ==========================================================================
   nine.scrollHandler()
    ========================================================================== */
@@ -71,74 +119,32 @@ nine.changeHeaderClass = (className) => {
 nine.scrollHandler = function(pageId) {
   var page = document.getElementById(pageId);
   var pageStart = page.offsetTop;
-  var canScroll = true;
-  var viewStart;
-  var duration = 1000;
-  var scrolled = document.getElementById('scroll');
+  nine.canScroll = true;
   var timeout = null;
 
-  function scrollToPage() {
-    canScroll = false;
 
-    // Calculate how far to scroll
-    var startLocation = viewStart;
-    var endLocation = pageStart;
-    var distance = endLocation - startLocation;
-
-    var runAnimation;
-
-    // Set the animation variables to 0/undefined.
-    var timeLapsed = 0;
-    var percentage, position;
-
-    var easing = function (progress) {
-      return progress < 0.5 ? 4 * progress * progress * progress : (progress - 1) * (2 * progress - 2) * (2 * progress - 2) + 1; // acceleration until halfway, then deceleration
-    };
-
-    function stopAnimationIfRequired(pos) {
-      if (pos == endLocation) {
-        cancelAnimationFrame(runAnimation);
-        canScroll = true;
-      }
-    }
-
-    var animate = function () {
-      timeLapsed += 16;
-      percentage = timeLapsed / duration;
-      if (percentage > 1) {
-        percentage = 1;
-        position = endLocation;
-      } else {
-        position = startLocation + distance * easing(percentage);
-      }
-      scrolled.scrollTop = position;
-      runAnimation = requestAnimationFrame(animate);
-      stopAnimationIfRequired(position);
-    };
-
-    // Loop the animation function
-    runAnimation = requestAnimationFrame(animate);
-  }
 
   window.addEventListener('wheel', function(event) {
+    nine.scrollStart = nine.scrollContainer.scrollTop;
+
+    console.log(nine.scrollStart);
+
     if (timeout !== null) {
+        console.log('timout in progress');
         event.preventDefault();
         return false;
     }
 
-    //Get the top of the scroll start
-    viewStart = scrolled.scrollTop;
-
-    if (canScroll) {
-      timeout = setTimeout(function(){ timeout = null; }, duration * 1.5);
+    if (nine.canScroll) {
+      timeout = setTimeout(function(){ timeout = null; }, nine.duration * 1.5);
 
       var pageHeight = page.scrollHeight;
       var pageStopPortion = pageHeight / 2;
       var viewHeight = window.innerHeight;
 
-      var viewEnd = viewStart + viewHeight;
+      var viewEnd = nine.scrollStart + viewHeight;
       var pageStartPart = viewEnd - pageStart;
-      var pageEndPart = (pageStart + pageHeight) - viewStart;
+      var pageEndPart = (pageStart + pageHeight) - nine.scrollStart;
 
       var canJumpDown = pageStartPart >= 0;
       var stopJumpDown = pageStartPart > pageStopPortion;
@@ -151,12 +157,52 @@ nine.scrollHandler = function(pageId) {
       if (  ( scrollingForward && canJumpDown && !stopJumpDown)
          || (!scrollingForward && canJumpUp   && !stopJumpUp)) {
         event.preventDefault();
-        scrollToPage();
+        nine.scrollTo(nine.scrollStart, pageStart);
       }
     } else {
      event.preventDefault();
     }
   });
+}
+
+nine.scrollToPage = (pageID) => {
+  // Get current scroll location and where the page starts
+  nine.scrollStart = nine.scrollContainer.scrollTop;
+  var pageStart = document.getElementById(pageID).offsetTop;
+  nine.scrollTo(nine.scrollStart, pageStart);
+}
+
+nine.keyboardNav = () => {
+  console.log('here');
+
+  document.onkeydown = function(event) {
+    if (!event) {
+      event = window.event;
+    }
+
+    var code = event.keyCode;
+
+    if (event.charCode && code == 0) {
+      code = event.charCode;
+    }
+
+    switch(code) {
+      case 38: // Up
+        var prevPage = nine.pages[nine.currentPage - 1].id;
+        nine.currentPage -= 1;
+
+        nine.scrollToPage(prevPage);
+        break;
+      case 40: // Down
+        var nextPage = nine.pages[nine.currentPage + 1].id;
+        nine.currentPage += 1;
+
+        nine.scrollToPage(nextPage);
+      break;
+    }
+    event.preventDefault();
+  };
+
 }
 
 
@@ -167,10 +213,13 @@ nine.scrollHandler = function(pageId) {
 document.addEventListener("DOMContentLoaded", () => {
   nine.scrollSpy();
 
-  new nine.scrollHandler('one');
-  new nine.scrollHandler('two');
-  new nine.scrollHandler('three');
-  new nine.scrollHandler('four');
+  console.log(nine.scrollStart);
+
+  Array.prototype.forEach.call(nine.pages, function(el) {
+    new nine.scrollHandler(el.id);
+  });
+
+  nine.keyboardNav();
 });
 
 

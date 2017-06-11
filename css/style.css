@@ -657,10 +657,10 @@ body {
   align-self: flex-end; }
   .content .inner {
     position: relative;
-    bottom: 0;
+    left: 0;
     transition: all 1s ease-out; }
-    .content .inner.hide-down {
-      bottom: -500px; }
+    .content .inner.hide-left {
+      left: -1000px; }
   .content p {
     position: relative;
     color: #707070;
@@ -669,9 +669,6 @@ body {
 /* ==========================================================================
   About
    ========================================================================== */
-.about .content {
-  max-width: none; }
-
 .about .image {
   width: 100%;
   height: 540px;
@@ -700,8 +697,9 @@ body {
 
 .footer {
   width: 100%;
-  padding: 4.125rem 1.25rem 1.25rem;
   background: #FFD657; }
+  .footer .lists {
+    padding: 4.125rem 1.25rem 1.25rem; }
   .footer dl dt {
     color: #414141; }
 
@@ -723,12 +721,15 @@ Stylesheet: Tablet
   .content {
     max-width: 80%;
     padding: 5rem 3.125rem 3.125rem;
-    font-size: 1.875rem; }
+    font-size: 1.875rem; } }
+  @media screen and (min-width: 48rem) and (min-height: 700px) {
+    .content {
+      padding-bottom: 25%; } }
+
+@media screen and (min-width: 48rem) {
   /* ==========================================================================
   About
    ========================================================================== */
-  .about .content {
-    max-width: none; }
   .experience {
     padding-bottom: 1.875rem; }
   /* ==========================================================================
@@ -740,8 +741,10 @@ Stylesheet: Tablet
   Footer
    ========================================================================== */
   .footer {
-    height: 170px;
-    padding: 5rem 3.125rem 3.125rem; }
+    height: 170px; }
+    .footer .lists {
+      max-width: 80%;
+      padding: 5rem 3.125rem 3.125rem; }
   /* ==========================================================================
   Typography
   ========================================================================== */
@@ -763,7 +766,16 @@ Stylesheet: Tablet
   Section
    ========================================================================== */
   .section {
-    min-height: calc(100vh - 100px); } }
+    min-height: calc(100vh - 100px); }
+  .content {
+    max-width: 60%; }
+  /* ==========================================================================
+  Footer
+   ========================================================================== */
+  .footer {
+    height: 170px; }
+    .footer .lists {
+      max-width: 60%; } }
 
 @media screen and (min-width: 90rem) {
   /* ==========================================================================

@@ -24,17 +24,15 @@ Stylesheet: Tablet
   padding: 5rem 3.125rem 3.125rem;
 
   font-size: 1.875rem;
+
+  @media screen and (min-height: 700px) {
+    padding-bottom: 25%;
+  }
 }
 
 /* ==========================================================================
   About
    ========================================================================== */
-
-.about {
-  .content {
-    max-width: none;
-  }
-}
 
 .experience {
   padding-bottom: 1.875rem;
@@ -53,7 +51,11 @@ Stylesheet: Tablet
 
 .footer {
   height: 170px;
-  padding: 5rem 3.125rem 3.125rem;
+
+  .lists {
+    max-width: 80%;
+    padding: 5rem 3.125rem 3.125rem;
+  }
 }
 
 /* ==========================================================================
@@ -62,6 +64,8 @@ Stylesheet: Tablet
 
 .col-2 {
   font-size: 0;
+
+
 
   dl {
     display: inline-block;

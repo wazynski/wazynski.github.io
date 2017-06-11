@@ -167,12 +167,12 @@ body {
 
   .inner {
     position: relative;
-    bottom: 0;
+    left: 0;
 
     transition: all 1s ease-out;
 
-    &.hide-down {
-      bottom: -500px;
+    &.hide-left {
+      left: -1000px;
     }
   }
 
@@ -190,10 +190,6 @@ body {
    ========================================================================== */
 
 .about {
-  .content {
-    max-width: none;
-  }
-
   .image {
     // float: right;
     //
@@ -239,9 +235,12 @@ body {
 
 .footer {
   width: 100%;
-  padding: 4.125rem 1.25rem 1.25rem;
 
   background: $mustard;
+
+  .lists {
+    padding: 4.125rem 1.25rem 1.25rem;
+  }
 
   dl {
     dt {
