@@ -181,6 +181,7 @@ figure {
  * Address differences between Firefox and other browsers.
  */
 hr {
+  -moz-box-sizing: content-box;
   box-sizing: content-box;
   height: 0; }
 
@@ -307,7 +308,9 @@ input[type='number']::-webkit-outer-spin-button {
  *    (include `-moz` to future-proof).
  */
 input[type='search'] {
+  -webkit-box-sizing: content-box;
   /* 2 */
+  -moz-box-sizing: content-box;
   box-sizing: content-box;
   -webkit-appearance: textfield;
   /* 1 */ }
@@ -418,19 +421,23 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 Stylesheet: Typography
 ========================================================================== */
 body {
+  color: #707070;
   font-family: "sofia-pro-1", "sofia-pro-2", "Helvetica Neue", "Helvetica", Arial, sans-serif;
-  font-size: 16px;
-  color: #707070; }
+  font-size: 16px; }
+
+a {
+  text-decoration: none;
+  color: #414141; }
 
 p {
   font-weight: 400; }
 
 h1,
 h2 {
-  font-size: .875rem;
-  font-weight: 600;
   margin: 4rem 0 1rem;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  font-size: .875rem;
+  font-weight: 600; }
 
 dl {
   font-size: .875rem; }
@@ -445,10 +452,10 @@ ul {
   padding: 0;
   list-style: none; }
   ul h2 {
-    font-size: inherit;
     margin: 2rem 0 0;
     text-transform: none;
-    color: #414141; }
+    color: #414141;
+    font-size: inherit; }
   ul li:first-child h2 {
     margin: 0; }
 
@@ -468,7 +475,6 @@ input[type='submit'],
   display: inline-block;
   margin-bottom: 1rem;
   padding: 1.2em 2.4em;
-  -webkit-transition: background 300ms linear, color 300ms linear;
   transition: background 300ms linear, color 300ms linear;
   text-align: center;
   text-decoration: none;
@@ -569,32 +575,35 @@ body {
   background: #E6E6E4; }
 
 body {
-  -webkit-transition: opacity 500ms linear;
   transition: opacity 500ms linear;
   opacity: 1;
   background: #E6E6E4; }
   body.faded {
     opacity: 0; }
 
+.scroll-container {
+  position: absolute;
+  overflow: auto;
+  width: 100%;
+  height: 100%; }
+
 /* ==========================================================================
   Header
    ========================================================================== */
 .header {
-  line-height: 1;
   position: fixed;
   z-index: 9999;
   top: 0;
   left: 0;
   width: 100%;
   padding: 1.25rem;
-  -webkit-transition: color .5s ease;
   transition: color .5s ease;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  line-height: 1; }
   .header a {
     position: relative;
     left: 0;
     display: inline-block;
-    -webkit-transition: all 1s ease-out;
     transition: all 1s ease-out;
     text-decoration: none;
     color: #414141; }
@@ -604,31 +613,34 @@ body {
       padding-top: 20px; }
   .header h1,
   .header span {
+    margin: 0;
     font-size: .875rem;
-    font-weight: 600;
-    margin: 0; }
+    font-weight: 600; }
   .header span {
-    font-weight: 400;
-    color: #707070; }
+    color: #707070;
+    font-weight: 400; }
   .header.light a {
     color: #FFFFFF; }
   .header.dark a {
     color: #414141; }
 
 /* ==========================================================================
- Screens
+  Section
   ========================================================================== */
 .section {
   position: relative;
+  display: flex;
   width: 100%;
   min-height: calc(100vh - 50px);
-  padding: 4.125rem 1.25rem 1.25rem; }
+  vertical-align: bottom; }
   .section.intro {
     background: #E6E6E4; }
   .section.about {
     background: #414141; }
   .section.services {
-    background: #F5F2E3; }
+    background: #D6E4E1; }
+  .section.contact {
+    background: #E6E6E4; }
   .section.dark h2 {
     color: #FFFFFF; }
   .section.dark .highlight {
@@ -639,23 +651,27 @@ body {
     color: #414141; }
 
 .content {
+  width: 100%;
+  padding: 4.125rem 1.25rem 1.25rem;
   font-size: 1.25rem;
-  width: 100%; }
+  align-self: flex-end; }
   .content .inner {
     position: relative;
     bottom: 0;
-    -webkit-transition: all 1s ease-out;
     transition: all 1s ease-out; }
     .content .inner.hide-down {
       bottom: -500px; }
   .content p {
-    font-weight: 400;
     position: relative;
-    color: #707070; }
+    color: #707070;
+    font-weight: 400; }
 
 /* ==========================================================================
   About
    ========================================================================== */
+.about .content {
+  max-width: none; }
+
 .about .image {
   width: 100%;
   height: 540px;
@@ -664,11 +680,30 @@ body {
   background-size: cover; }
 
 .experience {
-  font-size: 0; }
+  padding-bottom: 1.25rem; }
   .experience dl {
-    font-size: .875rem;
     margin: 1.5rem 0;
-    padding: 0; }
+    padding: 0;
+    font-size: .875rem; }
+
+/* ==========================================================================
+  Contact
+   ========================================================================== */
+.contact a {
+  color: #414141; }
+
+.contact dt {
+  color: #707070; }
+
+.contact dd {
+  color: #414141; }
+
+.footer {
+  width: 100%;
+  padding: 4.125rem 1.25rem 1.25rem;
+  background: #FFD657; }
+  .footer dl dt {
+    color: #414141; }
 
 @media screen and (min-width: 48rem) {
   /* ==========================================================================
@@ -676,7 +711,46 @@ Site Name: SITENAME
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Tablet
-========================================================================== */ }
+========================================================================== */
+  /* ==========================================================================
+  Header
+   ========================================================================== */
+  .header {
+    padding: 3.125rem; }
+  /* ==========================================================================
+  Section
+   ========================================================================== */
+  .content {
+    max-width: 80%;
+    padding: 5rem 3.125rem 3.125rem;
+    font-size: 1.875rem; }
+  /* ==========================================================================
+  About
+   ========================================================================== */
+  .about .content {
+    max-width: none; }
+  .experience {
+    padding-bottom: 1.875rem; }
+  /* ==========================================================================
+  Contact
+   ========================================================================== */
+  .section.contact {
+    min-height: calc(100vh - 170px); }
+  /* ==========================================================================
+  Footer
+   ========================================================================== */
+  .footer {
+    height: 170px;
+    padding: 5rem 3.125rem 3.125rem; }
+  /* ==========================================================================
+  Typography
+  ========================================================================== */
+  .col-2 {
+    font-size: 0; }
+    .col-2 dl {
+      display: inline-block;
+      width: 50%;
+      margin: 0; } }
 
 @media screen and (min-width: 64rem) {
   /* ==========================================================================
@@ -684,7 +758,12 @@ Site Name: SITENAME
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Tablet
-========================================================================== */ }
+========================================================================== */
+  /* ==========================================================================
+  Section
+   ========================================================================== */
+  .section {
+    min-height: calc(100vh - 100px); } }
 
 @media screen and (min-width: 90rem) {
   /* ==========================================================================
@@ -692,5 +771,11 @@ Site Name: SITENAME
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Large Desktop
-========================================================================== */ }
-/*# sourceMappingURL=style.css.map */
+========================================================================== */
+  /* ==========================================================================
+  Section
+   ========================================================================== */
+  .content {
+    max-width: 75%;
+    padding: 5rem 3.125rem 3.125rem;
+    font-size: 2.5rem; } }

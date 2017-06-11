@@ -32,13 +32,20 @@ body {
   }
 }
 
+.scroll-container {
+  position: absolute;
+
+  overflow: auto;
+
+  width: 100%;
+  height: 100%;
+}
+
 /* ==========================================================================
   Header
    ========================================================================== */
 
 .header {
-  line-height: 1;
-
   position: fixed;
   z-index: 9999;
   top: 0;
@@ -50,6 +57,8 @@ body {
 
   transition: color .5s ease;
   text-transform: uppercase;
+
+  line-height: 1;
 
   a {
     position: relative;
@@ -75,16 +84,16 @@ body {
 
   h1,
   span {
+    margin: 0;
+
     font-size: .875rem;
     font-weight: 600;
-
-    margin: 0;
   }
 
   span {
-    font-weight: 400;
-
     color: $secondary;
+
+    font-weight: 400;
   }
 
   &.light a {
@@ -97,16 +106,18 @@ body {
 }
 
 /* ==========================================================================
- Screens
+  Section
   ========================================================================== */
 
 .section {
   position: relative;
 
+  display: flex;
+
   width: 100%;
   min-height: calc(100vh - 50px);
-  // padding: 3.125rem;
-  padding: 4.125rem 1.25rem 1.25rem;
+
+  vertical-align: bottom;
 
   &.intro {
     background: $platinum;
@@ -117,8 +128,13 @@ body {
   }
 
   &.services {
-    background: $linen;
+    background: $gainsboro;
   }
+
+  &.contact {
+    background: $platinum;
+  }
+
 
   &.dark {
     h2 {
@@ -142,14 +158,12 @@ body {
 }
 
 .content {
-  // font-size: 1.875rem;
-  font-size: 1.25rem;
-  // position: absolute;
-  // bottom: 3.125rem;
-  // bottom: 1.25rem;
-  // width: 50%;
-
   width: 100%;
+  padding: 4.125rem 1.25rem 1.25rem;
+
+  font-size: 1.25rem;
+
+  align-self: flex-end;
 
   .inner {
     position: relative;
@@ -163,11 +177,11 @@ body {
   }
 
   p {
-    font-weight: 400;
-
     position: relative;
 
     color: $secondary;
+
+    font-weight: 400;
   }
 }
 
@@ -176,6 +190,10 @@ body {
    ========================================================================== */
 
 .about {
+  .content {
+    max-width: none;
+  }
+
   .image {
     // float: right;
     //
@@ -191,15 +209,43 @@ body {
 }
 
 .experience {
-  font-size: 0;
+  padding-bottom: 1.25rem;
 
   dl {
-    font-size: .875rem;
-    // display: inline-block;
-    //
-    // width: 50%;
-
     margin: 1.5rem 0;
     padding: 0;
+
+    font-size: .875rem;
+  }
+}
+
+/* ==========================================================================
+  Contact
+   ========================================================================== */
+
+.contact {
+  a {
+    color: $base;
+  }
+
+  dt {
+    color: $secondary;
+  }
+
+  dd {
+    color: $base;
+  }
+}
+
+.footer {
+  width: 100%;
+  padding: 4.125rem 1.25rem 1.25rem;
+
+  background: $mustard;
+
+  dl {
+    dt {
+      color: $base;
+    }
   }
 }
