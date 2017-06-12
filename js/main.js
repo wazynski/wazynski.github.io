@@ -30,6 +30,10 @@ nine.scrollSpy = () => {
 
     for (i in sections) {
       if (sections[i].top <= scrollPosition) {
+
+        // nine.currentPage = i;
+        // nine.updateControls();
+
         if (sections[i].classes.includes('light')) {
           nine.changeHeaderClass('dark');
         } else {
@@ -52,21 +56,25 @@ nine.changeHeaderClass = (className) => {
   nine.animatation()
    ========================================================================== */
 
- nine.animateLoad = () => {
-   document.body.className = '';
+nine.animateLoad = () => {
+  document.body.className = '';
 
-   window.setTimeout(() => {
-     var hidden = document.querySelectorAll(".hide-left");
-     Array.prototype.forEach.call(hidden, function(el, i) {
-       el.classList.remove('hide-left');
-     });
+  window.setTimeout(() => {
+    var hidden = document.querySelectorAll(".hide-left");
+    Array.prototype.forEach.call(hidden, function(el, i) {
+      el.classList.remove('hide-left');
+    });
 
-     var hidden = document.querySelectorAll(".hide-down");
-     Array.prototype.forEach.call(hidden, function(el, i) {
-       el.classList.remove('hide-down');
-     });
-   }, 1000)
- };
+    var hidden = document.querySelectorAll(".hide-down");
+    Array.prototype.forEach.call(hidden, function(el, i) {
+      el.classList.remove('hide-down');
+    });
+  }, 1000)
+};
+
+/* ==========================================================================
+  nine.scrollTo()
+  ========================================================================== */
 
 nine.scrollTo = (startLocation, endLocation) => {
   nine.canScroll = false;
@@ -111,9 +119,9 @@ nine.scrollTo = (startLocation, endLocation) => {
   runAnimation = requestAnimationFrame(animate);
 }
 
- /* ==========================================================================
+/* ==========================================================================
   nine.scrollHandler()
-   ========================================================================== */
+  ========================================================================== */
 
 // Constructor cannot be ES6 arrow
 nine.scrollHandler = function(pageId) {
@@ -165,12 +173,20 @@ nine.scrollHandler = function(pageId) {
   });
 }
 
+/* ==========================================================================
+  nine.scrollToPage()
+   ========================================================================== */
+
 nine.scrollToPage = (pageID) => {
   // Get current scroll location and where the page starts
   nine.scrollStart = nine.scrollContainer.scrollTop;
   var pageStart = document.getElementById(pageID).offsetTop;
   nine.scrollTo(nine.scrollStart, pageStart);
 }
+
+/* ==========================================================================
+  nine.keyboardNav()
+   ========================================================================== */
 
 nine.keyboardNav = () => {
   console.log('here');
@@ -188,21 +204,81 @@ nine.keyboardNav = () => {
 
     switch(code) {
       case 38: // Up
-        var prevPage = nine.pages[nine.currentPage - 1].id;
-        nine.currentPage -= 1;
-
-        nine.scrollToPage(prevPage);
+        nine.prevPage();
         break;
       case 40: // Down
-        var nextPage = nine.pages[nine.currentPage + 1].id;
-        nine.currentPage += 1;
-
-        nine.scrollToPage(nextPage);
+        nine.nextPage();
       break;
     }
     event.preventDefault();
   };
 
+}
+
+/* ==========================================================================
+  nine.nextPage()
+   ========================================================================== */
+
+nine.nextPage = () => {
+  if (nine.currentPage + 1 < nine.pages.length) {
+    var nextPage = nine.pages[nine.currentPage + 1].id;
+    nine.currentPage += 1;
+
+
+    nine.scrollToPage(nextPage);
+    nine.updateControls();
+    return true;
+  }
+  return false;
+}
+
+/* ==========================================================================
+  nine.prevPage()
+   ========================================================================== */
+
+nine.prevPage = () => {
+  if (nine.currentPage - 1 >= 0) {
+    var prevPage = nine.pages[nine.currentPage - 1].id;
+    nine.currentPage -= 1;
+
+    nine.scrollToPage(prevPage);
+    nine.updateControls();
+    return true;
+  }
+  return false;
+}
+
+/* ==========================================================================
+  nine.controls()
+   ========================================================================== */
+
+nine.controls = () => {
+  Array.prototype.forEach.call(nine.pages, function(el) {
+    document.querySelector('.dots').appendChild(document.createElement('li'));
+  });
+
+  document.querySelector('.dots li').classList.add('active')
+
+  document.querySelector('.next').addEventListener('click', () => nine.nextPage());
+  document.querySelector('.prev').addEventListener('click', () => nine.prevPage());
+
+  nine.updateControls();
+}
+
+nine.updateControls = () => {
+  document.querySelector('.dots li.active').classList.remove('active');
+  document.querySelectorAll('.dots li')[nine.currentPage].classList.add('active');
+
+  document.querySelector('.next').classList.remove('hidden');
+  document.querySelector('.prev').classList.remove('hidden');
+
+  if (nine.currentPage == 0) {
+    document.querySelector('.prev').classList.add('hidden');
+  }
+
+  if (nine.currentPage == nine.pages.length - 1) {
+    document.querySelector('.next').classList.add('hidden');
+  }
 }
 
 
@@ -214,12 +290,13 @@ document.addEventListener("DOMContentLoaded", () => {
   nine.scrollSpy();
 
   console.log(nine.scrollStart);
-
-  Array.prototype.forEach.call(nine.pages, function(el) {
-    new nine.scrollHandler(el.id);
-  });
+  //
+  // Array.prototype.forEach.call(nine.pages, function(el) {
+  //   new nine.scrollHandler(el.id);
+  // });
 
   nine.keyboardNav();
+  nine.controls();
 });
 
 

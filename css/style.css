@@ -181,7 +181,6 @@ figure {
  * Address differences between Firefox and other browsers.
  */
 hr {
-  -moz-box-sizing: content-box;
   box-sizing: content-box;
   height: 0; }
 
@@ -308,9 +307,7 @@ input[type='number']::-webkit-outer-spin-button {
  *    (include `-moz` to future-proof).
  */
 input[type='search'] {
-  -webkit-box-sizing: content-box;
   /* 2 */
-  -moz-box-sizing: content-box;
   box-sizing: content-box;
   -webkit-appearance: textfield;
   /* 1 */ }
@@ -403,6 +400,12 @@ Stylesheet: Helpers
     vertical-align: middle; }
 
 /* ==========================================================================
+  Hidden
+   ========================================================================== */
+.hidden {
+  display: none; }
+
+/* ==========================================================================
 Site Name: SITENAME
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
@@ -475,6 +478,7 @@ input[type='submit'],
   display: inline-block;
   margin-bottom: 1rem;
   padding: 1.2em 2.4em;
+  -webkit-transition: background 300ms linear, color 300ms linear;
   transition: background 300ms linear, color 300ms linear;
   text-align: center;
   text-decoration: none;
@@ -575,6 +579,7 @@ body {
   background: #E6E6E4; }
 
 body {
+  -webkit-transition: opacity 500ms linear;
   transition: opacity 500ms linear;
   opacity: 1;
   background: #E6E6E4; }
@@ -591,19 +596,21 @@ body {
   Header
    ========================================================================== */
 .header {
+  line-height: 1;
   position: fixed;
   z-index: 9999;
   top: 0;
   left: 0;
   width: 100%;
   padding: 1.25rem;
+  -webkit-transition: color .5s ease;
   transition: color .5s ease;
-  text-transform: uppercase;
-  line-height: 1; }
+  text-transform: uppercase; }
   .header a {
     position: relative;
     left: 0;
     display: inline-block;
+    -webkit-transition: all 1s ease-out;
     transition: all 1s ease-out;
     text-decoration: none;
     color: #414141; }
@@ -613,22 +620,49 @@ body {
       padding-top: 20px; }
   .header h1,
   .header span {
-    margin: 0;
     font-size: .875rem;
-    font-weight: 600; }
+    font-weight: 600;
+    margin: 0; }
   .header span {
-    color: #707070;
-    font-weight: 400; }
+    font-weight: 400;
+    color: #707070; }
   .header.light a {
     color: #FFFFFF; }
   .header.dark a {
     color: #414141; }
 
 /* ==========================================================================
+  Controls 
+   ========================================================================== */
+.controls {
+  position: fixed;
+  z-index: 9999;
+  bottom: 0;
+  width: 100%;
+  padding: 50px;
+  text-align: right; }
+  .controls ul {
+    list-style: none; }
+    .controls ul li {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 10px;
+      border-radius: 50%;
+      background: hotpink; }
+      .controls ul li.active {
+        background: green; }
+  .controls button {
+    color: hotpink;
+    background: green; }
+
+/* ==========================================================================
   Section
   ========================================================================== */
 .section {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
   min-height: calc(100vh - 50px);
@@ -651,20 +685,22 @@ body {
     color: #414141; }
 
 .content {
+  font-size: 1.25rem;
   width: 100%;
   padding: 4.125rem 1.25rem 1.25rem;
-  font-size: 1.25rem;
-  align-self: flex-end; }
+  -ms-flex-item-align: end;
+      align-self: flex-end; }
   .content .inner {
     position: relative;
     left: 0;
+    -webkit-transition: all 1s ease-out;
     transition: all 1s ease-out; }
     .content .inner.hide-left {
       left: -1000px; }
   .content p {
+    font-weight: 400;
     position: relative;
-    color: #707070;
-    font-weight: 400; }
+    color: #707070; }
 
 /* ==========================================================================
   About
@@ -679,9 +715,9 @@ body {
 .experience {
   padding-bottom: 1.25rem; }
   .experience dl {
+    font-size: .875rem;
     margin: 1.5rem 0;
-    padding: 0;
-    font-size: .875rem; }
+    padding: 0; }
 
 /* ==========================================================================
   Contact
@@ -791,3 +827,4 @@ Stylesheet: Large Desktop
     max-width: 75%;
     padding: 5rem 3.125rem 3.125rem;
     font-size: 2.5rem; } }
+/*# sourceMappingURL=style.css.map */
