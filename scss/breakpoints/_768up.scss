@@ -20,10 +20,10 @@ Stylesheet: Tablet
    ========================================================================== */
 
 .content {
+  font-size: 1.875rem;
+
   max-width: 80%;
   padding: 5rem 3.125rem 3.125rem;
-
-  font-size: 1.875rem;
 
   @media screen and (min-height: 700px) {
     padding-bottom: 25%;
@@ -43,6 +43,7 @@ Stylesheet: Tablet
    ========================================================================== */
 .section.contact {
   min-height: calc(100vh - 170px);
+  min-height: calc(100vh);
 }
 
 /* ==========================================================================

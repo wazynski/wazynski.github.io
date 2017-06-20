@@ -576,7 +576,7 @@ Stylesheet: Base - Mobile Stylings
 
 html,
 body {
-  background: #E6E6E4; }
+  background: hotpink; }
 
 body {
   -webkit-transition: opacity 500ms linear;
@@ -638,7 +638,7 @@ body {
   position: fixed;
   z-index: 9999;
   right: 50px;
-  bottom: 150px;
+  bottom: 200px;
   width: 16px;
   text-align: right; }
   .controls ul {
@@ -679,12 +679,18 @@ body {
   ========================================================================== */
 .section {
   position: relative;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 100%;
   min-height: calc(100vh - 50px);
   vertical-align: bottom; }
+  .section.fixed {
+    position: fixed;
+    top: 0 !important; }
   .section.intro {
     background: #E6E6E4; }
   .section.about {
@@ -692,7 +698,7 @@ body {
   .section.services {
     background: #D6E4E1; }
   .section.contact {
-    background: #E6E6E4; }
+    background: #FD7F44; }
   .section.dark h2 {
     color: #FFFFFF; }
   .section.dark .highlight {
@@ -773,9 +779,9 @@ Stylesheet: Tablet
   Section
    ========================================================================== */
   .content {
+    font-size: 1.875rem;
     max-width: 80%;
-    padding: 5rem 3.125rem 3.125rem;
-    font-size: 1.875rem; } }
+    padding: 5rem 3.125rem 3.125rem; } }
   @media screen and (min-width: 48rem) and (min-height: 700px) {
     .content {
       padding-bottom: 25%; } }
@@ -790,7 +796,8 @@ Stylesheet: Tablet
   Contact
    ========================================================================== */
   .section.contact {
-    min-height: calc(100vh - 170px); }
+    min-height: calc(100vh - 170px);
+    min-height: calc(100vh); }
   /* ==========================================================================
   Footer
    ========================================================================== */
