@@ -576,7 +576,7 @@ Stylesheet: Base - Mobile Stylings
 
 html,
 body {
-  background: hotpink; }
+  background: #E6E6E4; }
 
 body {
   -webkit-transition: opacity 500ms linear;
@@ -688,9 +688,6 @@ body {
   width: 100%;
   min-height: calc(100vh - 50px);
   vertical-align: bottom; }
-  .section.fixed {
-    position: fixed;
-    top: 0 !important; }
   .section.intro {
     background: #E6E6E4; }
   .section.about {
@@ -698,7 +695,7 @@ body {
   .section.services {
     background: #D6E4E1; }
   .section.contact {
-    background: #FD7F44; }
+    background: #E6E6E4; }
   .section.dark h2 {
     color: #FFFFFF; }
   .section.dark .highlight {
@@ -756,6 +753,7 @@ body {
   color: #414141; }
 
 .footer {
+  position: relative;
   width: 100%;
   background: #FFD657; }
   .footer .lists {
@@ -796,8 +794,7 @@ Stylesheet: Tablet
   Contact
    ========================================================================== */
   .section.contact {
-    min-height: calc(100vh - 170px);
-    min-height: calc(100vh); }
+    min-height: calc(100vh - 170px); }
   /* ==========================================================================
   Footer
    ========================================================================== */

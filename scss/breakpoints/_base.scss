@@ -16,7 +16,7 @@ Stylesheet: Base - Mobile Stylings
 
 html,
 body {
-  background: hotpink;
+  background: $background;
   // TODO: do this as a gradient so scroll on mac
   // shows background at top and bottom
 }
@@ -186,11 +186,6 @@ body {
 
   vertical-align: bottom;
 
-  &.fixed {
-    position: fixed;
-    top: 0 !important;
-  }
-
   &.intro {
     background: $platinum;
   }
@@ -204,7 +199,7 @@ body {
   }
 
   &.contact {
-    background: $mango-tango;
+    background: $platinum;
   }
 
 
@@ -306,6 +301,8 @@ body {
 }
 
 .footer {
+  position: relative;
+
   width: 100%;
 
   background: $mustard;

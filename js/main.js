@@ -5,7 +5,6 @@ var nine = {
   scrollStart: 0,
   pages: document.querySelectorAll(".section"),
   currentPage: 0,
-  scrollDirection: null,
 };
 
 /* ==========================================================================
@@ -125,7 +124,6 @@ nine.scrollTo = (startLocation, endLocation) => {
    ========================================================================== */
 
 nine.finishedScroll = () => {
-  nine.setFixed();
 }
 
 /* ==========================================================================
@@ -230,9 +228,6 @@ nine.keyboardNav = () => {
 
 nine.nextPage = () => {
   if (nine.currentPage + 1 < nine.pages.length) {
-    nine.scrollDirection = "down";
-
-
     var nextPage = nine.pages[nine.currentPage + 1].id;
     nine.currentPage += 1;
 
@@ -250,11 +245,6 @@ nine.nextPage = () => {
 
 nine.prevPage = () => {
   if (nine.currentPage - 1 >= 0) {
-    nine.scrollDirection = "up";
-
-    nine.pages[nine.currentPage].classList.remove('fixed');
-    // nine.pages[nine.currentPage].style.setProperty('margin-top', `${nine.pages[nine.currentPage].getAttribute('data-offset')}px`);
-
     var prevPage = nine.pages[nine.currentPage - 1].id;
     nine.currentPage -= 1;
 
@@ -305,54 +295,14 @@ nine.updateControls = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   nine.scrollSpy();
-
-  //
-  // Array.prototype.forEach.call(nine.pages, function(el) {
-  //   new nine.scrollHandler(el.id);
-  // });
+  
+  Array.prototype.forEach.call(nine.pages, function(el) {
+    new nine.scrollHandler(el.id);
+  });
 
   nine.keyboardNav();
   nine.controls();
-
-
-  var i = 0;
-
-  Array.prototype.forEach.call(nine.pages, function(el, i) {
-    // el.setAttribute('data-offset', el.offsetTop);
-    // el.style.setProperty('top', `${el.getAttribute('data-offset')}px`);
-  });
-
-  nine.setFixed();
 });
-
-nine.setFixed = () => {
-
-  // set new current page to fixed.
-  // set offset on all further elemtns but not previous.
-  //
-  // if (nine.scrollDirection == "up") {
-  //   if (nine.currentPage + 1 < nine.pages.length) {
-  //     nine.pages[nine.currentPage + 1].style.setProperty('margin-top', `${nine.pages[nine.currentPage + 1].getAttribute('data-offset')}px`);
-  //   }
-  // } else {
-  //   console.log('here');
-  //   nine.pages[nine.currentPage].classList.add('fixed');
-  //   nine.pages[nine.currentPage].style.setProperty('margin-top', '0px');
-  //
-  //   if (nine.currentPage + 1 < nine.pages.length) {
-  //     nine.pages[nine.currentPage + 1].style.setProperty('margin-top', `${nine.pages[nine.currentPage + 1].getAttribute('data-offset')}px`);
-  //   }
-  // }
-
-
-
-  // Array.prototype.forEach.call(nine.pages, function(el, i) {
-  //   console.log(el);
-  //   console.log(el.getAttribute('data-offset'));
-  //   el.style.setProperty('top', `${el.getAttribute('data-offset')}px`);
-  // });
-  // nine.pages[nine.currentPage].style.setProperty('top', '0px');
-}
 
 
 /* ==========================================================================
