@@ -18,14 +18,12 @@ html,
 body {
   background: $background;
   // TODO: do this as a gradient so scroll on mac
-  // shows background at top and bottom
 }
 
 body {
   transition: opacity 500ms linear;
 
   opacity: 1;
-  background: $background;
 
   &.faded {
     opacity: 0;
@@ -46,8 +44,6 @@ body {
    ========================================================================== */
 
 .header {
-  line-height: 1;
-
   position: fixed;
   z-index: 9999;
   top: 0;
@@ -59,6 +55,8 @@ body {
 
   transition: color .5s ease;
   text-transform: uppercase;
+
+  line-height: 1;
 
   a {
     position: relative;
@@ -84,16 +82,16 @@ body {
 
   h1,
   span {
+    margin: 0;
+
     font-size: .875rem;
     font-weight: 600;
-
-    margin: 0;
   }
 
   span {
-    font-weight: 400;
-
     color: $secondary;
+
+    font-weight: 400;
   }
 
   &.light a {
@@ -225,10 +223,10 @@ body {
 }
 
 .content {
-  font-size: 1.25rem;
-
   width: 100%;
   padding: 4.125rem 1.25rem 1.25rem;
+
+  font-size: 1.25rem;
 
   align-self: flex-end;
 
@@ -244,11 +242,11 @@ body {
   }
 
   p {
-    font-weight: 400;
-
     position: relative;
 
     color: $secondary;
+
+    font-weight: 400;
   }
 }
 
@@ -275,10 +273,10 @@ body {
   padding-bottom: 1.25rem;
 
   dl {
-    font-size: .875rem;
-
     margin: 1.5rem 0;
     padding: 0;
+
+    font-size: .875rem;
   }
 }
 
