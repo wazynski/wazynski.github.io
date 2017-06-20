@@ -130,8 +130,6 @@ nine.scrollHandler = function(pageId) {
   nine.canScroll = true;
   var timeout = null;
 
-
-
   window.addEventListener('wheel', function(event) {
     nine.scrollStart = nine.scrollContainer.scrollTop;
 
@@ -269,15 +267,15 @@ nine.updateControls = () => {
   document.querySelector('.dots li.active').classList.remove('active');
   document.querySelectorAll('.dots li')[nine.currentPage].classList.add('active');
 
-  document.querySelector('.next').classList.remove('hidden');
-  document.querySelector('.prev').classList.remove('hidden');
+  document.querySelector('.next').classList.remove('disabled');
+  document.querySelector('.prev').classList.remove('disabled');
 
   if (nine.currentPage == 0) {
-    document.querySelector('.prev').classList.add('hidden');
+    document.querySelector('.prev').classList.add('disabled');
   }
 
   if (nine.currentPage == nine.pages.length - 1) {
-    document.querySelector('.next').classList.add('hidden');
+    document.querySelector('.next').classList.add('disabled');
   }
 }
 
