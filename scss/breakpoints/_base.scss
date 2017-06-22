@@ -44,6 +44,8 @@ body {
    ========================================================================== */
 
 .header {
+  line-height: 1;
+
   position: fixed;
   z-index: 9999;
   top: 0;
@@ -55,8 +57,6 @@ body {
 
   transition: color .5s ease;
   text-transform: uppercase;
-
-  line-height: 1;
 
   a {
     position: relative;
@@ -82,16 +82,16 @@ body {
 
   h1,
   span {
-    margin: 0;
-
     font-size: .875rem;
     font-weight: 600;
+
+    margin: 0;
   }
 
   span {
-    color: $secondary;
-
     font-weight: 400;
+
+    color: $secondary;
   }
 
   &.light a {
@@ -108,65 +108,9 @@ body {
    ========================================================================== */
 
 .controls {
-  position: fixed;
-  z-index: 9999;
-  right: 50px;
-  bottom: 200px;
-
-  width: 16px;
-
-  text-align: right;
-
-  ul {
-    width: 16px;
-
-    list-style: none;
-
-    li {
-      display: block;
-
-      width: 10px;
-      height: 10px;
-      margin: 0 auto 10px;
-
-      border: 1px solid $secondary;
-      border-radius: 50%;
-      background: none;;
-
-      &.active {
-        background: $secondary;
-      }
-    }
-  }
-
-  button {
-    display: block;
-
-    width: 16px;
-    height: 28px;
-    margin: 0 0 10px;
-    padding: 0;
-
-    transition: opacity 500ms linear;
-    text-align: center;
-
-    opacity: 1;
-    border: 0;
-    outline: 0;
-    background: none;
-
-    &.disabled {
-      opacity: 0;
-    }
-
-    svg {
-      display: inline-block;
-
-      width: 12px;
-      margin: 0 auto;
-    }
-  }
+  display: none;
 }
+
 
 /* ==========================================================================
   Section
@@ -174,29 +118,40 @@ body {
 
 .section {
   position: relative;
-  position: sticky;
-  top: 0;
 
-  display: flex;
+  display: table;
 
   width: 100%;
   min-height: calc(100vh - 50px);
 
-  vertical-align: bottom;
+  // @media screen and (min-height: 1024px) {
+  //   position: sticky;
+  //   top: 0;
+  // }
+
+  // vertical-align: bottom;
 
   &.intro {
+    z-index: 10;
+
     background: $platinum;
   }
 
   &.about {
+    z-index: 20;
+
     background: $paynes-grey;
   }
 
   &.services {
+    z-index: 30;
+
     background: $gainsboro;
   }
 
   &.contact {
+    z-index: 40;
+
     background: $platinum;
   }
 
@@ -223,15 +178,20 @@ body {
 }
 
 .content {
-  width: 100%;
-  padding: 4.125rem 1.25rem 1.25rem;
-
   font-size: 1.25rem;
 
-  align-self: flex-end;
+  display: table-cell;
 
-  .inner {
+  width: 100%;
+  padding: 4.125rem 1.25rem 1.25rem;
+  // position: absolute;
+  // bottom: 0;
+
+  vertical-align: bottom;
+
+  .wrap {
     position: relative;
+    z-index: 500;
     left: 0;
 
     transition: all 1s ease-out;
@@ -242,11 +202,11 @@ body {
   }
 
   p {
+    font-weight: 400;
+
     position: relative;
 
     color: $secondary;
-
-    font-weight: 400;
   }
 }
 
@@ -254,29 +214,58 @@ body {
   About
    ========================================================================== */
 
-.about {
-  .image {
-    // float: right;
-    //
-    // width: 50%;
-    // height: 100%;
-    width: 100%;
-    height: 540px;
-
-    background-image: url('../img/tom.jpg');
-    background-position: top center;
-    background-size: cover;
-  }
-}
-
 .experience {
   padding-bottom: 1.25rem;
 
   dl {
+    font-size: .875rem;
+
     margin: 1.5rem 0;
     padding: 0;
+  }
+}
 
-    font-size: .875rem;
+/* ==========================================================================
+  Portrait
+   ========================================================================== */
+
+.portrait {
+  position: relative;
+
+  display: table-row;
+
+  width: 100%;
+  height: 500px;
+
+  div {
+    position: absolute;
+
+    width: 100%;
+    height: 500px;
+
+    transition: opacity 800ms linear;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    &:first-child {
+      z-index: 2;
+
+      opacity: 0;
+      background-image: url('../img/tom-front.jpg');
+
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &:last-child {
+      z-index: 1;
+
+      background-image: url('../img/tom-side.jpg');
+    }
   }
 }
 
@@ -296,12 +285,17 @@ body {
   dd {
     color: $base;
   }
+
+  .content {
+    // display: block;
+  }
 }
 
 .footer {
-  position: relative;
+  display: table-row;
 
   width: 100%;
+  height: 170px;
 
   background: $mustard;
 
@@ -310,6 +304,8 @@ body {
   }
 
   dl {
+    vertical-align: top;
+
     dt {
       color: $base;
     }

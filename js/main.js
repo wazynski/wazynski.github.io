@@ -36,11 +36,11 @@ nine.scrollSpy = () => {
 
         // console.log(nine.pages[i]);
 
-        if (nine.pages[i] !== nine.pages[nine.currentPage]) {
-          console.log('here');
-          nine.currentPage = i;
-          nine.updateControls();
-        }
+        // if (nine.pages[i] !== nine.pages[nine.currentPage]) {
+        //   console.log('here');
+        //   nine.currentPage = i;
+        //   nine.updateControls();
+        // }
 
         console.log(nine.pages[nine.currentPage]);
 
@@ -217,8 +217,6 @@ nine.scrollToPage = (pageID) => {
    ========================================================================== */
 
 nine.keyboardNav = () => {
-  console.log('here');
-
   document.onkeydown = function(event) {
     if (!event) {
       event = window.event;
@@ -328,9 +326,10 @@ nine.checkSticky = () => {
 document.addEventListener('DOMContentLoaded', () => {
   nine.scrollSpy();
   nine.sticky = nine.checkSticky();
-  Array.prototype.forEach.call(nine.pages, function(el) {
-    new nine.scrollHandler(el.id);
-  });
+
+  // Array.prototype.forEach.call(nine.pages, function(el) {
+  //   new nine.scrollHandler(el.id);
+  // });
 
   nine.keyboardNav();
   nine.controls();
@@ -343,3 +342,5 @@ document.addEventListener('DOMContentLoaded', () => {
 window.onload = () => {
   nine.animateLoad();
 };
+
+// TODO: previous button doesnt get height right on last slide

@@ -181,7 +181,6 @@ figure {
  * Address differences between Firefox and other browsers.
  */
 hr {
-  -moz-box-sizing: content-box;
   box-sizing: content-box;
   height: 0; }
 
@@ -308,9 +307,7 @@ input[type='number']::-webkit-outer-spin-button {
  *    (include `-moz` to future-proof).
  */
 input[type='search'] {
-  -webkit-box-sizing: content-box;
   /* 2 */
-  -moz-box-sizing: content-box;
   box-sizing: content-box;
   -webkit-appearance: textfield;
   /* 1 */ }
@@ -469,99 +466,6 @@ ul {
   Modules
 ========================================================================== */
 /* ==========================================================================
-Site Name: SITENAME
-Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
-
-Stylesheet: Buttons
-========================================================================== */
-input[type='submit'],
-.btn {
-  font-size: .625em;
-  font-weight: 700;
-  display: inline-block;
-  margin-bottom: 1rem;
-  padding: 1.2em 2.4em;
-  transition: background 300ms linear, color 300ms linear;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  color: #414141;
-  border: 0 !important;
-  border-radius: 30px;
-  outline: none;
-  background: #707070; }
-  input[type='submit'].mt,
-  .btn.mt {
-    margin-top: 2rem; }
-  input[type='submit']:active, input[type='submit']:focus, input[type='submit']:hover,
-  .btn:active,
-  .btn:focus,
-  .btn:hover {
-    color: #707070;
-    background: #414141; }
-
-.btn-group {
-  margin-top: 2rem;
-  text-align: center;
-  vertical-align: top; }
-  .btn-group .btn {
-    display: inline-block;
-    margin: 0 .5rem .5rem;
-    vertical-align: top; }
-  .btn-group form {
-    display: inline-block; }
-
-input[type='submit'].btn-alt,
-.btn-alt {
-  color: #414141;
-  background: #707070; }
-  input[type='submit'].btn-alt:active, input[type='submit'].btn-alt:focus, input[type='submit'].btn-alt:hover,
-  .btn-alt:active,
-  .btn-alt:focus,
-  .btn-alt:hover {
-    color: #707070;
-    background: #414141; }
-
-/* ==========================================================================
-Site Name: SITENAME
-Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
-
-Stylesheet: Forms
-========================================================================== */
-::-webkit-input-placeholder {
-  color: #707070; }
-
-::-moz-placeholder {
-  color: #707070; }
-
-:-ms-input-placeholder {
-  color: #707070; }
-
-/* ==========================================================================
-  Submit
-   ========================================================================== */
-/* ==========================================================================
-Site Name: SITENAME
-Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
-
-Stylesheet: Tables
-========================================================================== */
-/* ==========================================================================
-Site Name: SITENAME
-Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
-
-Stylesheet: Header and Menu
-========================================================================== */
-/* ==========================================================================
-Site Name: SITENAME
-Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
-
-Stylesheet: Footer
-========================================================================== */
-/* ==========================================================================
-  Footer
-========================================================================== */
-/* ==========================================================================
   Mobile
 ========================================================================== */
 /* ==========================================================================
@@ -581,6 +485,7 @@ body {
   background: #E6E6E4; }
 
 body {
+  -webkit-transition: opacity 500ms linear;
   transition: opacity 500ms linear;
   opacity: 1; }
   body.faded {
@@ -596,19 +501,21 @@ body {
   Header
    ========================================================================== */
 .header {
+  line-height: 1;
   position: fixed;
   z-index: 9999;
   top: 0;
   left: 0;
   width: 100%;
   padding: 1.25rem;
+  -webkit-transition: color .5s ease;
   transition: color .5s ease;
-  text-transform: uppercase;
-  line-height: 1; }
+  text-transform: uppercase; }
   .header a {
     position: relative;
     left: 0;
     display: inline-block;
+    -webkit-transition: all 1s ease-out;
     transition: all 1s ease-out;
     text-decoration: none;
     color: #414141; }
@@ -618,12 +525,12 @@ body {
       padding-top: 20px; }
   .header h1,
   .header span {
-    margin: 0;
     font-size: .875rem;
-    font-weight: 600; }
+    font-weight: 600;
+    margin: 0; }
   .header span {
-    color: #707070;
-    font-weight: 400; }
+    font-weight: 400;
+    color: #707070; }
   .header.light a {
     color: #FFFFFF; }
   .header.dark a {
@@ -633,62 +540,27 @@ body {
   Controls
    ========================================================================== */
 .controls {
-  position: fixed;
-  z-index: 9999;
-  right: 50px;
-  bottom: 200px;
-  width: 16px;
-  text-align: right; }
-  .controls ul {
-    width: 16px;
-    list-style: none; }
-    .controls ul li {
-      display: block;
-      width: 10px;
-      height: 10px;
-      margin: 0 auto 10px;
-      border: 1px solid #707070;
-      border-radius: 50%;
-      background: none; }
-      .controls ul li.active {
-        background: #707070; }
-  .controls button {
-    display: block;
-    width: 16px;
-    height: 28px;
-    margin: 0 0 10px;
-    padding: 0;
-    transition: opacity 500ms linear;
-    text-align: center;
-    opacity: 1;
-    border: 0;
-    outline: 0;
-    background: none; }
-    .controls button.disabled {
-      opacity: 0; }
-    .controls button svg {
-      display: inline-block;
-      width: 12px;
-      margin: 0 auto; }
+  display: none; }
 
 /* ==========================================================================
   Section
   ========================================================================== */
 .section {
   position: relative;
-  position: sticky;
-  top: 0;
-  display: flex;
+  display: table;
   width: 100%;
-  min-height: calc(100vh - 50px);
-  vertical-align: bottom; }
+  min-height: calc(100vh - 50px); }
   .section.intro {
+    z-index: 10;
     background: #E6E6E4; }
   .section.about {
+    z-index: 20;
     background: #414141; }
   .section.services {
+    z-index: 30;
     background: #D6E4E1; }
   .section.contact {
+    z-index: 40;
     background: #E6E6E4; }
   .section.dark h2 {
     color: #FFFFFF; }
@@ -700,37 +572,60 @@ body {
     color: #414141; }
 
 .content {
+  font-size: 1.25rem;
+  display: table-cell;
   width: 100%;
   padding: 4.125rem 1.25rem 1.25rem;
-  font-size: 1.25rem;
-  align-self: flex-end; }
-  .content .inner {
+  vertical-align: bottom; }
+  .content .wrap {
     position: relative;
+    z-index: 500;
     left: 0;
+    -webkit-transition: all 1s ease-out;
     transition: all 1s ease-out; }
-    .content .inner.hide-left {
+    .content .wrap.hide-left {
       left: -1000px; }
   .content p {
+    font-weight: 400;
     position: relative;
-    color: #707070;
-    font-weight: 400; }
+    color: #707070; }
 
 /* ==========================================================================
   About
    ========================================================================== */
-.about .image {
-  width: 100%;
-  height: 540px;
-  background-image: url("../img/tom.jpg");
-  background-position: top center;
-  background-size: cover; }
-
 .experience {
   padding-bottom: 1.25rem; }
   .experience dl {
+    font-size: .875rem;
     margin: 1.5rem 0;
-    padding: 0;
-    font-size: .875rem; }
+    padding: 0; }
+
+/* ==========================================================================
+  Portrait
+   ========================================================================== */
+.portrait {
+  position: relative;
+  display: table-row;
+  width: 100%;
+  height: 500px; }
+  .portrait div {
+    position: absolute;
+    width: 100%;
+    height: 500px;
+    -webkit-transition: opacity 800ms linear;
+    transition: opacity 800ms linear;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; }
+    .portrait div:first-child {
+      z-index: 2;
+      opacity: 0;
+      background-image: url("../img/tom-front.jpg"); }
+      .portrait div:first-child:hover {
+        opacity: 1; }
+    .portrait div:last-child {
+      z-index: 1;
+      background-image: url("../img/tom-side.jpg"); }
 
 /* ==========================================================================
   Contact
@@ -745,13 +640,16 @@ body {
   color: #414141; }
 
 .footer {
-  position: relative;
+  display: table-row;
   width: 100%;
+  height: 170px;
   background: #FFD657; }
   .footer .lists {
     padding: 4.125rem 1.25rem 1.25rem; }
-  .footer dl dt {
-    color: #414141; }
+  .footer dl {
+    vertical-align: top; }
+    .footer dl dt {
+      color: #414141; }
 
 @media screen and (min-width: 48rem) {
   /* ==========================================================================
@@ -766,27 +664,74 @@ Stylesheet: Tablet
   .header {
     padding: 3.125rem; }
   /* ==========================================================================
+  Controls
+   ========================================================================== */
+  .controls {
+    position: fixed;
+    z-index: 9999;
+    right: 50px;
+    bottom: 180px;
+    display: block;
+    width: 16px;
+    text-align: right; }
+    .controls ul {
+      width: 16px;
+      list-style: none; }
+      .controls ul li {
+        display: block;
+        width: 10px;
+        height: 10px;
+        margin: 0 auto 10px;
+        border: 1px solid #707070;
+        border-radius: 50%;
+        background: none; }
+        .controls ul li.active {
+          background: #707070; }
+    .controls button {
+      display: block;
+      width: 16px;
+      height: 28px;
+      margin: 0 0 10px;
+      padding: 0;
+      -webkit-transition: opacity 500ms linear;
+      transition: opacity 500ms linear;
+      text-align: center;
+      opacity: 1;
+      border: 0;
+      outline: 0;
+      background: none; }
+      .controls button.disabled {
+        opacity: 0; }
+      .controls button svg {
+        display: inline-block;
+        width: 12px;
+        margin: 0 auto; }
+  /* ==========================================================================
   Section
    ========================================================================== */
   .content {
     font-size: 1.875rem;
-    max-width: 80%;
-    padding: 5rem 3.125rem 3.125rem; } }
-  @media screen and (min-width: 48rem) and (min-height: 700px) {
-    .content {
-      padding-bottom: 25%; } }
-
-@media screen and (min-width: 48rem) {
+    padding: 5rem 3.125rem 3.125rem; }
+    .content .wrap {
+      max-width: 80%; }
   /* ==========================================================================
   About
    ========================================================================== */
   .experience {
     padding-bottom: 1.875rem; }
+  .portrait {
+    position: absolute;
+    z-index: 400;
+    top: 150px;
+    right: 0;
+    bottom: 100px;
+    width: 45%;
+    height: calc(100vh - 300px); }
   /* ==========================================================================
   Contact
    ========================================================================== */
   .section.contact {
-    min-height: calc(100vh - 170px); }
+    min-height: calc(100vh); }
   /* ==========================================================================
   Footer
    ========================================================================== */
@@ -817,15 +762,24 @@ Stylesheet: Tablet
    ========================================================================== */
   .section {
     min-height: calc(100vh - 100px); }
-  .content {
+  .content .wrap {
     max-width: 60%; }
+  .about .content .wrap {
+    max-width: 50%; }
+  .portrait {
+    position: fixed;
+    top: 50px;
+    right: 0;
+    width: calc(50vw - 50px);
+    height: calc(100vh - 200px); }
+    .portrait div {
+      width: 100%;
+      height: 100%; }
   /* ==========================================================================
   Footer
    ========================================================================== */
-  .footer {
-    height: 170px; }
-    .footer .lists {
-      max-width: 60%; } }
+  .footer .lists {
+    max-width: 60%; } }
 
 @media screen and (min-width: 90rem) {
   /* ==========================================================================
@@ -841,3 +795,4 @@ Stylesheet: Large Desktop
     max-width: 75%;
     padding: 5rem 3.125rem 3.125rem;
     font-size: 2.5rem; } }
+/*# sourceMappingURL=style.css.map */
