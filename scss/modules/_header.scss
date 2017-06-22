@@ -1,0 +1,77 @@
+/* ==========================================================================
+Site Name: SITENAME
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: Header
+========================================================================== */
+/* ==========================================================================
+  Header
+   ========================================================================== */
+
+.header {
+  line-height: 1;
+
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  padding: 1.25rem;
+  // padding: 3.125rem;
+
+  transition: color .5s ease;
+  text-transform: uppercase;
+
+  a {
+    position: relative;
+    left: 0;
+
+    display: inline-block;
+
+    transition: all 1s ease-out;
+    text-decoration: none;
+
+    color: $base;
+
+    &.hide-left {
+      left: -500px;
+    }
+    // background: hotpink;
+
+    &:hover {
+      padding-top: 20px;
+    }
+  }
+
+
+  h1,
+  span {
+    font-size: .875rem;
+    font-weight: 600;
+
+    margin: 0;
+  }
+
+  span {
+    font-weight: 400;
+
+    color: $secondary;
+  }
+
+  &.light a {
+    color: $white;
+  }
+
+  &.dark a {
+    color: $base;
+  }
+
+  /* ==========================================================================
+    Tablet
+   ========================================================================== */
+
+  @media screen and (min-width: $tablet) {
+    padding: 3.125rem;
+  }
+}

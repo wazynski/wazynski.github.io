@@ -4,13 +4,6 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Tablet
 ========================================================================== */
-/* ==========================================================================
-  Header
-   ========================================================================== */
-
-.header {
-  padding: 3.125rem;
-}
 
 // .circle {
 //   position: absolute;
@@ -24,74 +17,6 @@ Stylesheet: Tablet
 //   border-radius: 50%;
 //   background: $mango-tango;
 // }
-
-/* ==========================================================================
-  Controls
-   ========================================================================== */
-
-.controls {
-  position: fixed;
-  z-index: 9999;
-  right: 50px;
-  // bottom: 220px;
-  bottom: 180px;
-
-  display: block;
-
-  width: 16px;
-
-  text-align: right;
-
-  ul {
-    width: 16px;
-
-    list-style: none;
-
-    li {
-      display: block;
-
-      width: 10px;
-      height: 10px;
-      margin: 0 auto 10px;
-
-      border: 1px solid $secondary;
-      border-radius: 50%;
-      background: none;;
-
-      &.active {
-        background: $secondary;
-      }
-    }
-  }
-
-  button {
-    display: block;
-
-    width: 16px;
-    height: 28px;
-    margin: 0 0 10px;
-    padding: 0;
-
-    transition: opacity 500ms linear;
-    text-align: center;
-
-    opacity: 1;
-    border: 0;
-    outline: 0;
-    background: none;
-
-    &.disabled {
-      opacity: 0;
-    }
-
-    svg {
-      display: inline-block;
-
-      width: 12px;
-      margin: 0 auto;
-    }
-  }
-}
 
 
 /* ==========================================================================

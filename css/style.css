@@ -418,6 +418,9 @@ Stylesheet: Variables
   Fonts
 ========================================================================== */
 /* ==========================================================================
+  Breakpoints
+   ========================================================================== */
+/* ==========================================================================
 Site Name: SITENAME
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
@@ -466,6 +469,110 @@ ul {
   Modules
 ========================================================================== */
 /* ==========================================================================
+Site Name: SITENAME
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: Header
+========================================================================== */
+/* ==========================================================================
+  Header
+   ========================================================================== */
+.header {
+  line-height: 1;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.25rem;
+  -webkit-transition: color .5s ease;
+  transition: color .5s ease;
+  text-transform: uppercase;
+  /* ==========================================================================
+    Tablet
+   ========================================================================== */ }
+  .header a {
+    position: relative;
+    left: 0;
+    display: inline-block;
+    -webkit-transition: all 1s ease-out;
+    transition: all 1s ease-out;
+    text-decoration: none;
+    color: #414141; }
+    .header a.hide-left {
+      left: -500px; }
+    .header a:hover {
+      padding-top: 20px; }
+  .header h1,
+  .header span {
+    font-size: .875rem;
+    font-weight: 600;
+    margin: 0; }
+  .header span {
+    font-weight: 400;
+    color: #707070; }
+  .header.light a {
+    color: #FFFFFF; }
+  .header.dark a {
+    color: #414141; }
+  @media screen and (min-width: 768px) {
+    .header {
+      padding: 3.125rem; } }
+
+/* ==========================================================================
+Site Name: SITENAME
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: Controls
+========================================================================== */
+/* ==========================================================================
+  Controls
+   ========================================================================== */
+.controls {
+  display: none; }
+  @media screen and (min-width: 768px) {
+    .controls {
+      position: fixed;
+      z-index: 9999;
+      right: 50px;
+      bottom: 180px;
+      display: block;
+      width: 16px;
+      text-align: right; }
+      .controls ul {
+        width: 16px;
+        list-style: none; }
+        .controls ul li {
+          display: block;
+          width: 10px;
+          height: 10px;
+          margin: 0 auto 10px;
+          border: 1px solid #707070;
+          border-radius: 50%;
+          background: none; }
+          .controls ul li.active {
+            background: #707070; }
+      .controls button {
+        display: block;
+        width: 16px;
+        height: 28px;
+        margin: 0 0 10px;
+        padding: 0;
+        -webkit-transition: opacity 500ms linear;
+        transition: opacity 500ms linear;
+        text-align: center;
+        opacity: 1;
+        border: 0;
+        outline: 0;
+        background: none; }
+        .controls button.disabled {
+          opacity: 0; }
+        .controls button svg {
+          display: inline-block;
+          width: 12px;
+          margin: 0 auto; } }
+
+/* ==========================================================================
   Mobile
 ========================================================================== */
 /* ==========================================================================
@@ -498,45 +605,6 @@ body {
   height: 100%; }
 
 /* ==========================================================================
-  Header
-   ========================================================================== */
-.header {
-  line-height: 1;
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 1.25rem;
-  -webkit-transition: color .5s ease;
-  transition: color .5s ease;
-  text-transform: uppercase; }
-  .header a {
-    position: relative;
-    left: 0;
-    display: inline-block;
-    -webkit-transition: all 1s ease-out;
-    transition: all 1s ease-out;
-    text-decoration: none;
-    color: #414141; }
-    .header a.hide-left {
-      left: -500px; }
-    .header a:hover {
-      padding-top: 20px; }
-  .header h1,
-  .header span {
-    font-size: .875rem;
-    font-weight: 600;
-    margin: 0; }
-  .header span {
-    font-weight: 400;
-    color: #707070; }
-  .header.light a {
-    color: #FFFFFF; }
-  .header.dark a {
-    color: #414141; }
-
-/* ==========================================================================
   Controls
    ========================================================================== */
 .controls {
@@ -547,6 +615,9 @@ body {
   ========================================================================== */
 .section {
   position: relative;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   display: table;
   width: 100%;
   min-height: calc(100vh - 50px); }
@@ -658,54 +729,6 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Tablet
 ========================================================================== */
-  /* ==========================================================================
-  Header
-   ========================================================================== */
-  .header {
-    padding: 3.125rem; }
-  /* ==========================================================================
-  Controls
-   ========================================================================== */
-  .controls {
-    position: fixed;
-    z-index: 9999;
-    right: 50px;
-    bottom: 180px;
-    display: block;
-    width: 16px;
-    text-align: right; }
-    .controls ul {
-      width: 16px;
-      list-style: none; }
-      .controls ul li {
-        display: block;
-        width: 10px;
-        height: 10px;
-        margin: 0 auto 10px;
-        border: 1px solid #707070;
-        border-radius: 50%;
-        background: none; }
-        .controls ul li.active {
-          background: #707070; }
-    .controls button {
-      display: block;
-      width: 16px;
-      height: 28px;
-      margin: 0 0 10px;
-      padding: 0;
-      -webkit-transition: opacity 500ms linear;
-      transition: opacity 500ms linear;
-      text-align: center;
-      opacity: 1;
-      border: 0;
-      outline: 0;
-      background: none; }
-      .controls button.disabled {
-        opacity: 0; }
-      .controls button svg {
-        display: inline-block;
-        width: 12px;
-        margin: 0 auto; }
   /* ==========================================================================
   Section
    ========================================================================== */
