@@ -9,22 +9,12 @@ Stylesheet: Tablet
   Section
    ========================================================================== */
 
-.section {
-  min-height: calc(100vh - 100px);
-}
-
-.content {
-  .wrap {
-    max-width: 60%;
-  }
-}
-
 .about .content .wrap {
   max-width: 50%;
 }
 
 .portrait {
-  position: fixed;
+  // position: fixed;
   top: 50px;
   right: 0;
 
