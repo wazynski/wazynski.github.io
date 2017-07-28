@@ -20,7 +20,7 @@ nine.scrollSpy = () => {
   Array.prototype.forEach.call(nine.pages, function(el, i) {
     sections[i] = {
       classes: el.className.replace('section', '').trim(),
-      top: el.offsetTop - 50,
+      top: el.offsetTop,
     }
   });
 
@@ -42,7 +42,8 @@ nine.scrollSpy = () => {
         //   nine.updateControls();
         // }
 
-        console.log(nine.pages[nine.currentPage]);
+        // console.log(nine.pages[nine.currentPage]);
+        //console.log(sections[i]);
 
         if (sections[i].classes.includes('light')) {
           nine.changeHeaderClass('dark');
@@ -107,7 +108,6 @@ nine.scrollTo = (startLocation, endLocation) => {
   function stopAnimationIfRequired(pos) {
    if (pos == endLocation) {
      cancelAnimationFrame(runAnimation);
-     nine.canScroll = true;
      nine.finishedScroll();
    }
   }
@@ -135,6 +135,9 @@ nine.scrollTo = (startLocation, endLocation) => {
    ========================================================================== */
 
 nine.finishedScroll = () => {
+  console.log('done');
+  nine.canScroll = true;
+  console.log(nine.canScroll);
   nine.scrollDirection = null;
 }
 
@@ -152,7 +155,7 @@ nine.scrollHandler = function(pageId) {
   window.addEventListener('wheel', function(event) {
     nine.scrollStart = nine.scrollContainer.scrollTop;
 
-    console.log(nine.scrollStart);
+    // console.log(nine.scrollStart);
 
     if (timeout !== null) {
         console.log('timout in progress');
@@ -206,9 +209,6 @@ nine.scrollToPage = (pageID) => {
     pageStart = document.getElementById(pageID).offsetTop;
   }
 
-  console.log(pageStart);
-  console.log(pageID);
-
   nine.scrollTo(nine.scrollStart, pageStart);
 }
 
@@ -248,7 +248,7 @@ nine.keyboardNav = () => {
    ========================================================================== */
 
 nine.nextPage = () => {
-  if (nine.currentPage + 1 < nine.pages.length) {
+  if (nine.currentPage + 1 < nine.pages.length && nine.canScroll) {
     nine.scrollDirection = 'down';
     var nextPage = nine.pages[nine.currentPage + 1].id;
     nine.currentPage += 1;
@@ -266,7 +266,7 @@ nine.nextPage = () => {
    ========================================================================== */
 
 nine.prevPage = () => {
-  if (nine.currentPage - 1 >= 0) {
+  if (nine.currentPage - 1 >= 0 && nine.canScroll) {
     nine.scrollDirection = 'up';
     var prevPage = nine.pages[nine.currentPage - 1].id;
     nine.currentPage -= 1;
