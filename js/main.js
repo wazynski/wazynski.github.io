@@ -30,21 +30,6 @@ nine.scrollSpy = () => {
 
     for (i in sections) {
       if (sections[i].top <= scrollPosition) {
-
-        // nine.currentPage = i;
-        // nine.updateControls();
-
-        // console.log(nine.pages[i]);
-
-        // if (nine.pages[i] !== nine.pages[nine.currentPage]) {
-        //   console.log('here');
-        //   nine.currentPage = i;
-        //   nine.updateControls();
-        // }
-
-        // console.log(nine.pages[nine.currentPage]);
-        //console.log(sections[i]);
-
         if (sections[i].classes.includes('light')) {
           nine.changeHeaderClass('dark');
         } else {
@@ -108,8 +93,13 @@ nine.scrollTo = (startLocation, endLocation) => {
   function stopAnimationIfRequired(pos) {
    if (pos == endLocation) {
      cancelAnimationFrame(runAnimation);
-     nine.finishedScroll();
+     finishedScroll();
    }
+  }
+
+  function finishedScroll() {
+    nine.canScroll = true;
+    nine.scrollDirection = null;
   }
 
   var animate = function () {
@@ -128,17 +118,6 @@ nine.scrollTo = (startLocation, endLocation) => {
 
   // Loop the animation function
   runAnimation = requestAnimationFrame(animate);
-}
-
-/* ==========================================================================
-  nine.finishedScroll
-   ========================================================================== */
-
-nine.finishedScroll = () => {
-  console.log('done');
-  nine.canScroll = true;
-  console.log(nine.canScroll);
-  nine.scrollDirection = null;
 }
 
 /* ==========================================================================
@@ -164,7 +143,8 @@ nine.scrollHandler = function(pageId) {
     }
 
     if (nine.canScroll) {
-      timeout = setTimeout(function(){ timeout = null; }, nine.duration * 1.5);
+      timeout = setT
+      imeout(function(){ timeout = null; }, nine.duration * 3);
 
       var pageHeight = page.scrollHeight;
       var pageStopPortion = pageHeight / 2;
@@ -278,6 +258,20 @@ nine.prevPage = () => {
   return false;
 }
 
+function debounce(fn, delay) {
+    var timeout;
+
+    return function () {
+        var context = this,
+            args = arguments;
+
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+            fn.apply(context, args);
+        }, delay || 250);
+    };
+}
+
 /* ==========================================================================
   nine.controls()
    ========================================================================== */
@@ -295,6 +289,10 @@ nine.controls = () => {
   nine.updateControls();
 }
 
+/* ==========================================================================
+  nine.updateControls()
+   ========================================================================== */
+
 nine.updateControls = () => {
   document.querySelector('.dots li.active').classList.remove('active');
   document.querySelectorAll('.dots li')[nine.currentPage].classList.add('active');
@@ -311,13 +309,16 @@ nine.updateControls = () => {
   }
 }
 
+/* ==========================================================================
+  nine.checkSticky()
+   ========================================================================== */
+
 nine.checkSticky = () => {
   var el = document.createElement('a'),
     mStyle = el.style;
     mStyle.cssText = "position:sticky;position:-webkit-sticky;position:-ms-sticky;";
   return mStyle.position.indexOf('sticky')!==-1;
 }
-
 
 /* ==========================================================================
   Document Load
@@ -327,9 +328,9 @@ document.addEventListener('DOMContentLoaded', () => {
   nine.scrollSpy();
   nine.sticky = nine.checkSticky();
 
-  // Array.prototype.forEach.call(nine.pages, function(el) {
-  //   new nine.scrollHandler(el.id);
-  // });
+  Array.prototype.forEach.call(nine.pages, function(el) {
+    new nine.scrollHandler(el.id);
+  });
 
   nine.keyboardNav();
   nine.controls();
