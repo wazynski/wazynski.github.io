@@ -8,8 +8,6 @@ Stylesheet: Sections
   Sections
    ========================================================================== */
 .section {
-  position: relative;
-  // @media screen and (min-height: 1024px) {
   position: sticky;
   top: 0;
 
@@ -17,7 +15,6 @@ Stylesheet: Sections
 
   width: 100%;
   min-height: calc(100vh - 50px);
-  // }
 
   // vertical-align: bottom;
 
@@ -76,6 +73,31 @@ Stylesheet: Sections
 }
 
 .content {
+  /* ==========================================================================
+  Tablet
+   ========================================================================== */
+  @include bp($tablet) {
+    font-size: 1.875rem;
+
+    padding: 5rem 3.125rem 3.125rem;
+
+    .wrap {
+      max-width: 80%;
+    }
+  }
+  /* ==========================================================================
+  Desktop
+   ========================================================================== */
+  @include bp($desktop) {
+    font-size: 2.5rem;
+
+    padding: 5rem 3.125rem 3.125rem;
+
+    .wrap {
+      // max-width: 75%;
+    }
+  }
+
   font-size: 1.25rem;
 
   display: table-cell;
@@ -108,40 +130,12 @@ Stylesheet: Sections
   }
 
   /* ==========================================================================
-  Tablet
-   ========================================================================== */
-
-  @media screen and (min-width: $tablet) {
-    font-size: 1.875rem;
-
-    padding: 5rem 3.125rem 3.125rem;
-
-    .wrap {
-      max-width: 80%;
-    }
-  }
-
-  /* ==========================================================================
   Laptop
    ========================================================================== */
 
   @media screen and (min-width: $laptop) {
     .wrap {
       max-width: 60%;
-    }
-  }
-
-  /* ==========================================================================
-  Desktop
-   ========================================================================== */
-
-  @media screen and (min-width: $desktop) {
-    font-size: 2.5rem;
-
-    padding: 5rem 3.125rem 3.125rem;
-
-    .wrap {
-      // max-width: 75%;
     }
   }
 }

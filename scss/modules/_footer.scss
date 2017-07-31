@@ -1,0 +1,42 @@
+/* ==========================================================================
+Site Name: SITENAME
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: Footer
+========================================================================== */
+
+.footer {
+  display: table-row;
+
+  width: 100%;
+  height: 170px;
+
+  background: $mustard;
+
+  .lists {
+    padding: 4.125rem 1.25rem 1.25rem;
+  }
+
+  dl {
+    vertical-align: top;
+
+    dt {
+      color: $base;
+    }
+  }
+
+  @include bp($tablet) {
+    height: 170px;
+
+    .lists {
+      max-width: 80%;
+      padding: 5rem 3.125rem 3.125rem;
+    }
+  }
+
+  @include bp($desktop) {
+    .lists {
+      max-width: 60%;
+    }
+  }
+}

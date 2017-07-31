@@ -8,6 +8,7 @@ Stylesheet: Style
   Partials
 ========================================================================== */
 @import 'partials/normalize';
+@import 'partials/mixins';
 @import 'partials/helpers';
 @import 'partials/variables';
 @import 'partials/typography';
@@ -15,8 +16,10 @@ Stylesheet: Style
 /* ==========================================================================
   Modules
 ========================================================================== */
+@import 'modules/base';
 
 @import 'modules/header';
+@import 'modules/footer';
 @import 'modules/controls';
 @import 'modules/sections';
 
@@ -24,17 +27,3 @@ Stylesheet: Style
 @import 'modules/sections/about';
 @import 'modules/sections/services';
 @import 'modules/sections/contact';
-
-@import 'modules/base';
-
-/* ==========================================================================
-  Mobile
-========================================================================== */
-
-@media screen and (min-width: 48rem) {
-  @import 'breakpoints/768up';
-}
-
-@media screen and (min-width: 64rem) {
-  @import 'breakpoints/1024up';
-}

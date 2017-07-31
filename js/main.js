@@ -143,8 +143,7 @@ nine.scrollHandler = function(pageId) {
     }
 
     if (nine.canScroll) {
-      timeout = setT
-      imeout(function(){ timeout = null; }, nine.duration * 3);
+      timeout = setTimeout(function(){ timeout = null; }, nine.duration * 3);
 
       var pageHeight = page.scrollHeight;
       var pageStopPortion = pageHeight / 2;
@@ -328,9 +327,9 @@ document.addEventListener('DOMContentLoaded', () => {
   nine.scrollSpy();
   nine.sticky = nine.checkSticky();
 
-  Array.prototype.forEach.call(nine.pages, function(el) {
-    new nine.scrollHandler(el.id);
-  });
+  // Array.prototype.forEach.call(nine.pages, function(el) {
+  //   new nine.scrollHandler(el.id);
+  // });
 
   nine.keyboardNav();
   nine.controls();

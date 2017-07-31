@@ -71,7 +71,7 @@ Stylesheet: Header
     Tablet
    ========================================================================== */
 
-  @media screen and (min-width: $tablet) {
+  @include bp($tablet) {
     padding: 3.125rem;
   }
 }

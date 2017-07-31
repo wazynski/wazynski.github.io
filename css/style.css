@@ -369,6 +369,21 @@ th {
 Site Name: SITENAME
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
+Stylesheet: Mixins
+========================================================================== */
+/*
+ * Placeholder mixin for <input>
+ */
+/**
+ * Clearfix
+ */
+/**
+ * Positioning
+ */
+/* ==========================================================================
+Site Name: SITENAME
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
 Stylesheet: Helpers
 ========================================================================== */
 /* ==========================================================================
@@ -472,6 +487,42 @@ ul {
 Site Name: SITENAME
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
+Stylesheet: Base - Mobile Stylings
+========================================================================== */
+/* ==========================================================================
+  Base
+   ========================================================================== */
+* {
+  box-sizing: border-box; }
+
+html,
+body {
+  background: #E6E6E4; }
+
+body {
+  transition: opacity 500ms linear;
+  opacity: 1; }
+  body.faded {
+    opacity: 0; }
+
+.scroll-container {
+  position: absolute;
+  overflow: auto;
+  width: 100%;
+  height: 100%; }
+
+@media screen and (min-width: 48rem) {
+  .col-2 {
+    font-size: 0; }
+    .col-2 dl {
+      display: inline-block;
+      width: 50%;
+      margin: 0; } }
+
+/* ==========================================================================
+Site Name: SITENAME
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
 Stylesheet: Header
 ========================================================================== */
 /* ==========================================================================
@@ -485,7 +536,6 @@ Stylesheet: Header
   left: 0;
   width: 100%;
   padding: 1.25rem;
-  -webkit-transition: color .5s ease;
   transition: color .5s ease;
   text-transform: uppercase;
   /* ==========================================================================
@@ -495,7 +545,6 @@ Stylesheet: Header
     position: relative;
     left: 0;
     display: inline-block;
-    -webkit-transition: all 1s ease-out;
     transition: all 1s ease-out;
     text-decoration: none;
     color: #414141; }
@@ -518,6 +567,33 @@ Stylesheet: Header
   @media screen and (min-width: 48rem) {
     .header {
       padding: 3.125rem; } }
+
+/* ==========================================================================
+Site Name: SITENAME
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: Footer
+========================================================================== */
+.footer {
+  display: table-row;
+  width: 100%;
+  height: 170px;
+  background: #FFD657; }
+  .footer .lists {
+    padding: 4.125rem 1.25rem 1.25rem; }
+  .footer dl {
+    vertical-align: top; }
+    .footer dl dt {
+      color: #414141; }
+  @media screen and (min-width: 48rem) {
+    .footer {
+      height: 170px; }
+      .footer .lists {
+        max-width: 80%;
+        padding: 5rem 3.125rem 3.125rem; } }
+  @media screen and (min-width: 90rem) {
+    .footer .lists {
+      max-width: 60%; } }
 
 /* ==========================================================================
 Site Name: SITENAME
@@ -558,7 +634,6 @@ Stylesheet: Controls
         height: 28px;
         margin: 0 0 10px;
         padding: 0;
-        -webkit-transition: opacity 500ms linear;
         transition: opacity 500ms linear;
         text-align: center;
         opacity: 1;
@@ -582,7 +657,6 @@ Stylesheet: Sections
   Sections
    ========================================================================== */
 .section {
-  position: relative;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -635,7 +709,6 @@ Stylesheet: Sections
     position: relative;
     z-index: 500;
     left: 0;
-    -webkit-transition: all 1s ease-out;
     transition: all 1s ease-out; }
     .content .wrap.hide-left {
       left: -1000px; }
@@ -661,40 +734,21 @@ Stylesheet: Sections
 Site Name: SITENAME
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
-Stylesheet: Base - Mobile Stylings
+Stylesheet: About
 ========================================================================== */
-/* ==========================================================================
-  Base
-   ========================================================================== */
-* {
-  box-sizing: border-box; }
-
-html,
-body {
-  background: #E6E6E4; }
-
-body {
-  -webkit-transition: opacity 500ms linear;
-  transition: opacity 500ms linear;
-  opacity: 1; }
-  body.faded {
-    opacity: 0; }
-
-.scroll-container {
-  position: absolute;
-  overflow: auto;
-  width: 100%;
-  height: 100%; }
-
-/* ==========================================================================
-  About
-   ========================================================================== */
 .experience {
   padding-bottom: 1.25rem; }
+  @media screen and (min-width: 48rem) {
+    .experience {
+      padding-bottom: 1.875rem; } }
   .experience dl {
     font-size: .875rem;
     margin: 1.5rem 0;
     padding: 0; }
+
+@media screen and (min-width: 90rem) {
+  .about .content .wrap {
+    max-width: 50%; } }
 
 /* ==========================================================================
   Portrait
@@ -704,11 +758,28 @@ body {
   display: table-row;
   width: 100%;
   height: 500px; }
+  @media screen and (min-width: 48rem) {
+    .portrait {
+      position: absolute;
+      z-index: 400;
+      top: 150px;
+      right: 0;
+      bottom: 100px;
+      width: 45%;
+      height: calc(100vh - 300px); } }
+  @media screen and (min-width: 90rem) {
+    .portrait {
+      top: 50px;
+      right: 0;
+      width: calc(50vw - 50px);
+      height: calc(100vh - 200px); }
+      .portrait div {
+        width: 100%;
+        height: 100%; } }
   .portrait div {
     position: absolute;
     width: 100%;
     height: 500px;
-    -webkit-transition: opacity 800ms linear;
     transition: opacity 800ms linear;
     background-repeat: no-repeat;
     background-position: center;
@@ -724,8 +795,11 @@ body {
       background-image: url("../img/tom-side.jpg"); }
 
 /* ==========================================================================
-  Contact
-   ========================================================================== */
+Site Name: SITENAME
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: Contact
+========================================================================== */
 .contact a {
   color: #414141; }
 
@@ -735,87 +809,7 @@ body {
 .contact dd {
   color: #414141; }
 
-.footer {
-  display: table-row;
-  width: 100%;
-  height: 170px;
-  background: #FFD657; }
-  .footer .lists {
-    padding: 4.125rem 1.25rem 1.25rem; }
-  .footer dl {
-    vertical-align: top; }
-    .footer dl dt {
-      color: #414141; }
-
-/* ==========================================================================
-  Mobile
-========================================================================== */
 @media screen and (min-width: 48rem) {
-  /* ==========================================================================
-Site Name: SITENAME
-Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
-
-Stylesheet: Tablet
-========================================================================== */
-  /* ==========================================================================
-  About
-   ========================================================================== */
-  .experience {
-    padding-bottom: 1.875rem; }
-  .portrait {
-    position: absolute;
-    z-index: 400;
-    top: 150px;
-    right: 0;
-    bottom: 100px;
-    width: 45%;
-    height: calc(100vh - 300px); }
-  /* ==========================================================================
-  Contact
-   ========================================================================== */
-  .section.contact {
-    min-height: calc(100vh); }
-  /* ==========================================================================
-  Footer
-   ========================================================================== */
-  .footer {
-    height: 170px; }
-    .footer .lists {
-      max-width: 80%;
-      padding: 5rem 3.125rem 3.125rem; }
-  /* ==========================================================================
-  Typography
-  ========================================================================== */
-  .col-2 {
-    font-size: 0; }
-    .col-2 dl {
-      display: inline-block;
-      width: 50%;
-      margin: 0; } }
-
-@media screen and (min-width: 64rem) {
-  /* ==========================================================================
-Site Name: SITENAME
-Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
-
-Stylesheet: Tablet
-========================================================================== */
-  /* ==========================================================================
-  Section
-   ========================================================================== */
-  .about .content .wrap {
-    max-width: 50%; }
-  .portrait {
-    top: 50px;
-    right: 0;
-    width: calc(50vw - 50px);
-    height: calc(100vh - 200px); }
-    .portrait div {
-      width: 100%;
-      height: 100%; }
-  /* ==========================================================================
-  Footer
-   ========================================================================== */
-  .footer .lists {
-    max-width: 60%; } }
+  .contact {
+    min-height: calc(100vh); } }
 /*# sourceMappingURL=style.css.map */
