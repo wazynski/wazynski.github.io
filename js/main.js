@@ -22,6 +22,7 @@ nine.scrollSpy = () => {
       classes: el.className.replace('section', '').trim(),
       top: el.offsetTop,
       bottom: el.offsetTop + el.offsetHeight,
+      height: el.offsetHeight,
     }
   });
 
@@ -37,7 +38,10 @@ nine.scrollSpy = () => {
         } else {
           nine.changeHeaderClass('light');
         }
+      }
 
+      // Count as being in next page if 25% scrolled into it.
+      if ((scrollPosition >= sections[i].top - (sections[i].height * 0.75))  && scrollPosition <= sections[i].bottom) {
         if (nine.currentPage != i) {
           nine.currentPage = parseInt(i);
           nine.updateControls();
@@ -180,16 +184,20 @@ nine.scrollHandler = function(pageId) {
   nine.scrollToPage()
    ========================================================================== */
 
-nine.scrollToPage = (pageID) => {
+nine.scrollToPage = (pageID, offset) => {
   // Get current scroll location and where the page starts
   nine.scrollStart = nine.scrollContainer.scrollTop;
+
+  if(typeof offset === "undefined") {
+    offset = 0;
+  }
 
   var pageStart;
 
   if (nine.scrollDirection === "up" && nine.sticky === true) {
-    pageStart = document.getElementById(pageID).offsetTop - document.getElementById(pageID).offsetHeight;
+    pageStart = document.getElementById(pageID).offsetTop - document.getElementById(pageID).offsetHeight - offset;
   } else {
-    pageStart = document.getElementById(pageID).offsetTop;
+    pageStart = document.getElementById(pageID).offsetTop - offset;
   }
 
   nine.scrollTo(nine.scrollStart, pageStart);
@@ -236,7 +244,6 @@ nine.nextPage = () => {
     var nextPage = nine.pages[nine.currentPage + 1].id;
 
     nine.scrollToPage(nextPage);
-    nine.updateControls();
     return true;
   }
   return false;
@@ -250,9 +257,28 @@ nine.prevPage = () => {
   if (nine.currentPage - 1 >= 0 && nine.canScroll) {
     nine.scrollDirection = 'up';
     var prevPage = nine.pages[nine.currentPage - 1].id;
+    var offset = 0;
 
-    nine.scrollToPage(prevPage);
-    nine.updateControls();
+   // If user has manuall scrolled part way onto next one there will be an offset to account for.
+    if (nine.currentPage + 1 < nine.pages.length) {
+      var nextPageOffset = document.getElementById(nine.pages[nine.currentPage + 1].id).offsetTop
+      var prevPageEl = document.getElementById(prevPage);
+      var prevPageOffsetBottom = prevPageEl.offsetTop + prevPageEl.offsetHeight;
+
+      if (nextPageOffset != prevPageOffsetBottom) {
+        console.log(prevPageOffsetBottom - nextPageOffset);
+        offset = prevPageOffsetBottom - nextPageOffset;
+      }
+    } else {
+      var scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
+      var currentPageOffset = document.getElementById(nine.pages[nine.currentPage].id).offsetTop;
+
+      if (scrollPosition != currentPageOffset) {
+        offset = scrollPosition - currentPageOffset;
+      }
+    }
+
+    nine.scrollToPage(prevPage, offset);
     return true;
   }
   return false;
@@ -314,6 +340,7 @@ nine.updateControls = () => {
    ========================================================================== */
 
 nine.checkSticky = () => {
+  // return false; // turn stick off
   var el = document.createElement('a'),
     mStyle = el.style;
     mStyle.cssText = "position:sticky;position:-webkit-sticky;position:-ms-sticky;";

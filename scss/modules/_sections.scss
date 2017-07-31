@@ -9,6 +9,7 @@ Stylesheet: Sections
    ========================================================================== */
 .section {
   position: sticky;
+  // position: relative; // Turn sticky off
   top: 0;
 
   display: table;
