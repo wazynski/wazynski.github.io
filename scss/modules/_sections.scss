@@ -16,8 +16,6 @@ Stylesheet: Sections
   width: 100%;
   min-height: calc(100vh - 50px);
 
-  // vertical-align: bottom;
-
   &.intro {
     z-index: 10;
 
@@ -92,10 +90,6 @@ Stylesheet: Sections
     font-size: 2.5rem;
 
     padding: 5rem 3.125rem 3.125rem;
-
-    .wrap {
-      // max-width: 75%;
-    }
   }
 
   font-size: 1.25rem;
@@ -104,8 +98,6 @@ Stylesheet: Sections
 
   width: 100%;
   padding: 4.125rem 1.25rem 1.25rem;
-  // position: absolute;
-  // bottom: 0;
 
   vertical-align: bottom;
 

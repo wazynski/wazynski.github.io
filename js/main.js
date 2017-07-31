@@ -21,6 +21,7 @@ nine.scrollSpy = () => {
     sections[i] = {
       classes: el.className.replace('section', '').trim(),
       top: el.offsetTop,
+      bottom: el.offsetTop + el.offsetHeight,
     }
   });
 
@@ -29,11 +30,17 @@ nine.scrollSpy = () => {
     var scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
 
     for (i in sections) {
-      if (sections[i].top <= scrollPosition) {
+      if (scrollPosition >= sections[i].top  && scrollPosition <= sections[i].bottom) {
+
         if (sections[i].classes.includes('light')) {
           nine.changeHeaderClass('dark');
         } else {
           nine.changeHeaderClass('light');
+        }
+
+        if (nine.currentPage != i) {
+          nine.currentPage = parseInt(i);
+          nine.updateControls();
         }
       }
     }
@@ -134,10 +141,7 @@ nine.scrollHandler = function(pageId) {
   window.addEventListener('wheel', function(event) {
     nine.scrollStart = nine.scrollContainer.scrollTop;
 
-    // console.log(nine.scrollStart);
-
     if (timeout !== null) {
-        console.log('timout in progress');
         event.preventDefault();
         return false;
     }
@@ -230,8 +234,6 @@ nine.nextPage = () => {
   if (nine.currentPage + 1 < nine.pages.length && nine.canScroll) {
     nine.scrollDirection = 'down';
     var nextPage = nine.pages[nine.currentPage + 1].id;
-    nine.currentPage += 1;
-
 
     nine.scrollToPage(nextPage);
     nine.updateControls();
@@ -248,7 +250,6 @@ nine.prevPage = () => {
   if (nine.currentPage - 1 >= 0 && nine.canScroll) {
     nine.scrollDirection = 'up';
     var prevPage = nine.pages[nine.currentPage - 1].id;
-    nine.currentPage -= 1;
 
     nine.scrollToPage(prevPage);
     nine.updateControls();
