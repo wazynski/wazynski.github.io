@@ -194,6 +194,8 @@ nine.scrollToPage = (pageID, offset) => {
 
   var pageStart;
 
+  console.log(document.getElementById(pageID).offsetTop - offset);
+
   if (nine.scrollDirection === "up" && nine.sticky === true) {
     pageStart = document.getElementById(pageID).offsetTop - document.getElementById(pageID).offsetHeight - offset;
   } else {
@@ -231,8 +233,39 @@ nine.keyboardNav = () => {
     }
 
   };
-
 }
+
+/* ==========================================================================
+  nine.calculateOffset()
+   ========================================================================== */
+
+nine.calculateOffset = () => {
+  var prevPage = nine.pages[nine.currentPage - 1].id;
+  var offset = 0;
+
+  // If user has manuall scrolled part way onto next one there will be an offset to account for.
+  if (nine.sticky) {
+     if (nine.currentPage + 1 < nine.pages.length) {
+       var nextPageOffset = document.getElementById(nine.pages[nine.currentPage + 1].id).offsetTop
+       var prevPageEl = document.getElementById(prevPage);
+       var prevPageOffsetBottom = prevPageEl.offsetTop + prevPageEl.offsetHeight;
+
+       if (nextPageOffset != prevPageOffsetBottom) {
+         offset = prevPageOffsetBottom - nextPageOffset;
+       }
+     } else {
+       var scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
+       var currentPageOffset = document.getElementById(nine.pages[nine.currentPage].id).offsetTop;
+
+       if (scrollPosition != currentPageOffset) {
+         offset = scrollPosition - currentPageOffset;
+       }
+     }
+     return offset;
+   } else {
+     return 0;
+   }
+};
 
 /* ==========================================================================
   nine.nextPage()
@@ -257,32 +290,8 @@ nine.prevPage = () => {
   if (nine.currentPage - 1 >= 0 && nine.canScroll) {
     nine.scrollDirection = 'up';
     var prevPage = nine.pages[nine.currentPage - 1].id;
-    var offset = 0;
 
-   // If user has manuall scrolled part way onto next one there will be an offset to account for.
-   if (nine.sticky) {
-      if (nine.currentPage + 1 < nine.pages.length) {
-        var nextPageOffset = document.getElementById(nine.pages[nine.currentPage + 1].id).offsetTop
-        var prevPageEl = document.getElementById(prevPage);
-        var prevPageOffsetBottom = prevPageEl.offsetTop + prevPageEl.offsetHeight;
-
-        console.log(nextPageOffset);
-        console.log(prevPageOffsetBottom);
-
-        if (nextPageOffset != prevPageOffsetBottom) {
-          offset = prevPageOffsetBottom - nextPageOffset;
-        }
-      } else {
-        var scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
-        var currentPageOffset = document.getElementById(nine.pages[nine.currentPage].id).offsetTop;
-
-        if (scrollPosition != currentPageOffset) {
-          offset = scrollPosition - currentPageOffset;
-        }
-      }
-    }
-
-    nine.scrollToPage(prevPage, offset);
+    nine.scrollToPage(prevPage, nine.calculateOffset());
     return true;
   }
   return false;
@@ -307,8 +316,31 @@ function debounce(fn, delay) {
    ========================================================================== */
 
 nine.controls = () => {
+  var pageIndex = 0;
+
   Array.prototype.forEach.call(nine.pages, function(el) {
-    document.querySelector('.dots').appendChild(document.createElement('li'));
+    var dot = document.createElement('li');
+    dot.setAttribute('data-page', pageIndex);
+    document.querySelector('.dots').appendChild(dot);
+    dot.addEventListener('click', (e) => {
+      var pageIndex = e.target.getAttribute('data-page');
+      var pageId = nine.pages[pageIndex].id
+      var offset = 0;
+      if (pageIndex > nine.currentPage) {
+        nine.scrollDirection = 'down';
+      } else {
+        // Bit Hacky as requires all sections to be same height.Could select them and calculate the height.
+        nine.scrollDirection = 'up';
+        if (nine.sticky) {
+          var gap = nine.currentPage - 1 - pageIndex;
+          offset = document.getElementById(pageId).offsetHeight * gap + nine.calculateOffset();
+        }
+      }
+
+      nine.scrollToPage(pageId, offset);
+    });
+    
+    pageIndex++;
   });
 
   document.querySelector('.dots li').classList.add('active')
@@ -340,11 +372,11 @@ nine.updateControls = () => {
 }
 
 /* ==========================================================================
-  nine.checkSticky()
+  nine.checkSticky() - http://trialstravails.blogspot.co.uk/2016/06/detecting-css-position-sticky-support.html
    ========================================================================== */
 
 nine.checkSticky = () => {
-  return false; // turn stick off
+  // return false; // turn stick off
   var el = document.createElement('a'),
     mStyle = el.style;
     mStyle.cssText = "position:sticky;position:-webkit-sticky;position:-ms-sticky;";

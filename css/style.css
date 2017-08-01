@@ -623,10 +623,14 @@ Stylesheet: Controls
           width: 10px;
           height: 10px;
           margin: 0 auto 10px;
+          cursor: pointer;
           border: 1px solid #707070;
           border-radius: 50%;
           background: none; }
           .controls ul li.active {
+            background: #707070; }
+          .controls ul li:hover {
+            opacity: .5;
             background: #707070; }
       .controls button {
         display: block;

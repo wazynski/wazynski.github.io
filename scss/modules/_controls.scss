@@ -9,8 +9,6 @@ Stylesheet: Controls
    ========================================================================== */
 
 .controls {
-  display: none;
-
   @include bp($tablet) {
     position: fixed;
     z-index: 9999;
@@ -36,11 +34,18 @@ Stylesheet: Controls
         height: 10px;
         margin: 0 auto 10px;
 
+        cursor: pointer;
+
         border: 1px solid $secondary;
         border-radius: 50%;
         background: none;;
 
         &.active {
+          background: $secondary;
+        }
+
+        &:hover {
+          opacity: .5;
           background: $secondary;
         }
       }
@@ -74,4 +79,6 @@ Stylesheet: Controls
       }
     }
   }
+
+  display: none;
 }
