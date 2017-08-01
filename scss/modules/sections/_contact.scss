@@ -22,7 +22,7 @@ Stylesheet: Contact
     // display: block;
   }
 
-  @include bp($tablet) {
+  @media screen and (min-width: $tablet) {
     min-height: calc(100vh);
   }
 }

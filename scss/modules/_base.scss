@@ -38,7 +38,7 @@ body {
   height: 100%;
 }
 
-@include bp($tablet) {
+@media screen and (min-width: $tablet) {
   .col-2 {
     font-size: 0;
 

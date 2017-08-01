@@ -194,8 +194,6 @@ nine.scrollToPage = (pageID, offset) => {
 
   var pageStart;
 
-  console.log(document.getElementById(pageID).offsetTop - offset);
-
   if (nine.scrollDirection === "up" && nine.sticky === true) {
     pageStart = document.getElementById(pageID).offsetTop - document.getElementById(pageID).offsetHeight - offset;
   } else {
@@ -322,24 +320,8 @@ nine.controls = () => {
     var dot = document.createElement('li');
     dot.setAttribute('data-page', pageIndex);
     document.querySelector('.dots').appendChild(dot);
-    dot.addEventListener('click', (e) => {
-      var pageIndex = e.target.getAttribute('data-page');
-      var pageId = nine.pages[pageIndex].id
-      var offset = 0;
-      if (pageIndex > nine.currentPage) {
-        nine.scrollDirection = 'down';
-      } else {
-        // Bit Hacky as requires all sections to be same height.Could select them and calculate the height.
-        nine.scrollDirection = 'up';
-        if (nine.sticky) {
-          var gap = nine.currentPage - 1 - pageIndex;
-          offset = document.getElementById(pageId).offsetHeight * gap + nine.calculateOffset();
-        }
-      }
+    dot.addEventListener('click', (e) => nine.dotClick(e));
 
-      nine.scrollToPage(pageId, offset);
-    });
-    
     pageIndex++;
   });
 
@@ -350,6 +332,33 @@ nine.controls = () => {
 
   nine.updateControls();
 }
+
+/* ==========================================================================
+  nine.dotClick()
+   ========================================================================== */
+
+nine.dotClick = (e) => {
+  var pageIndex = e.target.getAttribute('data-page');
+  var pageId = nine.pages[pageIndex].id
+  var offset = 0;
+  if (pageIndex > nine.currentPage) {
+    nine.scrollDirection = 'down';
+  } else if (pageIndex < nine.currentPage) {
+    nine.scrollDirection = 'up';
+    if (nine.sticky) {
+      var gap = nine.currentPage - 1 - pageIndex;
+
+      for (var i = 1; i <= gap; i++) {
+        var id = nine.pages[nine.currentPage - i].id
+
+        offset += document.getElementById(id).offsetHeight;
+      }
+      offset += nine.calculateOffset();
+    }
+  }
+
+  nine.scrollToPage(pageId, offset);
+};
 
 /* ==========================================================================
   nine.updateControls()
@@ -404,6 +413,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // nine.swipeScroll();
   nine.keyboardNav();
   nine.controls();
+
+  nine.scrollContainer.addEventListener('scroll', function(event) {
+    if (nine.currentPage == 2){
+      document.querySelector('.portrait .faded').style.opacity = 1;
+    } else {
+      document.querySelector('.portrait .faded').style.opacity = 0;
+    }
+  });
 });
 
 /* ==========================================================================

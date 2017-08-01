@@ -9,7 +9,7 @@ Stylesheet: Controls
    ========================================================================== */
 
 .controls {
-  @include bp($tablet) {
+  @media screen and (min-width: $tablet) {
     position: fixed;
     z-index: 9999;
     right: 50px;

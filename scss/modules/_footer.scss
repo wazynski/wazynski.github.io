@@ -25,7 +25,7 @@ Stylesheet: Footer
     }
   }
 
-  @include bp($tablet) {
+  @media screen and (min-width: $tablet) {
     height: 170px;
 
     .lists {
@@ -34,7 +34,7 @@ Stylesheet: Footer
     }
   }
 
-  @include bp($desktop) {
+  @media screen and (min-width: $desktop) {
     .lists {
       max-width: 60%;
     }

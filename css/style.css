@@ -696,30 +696,30 @@ Stylesheet: Sections
       min-height: calc(100vh - 100px); } }
 
 .content {
-  /* ==========================================================================
-  Tablet
-   ========================================================================== */
-  /* ==========================================================================
-  Desktop
-   ========================================================================== */
   font-size: 1.25rem;
   display: table-cell;
   width: 100%;
   padding: 4.125rem 1.25rem 1.25rem;
   vertical-align: bottom;
   /* ==========================================================================
+  Desktop
+   ========================================================================== */
+  /* ==========================================================================
+  Tablet
+   ========================================================================== */
+  /* ==========================================================================
   Laptop
    ========================================================================== */ }
+  @media screen and (min-width: 90rem) {
+    .content {
+      font-size: 2.5rem;
+      padding: 5rem 3.125rem 3.125rem; } }
   @media screen and (min-width: 48rem) {
     .content {
       font-size: 1.875rem;
       padding: 5rem 3.125rem 3.125rem; }
       .content .wrap {
         max-width: 80%; } }
-  @media screen and (min-width: 90rem) {
-    .content {
-      font-size: 2.5rem;
-      padding: 5rem 3.125rem 3.125rem; } }
   .content .wrap {
     position: relative;
     z-index: 500;
@@ -752,6 +752,8 @@ Stylesheet: About
     padding: 0; }
 
 @media screen and (min-width: 90rem) {
+  .intro .content .wrap {
+    max-width: 50%; }
   .about .content .wrap {
     max-width: 50%; } }
 
@@ -774,13 +776,11 @@ Stylesheet: About
       height: calc(100vh - 300px); } }
   @media screen and (min-width: 90rem) {
     .portrait {
+      position: fixed;
       top: 50px;
       right: 0;
       width: calc(50vw - 50px);
-      height: calc(100vh - 200px); }
-      .portrait div {
-        width: 100%;
-        height: 100%; } }
+      height: calc(100vh - 200px); } }
   .portrait div {
     position: absolute;
     width: 100%;
@@ -789,12 +789,14 @@ Stylesheet: About
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover; }
+    @media screen and (min-width: 48rem) {
+      .portrait div {
+        width: 100%;
+        height: 100%; } }
     .portrait div:first-child {
       z-index: 2;
       opacity: 0;
       background-image: url("../img/tom-front.jpg"); }
-      .portrait div:first-child:hover {
-        opacity: 1; }
     .portrait div:last-child {
       z-index: 1;
       background-image: url("../img/tom-side.jpg"); }

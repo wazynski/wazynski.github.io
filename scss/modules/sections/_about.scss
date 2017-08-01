@@ -6,11 +6,11 @@ Stylesheet: About
 ========================================================================== */
 
 .experience {
-  @include bp($tablet) {
+  padding-bottom: 1.25rem;
+
+  @media screen and (min-width: $tablet) {
     padding-bottom: 1.875rem;
   }
-
-  padding-bottom: 1.25rem;
 
   dl {
     font-size: .875rem;
@@ -20,7 +20,11 @@ Stylesheet: About
   }
 }
 
-@include bp($desktop) {
+@media screen and (min-width: $desktop) {
+  .intro .content .wrap {
+    max-width: 50%;
+  }
+
   .about .content .wrap {
     max-width: 50%;
   }
@@ -31,7 +35,14 @@ Stylesheet: About
    ========================================================================== */
 
 .portrait {
-  @include bp($tablet) {
+  position: relative;
+
+  display: table-row;
+
+  width: 100%;
+  height: 500px;
+
+  @media screen and (min-width: $tablet) {
     position: absolute;
     z-index: 400;
     top: 150px;
@@ -41,26 +52,15 @@ Stylesheet: About
     width: 45%;
     height: calc(100vh - 300px);
   }
-  @include bp($desktop) {
-    // position: fixed;
+
+  @media screen and (min-width: $desktop) {
+    position: fixed;
     top: 50px;
     right: 0;
 
     width: calc(50vw - 50px);
     height: calc(100vh - 200px);
-
-    div {
-      width: 100%;
-      height: 100%;
-    }
   }
-
-  position: relative;
-
-  display: table-row;
-
-  width: 100%;
-  height: 500px;
 
   div {
     position: absolute;
@@ -74,6 +74,11 @@ Stylesheet: About
     background-position: center;
     background-size: cover;
 
+    @media screen and (min-width: $tablet) {
+      width: 100%;
+      height: 100%;
+    }
+
     &:first-child {
       z-index: 2;
 
@@ -81,9 +86,9 @@ Stylesheet: About
       background-image: url('../img/tom-front.jpg');
 
 
-      &:hover {
-        opacity: 1;
-      }
+      // &:hover {
+      //   opacity: 1;
+      // }
     }
 
     &:last-child {
