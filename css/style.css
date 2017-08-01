@@ -739,6 +739,16 @@ Stylesheet: Sections
 Site Name: SITENAME
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
+Stylesheet: Intro
+========================================================================== */
+@media screen and (min-width: 90rem) {
+  .intro .content {
+    padding-bottom: 10%; } }
+
+/* ==========================================================================
+Site Name: SITENAME
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
 Stylesheet: About
 ========================================================================== */
 .experience {
@@ -778,8 +788,8 @@ Stylesheet: About
     .portrait {
       position: fixed;
       top: 50px;
-      right: 0;
-      width: calc(50vw - 50px);
+      right: 50px;
+      width: calc(50vw - 100px);
       height: calc(100vh - 200px); } }
   .portrait div {
     position: absolute;

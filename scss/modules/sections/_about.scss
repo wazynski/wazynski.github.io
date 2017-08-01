@@ -53,12 +53,13 @@ Stylesheet: About
     height: calc(100vh - 300px);
   }
 
+  // TODO: only works if sticky is on.
   @media screen and (min-width: $desktop) {
     position: fixed;
     top: 50px;
-    right: 0;
+    right: 50px;
 
-    width: calc(50vw - 50px);
+    width: calc(50vw - 100px);
     height: calc(100vh - 200px);
   }
 
