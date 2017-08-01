@@ -8,6 +8,7 @@ Stylesheet: Sections
   Sections
    ========================================================================== */
 .section {
+  position: relative; // Required fallback
   position: sticky;
   // position: relative; // Turn sticky off
   top: 0;

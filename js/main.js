@@ -260,21 +260,25 @@ nine.prevPage = () => {
     var offset = 0;
 
    // If user has manuall scrolled part way onto next one there will be an offset to account for.
-    if (nine.currentPage + 1 < nine.pages.length) {
-      var nextPageOffset = document.getElementById(nine.pages[nine.currentPage + 1].id).offsetTop
-      var prevPageEl = document.getElementById(prevPage);
-      var prevPageOffsetBottom = prevPageEl.offsetTop + prevPageEl.offsetHeight;
+   if (nine.sticky) {
+      if (nine.currentPage + 1 < nine.pages.length) {
+        var nextPageOffset = document.getElementById(nine.pages[nine.currentPage + 1].id).offsetTop
+        var prevPageEl = document.getElementById(prevPage);
+        var prevPageOffsetBottom = prevPageEl.offsetTop + prevPageEl.offsetHeight;
 
-      if (nextPageOffset != prevPageOffsetBottom) {
-        console.log(prevPageOffsetBottom - nextPageOffset);
-        offset = prevPageOffsetBottom - nextPageOffset;
-      }
-    } else {
-      var scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
-      var currentPageOffset = document.getElementById(nine.pages[nine.currentPage].id).offsetTop;
+        console.log(nextPageOffset);
+        console.log(prevPageOffsetBottom);
 
-      if (scrollPosition != currentPageOffset) {
-        offset = scrollPosition - currentPageOffset;
+        if (nextPageOffset != prevPageOffsetBottom) {
+          offset = prevPageOffsetBottom - nextPageOffset;
+        }
+      } else {
+        var scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
+        var currentPageOffset = document.getElementById(nine.pages[nine.currentPage].id).offsetTop;
+
+        if (scrollPosition != currentPageOffset) {
+          offset = scrollPosition - currentPageOffset;
+        }
       }
     }
 
@@ -340,11 +344,21 @@ nine.updateControls = () => {
    ========================================================================== */
 
 nine.checkSticky = () => {
-  // return false; // turn stick off
+  return false; // turn stick off
   var el = document.createElement('a'),
     mStyle = el.style;
     mStyle.cssText = "position:sticky;position:-webkit-sticky;position:-ms-sticky;";
   return mStyle.position.indexOf('sticky')!==-1;
+}
+
+/* ==========================================================================
+  nine.swipeScroll()
+   ========================================================================== */
+
+nine.swipeScroll = () => {
+  Array.prototype.forEach.call(nine.pages, function(el) {
+    new nine.scrollHandler(el.id);
+  });
 }
 
 /* ==========================================================================
@@ -355,10 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
   nine.scrollSpy();
   nine.sticky = nine.checkSticky();
 
-  // Array.prototype.forEach.call(nine.pages, function(el) {
-  //   new nine.scrollHandler(el.id);
-  // });
-
+  // nine.swipeScroll();
   nine.keyboardNav();
   nine.controls();
 });
@@ -370,5 +381,3 @@ document.addEventListener('DOMContentLoaded', () => {
 window.onload = () => {
   nine.animateLoad();
 };
-
-// TODO: previous button doesnt get height right on last slide

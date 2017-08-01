@@ -657,6 +657,7 @@ Stylesheet: Sections
   Sections
    ========================================================================== */
 .section {
+  position: relative;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
