@@ -32,6 +32,10 @@ Stylesheet: Footer
   @media screen and (min-width: $tablet) {
     height: 170px;
 
+    // span {
+    //   display: inline;
+    // }
+
     .lists {
       max-width: 80%;
       padding: 5rem 3.125rem 3.125rem;
