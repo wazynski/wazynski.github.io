@@ -11,17 +11,24 @@ Stylesheet: Header
 .header {
   line-height: 1;
 
-  position: fixed;
+  position: relative;
   z-index: 9999;
   top: 0;
   left: 0;
 
   width: 100%;
+  height: 86px;
   padding: 1.25rem;
   // padding: 3.125rem;
 
   transition: color .5s ease;
   text-transform: uppercase;
+
+  @media screen and (min-width: $tablet) {
+    position: fixed;
+
+    height: auto;
+  }
 
   a {
     position: relative;

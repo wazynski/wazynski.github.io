@@ -4,10 +4,23 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Intro
 ========================================================================== */
+.section.intro {
+  height: calc(100vh - 50px - 86px);
+  min-height: calc(100vh - 50px - 86px);
 
-@media screen and (min-width: $desktop) {
-  .intro {
-    .content {
+  @media screen and (min-width: $tablet) {
+    height: auto;
+    min-height: calc(100vh - 50px);
+  }
+
+  .content {
+    .wrap {
+      @media screen and (min-width: $sm-desktop) {
+        max-width: 50%;
+      }
+    }
+
+    @media screen and (min-width: $lg-desktop) {
       padding-bottom: 10%;
     }
   }

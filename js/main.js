@@ -403,6 +403,39 @@ nine.swipeScroll = () => {
 }
 
 /* ==========================================================================
+  nine.animatePortrait()
+   ========================================================================== */
+
+nine.animatePortrait = () => {
+  var page = document.getElementById('two');
+  var offsetTop = page.offsetTop;
+  var portrait = document.querySelector('.portrait .faded');
+  var startPoint = 0.85;
+
+
+  nine.scrollContainer.addEventListener('scroll', function(event) {
+    var scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
+
+    if (page.offsetWidth > 1280) {
+      console.log('here');
+      startPoint = 0.5;
+    } else if (page.offsetWidth < 768) {
+      offsetTop = page.offsetHeight + document.getElementById('one').offsetHeight - portrait.offsetHeight;
+    }
+
+    if (scrollPosition > offsetTop * startPoint) {
+      if (portrait.style.opacity == 0) {
+        portrait.style.opacity = 1;
+      }
+    } else {
+      if (portrait.style.opacity == 1) {
+        portrait.style.opacity = 0;
+      }
+    }
+  });
+};
+
+/* ==========================================================================
   Document Load
    ========================================================================== */
 
@@ -414,13 +447,8 @@ document.addEventListener('DOMContentLoaded', () => {
   nine.keyboardNav();
   nine.controls();
 
-  nine.scrollContainer.addEventListener('scroll', function(event) {
-    if (nine.currentPage == 2){
-      document.querySelector('.portrait .faded').style.opacity = 1;
-    } else {
-      document.querySelector('.portrait .faded').style.opacity = 0;
-    }
-  });
+
+
 });
 
 /* ==========================================================================
@@ -429,4 +457,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.onload = () => {
   nine.animateLoad();
+  nine.animatePortrait();
 };

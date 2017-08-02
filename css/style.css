@@ -511,7 +511,7 @@ body {
   width: 100%;
   height: 100%; }
 
-@media screen and (min-width: 48rem) {
+@media screen and (min-width: 768px) {
   .col-2 {
     font-size: 0; }
     .col-2 dl {
@@ -530,17 +530,22 @@ Stylesheet: Header
    ========================================================================== */
 .header {
   line-height: 1;
-  position: fixed;
+  position: relative;
   z-index: 9999;
   top: 0;
   left: 0;
   width: 100%;
+  height: 86px;
   padding: 1.25rem;
   transition: color .5s ease;
   text-transform: uppercase;
   /* ==========================================================================
     Tablet
    ========================================================================== */ }
+  @media screen and (min-width: 768px) {
+    .header {
+      position: fixed;
+      height: auto; } }
   .header a {
     position: relative;
     left: 0;
@@ -564,7 +569,7 @@ Stylesheet: Header
     color: #FFFFFF; }
   .header.dark a {
     color: #414141; }
-  @media screen and (min-width: 48rem) {
+  @media screen and (min-width: 768px) {
     .header {
       padding: 3.125rem; } }
 
@@ -580,18 +585,20 @@ Stylesheet: Footer
   height: 170px;
   background: #FFD657; }
   .footer .lists {
-    padding: 4.125rem 1.25rem 1.25rem; }
+    padding: 1.25rem 1.25rem 1.25rem; }
+  .footer span {
+    display: block; }
   .footer dl {
     vertical-align: top; }
     .footer dl dt {
       color: #414141; }
-  @media screen and (min-width: 48rem) {
+  @media screen and (min-width: 768px) {
     .footer {
       height: 170px; }
       .footer .lists {
         max-width: 80%;
         padding: 5rem 3.125rem 3.125rem; } }
-  @media screen and (min-width: 90rem) {
+  @media screen and (min-width: 1440px) {
     .footer .lists {
       max-width: 60%; } }
 
@@ -606,7 +613,7 @@ Stylesheet: Controls
    ========================================================================== */
 .controls {
   display: none; }
-  @media screen and (min-width: 48rem) {
+  @media screen and (min-width: 768px) {
     .controls {
       position: fixed;
       z-index: 9999;
@@ -662,8 +669,6 @@ Stylesheet: Sections
    ========================================================================== */
 .section {
   position: relative;
-  position: -webkit-sticky;
-  position: sticky;
   top: 0;
   display: table;
   width: 100%;
@@ -671,6 +676,10 @@ Stylesheet: Sections
   /* ==========================================================================
   Laptop
    ========================================================================== */ }
+  @media screen and (min-height: 1024px) and (min-width: 768px) {
+    .section {
+      position: -webkit-sticky;
+      position: sticky; } }
   .section.intro {
     z-index: 10;
     background: #E6E6E4; }
@@ -691,7 +700,7 @@ Stylesheet: Sections
     color: #707070; }
   .section.light .highlight {
     color: #414141; }
-  @media screen and (min-width: 64rem) {
+  @media screen and (min-width: 1024px) {
     .section {
       min-height: calc(100vh - 100px); } }
 
@@ -710,11 +719,11 @@ Stylesheet: Sections
   /* ==========================================================================
   Laptop
    ========================================================================== */ }
-  @media screen and (min-width: 90rem) {
+  @media screen and (min-width: 1440px) {
     .content {
       font-size: 2.5rem;
       padding: 5rem 3.125rem 3.125rem; } }
-  @media screen and (min-width: 48rem) {
+  @media screen and (min-width: 768px) {
     .content {
       font-size: 1.875rem;
       padding: 5rem 3.125rem 3.125rem; }
@@ -731,7 +740,7 @@ Stylesheet: Sections
     font-weight: 400;
     position: relative;
     color: #707070; }
-  @media screen and (min-width: 64rem) {
+  @media screen and (min-width: 1024px) {
     .content .wrap {
       max-width: 60%; } }
 
@@ -741,9 +750,19 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Intro
 ========================================================================== */
-@media screen and (min-width: 90rem) {
-  .intro .content {
-    padding-bottom: 10%; } }
+.section.intro {
+  height: calc(100vh - 50px - 86px);
+  min-height: calc(100vh - 50px - 86px); }
+  @media screen and (min-width: 768px) {
+    .section.intro {
+      height: auto;
+      min-height: calc(100vh - 50px); } }
+  @media screen and (min-width: 1279px) {
+    .section.intro .content .wrap {
+      max-width: 50%; } }
+  @media screen and (min-width: 1440px) {
+    .section.intro .content {
+      padding-bottom: 10%; } }
 
 /* ==========================================================================
 Site Name: SITENAME
@@ -753,7 +772,7 @@ Stylesheet: About
 ========================================================================== */
 .experience {
   padding-bottom: 1.25rem; }
-  @media screen and (min-width: 48rem) {
+  @media screen and (min-width: 768px) {
     .experience {
       padding-bottom: 1.875rem; } }
   .experience dl {
@@ -761,10 +780,8 @@ Stylesheet: About
     margin: 1.5rem 0;
     padding: 0; }
 
-@media screen and (min-width: 90rem) {
-  .intro .content .wrap {
-    max-width: 50%; }
-  .about .content .wrap {
+@media screen and (min-width: 1279px) {
+  .section.about .content .wrap {
     max-width: 50%; } }
 
 /* ==========================================================================
@@ -775,16 +792,7 @@ Stylesheet: About
   display: table-row;
   width: 100%;
   height: 500px; }
-  @media screen and (min-width: 48rem) {
-    .portrait {
-      position: absolute;
-      z-index: 400;
-      top: 150px;
-      right: 0;
-      bottom: 100px;
-      width: 45%;
-      height: calc(100vh - 300px); } }
-  @media screen and (min-width: 90rem) {
+  @media screen and (min-width: 1279px) {
     .portrait {
       position: fixed;
       top: 50px;
@@ -795,11 +803,11 @@ Stylesheet: About
     position: absolute;
     width: 100%;
     height: 500px;
-    transition: opacity 800ms linear;
+    transition: opacity 600ms linear;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover; }
-    @media screen and (min-width: 48rem) {
+    @media screen and (min-width: 768px) {
       .portrait div {
         width: 100%;
         height: 100%; } }
@@ -826,7 +834,7 @@ Stylesheet: Contact
 .contact dd {
   color: #414141; }
 
-@media screen and (min-width: 48rem) {
+@media screen and (min-width: 768px) {
   .contact {
     min-height: calc(100vh); } }
 /*# sourceMappingURL=style.css.map */

@@ -9,7 +9,6 @@ Stylesheet: Sections
    ========================================================================== */
 .section {
   position: relative; // Required fallback
-  position: sticky;
   // position: relative; // Turn sticky off
   top: 0;
 
@@ -17,6 +16,10 @@ Stylesheet: Sections
 
   width: 100%;
   min-height: calc(100vh - 50px);
+
+  @media screen and (min-height: $laptop) and (min-width: $tablet) {
+    position: sticky;
+  }
 
   &.intro {
     z-index: 10;
@@ -84,7 +87,7 @@ Stylesheet: Sections
   /* ==========================================================================
   Desktop
    ========================================================================== */
-  @media screen and (min-width: $desktop) {
+  @media screen and (min-width: $lg-desktop) {
     font-size: 2.5rem;
 
     padding: 5rem 3.125rem 3.125rem;

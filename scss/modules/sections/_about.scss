@@ -20,15 +20,16 @@ Stylesheet: About
   }
 }
 
-@media screen and (min-width: $desktop) {
-  .intro .content .wrap {
-    max-width: 50%;
-  }
-
-  .about .content .wrap {
-    max-width: 50%;
+.section.about {
+  .content {
+    .wrap {
+      @media screen and (min-width: $sm-desktop) {
+        max-width: 50%;
+      }
+    }
   }
 }
+
 
 /* ==========================================================================
   Portrait
@@ -42,19 +43,18 @@ Stylesheet: About
   width: 100%;
   height: 500px;
 
-  @media screen and (min-width: $tablet) {
-    position: absolute;
-    z-index: 400;
-    top: 150px;
-    right: 0;
-    bottom: 100px;
+  // @media screen and (min-width: $tablet) {
+  //   position: absolute;
+  //   z-index: 400;
+  //   top: 150px;
+  //   right: 0;
+  //   bottom: 100px;
+  //
+  //   width: 45%;
+  //   height: calc(100vh - 300px);
+  // }
 
-    width: 45%;
-    height: calc(100vh - 300px);
-  }
-
-  // TODO: only works if sticky is on.
-  @media screen and (min-width: $desktop) {
+  @media screen and (min-width: $sm-desktop) {
     position: fixed;
     top: 50px;
     right: 50px;
@@ -69,7 +69,7 @@ Stylesheet: About
     width: 100%;
     height: 500px;
 
-    transition: opacity 800ms linear;
+    transition: opacity 600ms linear;
 
     background-repeat: no-repeat;
     background-position: center;
@@ -85,11 +85,6 @@ Stylesheet: About
 
       opacity: 0;
       background-image: url('../img/tom-front.jpg');
-
-
-      // &:hover {
-      //   opacity: 1;
-      // }
     }
 
     &:last-child {

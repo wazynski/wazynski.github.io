@@ -14,7 +14,11 @@ Stylesheet: Footer
   background: $mustard;
 
   .lists {
-    padding: 4.125rem 1.25rem 1.25rem;
+    padding: 1.25rem 1.25rem 1.25rem;
+  }
+
+  span {
+    display: block;
   }
 
   dl {
@@ -34,7 +38,7 @@ Stylesheet: Footer
     }
   }
 
-  @media screen and (min-width: $desktop) {
+  @media screen and (min-width: $lg-desktop) {
     .lists {
       max-width: 60%;
     }

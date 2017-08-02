@@ -45,6 +45,7 @@ $base-font: 'sofia-pro-1', 'sofia-pro-2', 'Helvetica Neue', 'Helvetica', Arial, 
   Breakpoints
    ========================================================================== */
 
-$tablet: 48rem;
-$laptop: 64rem;
-$desktop: 90rem;
+$tablet: 768px;
+$laptop: 1024px;
+$sm-desktop: 1279px;
+$lg-desktop: 1440px;
