@@ -7,6 +7,7 @@ Stylesheet: Controls
 /* ==========================================================================
   Controls
    ========================================================================== */
+$controls: $secondary;
 
 .controls {
   display: none;
@@ -37,17 +38,17 @@ Stylesheet: Controls
 
         cursor: pointer;
 
-        border: 1px solid $secondary;
+        border: 1px solid $controls;
         border-radius: 50%;
         background: none;;
 
         &.active {
-          background: $secondary;
+          background: $controls;
         }
 
         &:hover {
           opacity: .5;
-          background: $secondary;
+          background: $controls;
         }
       }
     }
@@ -79,7 +80,7 @@ Stylesheet: Controls
         margin: 0 auto;
 
         path {
-          fill: $secondary;
+          fill: $controls;
         }
       }
     }

@@ -25,6 +25,20 @@ $portrait-detach: $laptop;
 .section.about {
   .content {
     padding-bottom: 0;
+    // color: $mustard;
+    // p {
+    //   color: $mustard;
+    // }
+
+    // color: $white;
+    // p {
+    //   color: $white;
+    // }
+    //
+    // .highlight {
+    //   color: $mustard;
+    // }
+
     //
     @media screen and (min-width: $portrait-detach) {
       padding: 5rem 3.125rem 3.125rem;

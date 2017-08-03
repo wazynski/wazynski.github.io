@@ -448,7 +448,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #414141; }
+  color: #313B41; }
 
 p {
   font-weight: 400; }
@@ -477,7 +477,7 @@ ul {
     font-size: inherit;
     margin: 2rem 0 0;
     text-transform: none;
-    color: #414141; }
+    color: #313B41; }
   ul li:first-child h2 {
     margin: 0; }
 
@@ -553,7 +553,7 @@ Stylesheet: Header
     display: inline-block;
     transition: all 1s ease-out;
     text-decoration: none;
-    color: #414141; }
+    color: #313B41; }
     .header a.hide-left {
       left: -500px; }
     .header a:hover {
@@ -569,7 +569,7 @@ Stylesheet: Header
   .header.light a {
     color: #FFFFFF; }
   .header.dark a {
-    color: #414141; }
+    color: #313B41; }
   @media screen and (min-width: 768px) {
     .header {
       padding: 3.125rem; } }
@@ -592,7 +592,7 @@ Stylesheet: Footer
   .footer dl {
     vertical-align: top; }
     .footer dl dt {
-      color: #414141; }
+      color: #313B41; }
   @media screen and (min-width: 768px) {
     .footer {
       height: 170px; }
@@ -692,7 +692,7 @@ Stylesheet: Sections
     background: #E6E6E4; }
   .section.about {
     z-index: 20;
-    background: #414141; }
+    background: #313B41; }
   .section.services {
     z-index: 30;
     background: #D6E4E1; }
@@ -706,7 +706,7 @@ Stylesheet: Sections
   .section.light h2 {
     color: #707070; }
   .section.light .highlight {
-    color: #414141; }
+    color: #313B41; }
   @media screen and (min-width: 1024px) {
     .section {
       min-height: calc(100vh - 100px); } }
@@ -759,7 +759,9 @@ Stylesheet: Intro
 ========================================================================== */
 .section.intro {
   height: calc(100vh - 50px - 86px);
-  min-height: calc(100vh - 50px - 86px); }
+  min-height: calc(100vh - 50px - 86px);
+  background: url("../img/background.svg") no-repeat center center;
+  background-size: 80% 80%; }
   @media screen and (min-width: 768px) {
     .section.intro {
       height: auto;
@@ -767,6 +769,10 @@ Stylesheet: Intro
   @media screen and (min-width: 1024px) {
     .section.intro {
       min-height: calc(100vh - 100px); } }
+  @media screen and (min-width: 1279px) {
+    .section.intro {
+      background-size: 70% 70%;
+      background-position: left center; } }
   @media screen and (min-width: 1279px) {
     .section.intro .content .wrap {
       max-width: 50%; } }
@@ -855,13 +861,13 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 Stylesheet: Contact
 ========================================================================== */
 .contact a {
-  color: #414141; }
+  color: #313B41; }
 
 .contact dt {
   color: #707070; }
 
 .contact dd {
-  color: #414141; }
+  color: #313B41; }
 
 @media screen and (min-width: 768px) {
   .contact {
