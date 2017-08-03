@@ -761,7 +761,7 @@ Stylesheet: Intro
   height: calc(100vh - 50px - 86px);
   min-height: calc(100vh - 50px - 86px);
   background: url("../img/background.svg") no-repeat center center;
-  background-size: 80% 80%; }
+  background-size: 75% 75%; }
   @media screen and (min-width: 768px) {
     .section.intro {
       height: auto;
@@ -771,8 +771,8 @@ Stylesheet: Intro
       min-height: calc(100vh - 100px); } }
   @media screen and (min-width: 1279px) {
     .section.intro {
-      background-size: 70% 70%;
-      background-position: left center; } }
+      background-position: left center;
+      background-size: 70% 70%; } }
   @media screen and (min-width: 1279px) {
     .section.intro .content .wrap {
       max-width: 50%; } }
