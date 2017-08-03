@@ -6,10 +6,10 @@ Stylesheet: Typography
 ========================================================================== */
 
 body {
-  color: $secondary;
-
   font-family: $base-font;
   font-size: 16px;
+
+  color: $secondary;
 }
 
 a {
@@ -24,16 +24,18 @@ p {
 
 h1,
 h2 {
+  font-size: .875rem;
+  font-weight: 600;
+
   margin: 4rem 0 1rem;
 
   text-transform: uppercase;
-
-  font-size: .875rem;
-  font-weight: 600;
 }
 
 dl {
   font-size: .875rem;
+
+  padding-right: .5rem;
 
   dt {
     color: $white;
@@ -54,13 +56,13 @@ ul {
   list-style: none;
 
   h2 {
+    font-size: inherit;
+
     margin: 2rem 0 0;
 
     text-transform: none;
 
     color: $base;
-
-    font-size: inherit;
   }
 
   li:first-child h2 {

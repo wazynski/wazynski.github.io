@@ -13,6 +13,10 @@ Stylesheet: Intro
     min-height: calc(100vh - 50px);
   }
 
+  @media screen and (min-width: $laptop) {
+    min-height: calc(100vh - 100px);
+  }
+
   .content {
     .wrap {
       @media screen and (min-width: $sm-desktop) {

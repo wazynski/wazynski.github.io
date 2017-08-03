@@ -17,7 +17,7 @@ Stylesheet: Sections
   width: 100%;
   min-height: calc(100vh - 50px);
 
-  @media screen and (min-height: $laptop) and (min-width: $tablet) {
+  @media screen and (min-height: $laptop) and (min-width: $laptop) {
     position: sticky;
   }
 

@@ -4,6 +4,7 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: About
 ========================================================================== */
+$portrait-detach: $laptop;
 
 .experience {
   padding-bottom: 1.25rem;
@@ -16,13 +17,24 @@ Stylesheet: About
     font-size: .875rem;
 
     margin: 1.5rem 0;
-    padding: 0;
+
+    vertical-align: top;
   }
 }
 
 .section.about {
   .content {
+    padding-bottom: 0;
+    //
+    @media screen and (min-width: $portrait-detach) {
+      padding: 5rem 3.125rem 3.125rem;
+    }
+
     .wrap {
+      @media screen and (min-width: $portrait-detach) {
+        max-width: 55%;
+      }
+
       @media screen and (min-width: $sm-desktop) {
         max-width: 50%;
       }
@@ -43,24 +55,25 @@ Stylesheet: About
   width: 100%;
   height: 500px;
 
-  // @media screen and (min-width: $tablet) {
-  //   position: absolute;
-  //   z-index: 400;
-  //   top: 150px;
-  //   right: 0;
-  //   bottom: 100px;
-  //
-  //   width: 45%;
-  //   height: calc(100vh - 300px);
-  // }
+  @media screen and (min-width: $portrait-detach) {
+    position: absolute;
+    z-index: 400;
+    right: 0;
+
+    width: 40%;
+    height: 100%;
+  }
 
   @media screen and (min-width: $sm-desktop) {
     position: fixed;
-    top: 50px;
-    right: 50px;
+    top: 0;
+    right: 100px;
 
-    width: calc(50vw - 100px);
-    height: calc(100vh - 200px);
+    // top: 50px;
+    // right: 50px;
+    //
+    // width: calc(50vw - 100px);
+    // height: calc(100vh - 200px);
   }
 
   div {
@@ -75,9 +88,17 @@ Stylesheet: About
     background-position: center;
     background-size: cover;
 
-    @media screen and (min-width: $tablet) {
-      width: 100%;
-      height: 100%;
+    @media screen and (min-width: $portrait-detach) {
+      top: 0;
+      bottom: 0;
+
+      height: auto;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    @media screen and (min-width: $sm-desktop) {
+      margin-bottom: 150px;
     }
 
     &:first-child {

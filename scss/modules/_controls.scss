@@ -9,6 +9,7 @@ Stylesheet: Controls
    ========================================================================== */
 
 .controls {
+  display: none;
   @media screen and (min-width: $tablet) {
     position: fixed;
     z-index: 9999;
@@ -76,9 +77,15 @@ Stylesheet: Controls
 
         width: 12px;
         margin: 0 auto;
+
+        path {
+          fill: $secondary;
+        }
       }
     }
   }
 
-  display: none;
+  @media screen and (min-width: $laptop) {
+    right: 42px;
+  }
 }

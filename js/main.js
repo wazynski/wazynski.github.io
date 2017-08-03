@@ -419,7 +419,7 @@ nine.animatePortrait = () => {
     if (page.offsetWidth > 1280) {
       console.log('here');
       startPoint = 0.5;
-    } else if (page.offsetWidth < 768) {
+    } else if (page.offsetWidth < 1024) {
       offsetTop = page.offsetHeight + document.getElementById('one').offsetHeight - portrait.offsetHeight;
     }
 
