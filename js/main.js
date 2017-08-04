@@ -7,6 +7,7 @@ var nine = {
   currentPage: 0,
   scrollDirection: null,
   sticky: false,
+  scrollListener: null,
 };
 
 /* ==========================================================================
@@ -142,7 +143,7 @@ nine.scrollHandler = function(pageId) {
   nine.canScroll = true;
   var timeout = null;
 
-  window.addEventListener('wheel', function(event) {
+  nine.scrollListener = window.addEventListener('wheel', function(event) {
     nine.scrollStart = nine.scrollContainer.scrollTop;
 
     if (timeout !== null) {
@@ -295,19 +296,6 @@ nine.prevPage = () => {
   return false;
 }
 
-function debounce(fn, delay) {
-    var timeout;
-
-    return function () {
-        var context = this,
-            args = arguments;
-
-        clearTimeout(timeout);
-        timeout = setTimeout(function () {
-            fn.apply(context, args);
-        }, delay || 250);
-    };
-}
 
 /* ==========================================================================
   nine.controls()
@@ -386,10 +374,44 @@ nine.updateControls = () => {
 
 nine.checkSticky = () => {
   // return false; // turn stick off
-  var el = document.createElement('a'),
-    mStyle = el.style;
-    mStyle.cssText = "position:sticky;position:-webkit-sticky;position:-ms-sticky;";
-  return mStyle.position.indexOf('sticky')!==-1;
+  var el = document.createElement('a');
+  var mStyle = el.style;
+
+  mStyle.cssText = "position:sticky;position:-webkit-sticky;position:-ms-sticky;";
+  var sticky = mStyle.position.indexOf('sticky')!==-1;
+  var sections = document.querySelectorAll('.section');
+
+  var windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+  if (sticky) {
+    sections.forEach(function(el) {
+      if (el.offsetHeight > windowHeight) {
+        sticky = false;
+      }
+    });
+  }
+
+  if (sticky) {
+    console.log('sticky supported');
+
+    sections.forEach(function(el) {
+      el.classList.add("sticky");
+    });
+
+    // TODO: enable scroll swipe if sticky on
+    // nine.swipeScroll();
+
+    return true;
+  } else {
+    // TODO: disable scroll swipe if sticky off
+    // window.removeEventListener('wheel', nine.scrollListener);
+
+    sections.forEach(function(el) {
+      el.classList.remove("sticky");
+    });
+
+    return false;
+  }
 }
 
 /* ==========================================================================
@@ -417,7 +439,6 @@ nine.animatePortrait = () => {
     var scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
 
     if (page.offsetWidth > 1280) {
-      console.log('here');
       startPoint = 0.5;
     } else if (page.offsetWidth < 1024) {
       offsetTop = page.offsetHeight + document.getElementById('one').offsetHeight - portrait.offsetHeight;
@@ -436,19 +457,39 @@ nine.animatePortrait = () => {
 };
 
 /* ==========================================================================
+  nine.debounce()
+ ========================================================================== */
+
+nine.debounce = (func, wait, immediate) => {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
+
+/* ==========================================================================
   Document Load
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
   nine.scrollSpy();
   nine.sticky = nine.checkSticky();
-
-  // nine.swipeScroll();
   nine.keyboardNav();
   nine.controls();
 
+  var checkStickyDebounced = nine.debounce(function() {
+  	nine.sticky = nine.checkSticky();
+  }, 250);
 
-
+  window.addEventListener('resize', checkStickyDebounced);
 });
 
 /* ==========================================================================

@@ -17,9 +17,13 @@ Stylesheet: Sections
   width: 100%;
   min-height: calc(100vh - 50px);
 
-  @media screen and (min-height: $laptop) and (min-width: $laptop) {
+  &.sticky {
     position: sticky;
   }
+
+  // @media screen and (min-height: $laptop) and (min-width: $laptop) {
+  //   position: sticky;
+  // }
 
   &.intro {
     z-index: 10;
