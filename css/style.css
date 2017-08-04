@@ -547,17 +547,35 @@ Stylesheet: Header
     .header {
       position: fixed;
       height: auto; } }
+  .header .logo {
+    display: none; }
+    @media screen and (min-width: 768px) {
+      .header .logo {
+        position: absolute;
+        z-index: -1;
+        top: -10px;
+        left: -75px;
+        display: block;
+        width: auto;
+        height: 50px;
+        transition: all 1s ease-out; } }
   .header a {
     position: relative;
+    z-index: 1;
     left: 0;
     display: inline-block;
     transition: all 1s ease-out;
     text-decoration: none;
     color: #313B41; }
+    @media screen and (min-width: 768px) {
+      .header a {
+        left: 60px; } }
     .header a.hide-left {
       left: -500px; }
     .header a:hover {
-      padding-top: 20px; }
+      padding-left: 10px; }
+      .header a:hover .logo {
+        padding-left: 10px; }
   .header h1,
   .header span {
     font-size: .875rem;
@@ -586,7 +604,7 @@ Stylesheet: Footer
   height: 170px;
   background: #FFD657; }
   .footer .content {
-    padding: 1.25rem 1.25rem 1.25rem; }
+    padding: 1.25rem; }
   .footer span {
     display: block; }
   .footer dl {
@@ -679,10 +697,7 @@ Stylesheet: Sections
   top: 0;
   display: table;
   width: 100%;
-  min-height: calc(100vh - 50px);
-  /* ==========================================================================
-  Laptop
-   ========================================================================== */ }
+  min-height: calc(100vh - 50px); }
   @media screen and (min-height: 1024px) and (min-width: 1024px) {
     .section {
       position: -webkit-sticky;
@@ -711,45 +726,52 @@ Stylesheet: Sections
     .section {
       min-height: calc(100vh - 100px); } }
 
+/* ==========================================================================
+  Con
+   ========================================================================== */
 .content {
   font-size: 1.25rem;
   display: table-cell;
   width: 100%;
   padding: 4.125rem 1.25rem 1.25rem;
-  vertical-align: bottom;
-  /* ==========================================================================
-  Desktop
-   ========================================================================== */
-  /* ==========================================================================
-  Tablet
-   ========================================================================== */
-  /* ==========================================================================
-  Laptop
-   ========================================================================== */ }
+  vertical-align: bottom; }
+  @media screen and (min-width: 768px) {
+    .content {
+      font-size: 1.875rem;
+      padding: 5rem 3.125rem 3.125rem; } }
   @media screen and (min-width: 1440px) {
     .content {
       font-size: 2.5rem;
       padding: 5rem 3.125rem 3.125rem; } }
-  @media screen and (min-width: 768px) {
-    .content {
-      font-size: 1.875rem;
-      padding: 5rem 3.125rem 3.125rem; }
-      .content .wrap {
-        max-width: 80%; } }
+  @media screen and (min-width: 1440px) {
+    .content.push-up {
+      padding-bottom: 10%; } }
+  @media screen and (min-width: 1800px) {
+    .content.push-up {
+      padding-bottom: 8%; } }
   .content .wrap {
     position: relative;
     z-index: 500;
     left: 0;
     transition: all 1s ease-out; }
+    @media screen and (min-width: 768px) {
+      .content .wrap {
+        max-width: 80%; } }
+    @media screen and (min-width: 1024px) {
+      .content .wrap {
+        max-width: 54%; } }
+    @media screen and (min-width: 1279px) {
+      .content .wrap {
+        max-width: 50%; } }
+    @media screen and (min-width: 1800px) {
+      .content .wrap {
+        max-width: 930px !important; } }
     .content .wrap.hide-left {
       left: -1000px; }
   .content p {
     font-weight: 400;
     position: relative;
     color: #707070; }
-  @media screen and (min-width: 1024px) {
-    .content .wrap {
-      max-width: 60%; } }
 
 /* ==========================================================================
 Site Name: SITENAME
@@ -771,14 +793,8 @@ Stylesheet: Intro
       min-height: calc(100vh - 100px); } }
   @media screen and (min-width: 1279px) {
     .section.intro {
-      background-position: left center;
+      background-position: 25px center;
       background-size: 70% 70%; } }
-  @media screen and (min-width: 1279px) {
-    .section.intro .content .wrap {
-      max-width: 50%; } }
-  @media screen and (min-width: 1440px) {
-    .section.intro .content {
-      padding-bottom: 10%; } }
 
 /* ==========================================================================
 Site Name: SITENAME
@@ -795,18 +811,14 @@ Stylesheet: About
     font-size: .875rem;
     margin: 1.5rem 0;
     vertical-align: top; }
+    .experience dl dd {
+      color: #707070; }
 
 .section.about .content {
   padding-bottom: 0; }
   @media screen and (min-width: 1024px) {
     .section.about .content {
       padding: 5rem 3.125rem 3.125rem; } }
-  @media screen and (min-width: 1024px) {
-    .section.about .content .wrap {
-      max-width: 55%; } }
-  @media screen and (min-width: 1279px) {
-    .section.about .content .wrap {
-      max-width: 50%; } }
 
 /* ==========================================================================
   Portrait
@@ -854,6 +866,12 @@ Stylesheet: About
       z-index: 1;
       background-image: url("../img/tom-side.jpg"); }
 
+/* ==========================================================================
+Site Name: SITENAME
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: services
+========================================================================== */
 /* ==========================================================================
 Site Name: SITENAME
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)

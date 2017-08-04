@@ -66,14 +66,14 @@ Stylesheet: Sections
     }
   }
 
-  /* ==========================================================================
-  Laptop
-   ========================================================================== */
-
   @media screen and (min-width: $laptop) {
     min-height: calc(100vh - 100px);
   }
 }
+
+/* ==========================================================================
+  Con
+   ========================================================================== */
 
 .content {
   font-size: 1.25rem;
@@ -84,26 +84,30 @@ Stylesheet: Sections
   padding: 4.125rem 1.25rem 1.25rem;
 
   vertical-align: bottom;
-  /* ==========================================================================
-  Desktop
-   ========================================================================== */
+
+  @media screen and (min-width: $tablet) {
+    font-size: 1.875rem;
+
+    padding: 5rem 3.125rem 3.125rem;
+  }
+
   @media screen and (min-width: $lg-desktop) {
     font-size: 2.5rem;
 
     padding: 5rem 3.125rem 3.125rem;
   }
-  /* ==========================================================================
-  Tablet
-   ========================================================================== */
-  @media screen and (min-width: $tablet) {
-    font-size: 1.875rem;
 
-    padding: 5rem 3.125rem 3.125rem;
+  &.push-up {
+    @media screen and (min-width: $lg-desktop) {
+      padding-bottom: 10%;
+    }
 
-    .wrap {
-      max-width: 80%;
+    @media screen and (min-width: $xl-desktop) {
+      padding-bottom: 8%;
     }
   }
+
+
 
   .wrap {
     position: relative;
@@ -111,6 +115,22 @@ Stylesheet: Sections
     left: 0;
 
     transition: all 1s ease-out;
+
+    @media screen and (min-width: $tablet) {
+      max-width: 80%;
+    }
+
+    @media screen and (min-width: $laptop) {
+      max-width: 54%;
+    }
+
+    @media screen and (min-width: $sm-desktop) {
+      max-width: 50%;
+    }
+
+    @media screen and (min-width: $xl-desktop) {
+      max-width: 930px !important;
+    }
 
     &.hide-left {
       left: -1000px;
@@ -123,15 +143,5 @@ Stylesheet: Sections
     position: relative;
 
     color: $secondary;
-  }
-
-  /* ==========================================================================
-  Laptop
-   ========================================================================== */
-
-  @media screen and (min-width: $laptop) {
-    .wrap {
-      max-width: 60%;
-    }
   }
 }

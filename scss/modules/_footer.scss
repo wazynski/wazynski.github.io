@@ -10,14 +10,12 @@ Stylesheet: Footer
 
   width: 100%;
   height: 170px;
-  // // .lists {
-  // padding: 1.25rem 1.25rem 1.25rem;
 
   background: $mustard;
-  // }
+
 
   .content {
-    padding: 1.25rem 1.25rem 1.25rem;
+    padding: 1.25rem;
   }
 
   span {
@@ -48,11 +46,5 @@ Stylesheet: Footer
     span {
       display: inline;
     }
-  }
-
-  @media screen and (min-width: $lg-desktop) {
-    // .lists {
-    //   max-width: 60%;
-    // }
   }
 }

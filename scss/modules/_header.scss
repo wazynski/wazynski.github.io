@@ -30,8 +30,27 @@ Stylesheet: Header
     height: auto;
   }
 
+  .logo {
+    display: none;
+
+    @media screen and (min-width: $tablet) {
+      position: absolute;
+      z-index: -1;
+      top: -10px;
+      left: -75px;
+
+      display: block;
+
+      width: auto;
+      height: 50px;
+
+      transition: all 1s ease-out;
+    }
+  }
+
   a {
     position: relative;
+    z-index: 1;
     left: 0;
 
     display: inline-block;
@@ -41,13 +60,23 @@ Stylesheet: Header
 
     color: $base;
 
+    @media screen and (min-width: $tablet) {
+      left: 60px;
+    }
+
     &.hide-left {
       left: -500px;
     }
     // background: hotpink;
 
     &:hover {
-      padding-top: 20px;
+      // padding-top: 5px;
+      padding-left: 10px;
+
+      .logo {
+        // top: -5px;
+        padding-left: 10px;
+      }
     }
   }
 

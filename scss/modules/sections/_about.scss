@@ -19,18 +19,19 @@ $portrait-detach: $laptop;
     margin: 1.5rem 0;
 
     vertical-align: top;
+
+    dd {
+      color: $secondary;
+    }
   }
 }
 
 .section.about {
   .content {
     padding-bottom: 0;
-    // color: $mustard;
-    // p {
-    //   color: $mustard;
-    // }
 
     // color: $white;
+    //
     // p {
     //   color: $white;
     // }
@@ -39,19 +40,8 @@ $portrait-detach: $laptop;
     //   color: $mustard;
     // }
 
-    //
     @media screen and (min-width: $portrait-detach) {
       padding: 5rem 3.125rem 3.125rem;
-    }
-
-    .wrap {
-      @media screen and (min-width: $portrait-detach) {
-        max-width: 55%;
-      }
-
-      @media screen and (min-width: $sm-desktop) {
-        max-width: 50%;
-      }
     }
   }
 }

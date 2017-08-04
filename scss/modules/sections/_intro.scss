@@ -7,22 +7,6 @@ Stylesheet: Intro
 .section.intro {
   height: calc(100vh - 50px - 86px);
   min-height: calc(100vh - 50px - 86px);
-  // .overlay {
-  //   position: absolute;
-  //   top: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   left: 0;
-  //
-  //   width: auto;
-  //   height: auto;
-  //
-  //   background: url('../img/favicon.png') no-repeat center center;
-  //   background-size: contain;
-  //
-  //   background-blend-mode: multiply;
-  // }
-  // background: url('../img/background.png') no-repeat center center;
 
   background: url('../img/background.svg') no-repeat center center;
   background-size: 75% 75%;
@@ -38,20 +22,7 @@ Stylesheet: Intro
   }
 
   @media screen and (min-width: $sm-desktop) {
-    background-position: left center;
+    background-position: 25px center;
     background-size: 70% 70%;
-  }
-
-  .content {
-    .wrap {
-      @media screen and (min-width: $sm-desktop) {
-        max-width: 50%;
-      }
-    }
-
-
-    @media screen and (min-width: $lg-desktop) {
-      padding-bottom: 10%;
-    }
   }
 }
