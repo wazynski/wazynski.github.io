@@ -28,7 +28,32 @@ $portrait-detach: $laptop;
 
 .section.about {
   .content {
+    font-size: 1.25rem;
+
     padding-bottom: 0;
+
+    @media screen and (min-width: $sm-desktop) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (min-width: $lg-desktop) {
+      font-size: 1.825rem;
+    }
+
+    @media screen and (min-width: $xl-desktop) {
+      font-size: 1.875rem;
+    }
+
+
+    a {
+      color: $secondary;
+      border-bottom: 2px dashed $secondary;
+
+      &:hover {
+        color: $mustard;
+        border-color: $mustard;
+      }
+    }
 
     // color: $white;
     //

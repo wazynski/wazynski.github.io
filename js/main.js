@@ -392,8 +392,6 @@ nine.checkSticky = () => {
   }
 
   if (sticky) {
-    console.log('sticky supported');
-
     sections.forEach(function(el) {
       el.classList.add("sticky");
     });
@@ -403,6 +401,7 @@ nine.checkSticky = () => {
 
     return true;
   } else {
+    
     // TODO: disable scroll swipe if sticky off
     // window.removeEventListener('wheel', nine.scrollListener);
 

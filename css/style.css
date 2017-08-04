@@ -814,7 +814,23 @@ Stylesheet: About
       color: #707070; }
 
 .section.about .content {
+  font-size: 1.25rem;
   padding-bottom: 0; }
+  @media screen and (min-width: 1279px) {
+    .section.about .content {
+      font-size: 1.55rem; } }
+  @media screen and (min-width: 1440px) {
+    .section.about .content {
+      font-size: 1.825rem; } }
+  @media screen and (min-width: 1800px) {
+    .section.about .content {
+      font-size: 1.875rem; } }
+  .section.about .content a {
+    color: #707070;
+    border-bottom: 2px dashed #707070; }
+    .section.about .content a:hover {
+      color: #FFD657;
+      border-color: #FFD657; }
   @media screen and (min-width: 1024px) {
     .section.about .content {
       padding: 5rem 3.125rem 3.125rem; } }
