@@ -695,7 +695,6 @@ Stylesheet: Sections
 .section {
   position: relative;
   top: 0;
-  display: table;
   width: 100%;
   min-height: calc(100vh - 50px); }
   .section.sticky {
@@ -729,19 +728,20 @@ Stylesheet: Sections
   Con
    ========================================================================== */
 .content {
-  font-size: 1.25rem;
-  display: table-cell;
+  position: absolute;
+  bottom: 0;
   width: 100%;
   padding: 4.125rem 1.25rem 1.25rem;
-  vertical-align: bottom; }
+  vertical-align: bottom;
+  font-size: 1.25rem; }
   @media screen and (min-width: 768px) {
     .content {
-      font-size: 1.875rem;
-      padding: 5rem 3.125rem 3.125rem; } }
+      padding: 5rem 3.125rem 3.125rem;
+      font-size: 1.875rem; } }
   @media screen and (min-width: 1440px) {
     .content {
-      font-size: 2.5rem;
-      padding: 5rem 3.125rem 3.125rem; } }
+      padding: 5rem 3.125rem 3.125rem;
+      font-size: 2.5rem; } }
   @media screen and (min-width: 1440px) {
     .content.push-up {
       padding-bottom: 10%; } }
@@ -768,9 +768,9 @@ Stylesheet: Sections
     .content .wrap.hide-left {
       left: -1000px; }
   .content p {
-    font-weight: 400;
     position: relative;
-    color: #707070; }
+    color: #707070;
+    font-weight: 400; }
 
 /* ==========================================================================
 Site Name: SITENAME
@@ -781,8 +781,10 @@ Stylesheet: Intro
 .section.intro {
   height: calc(100vh - 50px - 86px);
   min-height: calc(100vh - 50px - 86px);
+  padding: 5rem;
   background: url("../img/background.svg") no-repeat center center;
-  background-size: 75% 75%; }
+  background-origin: content-box;
+  background-size: contain; }
   @media screen and (min-width: 768px) {
     .section.intro {
       height: auto;
@@ -790,10 +792,6 @@ Stylesheet: Intro
   @media screen and (min-width: 1024px) {
     .section.intro {
       min-height: calc(100vh - 100px); } }
-  @media screen and (min-width: 1279px) {
-    .section.intro {
-      background-position: 25px center;
-      background-size: 70% 70%; } }
 
 /* ==========================================================================
 Site Name: SITENAME
@@ -818,7 +816,7 @@ Stylesheet: About
   padding-bottom: 0; }
   @media screen and (min-width: 1279px) {
     .section.about .content {
-      font-size: 1.55rem; } }
+      font-size: 1.5rem; } }
   @media screen and (min-width: 1440px) {
     .section.about .content {
       font-size: 1.825rem; } }
@@ -901,8 +899,4 @@ Stylesheet: Contact
 
 .contact dd {
   color: #313B41; }
-
-@media screen and (min-width: 768px) {
-  .contact {
-    min-height: calc(100vh); } }
 /*# sourceMappingURL=style.css.map */

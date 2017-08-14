@@ -12,8 +12,6 @@ Stylesheet: Sections
   // position: relative; // Turn sticky off
   top: 0;
 
-  display: table;
-
   width: 100%;
   min-height: calc(100vh - 50px);
 
@@ -80,25 +78,27 @@ Stylesheet: Sections
    ========================================================================== */
 
 .content {
-  font-size: 1.25rem;
-
-  display: table-cell;
+  // display: table-cell;
+  position: absolute;
+  bottom: 0;
 
   width: 100%;
   padding: 4.125rem 1.25rem 1.25rem;
 
   vertical-align: bottom;
 
-  @media screen and (min-width: $tablet) {
-    font-size: 1.875rem;
+  font-size: 1.25rem;
 
+  @media screen and (min-width: $tablet) {
     padding: 5rem 3.125rem 3.125rem;
+
+    font-size: 1.875rem;
   }
 
   @media screen and (min-width: $lg-desktop) {
-    font-size: 2.5rem;
-
     padding: 5rem 3.125rem 3.125rem;
+
+    font-size: 2.5rem;
   }
 
   &.push-up {
@@ -142,10 +142,10 @@ Stylesheet: Sections
   }
 
   p {
-    font-weight: 400;
-
     position: relative;
 
     color: $secondary;
+
+    font-weight: 400;
   }
 }

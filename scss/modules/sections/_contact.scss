@@ -17,12 +17,4 @@ Stylesheet: Contact
   dd {
     color: $base;
   }
-
-  .content {
-    // display: block;
-  }
-
-  @media screen and (min-width: $tablet) {
-    min-height: calc(100vh);
-  }
 }
