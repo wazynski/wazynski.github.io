@@ -42,7 +42,9 @@ nine.scrollSpy = () => {
       }
 
       // Count as being in next page if 25% scrolled into it.
-      if ((scrollPosition >= sections[i].top - (sections[i].height * 0.75))  && scrollPosition <= sections[i].bottom) {
+      var scrollOffset = 0.75;
+
+      if ((scrollPosition >= sections[i].top - (sections[i].height * scrollOffset))  && scrollPosition <= sections[i].bottom) {
         if (nine.currentPage != i) {
           nine.currentPage = parseInt(i);
           nine.updateControls();
@@ -65,19 +67,21 @@ nine.changeHeaderClass = (className) => {
    ========================================================================== */
 
 nine.animateLoad = () => {
-  document.body.className = '';
-
   window.setTimeout(() => {
-    var hidden = document.querySelectorAll(".hide-left");
-    Array.prototype.forEach.call(hidden, function(el, i) {
-      el.classList.remove('hide-left');
-    });
+    document.body.classList.add('faded-in');
 
-    var hidden = document.querySelectorAll(".hide-down");
-    Array.prototype.forEach.call(hidden, function(el, i) {
-      el.classList.remove('hide-down');
-    });
-  }, 1000)
+    window.setTimeout(() => {
+      var hidden = document.querySelectorAll(".hide-left");
+      Array.prototype.forEach.call(hidden, function(el, i) {
+        el.classList.remove('hide-left');
+      });
+
+      var hidden = document.querySelectorAll(".hide-down");
+      Array.prototype.forEach.call(hidden, function(el, i) {
+        el.classList.remove('hide-down');
+      });
+    }, 1000)
+  }, 1000);
 };
 
 /* ==========================================================================
@@ -392,22 +396,16 @@ nine.checkSticky = () => {
   }
 
   if (sticky) {
-    sections.forEach(function(el) {
-      el.classList.add("sticky");
-    });
+    document.body.classList.add("sticky-enabled");
 
     // TODO: enable scroll swipe if sticky on
     // nine.swipeScroll();
 
     return true;
   } else {
-    
+
     // TODO: disable scroll swipe if sticky off
     // window.removeEventListener('wheel', nine.scrollListener);
-
-    sections.forEach(function(el) {
-      el.classList.remove("sticky");
-    });
 
     return false;
   }
@@ -431,7 +429,7 @@ nine.animatePortrait = () => {
   var page = document.getElementById('two');
   var offsetTop = page.offsetTop;
   var portrait = document.querySelector('.portrait .faded');
-  var startPoint = 0.85;
+  var startPoint = 0.98;
 
 
   nine.scrollContainer.addEventListener('scroll', function(event) {

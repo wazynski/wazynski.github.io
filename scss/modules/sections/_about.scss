@@ -14,11 +14,11 @@ $portrait-detach: $laptop;
   }
 
   dl {
-    font-size: .875rem;
-
     margin: 1.5rem 0;
 
     vertical-align: top;
+
+    font-size: .875rem;
 
     dd {
       color: $secondary;
@@ -27,10 +27,16 @@ $portrait-detach: $laptop;
 }
 
 .section.about {
-  .content {
-    font-size: 1.25rem;
+  flex-direction: column;
 
+  @media screen and (min-width: $portrait-detach) {
+    flex-direction: row;
+  }
+
+  .content {
     padding-bottom: 0;
+
+    font-size: 1.25rem;
 
     @media screen and (min-width: $sm-desktop) {
       font-size: 1.5rem;

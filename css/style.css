@@ -9,7 +9,8 @@ Stylesheet: Style
 ========================================================================== */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 * {
-  box-sizing: border-box; }
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
 
 /**
  * 1. Set default font family to sans-serif.
@@ -181,7 +182,8 @@ figure {
  * Address differences between Firefox and other browsers.
  */
 hr {
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
   height: 0; }
 
 /**
@@ -287,7 +289,8 @@ input {
  */
 input[type='checkbox'],
 input[type='radio'] {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   /* 1 */
   padding: 0;
   /* 2 */ }
@@ -307,6 +310,7 @@ input[type='number']::-webkit-outer-spin-button {
  *    (include `-moz` to future-proof).
  */
 input[type='search'] {
+  -webkit-box-sizing: content-box;
   /* 2 */
   box-sizing: content-box;
   -webkit-appearance: textfield;
@@ -494,23 +498,35 @@ Stylesheet: Base - Mobile Stylings
   Base
    ========================================================================== */
 * {
-  box-sizing: border-box; }
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
 
 html,
 body {
   background: #E6E6E4; }
 
-body {
-  transition: opacity 500ms linear;
-  opacity: 1; }
-  body.faded {
-    opacity: 0; }
+body.faded {
+  opacity: 0; }
 
-.scroll-container {
-  position: absolute;
-  overflow: auto;
-  width: 100%;
-  height: 100%; }
+body.faded-in {
+  -webkit-transition: opacity 1000ms ease-in;
+  transition: opacity 1000ms ease-in;
+  opacity: 1 !important; }
+
+body.sticky-enabled .controls {
+  display: block; }
+
+body.sticky-enabled .section {
+  position: -webkit-sticky;
+  position: sticky; }
+
+@media screen and (min-width: 768px) {
+  .scroll-container {
+    position: absolute;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    scroll-behavior: smooth; } }
 
 @media screen and (min-width: 768px) {
   .col-2 {
@@ -530,7 +546,6 @@ Stylesheet: Header
   Header
    ========================================================================== */
 .header {
-  line-height: 1;
   position: relative;
   z-index: 9999;
   top: 0;
@@ -538,8 +553,10 @@ Stylesheet: Header
   width: 100%;
   height: 86px;
   padding: 1.25rem;
+  -webkit-transition: color .5s ease;
   transition: color .5s ease;
   text-transform: uppercase;
+  line-height: 1;
   /* ==========================================================================
     Tablet
    ========================================================================== */ }
@@ -558,12 +575,14 @@ Stylesheet: Header
         display: block;
         width: auto;
         height: 50px;
+        -webkit-transition: all 1s ease-out;
         transition: all 1s ease-out; } }
   .header a {
     position: relative;
     z-index: 1;
     left: 0;
     display: inline-block;
+    -webkit-transition: all 1s ease-out;
     transition: all 1s ease-out;
     text-decoration: none;
     color: #313B41; }
@@ -578,12 +597,12 @@ Stylesheet: Header
         padding-left: 10px; }
   .header h1,
   .header span {
+    margin: 0;
     font-size: .875rem;
-    font-weight: 600;
-    margin: 0; }
+    font-weight: 600; }
   .header span {
-    font-weight: 400;
-    color: #707070; }
+    color: #707070;
+    font-weight: 400; }
   .header.light a {
     color: #FFFFFF; }
   .header.dark a {
@@ -598,27 +617,44 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Footer
 ========================================================================== */
+.section.contact {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse; }
+  .section.contact .content {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1; }
+
 .footer {
-  display: table-row;
   width: 100%;
-  height: 170px;
-  background: #FFD657; }
+  background: #FFD657;
+  -webkit-box-ordinal-group: 0;
+      -ms-flex-order: -1;
+          order: -1; }
   .footer .content {
-    padding: 1.25rem; }
+    display: block;
+    padding: 2rem 1.25rem 1.25rem; }
   .footer span {
     display: block; }
   .footer dl {
     vertical-align: top; }
+    .footer dl:first-child {
+      margin-bottom: 0; }
+    .footer dl:last-child {
+      margin-bottom: 0; }
     .footer dl dt {
       color: #313B41; }
   @media screen and (min-width: 768px) {
     .footer {
       height: 170px; }
       .footer .content {
-        padding: 5rem 3.125rem 3.125rem; }
+        display: block;
+        padding: 5rem 3.125rem 0; }
       .footer .wrap {
         font-size: 0; } }
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1279px) {
     .footer span {
       display: inline; } }
 
@@ -639,7 +675,6 @@ Stylesheet: Controls
       z-index: 9999;
       right: 50px;
       bottom: 180px;
-      display: block;
       width: 16px;
       text-align: right; }
       .controls ul {
@@ -665,6 +700,7 @@ Stylesheet: Controls
         height: 28px;
         margin: 0 0 10px;
         padding: 0;
+        -webkit-transition: opacity 500ms linear;
         transition: opacity 500ms linear;
         text-align: center;
         opacity: 1;
@@ -695,11 +731,15 @@ Stylesheet: Sections
 .section {
   position: relative;
   top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   width: 100%;
-  min-height: calc(100vh - 50px); }
-  .section.sticky {
-    position: -webkit-sticky;
-    position: sticky; }
+  min-height: 100%;
+  min-height: 100vh;
+  min-height: calc(100vh - 50px);
+  -ms-flex-line-pack: end;
+      align-content: flex-end; }
   .section.intro {
     z-index: 10;
     background: #E6E6E4; }
@@ -711,6 +751,7 @@ Stylesheet: Sections
     background: #D6E4E1; }
   .section.contact {
     z-index: 40;
+    min-height: 100vh;
     background: #E6E6E4; }
   .section.dark h2 {
     color: #FFFFFF; }
@@ -728,12 +769,11 @@ Stylesheet: Sections
   Con
    ========================================================================== */
 .content {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   padding: 4.125rem 1.25rem 1.25rem;
-  vertical-align: bottom;
-  font-size: 1.25rem; }
+  font-size: 1.25rem;
+  -ms-flex-item-align: end;
+      align-self: flex-end; }
   @media screen and (min-width: 768px) {
     .content {
       padding: 5rem 3.125rem 3.125rem;
@@ -752,6 +792,7 @@ Stylesheet: Sections
     position: relative;
     z-index: 500;
     left: 0;
+    -webkit-transition: all 1s ease-out;
     transition: all 1s ease-out; }
     @media screen and (min-width: 768px) {
       .content .wrap {
@@ -779,12 +820,12 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 Stylesheet: Intro
 ========================================================================== */
 .section.intro {
-  height: calc(100vh - 50px - 86px);
-  min-height: calc(100vh - 50px - 86px);
-  padding: 5rem;
   background: url("../img/background.svg") no-repeat center center;
-  background-origin: content-box;
   background-size: contain; }
+  @media screen and (min-height: 568px) {
+    .section.intro {
+      height: calc(100vh - 50px - 86px);
+      min-height: calc(100vh - 50px - 86px); } }
   @media screen and (min-width: 768px) {
     .section.intro {
       height: auto;
@@ -792,6 +833,9 @@ Stylesheet: Intro
   @media screen and (min-width: 1024px) {
     .section.intro {
       min-height: calc(100vh - 100px); } }
+  @media screen and (min-width: 1279px) {
+    .section.intro {
+      background-position: 25px center; } }
 
 /* ==========================================================================
 Site Name: SITENAME
@@ -805,33 +849,44 @@ Stylesheet: About
     .experience {
       padding-bottom: 1.875rem; } }
   .experience dl {
-    font-size: .875rem;
     margin: 1.5rem 0;
-    vertical-align: top; }
+    vertical-align: top;
+    font-size: .875rem; }
     .experience dl dd {
       color: #707070; }
 
-.section.about .content {
-  font-size: 1.25rem;
-  padding-bottom: 0; }
-  @media screen and (min-width: 1279px) {
-    .section.about .content {
-      font-size: 1.5rem; } }
-  @media screen and (min-width: 1440px) {
-    .section.about .content {
-      font-size: 1.825rem; } }
-  @media screen and (min-width: 1800px) {
-    .section.about .content {
-      font-size: 1.875rem; } }
-  .section.about .content a {
-    color: #707070;
-    border-bottom: 2px dashed #707070; }
-    .section.about .content a:hover {
-      color: #FFD657;
-      border-color: #FFD657; }
+.section.about {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column; }
   @media screen and (min-width: 1024px) {
-    .section.about .content {
-      padding: 5rem 3.125rem 3.125rem; } }
+    .section.about {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: row;
+              flex-direction: row; } }
+  .section.about .content {
+    padding-bottom: 0;
+    font-size: 1.25rem; }
+    @media screen and (min-width: 1279px) {
+      .section.about .content {
+        font-size: 1.5rem; } }
+    @media screen and (min-width: 1440px) {
+      .section.about .content {
+        font-size: 1.825rem; } }
+    @media screen and (min-width: 1800px) {
+      .section.about .content {
+        font-size: 1.875rem; } }
+    .section.about .content a {
+      color: #707070;
+      border-bottom: 2px dashed #707070; }
+      .section.about .content a:hover {
+        color: #FFD657;
+        border-color: #FFD657; }
+    @media screen and (min-width: 1024px) {
+      .section.about .content {
+        padding: 5rem 3.125rem 3.125rem; } }
 
 /* ==========================================================================
   Portrait
@@ -857,6 +912,7 @@ Stylesheet: About
     position: absolute;
     width: 100%;
     height: 500px;
+    -webkit-transition: opacity 600ms linear;
     transition: opacity 600ms linear;
     background-repeat: no-repeat;
     background-position: center;
@@ -891,12 +947,19 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Contact
 ========================================================================== */
-.contact a {
-  color: #313B41; }
-
-.contact dt {
-  color: #707070; }
-
-.contact dd {
-  color: #313B41; }
+.section.contact {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse; }
+  .section.contact .content {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1; }
+  .section.contact a {
+    color: #313B41; }
+  .section.contact dt {
+    color: #707070; }
+  .section.contact dd {
+    color: #313B41; }
 /*# sourceMappingURL=style.css.map */

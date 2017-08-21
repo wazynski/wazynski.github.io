@@ -11,14 +11,14 @@ $controls: $secondary;
 
 .controls {
   display: none;
-  @media screen and (min-width: $tablet) {
+
+  @media screen and (min-width: $controls-on) {
     position: fixed;
     z-index: 9999;
     right: 50px;
     // bottom: 220px;
     bottom: 180px;
-
-    display: block;
+    // display: block
 
     width: 16px;
 

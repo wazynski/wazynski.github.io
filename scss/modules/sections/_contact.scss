@@ -4,8 +4,13 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Contact
 ========================================================================== */
+.section.contact {
+  flex-direction: column-reverse;
 
-.contact {
+  .content {
+    order: 1;
+  }
+
   a {
     color: $base;
   }
