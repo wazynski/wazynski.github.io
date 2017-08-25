@@ -446,9 +446,9 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 Stylesheet: Typography
 ========================================================================== */
 body {
+  color: #707070;
   font-family: "sofia-pro-1", "sofia-pro-2", "Helvetica Neue", "Helvetica", Arial, sans-serif;
-  font-size: 16px;
-  color: #707070; }
+  font-size: 16px; }
 
 a {
   text-decoration: none;
@@ -459,14 +459,14 @@ p {
 
 h1,
 h2 {
-  font-size: .875rem;
-  font-weight: 600;
   margin: 4rem 0 1rem;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  font-size: .875rem;
+  font-weight: 600; }
 
 dl {
-  font-size: .875rem;
-  padding-right: .5rem; }
+  padding-right: .5rem;
+  font-size: .875rem; }
   dl dt {
     color: #FFFFFF; }
   dl dd {
@@ -478,10 +478,10 @@ ul {
   padding: 0;
   list-style: none; }
   ul h2 {
-    font-size: inherit;
     margin: 2rem 0 0;
     text-transform: none;
-    color: #313B41; }
+    color: #313B41;
+    font-size: inherit; }
   ul li:first-child h2 {
     margin: 0; }
 
@@ -501,24 +501,63 @@ Stylesheet: Base - Mobile Stylings
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
 
-html,
 body {
   background: #E6E6E4; }
+  body.about {
+    background: #313B41; }
+  body.faded {
+    opacity: 0; }
+  body.faded-in {
+    -webkit-transition: opacity 500ms ease-in;
+    transition: opacity 500ms ease-in;
+    opacity: 1 !important; }
+  body.faded-out {
+    -webkit-transition: opacity 500ms ease-in;
+    transition: opacity 500ms ease-in;
+    opacity: 0 !important; }
+  body.slide-left .page-wrap {
+    -webkit-animation: slide-left 500ms forwards;
+            animation: slide-left 500ms forwards; }
+  body.slide-right .page-wrap {
+    -webkit-animation: slide-right 500ms forwards;
+            animation: slide-right 500ms forwards; }
+  body.sticky-enabled .controls {
+    display: block; }
+  body.sticky-enabled .section {
+    position: -webkit-sticky;
+    position: sticky; }
 
-body.faded {
-  opacity: 0; }
+@-webkit-keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); }
+  100% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%); } }
 
-body.faded-in {
-  -webkit-transition: opacity 1000ms ease-in;
-  transition: opacity 1000ms ease-in;
-  opacity: 1 !important; }
+@keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); }
+  100% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%); } }
 
-body.sticky-enabled .controls {
-  display: block; }
+@-webkit-keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); }
+  100% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%); } }
 
-body.sticky-enabled .section {
-  position: -webkit-sticky;
-  position: sticky; }
+@keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); }
+  100% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%); } }
 
 @media screen and (min-width: 768px) {
   .scroll-container {
@@ -531,10 +570,12 @@ body.sticky-enabled .section {
 @media screen and (min-width: 768px) {
   .col-2 {
     font-size: 0; }
+    .col-2 .col,
     .col-2 dl {
       display: inline-block;
       width: 50%;
-      margin: 0; } }
+      margin: 0;
+      font-size: 1rem; } }
 
 /* ==========================================================================
 Site Name: SITENAME
@@ -560,7 +601,7 @@ Stylesheet: Header
   /* ==========================================================================
     Tablet
    ========================================================================== */ }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1279px) {
     .header {
       position: fixed;
       height: auto; } }
@@ -633,6 +674,10 @@ Stylesheet: Footer
   -webkit-box-ordinal-group: 0;
       -ms-flex-order: -1;
           order: -1; }
+  .footer.about-page {
+    background: #313B41; }
+    .footer.about-page dl dt {
+      color: #FFFFFF; }
   .footer .content {
     display: block;
     padding: 2rem 1.25rem 1.25rem; }
@@ -737,7 +782,6 @@ Stylesheet: Sections
   width: 100%;
   min-height: 100%;
   min-height: 100vh;
-  min-height: calc(100vh - 50px);
   -ms-flex-line-pack: end;
       align-content: flex-end; }
   .section.intro {
@@ -761,9 +805,6 @@ Stylesheet: Sections
     color: #707070; }
   .section.light .highlight {
     color: #313B41; }
-  @media screen and (min-width: 1024px) {
-    .section {
-      min-height: calc(100vh - 100px); } }
 
 /* ==========================================================================
   Con
@@ -820,19 +861,11 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 Stylesheet: Intro
 ========================================================================== */
 .section.intro {
-  background: url("../img/background.svg") no-repeat center center;
+  background: #E6E6E4 url("../img/background.svg") no-repeat center center;
   background-size: contain; }
-  @media screen and (min-height: 568px) {
-    .section.intro {
-      height: calc(100vh - 50px - 86px);
-      min-height: calc(100vh - 50px - 86px); } }
   @media screen and (min-width: 768px) {
     .section.intro {
-      height: auto;
-      min-height: calc(100vh - 50px); } }
-  @media screen and (min-width: 1024px) {
-    .section.intro {
-      min-height: calc(100vh - 100px); } }
+      height: auto; } }
   @media screen and (min-width: 1279px) {
     .section.intro {
       background-position: 25px center; } }
@@ -848,12 +881,16 @@ Stylesheet: About
   @media screen and (min-width: 768px) {
     .experience {
       padding-bottom: 1.875rem; } }
+  .experience ul,
   .experience dl {
     margin: 1.5rem 0;
     vertical-align: top;
-    font-size: .875rem; }
+    font-size: 1rem; }
+    .experience ul li,
+    .experience ul dd,
+    .experience dl li,
     .experience dl dd {
-      color: #707070; }
+      color: #a3a3a3; }
 
 .section.about {
   -webkit-box-orient: vertical;
@@ -866,34 +903,12 @@ Stylesheet: About
       -webkit-box-direction: normal;
           -ms-flex-direction: row;
               flex-direction: row; } }
-  .section.about .content {
-    padding-bottom: 0;
-    font-size: 1.25rem; }
-    @media screen and (min-width: 1279px) {
-      .section.about .content {
-        font-size: 1.5rem; } }
-    @media screen and (min-width: 1440px) {
-      .section.about .content {
-        font-size: 1.825rem; } }
-    @media screen and (min-width: 1800px) {
-      .section.about .content {
-        font-size: 1.875rem; } }
-    .section.about .content a {
-      color: #707070;
-      border-bottom: 2px dashed #707070; }
-      .section.about .content a:hover {
-        color: #FFD657;
-        border-color: #FFD657; }
-    @media screen and (min-width: 1024px) {
-      .section.about .content {
-        padding: 5rem 3.125rem 3.125rem; } }
 
 /* ==========================================================================
   Portrait
    ========================================================================== */
 .portrait {
   position: relative;
-  display: table-row;
   width: 100%;
   height: 500px; }
   @media screen and (min-width: 1024px) {
@@ -926,7 +941,7 @@ Stylesheet: About
         margin-bottom: 50px; } }
     @media screen and (min-width: 1279px) {
       .portrait div {
-        margin-bottom: 150px; } }
+        margin-bottom: 50px; } }
     .portrait div:first-child {
       z-index: 2;
       opacity: 0;
@@ -934,6 +949,81 @@ Stylesheet: About
     .portrait div:last-child {
       z-index: 1;
       background-image: url("../img/tom-side.jpg"); }
+
+/* ==========================================================================
+  Page
+   ========================================================================== */
+.section.about.page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 4.125rem 1.25rem 1.25rem; }
+  .section.about.page a {
+    color: #a3a3a3; }
+    .section.about.page a:hover {
+      color: #FFD657;
+      border-bottom: 2px dashed #FFD657; }
+  .section.about.page .block {
+    color: #FFFFFF;
+    font-size: 1.25rem; }
+    .section.about.page .block.images {
+      margin-bottom: -10px;
+      font-size: 0; }
+    .section.about.page .block .highlight {
+      color: #FFD657; }
+    .section.about.page .block p {
+      color: #FFFFFF; }
+  .section.about.page img {
+    width: 100%;
+    margin-bottom: 10px; }
+  .section.about.page .col-2 img {
+    width: 50%; }
+    .section.about.page .col-2 img:first-child {
+      padding-right: 5px; }
+    .section.about.page .col-2 img:last-child {
+      padding-left: 5px; }
+  .section.about.page .skills .col {
+    vertical-align: top; }
+  .section.about.page .skills h3 {
+    margin: 1.5rem 0 0;
+    color: #FFFFFF;
+    font-size: .875rem;
+    font-weight: 400; }
+  .section.about.page .skills ul {
+    font-size: 1rem; }
+    .section.about.page .skills ul li {
+      color: #a3a3a3;
+      line-height: 1.8; }
+  .section.about.page .like-list li {
+    display: inline;
+    color: #a3a3a3;
+    font-size: .875em; }
+  @media screen and (min-width: 1024px) {
+    .section.about.page {
+      zoom: 1;
+      display: block; }
+      .section.about.page::before, .section.about.page::after {
+        display: table;
+        content: ''; }
+      .section.about.page::after {
+        clear: both; }
+      .section.about.page .block {
+        width: 50%;
+        font-size: 1.5rem; }
+        .section.about.page .block:first-child {
+          background: hotpink; }
+        .section.about.page .block.left {
+          float: left;
+          clear: left; }
+        .section.about.page .block.right {
+          clear: right;
+          float: right; }
+        .section.about.page .block.images {
+          margin-bottom: 0; } }
 
 /* ==========================================================================
 Site Name: SITENAME

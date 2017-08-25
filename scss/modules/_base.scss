@@ -14,22 +14,40 @@ Stylesheet: Base - Mobile Stylings
   box-sizing: border-box;
 }
 
-html,
 body {
   background: $background;
-}
 
-body {
+  &.about {
+    background: $base;
+  }
+
   &.faded {
     opacity: 0;
   }
 
   &.faded-in {
-    transition: opacity 1000ms ease-in;
+    transition: opacity 500ms ease-in;
 
     opacity: 1 !important;
   }
 
+  &.faded-out {
+    transition: opacity 500ms ease-in;
+
+    opacity: 0 !important;
+  }
+
+  &.slide-left {
+    .page-wrap {
+      animation: slide-left 500ms forwards;
+    }
+  }
+
+  &.slide-right {
+    .page-wrap {
+      animation: slide-right 500ms forwards;
+    }
+  }
 
   &.sticky-enabled {
     .controls {
@@ -41,6 +59,26 @@ body {
     }
   }
 }
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
 
 @media screen and (min-width: $controls-on) {
   .scroll-container {
@@ -59,13 +97,14 @@ body {
   .col-2 {
     font-size: 0;
 
-
-
+    .col,
     dl {
       display: inline-block;
 
       width: 50%;
       margin: 0;
+
+      font-size: 1rem;
     }
   }
 }

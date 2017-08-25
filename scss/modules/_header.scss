@@ -23,7 +23,7 @@ Stylesheet: Header
 
   line-height: 1;
 
-  @media screen and (min-width: $tablet) {
+  @media screen and (min-width: $sm-desktop) {
     position: fixed;
 
     height: auto;

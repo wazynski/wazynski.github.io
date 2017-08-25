@@ -308,21 +308,24 @@ nine.prevPage = () => {
 nine.controls = () => {
   var pageIndex = 0;
 
-  Array.prototype.forEach.call(nine.pages, function(el) {
-    var dot = document.createElement('li');
-    dot.setAttribute('data-page', pageIndex);
-    document.querySelector('.dots').appendChild(dot);
-    dot.addEventListener('click', (e) => nine.dotClick(e));
+  var dots = document.querySelector('.dots')
+  if (dots) {
+    Array.prototype.forEach.call(nine.pages, function(el) {
+      var dot = document.createElement('li');
+      dot.setAttribute('data-page', pageIndex);
+      dots.appendChild(dot);
+      dot.addEventListener('click', (e) => nine.dotClick(e));
 
-    pageIndex++;
-  });
+      pageIndex++;
+    });
 
-  document.querySelector('.dots li').classList.add('active')
+    document.querySelector('.dots li').classList.add('active')
 
-  document.querySelector('.next').addEventListener('click', () => nine.nextPage());
-  document.querySelector('.prev').addEventListener('click', () => nine.prevPage());
+    document.querySelector('.next').addEventListener('click', () => nine.nextPage());
+    document.querySelector('.prev').addEventListener('click', () => nine.prevPage());
 
-  nine.updateControls();
+    nine.updateControls();
+  }
 }
 
 /* ==========================================================================
@@ -431,26 +434,27 @@ nine.animatePortrait = () => {
   var portrait = document.querySelector('.portrait .faded');
   var startPoint = 0.98;
 
+  if (portrait) {
+    nine.scrollContainer.addEventListener('scroll', function(event) {
+      var scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
 
-  nine.scrollContainer.addEventListener('scroll', function(event) {
-    var scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
-
-    if (page.offsetWidth > 1280) {
-      startPoint = 0.5;
-    } else if (page.offsetWidth < 1024) {
-      offsetTop = page.offsetHeight + document.getElementById('one').offsetHeight - portrait.offsetHeight;
-    }
-
-    if (scrollPosition > offsetTop * startPoint) {
-      if (portrait.style.opacity == 0) {
-        portrait.style.opacity = 1;
+      if (page.offsetWidth > 1280) {
+        startPoint = 0.5;
+      } else if (page.offsetWidth < 1024) {
+        offsetTop = page.offsetHeight + document.getElementById('one').offsetHeight - portrait.offsetHeight;
       }
-    } else {
-      if (portrait.style.opacity == 1) {
-        portrait.style.opacity = 0;
+
+      if (scrollPosition > offsetTop * startPoint) {
+        if (portrait.style.opacity == 0) {
+          portrait.style.opacity = 1;
+        }
+      } else {
+        if (portrait.style.opacity == 1) {
+          portrait.style.opacity = 0;
+        }
       }
-    }
-  });
+    });
+  }
 };
 
 /* ==========================================================================
@@ -472,6 +476,30 @@ nine.debounce = (func, wait, immediate) => {
 	};
 };
 
+
+nine.pageTransisition = (href, bg, slide) => {
+  if (!bg) {
+    bg = '#E6E6E4';
+  }
+
+  document.body.style.backgroundColor = bg;
+
+  // if (slide) {
+  //   console.log(slide);
+  //   if (slide == "left") {
+  //     document.body.classList.add('slide-left');
+  //   } else {
+  //     document.body.classList.add('slide-right');
+  //   }
+  // } else {
+  document.body.classList.add('faded-out');
+  // }
+
+  setTimeout(function(){
+    window.location.href = href;
+  }, 600);
+};
+
 /* ==========================================================================
   Document Load
    ========================================================================== */
@@ -487,6 +515,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 250);
 
   window.addEventListener('resize', checkStickyDebounced);
+
+
+  var anchorElements = document.getElementsByTagName('a');
+  console.log(anchorElements);
+  Array.prototype.forEach.call(anchorElements, function(el, i) {
+    el.onclick = function() {
+      nine.pageTransisition(this.href, el.getAttribute('data-bg'), el.getAttribute('data-slide'));
+      return false;
+    }
+  });
+
 });
 
 /* ==========================================================================

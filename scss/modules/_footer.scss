@@ -20,6 +20,16 @@ Stylesheet: Footer
 
   order: -1;
 
+  &.about-page {
+    background: $base;
+
+    dl {
+      dt {
+        color: $white;
+      }
+    }
+  }
+
   .content {
     display: block; // not flex
 

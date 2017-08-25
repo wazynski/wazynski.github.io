@@ -5,22 +5,22 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 Stylesheet: Intro
 ========================================================================== */
 .section.intro {
-  background: url('../img/background.svg') no-repeat center center;
+  background: $background url('../img/background.svg') no-repeat center center;
   background-size: contain;
 
   @media screen and (min-height: 568px) {
-    height: calc(100vh - 50px - 86px);
-    min-height: calc(100vh - 50px - 86px);
+    // height: calc(100vh - 50px - 86px);
+    // min-height: calc(100vh - 50px - 86px);
   }
 
 
   @media screen and (min-width: $tablet) {
     height: auto;
-    min-height: calc(100vh - 50px);
+    // min-height: calc(100vh - 50px);
   }
 
   @media screen and (min-width: $laptop) {
-    min-height: calc(100vh - 100px);
+    // min-height: calc(100vh - 100px);
   }
 
   @media screen and (min-width: $sm-desktop) {

@@ -16,7 +16,7 @@ Stylesheet: Sections
   width: 100%;
   min-height: 100%; // Fallbacks
   min-height: 100vh; // Fallbacks
-  min-height: calc(100vh - 50px);
+  // min-height: calc(100vh - 50px);
 
   align-content: flex-end;
 
@@ -68,7 +68,7 @@ Stylesheet: Sections
   }
 
   @media screen and (min-width: $laptop) {
-    min-height: calc(100vh - 100px);
+    // min-height: calc(100vh - 100px);
   }
 }
 
