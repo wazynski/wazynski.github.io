@@ -35,6 +35,15 @@ $portrait-detach: $laptop;
   @media screen and (min-width: $portrait-detach) {
     flex-direction: row;
   }
+
+  a {
+    color: lighten($secondary, 20%);
+
+    &:hover {
+      color: $mustard;
+      border-bottom: 2px dashed $mustard;
+    }
+  }
 }
 
 
@@ -107,10 +116,14 @@ $portrait-detach: $laptop;
 /* ==========================================================================
   Page
    ========================================================================== */
+.about {
+  .footer {
+    display: block;
+  }
+}
 
 .section.about.page {
-  display: flex;
-  flex-direction: column;
+  position: static;
 
   padding: 4.125rem 1.25rem 1.25rem;
 
@@ -149,6 +162,14 @@ $portrait-detach: $laptop;
   img {
     width: 100%;
     margin-bottom: 10px;
+
+    @media screen and (min-width: $sm-desktop) {
+      margin-bottom: 20px;
+    }
+
+    @media screen and (min-width: $lg-desktop) {
+      margin-bottom: 30px;
+    }
   }
 
   .col-2 {
@@ -157,10 +178,26 @@ $portrait-detach: $laptop;
 
       &:first-child {
         padding-right: 5px;
+
+        @media screen and (min-width: $sm-desktop) {
+          padding-right: 10px;
+        }
+
+        @media screen and (min-width: $lg-desktop) {
+          padding-right: 15px;
+        }
       }
 
       &:last-child {
         padding-left: 5px;
+
+        @media screen and (min-width: $sm-desktop) {
+          padding-left: 10px;
+        }
+
+        @media screen and (min-width: $lg-desktop) {
+          padding-left: 15px;
+        }
       }
     }
   }
@@ -183,6 +220,8 @@ $portrait-detach: $laptop;
       font-size: 1rem;
 
       li {
+        padding-right: .5rem;
+
         color: lighten($secondary, 20%);
 
         line-height: 1.8;
@@ -200,10 +239,25 @@ $portrait-detach: $laptop;
     }
   }
 
-  @media screen and (min-width: $laptop) {
-    @include clearfix;
+  @media screen and (min-width: $tablet) {
+    padding: 5rem 3.125rem 3.125rem;
+  }
 
-    display: block;
+  @media screen and (min-width: $laptop) {
+    .contact {
+      padding-top: 5rem;
+    }
+
+    .masonary {
+      display: flex;
+      overflow: hidden;
+
+      width: 100%;
+      max-width: 100%;
+      height: 2700px;
+
+      flex-flow: column wrap;
+    }
 
     .block {
       width: 50%;
@@ -211,17 +265,21 @@ $portrait-detach: $laptop;
       font-size: 1.5rem;
 
       &:first-child {
-        background: hotpink;
+        h2 {
+          margin-top: 0;
+        }
       }
 
       &.left {
-        float: left;
-        clear: left;
+        padding-right: 20px;
+
+        order: -1;
       }
 
       &.right {
-        float: right;
-        clear: right;
+        padding-left: 20px;
+
+        order: 1;
       }
 
       // &:nth-child(2) {
@@ -239,161 +297,35 @@ $portrait-detach: $laptop;
       }
     }
   }
-}
 
-//
-// .section.about.page {
-//   position: relative;
-//
-//   background: $base;
-//   background-size: contain;
-//
-//   .content {
-//     color: $white;
-//
-//     font-size: 1.25rem;
-//
-//     align-self: flex-start;
-//
-//     .headshot {
-//       width: 100%;
-//     }
-//
-//
-//     .highlight {
-//       color: $mustard;
-//     }
-//
-//     p {
-//       color: $white;
-//     }
-//
-//     @media screen and (min-width: $tablet) {
-//       // padding-top: 10rem;
-//     }
-//
-//     @media screen and (min-width: $laptop) {
-//       width: 50%;
-//       padding-top: 15rem;
-//
-//       font-size: 1.5rem;
-//
-//       .headshot {
-//         display: none;
-//       }
-//
-//       .images {
-//         position: absolute;
-//         right: 0;
-//
-//         width: 50%;
-//         padding-top: 100px;
-//         padding-right: 50px;
-//
-//         .headshot {
-//           display: block;
-//         }
-//
-//         img {
-//           margin-bottom: 20px;
-//         }
-//       }
-//     }
-//
-//     @media screen and (min-width: $lg-desktop) {
-//       font-size: 1.825rem;
-//     }
-//
-//     @media screen and (min-width: $xl-desktop) {
-//       font-size: 1.875rem;
-//     }
-//
-//
-//     a {
-//       color: lighten($secondary, 20%);
-//
-//       &:hover {
-//         color: $mustard;
-//         border-bottom: 2px dashed $mustard;
-//       }
-//     }
-//   }
-//
-//   .wrap {
-//     max-width: none;
-//   }
-//
-//   .skills {
-//     .col {
-//       vertical-align: top;
-//     }
-//
-//     h3 {
-//       margin: 1.5rem 0 0;
-//
-//       color: $white;
-//
-//       font-size: .875rem;
-//       font-weight: 400;
-//     }
-//
-//     ul {
-//       font-size: 1rem;
-//
-//       li {
-//         color: lighten($secondary, 20%);
-//
-//         line-height: 1.8;
-//       }
-//     }
-//   }
-//
-//   .like-list {
-//     li {
-//       display: inline;
-//
-//       color: lighten($secondary, 20%);
-//
-//       font-size: .875em;
-//     }
-//   }
-//
-//   .images {
-//     width: 100%;
-//
-//     font-size: 0;
-//
-//     .headshot {
-//       display: none;
-//     }
-//
-//     // background: hotpink;
-//
-//     img {
-//       width: 100%;
-//       margin-bottom: 25px;
-//     }
-//
-//     .col-2 {
-//       img {
-//         width: 50%;
-//
-//         &:first-child {
-//           padding-right: 10px;
-//         }
-//
-//         &:last-child {
-//           padding-left: 10px;
-//         }
-//       }
-//     }
-//   }
-//
-//   .contact {
-//     padding-top: 5rem;
-//
-//     @media screen and (min-width: $sm-desktop) {
-//       padding-top: 10rem;
-//     }
-//   }
-// }
+  @media screen and (min-width: $sm-desktop) {
+    padding: 20rem 3.125rem 3.125rem;
+  }
+
+  @media screen and (min-width: $lg-desktop) {
+    .block {
+      font-size: 2rem;
+    }
+
+    ul li,
+    dl {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media screen and (min-width: $xl-desktop) {
+    .block {
+      font-size: 2.25rem;
+    }
+
+    img {
+      max-width: 90%;
+    }
+
+    .images {
+      .col-2 {
+        max-width: 90%;
+      }
+    }
+  }
+}

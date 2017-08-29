@@ -193,7 +193,7 @@ nine.scrollToPage = (pageID, offset) => {
   // Get current scroll location and where the page starts
   nine.scrollStart = nine.scrollContainer.scrollTop;
 
-  if(typeof offset === "undefined") {
+  if (typeof offset === "undefined") {
     offset = 0;
   }
 
@@ -501,6 +501,76 @@ nine.pageTransisition = (href, bg, slide) => {
 };
 
 /* ==========================================================================
+  nine.aboutHeight
+   ========================================================================== */
+
+nine.masonaryHeight = () => {
+  var masonary = document.querySelector('.masonary')
+  let lheight = 0;
+  let rheight = 0;
+  if (masonary && nine.windowSize().w >= 1024) {
+    var lblocks = document.querySelectorAll('.block.left');
+    var rblocks = document.querySelectorAll('.block.right');
+
+    Array.prototype.forEach.call(lblocks, function(el, i) {
+      lheight += el.offsetHeight;
+    });
+
+    Array.prototype.forEach.call(rblocks, function(el, i) {
+      rheight += el.offsetHeight;
+    });
+
+    let height;
+
+    if (lheight >= rheight) {
+      height = lheight;
+    } else {
+      height = rheight;
+    }
+
+    height += 100;
+    console.log(height);
+    masonary.style.height = height + 'px';
+  }
+};
+
+/* ==========================================================================
+  nine.animateLinks
+   ========================================================================== */
+
+nine.animateLinks = () => {
+  var anchorElements = document.getElementsByTagName('a');
+  Array.prototype.forEach.call(anchorElements, function(el, i) {
+    el.onclick = function() {
+      nine.pageTransisition(this.href, el.getAttribute('data-bg'), el.getAttribute('data-slide'));
+      return false;
+    }
+  });
+};
+
+/* ==========================================================================
+  nine.windowWidth
+   ========================================================================== */
+
+nine.windowSize = (w) => {
+
+  // Use the specified window or the current window if no argument
+  w = w || window;
+
+  // This works for all browsers except IE8 and before
+  if (w.innerWidth != null) return { w: w.innerWidth, h: w.innerHeight };
+
+  // For IE (or any browser) in Standards mode
+  var d = w.document;
+  if (document.compatMode == "CSS1Compat")
+      return { w: d.documentElement.clientWidth,
+         h: d.documentElement.clientHeight };
+
+  // For browsers in Quirks mode
+  return { w: d.body.clientWidth, h: d.body.clientHeight };
+};
+
+/* ==========================================================================
   Document Load
    ========================================================================== */
 
@@ -509,6 +579,8 @@ document.addEventListener('DOMContentLoaded', () => {
   nine.sticky = nine.checkSticky();
   nine.keyboardNav();
   nine.controls();
+  nine.masonaryHeight();
+  nine.animateLinks();
 
   var checkStickyDebounced = nine.debounce(function() {
   	nine.sticky = nine.checkSticky();
@@ -516,16 +588,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('resize', checkStickyDebounced);
 
-
-  var anchorElements = document.getElementsByTagName('a');
-  console.log(anchorElements);
-  Array.prototype.forEach.call(anchorElements, function(el, i) {
-    el.onclick = function() {
-      nine.pageTransisition(this.href, el.getAttribute('data-bg'), el.getAttribute('data-slide'));
-      return false;
-    }
+  window.addEventListener('resize', function() {
+    nine.masonaryHeight();
   });
-
 });
 
 /* ==========================================================================
@@ -535,4 +600,5 @@ document.addEventListener('DOMContentLoaded', () => {
 window.onload = () => {
   nine.animateLoad();
   nine.animatePortrait();
+  nine.masonaryHeight();
 };

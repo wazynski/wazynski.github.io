@@ -903,6 +903,11 @@ Stylesheet: About
       -webkit-box-direction: normal;
           -ms-flex-direction: row;
               flex-direction: row; } }
+  .section.about a {
+    color: #a3a3a3; }
+    .section.about a:hover {
+      color: #FFD657;
+      border-bottom: 2px dashed #FFD657; }
 
 /* ==========================================================================
   Portrait
@@ -953,14 +958,11 @@ Stylesheet: About
 /* ==========================================================================
   Page
    ========================================================================== */
+.about .footer {
+  display: block; }
+
 .section.about.page {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  position: static;
   padding: 4.125rem 1.25rem 1.25rem; }
   .section.about.page a {
     color: #a3a3a3; }
@@ -980,12 +982,30 @@ Stylesheet: About
   .section.about.page img {
     width: 100%;
     margin-bottom: 10px; }
+    @media screen and (min-width: 1279px) {
+      .section.about.page img {
+        margin-bottom: 20px; } }
+    @media screen and (min-width: 1440px) {
+      .section.about.page img {
+        margin-bottom: 30px; } }
   .section.about.page .col-2 img {
     width: 50%; }
     .section.about.page .col-2 img:first-child {
       padding-right: 5px; }
+      @media screen and (min-width: 1279px) {
+        .section.about.page .col-2 img:first-child {
+          padding-right: 10px; } }
+      @media screen and (min-width: 1440px) {
+        .section.about.page .col-2 img:first-child {
+          padding-right: 15px; } }
     .section.about.page .col-2 img:last-child {
       padding-left: 5px; }
+      @media screen and (min-width: 1279px) {
+        .section.about.page .col-2 img:last-child {
+          padding-left: 10px; } }
+      @media screen and (min-width: 1440px) {
+        .section.about.page .col-2 img:last-child {
+          padding-left: 15px; } }
   .section.about.page .skills .col {
     vertical-align: top; }
   .section.about.page .skills h3 {
@@ -996,34 +1016,64 @@ Stylesheet: About
   .section.about.page .skills ul {
     font-size: 1rem; }
     .section.about.page .skills ul li {
+      padding-right: .5rem;
       color: #a3a3a3;
       line-height: 1.8; }
   .section.about.page .like-list li {
     display: inline;
     color: #a3a3a3;
     font-size: .875em; }
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 768px) {
     .section.about.page {
-      zoom: 1;
-      display: block; }
-      .section.about.page::before, .section.about.page::after {
-        display: table;
-        content: ''; }
-      .section.about.page::after {
-        clear: both; }
-      .section.about.page .block {
-        width: 50%;
-        font-size: 1.5rem; }
-        .section.about.page .block:first-child {
-          background: hotpink; }
-        .section.about.page .block.left {
-          float: left;
-          clear: left; }
-        .section.about.page .block.right {
-          clear: right;
-          float: right; }
-        .section.about.page .block.images {
-          margin-bottom: 0; } }
+      padding: 5rem 3.125rem 3.125rem; } }
+  @media screen and (min-width: 1024px) {
+    .section.about.page .contact {
+      padding-top: 5rem; }
+    .section.about.page .masonary {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+      max-width: 100%;
+      height: 2700px;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-flow: column wrap;
+              flex-flow: column wrap; }
+    .section.about.page .block {
+      width: 50%;
+      font-size: 1.5rem; }
+      .section.about.page .block:first-child h2 {
+        margin-top: 0; }
+      .section.about.page .block.left {
+        padding-right: 20px;
+        -webkit-box-ordinal-group: 0;
+            -ms-flex-order: -1;
+                order: -1; }
+      .section.about.page .block.right {
+        padding-left: 20px;
+        -webkit-box-ordinal-group: 2;
+            -ms-flex-order: 1;
+                order: 1; }
+      .section.about.page .block.images {
+        margin-bottom: 0; } }
+  @media screen and (min-width: 1279px) {
+    .section.about.page {
+      padding: 20rem 3.125rem 3.125rem; } }
+  @media screen and (min-width: 1440px) {
+    .section.about.page .block {
+      font-size: 2rem; }
+    .section.about.page ul li,
+    .section.about.page dl {
+      font-size: 1.25rem; } }
+  @media screen and (min-width: 1800px) {
+    .section.about.page .block {
+      font-size: 2.25rem; }
+    .section.about.page img {
+      max-width: 90%; }
+    .section.about.page .images .col-2 {
+      max-width: 90%; } }
 
 /* ==========================================================================
 Site Name: SITENAME
