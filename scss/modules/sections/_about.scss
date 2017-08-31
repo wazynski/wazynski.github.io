@@ -1,5 +1,5 @@
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: About
@@ -41,7 +41,6 @@ $portrait-detach: $laptop;
 
     &:hover {
       color: $mustard;
-      border-bottom: 2px dashed $mustard;
     }
   }
 }
@@ -126,15 +125,6 @@ $portrait-detach: $laptop;
   position: static;
 
   padding: 4.125rem 1.25rem 1.25rem;
-
-  a {
-    color: lighten($secondary, 20%);
-
-    &:hover {
-      color: $mustard;
-      border-bottom: 2px dashed $mustard;
-    }
-  }
 
   .block {
     color: $white;

@@ -1,5 +1,5 @@
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Contact
@@ -13,6 +13,14 @@ Stylesheet: Contact
 
   a {
     color: $base;
+
+    &:hover {
+      color: $base;
+    }
+
+    &::before {
+      background-color: $base;
+    }
   }
 
   dt {

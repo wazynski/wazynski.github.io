@@ -1,5 +1,5 @@
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Style
@@ -370,7 +370,7 @@ th {
   padding: 0; }
 
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Mixins
@@ -385,7 +385,7 @@ Stylesheet: Mixins
  * Positioning
  */
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Helpers
@@ -425,7 +425,7 @@ Stylesheet: Helpers
   display: none; }
 
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Variables
@@ -440,7 +440,7 @@ Stylesheet: Variables
   Breakpoints
    ========================================================================== */
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Typography
@@ -451,8 +451,28 @@ body {
   font-size: 16px; }
 
 a {
+  position: relative;
   text-decoration: none;
   color: #313B41; }
+  a::before {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    visibility: hidden;
+    width: 100%;
+    height: 4px;
+    content: '';
+    -webkit-transition: all .3s ease-in-out 0s;
+    transition: all .3s ease-in-out 0s;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    background-color: #FFD657; }
+  a:hover {
+    color: #FFD657; }
+  a:hover::before {
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1); }
 
 p {
   font-weight: 400; }
@@ -489,7 +509,7 @@ ul {
   Modules
 ========================================================================== */
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Base - Mobile Stylings
@@ -578,7 +598,7 @@ body {
       font-size: 1rem; } }
 
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Header
@@ -627,6 +647,8 @@ Stylesheet: Header
     transition: all 1s ease-out;
     text-decoration: none;
     color: #313B41; }
+    .header a::before {
+      display: none; }
     @media screen and (min-width: 768px) {
       .header a {
         left: 60px; } }
@@ -653,7 +675,7 @@ Stylesheet: Header
       padding: 3.125rem; } }
 
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Footer
@@ -704,7 +726,7 @@ Stylesheet: Footer
       display: inline; } }
 
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Controls
@@ -765,7 +787,7 @@ Stylesheet: Controls
       right: 42px; } }
 
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Sections
@@ -846,7 +868,7 @@ Stylesheet: Sections
         max-width: 50%; } }
     @media screen and (min-width: 1800px) {
       .content .wrap {
-        max-width: 930px !important; } }
+        max-width: 930px; } }
     .content .wrap.hide-left {
       left: -1000px; }
   .content p {
@@ -855,7 +877,7 @@ Stylesheet: Sections
     font-weight: 400; }
 
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Intro
@@ -871,7 +893,7 @@ Stylesheet: Intro
       background-position: 25px center; } }
 
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: About
@@ -906,8 +928,7 @@ Stylesheet: About
   .section.about a {
     color: #a3a3a3; }
     .section.about a:hover {
-      color: #FFD657;
-      border-bottom: 2px dashed #FFD657; }
+      color: #FFD657; }
 
 /* ==========================================================================
   Portrait
@@ -964,11 +985,6 @@ Stylesheet: About
 .section.about.page {
   position: static;
   padding: 4.125rem 1.25rem 1.25rem; }
-  .section.about.page a {
-    color: #a3a3a3; }
-    .section.about.page a:hover {
-      color: #FFD657;
-      border-bottom: 2px dashed #FFD657; }
   .section.about.page .block {
     color: #FFFFFF;
     font-size: 1.25rem; }
@@ -1076,13 +1092,64 @@ Stylesheet: About
       max-width: 90%; } }
 
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: services
 ========================================================================== */
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: About
+========================================================================== */
+.case-study {
+  z-index: 35;
+  background: #313B41; }
+  .case-study .content {
+    -ms-flex-item-align: center;
+        align-self: center; }
+  .case-study.porters {
+    background: #FFD657; }
+  .case-study h2 {
+    color: #707070; }
+  .case-study img {
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
+    -webkit-box-shadow: 0 12px 32px -2px rgba(0, 0, 0, 0.75);
+            box-shadow: 0 12px 32px -2px rgba(0, 0, 0, 0.75); }
+  .case-study .wrap {
+    max-width: 100%;
+    text-align: center; }
+  .case-study h1 {
+    margin: 0;
+    text-transform: capitalize;
+    color: #FFFFFF;
+    font-size: 1.25rem;
+    font-weight: 400; }
+    @media screen and (min-width: 768px) {
+      .case-study h1 {
+        font-size: 1.875rem; } }
+    @media screen and (min-width: 1440px) {
+      .case-study h1 {
+        font-size: 2.5rem; } }
+  .case-study p {
+    max-width: 600px;
+    margin-top: 0;
+    margin-right: auto;
+    margin-left: auto;
+    color: #707070; }
+  .case-study dl dt {
+    text-transform: uppercase;
+    color: #707070;
+    font-weight: 600; }
+  .case-study dl dl {
+    display: inline;
+    color: #FFFFFF; }
+
+/* ==========================================================================
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Contact
@@ -1098,6 +1165,10 @@ Stylesheet: Contact
             order: 1; }
   .section.contact a {
     color: #313B41; }
+    .section.contact a:hover {
+      color: #313B41; }
+    .section.contact a::before {
+      background-color: #313B41; }
   .section.contact dt {
     color: #707070; }
   .section.contact dd {

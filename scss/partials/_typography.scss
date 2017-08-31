@@ -1,5 +1,5 @@
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Typography
@@ -13,9 +13,41 @@ body {
 }
 
 a {
+  position: relative;
+
   text-decoration: none;
 
   color: $base;
+
+  &::before {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+
+    visibility: hidden;
+
+    width: 100%;
+    height: 4px;
+
+    content: '';
+    -webkit-transition: all .3s ease-in-out 0s;
+    transition: all .3s ease-in-out 0s;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+
+    background-color: $mustard;
+  }
+
+  &:hover {
+    color: $mustard;
+  }
+
+  &:hover::before {
+    visibility: visible;
+
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
 }
 
 p {

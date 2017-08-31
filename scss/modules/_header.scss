@@ -1,5 +1,5 @@
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Header
@@ -60,6 +60,10 @@ Stylesheet: Header
     text-decoration: none;
 
     color: $base;
+
+    &::before {
+      display: none;
+    }
 
     @media screen and (min-width: $tablet) {
       left: 60px;
