@@ -1,28 +1,29 @@
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Intro
 ========================================================================== */
 .section.intro {
-  height: calc(100vh - 50px - 86px);
-  min-height: calc(100vh - 50px - 86px);
+  background: $background url('../img/background.svg') no-repeat center center;
+  background-size: contain;
 
-  background: url('../img/background.svg') no-repeat center center;
-  background-size: 75% 75%;
+  @media screen and (min-height: 568px) {
+    // height: calc(100vh - 50px - 86px);
+    // min-height: calc(100vh - 50px - 86px);
+  }
 
 
   @media screen and (min-width: $tablet) {
     height: auto;
-    min-height: calc(100vh - 50px);
+    // min-height: calc(100vh - 50px);
   }
 
   @media screen and (min-width: $laptop) {
-    min-height: calc(100vh - 100px);
+    // min-height: calc(100vh - 100px);
   }
 
   @media screen and (min-width: $sm-desktop) {
     background-position: 25px center;
-    background-size: 70% 70%;
   }
 }

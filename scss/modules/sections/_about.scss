@@ -1,5 +1,5 @@
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: About
@@ -13,60 +13,34 @@ $portrait-detach: $laptop;
     padding-bottom: 1.875rem;
   }
 
+  ul,
   dl {
-    font-size: .875rem;
-
     margin: 1.5rem 0;
 
     vertical-align: top;
 
+    font-size: 1rem;
+
+    li,
     dd {
-      color: $secondary;
+      color: lighten($secondary, 20%);
     }
   }
 }
 
+
 .section.about {
-  .content {
-    font-size: 1.25rem;
+  flex-direction: column;
 
-    padding-bottom: 0;
+  @media screen and (min-width: $portrait-detach) {
+    flex-direction: row;
+  }
 
-    @media screen and (min-width: $sm-desktop) {
-      font-size: 1.5rem;
-    }
+  a {
+    color: lighten($secondary, 20%);
 
-    @media screen and (min-width: $lg-desktop) {
-      font-size: 1.825rem;
-    }
-
-    @media screen and (min-width: $xl-desktop) {
-      font-size: 1.875rem;
-    }
-
-
-    a {
-      color: $secondary;
-      border-bottom: 2px dashed $secondary;
-
-      &:hover {
-        color: $mustard;
-        border-color: $mustard;
-      }
-    }
-
-    // color: $white;
-    //
-    // p {
-    //   color: $white;
-    // }
-    //
-    // .highlight {
-    //   color: $mustard;
-    // }
-
-    @media screen and (min-width: $portrait-detach) {
-      padding: 5rem 3.125rem 3.125rem;
+    &:hover {
+      color: $mustard;
     }
   }
 }
@@ -78,8 +52,7 @@ $portrait-detach: $laptop;
 
 .portrait {
   position: relative;
-
-  display: table-row;
+  // display: table-row;
 
   width: 100%;
   height: 500px;
@@ -97,12 +70,6 @@ $portrait-detach: $laptop;
     position: fixed;
     top: 0;
     right: 100px;
-
-    // top: 50px;
-    // right: 50px;
-    //
-    // width: calc(50vw - 100px);
-    // height: calc(100vh - 200px);
   }
 
   div {
@@ -127,7 +94,7 @@ $portrait-detach: $laptop;
     }
 
     @media screen and (min-width: $sm-desktop) {
-      margin-bottom: 150px;
+      margin-bottom: 50px;
     }
 
     &:first-child {
@@ -141,6 +108,214 @@ $portrait-detach: $laptop;
       z-index: 1;
 
       background-image: url('../img/tom-side.jpg');
+    }
+  }
+}
+
+/* ==========================================================================
+  Page
+   ========================================================================== */
+.about {
+  .footer {
+    display: block;
+  }
+}
+
+.section.about.page {
+  position: static;
+
+  padding: 4.125rem 1.25rem 1.25rem;
+
+  .block {
+    color: $white;
+
+    font-size: 1.25rem;
+
+    &.images {
+      margin-bottom: -10px;
+
+      font-size: 0;
+    }
+
+    .highlight {
+      color: $mustard;
+    }
+
+
+    p {
+      color: $white;
+    }
+  }
+
+
+
+  img {
+    width: 100%;
+    margin-bottom: 10px;
+
+    @media screen and (min-width: $sm-desktop) {
+      margin-bottom: 20px;
+    }
+
+    @media screen and (min-width: $lg-desktop) {
+      margin-bottom: 30px;
+    }
+  }
+
+  .col-2 {
+    img {
+      width: 50%;
+
+      &:first-child {
+        padding-right: 5px;
+
+        @media screen and (min-width: $sm-desktop) {
+          padding-right: 10px;
+        }
+
+        @media screen and (min-width: $lg-desktop) {
+          padding-right: 15px;
+        }
+      }
+
+      &:last-child {
+        padding-left: 5px;
+
+        @media screen and (min-width: $sm-desktop) {
+          padding-left: 10px;
+        }
+
+        @media screen and (min-width: $lg-desktop) {
+          padding-left: 15px;
+        }
+      }
+    }
+  }
+
+  .skills {
+    .col {
+      vertical-align: top;
+    }
+
+    h3 {
+      margin: 1.5rem 0 0;
+
+      color: $white;
+
+      font-size: .875rem;
+      font-weight: 400;
+    }
+
+    ul {
+      font-size: 1rem;
+
+      li {
+        padding-right: .5rem;
+
+        color: lighten($secondary, 20%);
+
+        line-height: 1.8;
+      }
+    }
+  }
+
+  .like-list {
+    li {
+      display: inline;
+
+      color: lighten($secondary, 20%);
+
+      font-size: .875em;
+    }
+  }
+
+  @media screen and (min-width: $tablet) {
+    padding: 5rem 3.125rem 3.125rem;
+  }
+
+  @media screen and (min-width: $laptop) {
+    .contact {
+      padding-top: 5rem;
+    }
+
+    .masonary {
+      display: flex;
+      overflow: hidden;
+
+      width: 100%;
+      max-width: 100%;
+      height: 2700px;
+
+      flex-flow: column wrap;
+    }
+
+    .block {
+      width: 50%;
+
+      font-size: 1.5rem;
+
+      &:first-child {
+        h2 {
+          margin-top: 0;
+        }
+      }
+
+      &.left {
+        padding-right: 20px;
+
+        order: -1;
+      }
+
+      &.right {
+        padding-left: 20px;
+
+        order: 1;
+      }
+
+      // &:nth-child(2) {
+      //   right: 0;
+      //   left: auto;
+      // }
+      //
+      // &:nth-child(4) {
+      //   right: 0;
+      //   left: auto;
+      // }
+
+      &.images {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @media screen and (min-width: $sm-desktop) {
+    padding: 20rem 3.125rem 3.125rem;
+  }
+
+  @media screen and (min-width: $lg-desktop) {
+    .block {
+      font-size: 2rem;
+    }
+
+    ul li,
+    dl {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media screen and (min-width: $xl-desktop) {
+    .block {
+      font-size: 2.25rem;
+    }
+
+    img {
+      max-width: 90%;
+    }
+
+    .images {
+      .col-2 {
+        max-width: 90%;
+      }
     }
   }
 }

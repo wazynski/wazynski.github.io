@@ -1,5 +1,5 @@
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Header
@@ -9,8 +9,6 @@ Stylesheet: Header
    ========================================================================== */
 
 .header {
-  line-height: 1;
-
   position: relative;
   z-index: 9999;
   top: 0;
@@ -19,16 +17,19 @@ Stylesheet: Header
   width: 100%;
   height: 86px;
   padding: 1.25rem;
-  // padding: 3.125rem;
 
   transition: color .5s ease;
   text-transform: uppercase;
 
-  @media screen and (min-width: $tablet) {
+  line-height: 1;
+
+  @media screen and (min-width: $sm-desktop) {
     position: fixed;
 
     height: auto;
   }
+
+
 
   .logo {
     display: none;
@@ -60,6 +61,10 @@ Stylesheet: Header
 
     color: $base;
 
+    &::before {
+      display: none;
+    }
+
     @media screen and (min-width: $tablet) {
       left: 60px;
     }
@@ -83,16 +88,16 @@ Stylesheet: Header
 
   h1,
   span {
+    margin: 0;
+
     font-size: .875rem;
     font-weight: 600;
-
-    margin: 0;
   }
 
   span {
-    font-weight: 400;
-
     color: $secondary;
+
+    font-weight: 400;
   }
 
   &.light a {

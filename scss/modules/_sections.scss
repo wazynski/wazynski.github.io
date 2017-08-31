@@ -1,5 +1,5 @@
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Sections
@@ -9,21 +9,16 @@ Stylesheet: Sections
    ========================================================================== */
 .section {
   position: relative; // Required fallback
-  // position: relative; // Turn sticky off
   top: 0;
 
-  display: table;
+  display: flex;
 
   width: 100%;
-  min-height: calc(100vh - 50px);
+  min-height: 100%; // Fallbacks
+  min-height: 100vh; // Fallbacks
+  // min-height: calc(100vh - 50px);
 
-  &.sticky {
-    position: sticky;
-  }
-
-  // @media screen and (min-height: $laptop) and (min-width: $laptop) {
-  //   position: sticky;
-  // }
+  align-content: flex-end;
 
   &.intro {
     z-index: 10;
@@ -45,6 +40,8 @@ Stylesheet: Sections
 
   &.contact {
     z-index: 40;
+
+    min-height: 100vh;
 
     background: $platinum;
   }
@@ -71,7 +68,7 @@ Stylesheet: Sections
   }
 
   @media screen and (min-width: $laptop) {
-    min-height: calc(100vh - 100px);
+    // min-height: calc(100vh - 100px);
   }
 }
 
@@ -80,25 +77,25 @@ Stylesheet: Sections
    ========================================================================== */
 
 .content {
-  font-size: 1.25rem;
-
-  display: table-cell;
-
   width: 100%;
+  // position: absolute;
+  // bottom: 0;
   padding: 4.125rem 1.25rem 1.25rem;
 
-  vertical-align: bottom;
+  font-size: 1.25rem;
+
+  align-self: flex-end;
 
   @media screen and (min-width: $tablet) {
-    font-size: 1.875rem;
-
     padding: 5rem 3.125rem 3.125rem;
+
+    font-size: 1.875rem;
   }
 
   @media screen and (min-width: $lg-desktop) {
-    font-size: 2.5rem;
-
     padding: 5rem 3.125rem 3.125rem;
+
+    font-size: 2.5rem;
   }
 
   &.push-up {
@@ -133,7 +130,7 @@ Stylesheet: Sections
     }
 
     @media screen and (min-width: $xl-desktop) {
-      max-width: 930px !important;
+      max-width: 930px;
     }
 
     &.hide-left {
@@ -142,10 +139,10 @@ Stylesheet: Sections
   }
 
   p {
-    font-weight: 400;
-
     position: relative;
 
     color: $secondary;
+
+    font-weight: 400;
   }
 }

@@ -1,13 +1,26 @@
 /* ==========================================================================
-Site Name: SITENAME
+Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Contact
 ========================================================================== */
+.section.contact {
+  flex-direction: column-reverse;
 
-.contact {
+  .content {
+    order: 1;
+  }
+
   a {
     color: $base;
+
+    &:hover {
+      color: $base;
+    }
+
+    &::before {
+      background-color: $base;
+    }
   }
 
   dt {
@@ -16,13 +29,5 @@ Stylesheet: Contact
 
   dd {
     color: $base;
-  }
-
-  .content {
-    // display: block;
-  }
-
-  @media screen and (min-width: $tablet) {
-    min-height: calc(100vh);
   }
 }

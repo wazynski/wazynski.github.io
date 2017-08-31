@@ -1,0 +1,83 @@
+/* ==========================================================================
+Site Name: Ninesenses
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: About
+========================================================================== */
+
+.case-study {
+  z-index: 35;
+
+  background: $base;
+
+  .content {
+    align-self: center;
+  }
+
+  &.porters {
+    background: $mustard;
+  }
+
+  h2 {
+    color: $secondary;
+  }
+
+  img {
+    width: 40%;
+    margin: 0 auto;
+
+    text-align: center;
+
+    box-shadow: 0 12px 32px -2px rgba(0,0,0,.75);
+  }
+
+  .wrap {
+    max-width: 100%;
+
+    text-align: center;
+  }
+
+  h1 {
+    margin: 0;
+
+    text-transform: capitalize;
+
+    color: $white;
+
+    font-size: 1.25rem;
+    font-weight: 400;
+
+    @media screen and (min-width: $tablet) {
+      font-size: 1.875rem;
+    }
+
+    @media screen and (min-width: $lg-desktop) {
+      font-size: 2.5rem;
+    }
+  }
+
+  p {
+    max-width: 600px;
+    margin-top: 0;
+    margin-right: auto;
+    margin-left: auto;
+
+    color: $secondary;
+  }
+
+  dl {
+    dt {
+      text-transform: uppercase;
+
+      color: $secondary;
+
+      font-weight: 600;
+    }
+
+    dl {
+      display: inline;
+
+      color: $white;
+    }
+  }
+}

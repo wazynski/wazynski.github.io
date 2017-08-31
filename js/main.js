@@ -42,7 +42,9 @@ nine.scrollSpy = () => {
       }
 
       // Count as being in next page if 25% scrolled into it.
-      if ((scrollPosition >= sections[i].top - (sections[i].height * 0.75))  && scrollPosition <= sections[i].bottom) {
+      var scrollOffset = 0.75;
+
+      if ((scrollPosition >= sections[i].top - (sections[i].height * scrollOffset))  && scrollPosition <= sections[i].bottom) {
         if (nine.currentPage != i) {
           nine.currentPage = parseInt(i);
           nine.updateControls();
@@ -65,19 +67,21 @@ nine.changeHeaderClass = (className) => {
    ========================================================================== */
 
 nine.animateLoad = () => {
-  document.body.className = '';
-
   window.setTimeout(() => {
-    var hidden = document.querySelectorAll(".hide-left");
-    Array.prototype.forEach.call(hidden, function(el, i) {
-      el.classList.remove('hide-left');
-    });
+    document.body.classList.add('faded-in');
 
-    var hidden = document.querySelectorAll(".hide-down");
-    Array.prototype.forEach.call(hidden, function(el, i) {
-      el.classList.remove('hide-down');
-    });
-  }, 1000)
+    window.setTimeout(() => {
+      var hidden = document.querySelectorAll(".hide-left");
+      Array.prototype.forEach.call(hidden, function(el, i) {
+        el.classList.remove('hide-left');
+      });
+
+      var hidden = document.querySelectorAll(".hide-down");
+      Array.prototype.forEach.call(hidden, function(el, i) {
+        el.classList.remove('hide-down');
+      });
+    }, 1000)
+  }, 1000);
 };
 
 /* ==========================================================================
@@ -189,7 +193,7 @@ nine.scrollToPage = (pageID, offset) => {
   // Get current scroll location and where the page starts
   nine.scrollStart = nine.scrollContainer.scrollTop;
 
-  if(typeof offset === "undefined") {
+  if (typeof offset === "undefined") {
     offset = 0;
   }
 
@@ -304,21 +308,24 @@ nine.prevPage = () => {
 nine.controls = () => {
   var pageIndex = 0;
 
-  Array.prototype.forEach.call(nine.pages, function(el) {
-    var dot = document.createElement('li');
-    dot.setAttribute('data-page', pageIndex);
-    document.querySelector('.dots').appendChild(dot);
-    dot.addEventListener('click', (e) => nine.dotClick(e));
+  var dots = document.querySelector('.dots')
+  if (dots) {
+    Array.prototype.forEach.call(nine.pages, function(el) {
+      var dot = document.createElement('li');
+      dot.setAttribute('data-page', pageIndex);
+      dots.appendChild(dot);
+      dot.addEventListener('click', (e) => nine.dotClick(e));
 
-    pageIndex++;
-  });
+      pageIndex++;
+    });
 
-  document.querySelector('.dots li').classList.add('active')
+    document.querySelector('.dots li').classList.add('active')
 
-  document.querySelector('.next').addEventListener('click', () => nine.nextPage());
-  document.querySelector('.prev').addEventListener('click', () => nine.prevPage());
+    document.querySelector('.next').addEventListener('click', () => nine.nextPage());
+    document.querySelector('.prev').addEventListener('click', () => nine.prevPage());
 
-  nine.updateControls();
+    nine.updateControls();
+  }
 }
 
 /* ==========================================================================
@@ -392,22 +399,16 @@ nine.checkSticky = () => {
   }
 
   if (sticky) {
-    sections.forEach(function(el) {
-      el.classList.add("sticky");
-    });
+    document.body.classList.add("sticky-enabled");
 
     // TODO: enable scroll swipe if sticky on
     // nine.swipeScroll();
 
     return true;
   } else {
-    
+
     // TODO: disable scroll swipe if sticky off
     // window.removeEventListener('wheel', nine.scrollListener);
-
-    sections.forEach(function(el) {
-      el.classList.remove("sticky");
-    });
 
     return false;
   }
@@ -431,28 +432,29 @@ nine.animatePortrait = () => {
   var page = document.getElementById('two');
   var offsetTop = page.offsetTop;
   var portrait = document.querySelector('.portrait .faded');
-  var startPoint = 0.85;
+  var startPoint = 0.98;
 
+  if (portrait) {
+    nine.scrollContainer.addEventListener('scroll', function(event) {
+      var scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
 
-  nine.scrollContainer.addEventListener('scroll', function(event) {
-    var scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
-
-    if (page.offsetWidth > 1280) {
-      startPoint = 0.5;
-    } else if (page.offsetWidth < 1024) {
-      offsetTop = page.offsetHeight + document.getElementById('one').offsetHeight - portrait.offsetHeight;
-    }
-
-    if (scrollPosition > offsetTop * startPoint) {
-      if (portrait.style.opacity == 0) {
-        portrait.style.opacity = 1;
+      if (page.offsetWidth > 1280) {
+        startPoint = 0.5;
+      } else if (page.offsetWidth < 1024) {
+        offsetTop = page.offsetHeight + document.getElementById('one').offsetHeight - portrait.offsetHeight;
       }
-    } else {
-      if (portrait.style.opacity == 1) {
-        portrait.style.opacity = 0;
+
+      if (scrollPosition > offsetTop * startPoint) {
+        if (portrait.style.opacity == 0) {
+          portrait.style.opacity = 1;
+        }
+      } else {
+        if (portrait.style.opacity == 1) {
+          portrait.style.opacity = 0;
+        }
       }
-    }
-  });
+    });
+  }
 };
 
 /* ==========================================================================
@@ -474,6 +476,100 @@ nine.debounce = (func, wait, immediate) => {
 	};
 };
 
+
+nine.pageTransisition = (href, bg, slide) => {
+  if (!bg) {
+    bg = '#E6E6E4';
+  }
+
+  document.body.style.backgroundColor = bg;
+
+  // if (slide) {
+  //   console.log(slide);
+  //   if (slide == "left") {
+  //     document.body.classList.add('slide-left');
+  //   } else {
+  //     document.body.classList.add('slide-right');
+  //   }
+  // } else {
+  document.body.classList.add('faded-out');
+  // }
+
+  setTimeout(function(){
+    window.location.href = href;
+  }, 600);
+};
+
+/* ==========================================================================
+  nine.aboutHeight
+   ========================================================================== */
+
+nine.masonaryHeight = () => {
+  var masonary = document.querySelector('.masonary')
+  let lheight = 0;
+  let rheight = 0;
+  if (masonary && nine.windowSize().w >= 1024) {
+    var lblocks = document.querySelectorAll('.block.left');
+    var rblocks = document.querySelectorAll('.block.right');
+
+    Array.prototype.forEach.call(lblocks, function(el, i) {
+      lheight += el.offsetHeight;
+    });
+
+    Array.prototype.forEach.call(rblocks, function(el, i) {
+      rheight += el.offsetHeight;
+    });
+
+    let height;
+
+    if (lheight >= rheight) {
+      height = lheight;
+    } else {
+      height = rheight;
+    }
+
+    height += 100;
+    console.log(height);
+    masonary.style.height = height + 'px';
+  }
+};
+
+/* ==========================================================================
+  nine.animateLinks
+   ========================================================================== */
+
+nine.animateLinks = () => {
+  var anchorElements = document.getElementsByTagName('a');
+  Array.prototype.forEach.call(anchorElements, function(el, i) {
+    el.onclick = function() {
+      nine.pageTransisition(this.href, el.getAttribute('data-bg'), el.getAttribute('data-slide'));
+      return false;
+    }
+  });
+};
+
+/* ==========================================================================
+  nine.windowWidth
+   ========================================================================== */
+
+nine.windowSize = (w) => {
+
+  // Use the specified window or the current window if no argument
+  w = w || window;
+
+  // This works for all browsers except IE8 and before
+  if (w.innerWidth != null) return { w: w.innerWidth, h: w.innerHeight };
+
+  // For IE (or any browser) in Standards mode
+  var d = w.document;
+  if (document.compatMode == "CSS1Compat")
+      return { w: d.documentElement.clientWidth,
+         h: d.documentElement.clientHeight };
+
+  // For browsers in Quirks mode
+  return { w: d.body.clientWidth, h: d.body.clientHeight };
+};
+
 /* ==========================================================================
   Document Load
    ========================================================================== */
@@ -483,12 +579,18 @@ document.addEventListener('DOMContentLoaded', () => {
   nine.sticky = nine.checkSticky();
   nine.keyboardNav();
   nine.controls();
+  nine.masonaryHeight();
+  nine.animateLinks();
 
   var checkStickyDebounced = nine.debounce(function() {
   	nine.sticky = nine.checkSticky();
   }, 250);
 
   window.addEventListener('resize', checkStickyDebounced);
+
+  window.addEventListener('resize', function() {
+    nine.masonaryHeight();
+  });
 });
 
 /* ==========================================================================
@@ -498,4 +600,5 @@ document.addEventListener('DOMContentLoaded', () => {
 window.onload = () => {
   nine.animateLoad();
   nine.animatePortrait();
+  nine.masonaryHeight();
 };
