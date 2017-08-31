@@ -45,6 +45,12 @@ body {
     transition: opacity 500ms ease-in;
 
     opacity: 0 !important;
+
+    .scroll-container {
+      transition: opacity 500ms ease-in;
+
+      opacity: 0 !important;
+    }
   }
 
   &.slide-left {

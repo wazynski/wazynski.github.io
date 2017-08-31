@@ -541,6 +541,10 @@ body {
     -webkit-transition: opacity 500ms ease-in;
     transition: opacity 500ms ease-in;
     opacity: 0 !important; }
+    body.faded-out .scroll-container {
+      -webkit-transition: opacity 500ms ease-in;
+      transition: opacity 500ms ease-in;
+      opacity: 0 !important; }
   body.slide-left .page-wrap {
     -webkit-animation: slide-left 500ms forwards;
             animation: slide-left 500ms forwards; }
@@ -846,7 +850,7 @@ Stylesheet: Sections
     color: #313B41; }
 
 /* ==========================================================================
-  Con
+  Content
    ========================================================================== */
 .content {
   width: 100%;
@@ -862,6 +866,9 @@ Stylesheet: Sections
     .content {
       padding: 5rem 3.125rem 3.125rem;
       font-size: 2.5rem; } }
+  @media screen and (min-height: 1200px) and (max-width: 1440px) {
+    .content.push-up {
+      padding-bottom: 100px; } }
   @media screen and (min-width: 1440px) {
     .content.push-up {
       padding-bottom: 200px; } }
@@ -873,19 +880,20 @@ Stylesheet: Sections
     z-index: 500;
     left: 0;
     -webkit-transition: all 1s ease-out;
-    transition: all 1s ease-out; }
+    transition: all 1s ease-out;
+    overflow-wrap: normal; }
     @media screen and (min-width: 768px) {
       .content .wrap {
         max-width: 80%; } }
     @media screen and (min-width: 1024px) {
       .content .wrap {
-        max-width: 54%; } }
+        max-width: 70%; } }
     @media screen and (min-width: 1279px) {
       .content .wrap {
         max-width: 50%; } }
     @media screen and (min-width: 1800px) {
       .content .wrap {
-        max-width: 930px; } }
+        max-width: 835px; } }
     .content .wrap.hide-left {
       left: -1000px; }
   .content p {
@@ -951,6 +959,15 @@ Stylesheet: About
       flex-wrap: wrap; }
   .section.about .content {
     width: 100%; }
+    @media screen and (min-width: 1024px) {
+      .section.about .content .wrap {
+        max-width: 52%; } }
+    @media screen and (min-width: 1279px) {
+      .section.about .content .wrap {
+        max-width: 50%; } }
+    @media screen and (min-width: 1800px) {
+      .section.about .content .wrap {
+        max-width: 835px; } }
   @media screen and (min-width: 1024px) {
     .section.about {
       -webkit-box-orient: horizontal;
@@ -973,6 +990,7 @@ Stylesheet: About
     .portrait {
       position: absolute;
       z-index: 400;
+      top: 0;
       right: 0;
       width: 40%;
       height: 100%; } }
