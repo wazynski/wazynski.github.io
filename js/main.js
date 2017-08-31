@@ -11,6 +11,24 @@ var nine = {
 };
 
 /* ==========================================================================
+    Polyfils
+   ========================================================================== */
+
+if (!String.prototype.includes) {
+   String.prototype.includes = function(search, start) {
+     if (typeof start !== 'number') {
+       start = 0;
+     }
+
+     if (start + search.length > this.length) {
+       return false;
+     } else {
+       return this.indexOf(search, start) !== -1;
+     }
+   };
+ }
+
+/* ==========================================================================
   nine.scrollSpy()
 ========================================================================== */
 
@@ -69,6 +87,7 @@ nine.changeHeaderClass = (className) => {
 nine.animateLoad = () => {
   window.setTimeout(() => {
     document.body.classList.add('faded-in');
+    nine.masonaryHeight();
 
     window.setTimeout(() => {
       var hidden = document.querySelectorAll(".hide-left");
@@ -435,12 +454,12 @@ nine.animatePortrait = () => {
   var startPoint = 0.98;
 
   if (portrait) {
-    nine.scrollContainer.addEventListener('scroll', function(event) {
+    function portraitChange() {
       var scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
 
-      if (page.offsetWidth > 1280) {
+      if (nine.windowSize().w > 1280) {
         startPoint = 0.5;
-      } else if (page.offsetWidth < 1024) {
+      } else if (nine.windowSize().w < 1024) {
         offsetTop = page.offsetHeight + document.getElementById('one').offsetHeight - portrait.offsetHeight;
       }
 
@@ -453,6 +472,10 @@ nine.animatePortrait = () => {
           portrait.style.opacity = 0;
         }
       }
+    }
+
+    nine.scrollContainer.addEventListener('scroll', function(event) {
+      portraitChange();
     });
   }
 };
@@ -485,7 +508,6 @@ nine.pageTransisition = (href, bg, slide) => {
   document.body.style.backgroundColor = bg;
 
   // if (slide) {
-  //   console.log(slide);
   //   if (slide == "left") {
   //     document.body.classList.add('slide-left');
   //   } else {
@@ -508,29 +530,32 @@ nine.masonaryHeight = () => {
   var masonary = document.querySelector('.masonary')
   let lheight = 0;
   let rheight = 0;
-  if (masonary && nine.windowSize().w >= 1024) {
-    var lblocks = document.querySelectorAll('.block.left');
-    var rblocks = document.querySelectorAll('.block.right');
+  if (masonary) {
+    if (nine.windowSize().w >= 1024) {
+      var lblocks = document.querySelectorAll('.block.left');
+      var rblocks = document.querySelectorAll('.block.right');
 
-    Array.prototype.forEach.call(lblocks, function(el, i) {
-      lheight += el.offsetHeight;
-    });
+      Array.prototype.forEach.call(lblocks, function(el, i) {
+        lheight += el.offsetHeight;
+      });
 
-    Array.prototype.forEach.call(rblocks, function(el, i) {
-      rheight += el.offsetHeight;
-    });
+      Array.prototype.forEach.call(rblocks, function(el, i) {
+        rheight += el.offsetHeight;
+      });
 
-    let height;
+      let height;
 
-    if (lheight >= rheight) {
-      height = lheight;
+      if (lheight >= rheight) {
+        height = lheight;
+      } else {
+        height = rheight;
+      }
+
+      height += 100;
+      masonary.style.height = height + 'px';
     } else {
-      height = rheight;
+      masonary.style.height = 'auto';
     }
-
-    height += 100;
-    console.log(height);
-    masonary.style.height = height + 'px';
   }
 };
 
