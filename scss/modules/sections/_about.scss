@@ -30,7 +30,28 @@ $portrait-detach: $laptop;
 
 
 .section.about {
-  flex-direction: column;
+  position: relative;
+  // flex-direction: column;
+
+  flex-wrap: wrap;
+
+  .content {
+    width: 100%;
+
+    .wrap {
+      @media screen and (min-width: $laptop) {
+        max-width: 52%;
+      }
+
+      @media screen and (min-width: $sm-desktop) {
+        max-width: 50%;
+      }
+
+      @media screen and (min-width: $xl-desktop) {
+        max-width: 835px;
+      }
+    }
+  }
 
   @media screen and (min-width: $portrait-detach) {
     flex-direction: row;
@@ -52,7 +73,6 @@ $portrait-detach: $laptop;
 
 .portrait {
   position: relative;
-  // display: table-row;
 
   width: 100%;
   height: 500px;
@@ -60,6 +80,7 @@ $portrait-detach: $laptop;
   @media screen and (min-width: $portrait-detach) {
     position: absolute;
     z-index: 400;
+    top: 0;
     right: 0;
 
     width: 40%;
@@ -123,7 +144,9 @@ $portrait-detach: $laptop;
 
 .section.about.page {
   position: static;
+  //IE Fix
 
+  height: auto;
   padding: 4.125rem 1.25rem 1.25rem;
 
   .block {
@@ -147,9 +170,13 @@ $portrait-detach: $laptop;
     }
   }
 
-
+  .masonary {
+    height: auto;
+  }
 
   img {
+    display: block;
+
     width: 100%;
     margin-bottom: 10px;
 
@@ -164,6 +191,8 @@ $portrait-detach: $laptop;
 
   .col-2 {
     img {
+      display: inline-block;
+
       width: 50%;
 
       &:first-child {
@@ -241,18 +270,24 @@ $portrait-detach: $laptop;
     .masonary {
       display: flex;
       overflow: hidden;
+      flex-direction: column;
 
       width: 100%;
       max-width: 100%;
       height: 2700px;
 
       flex-flow: column wrap;
+      flex-wrap: wrap;
     }
 
     .block {
       width: 50%;
 
       font-size: 1.5rem;
+
+      flex-grow: 0;
+      flex-shrink: 1;
+      flex-basis: autoheight;
 
       &:first-child {
         h2 {
@@ -272,17 +307,9 @@ $portrait-detach: $laptop;
         order: 1;
       }
 
-      // &:nth-child(2) {
-      //   right: 0;
-      //   left: auto;
-      // }
-      //
-      // &:nth-child(4) {
-      //   right: 0;
-      //   left: auto;
-      // }
-
       &.images {
+        flex: none;
+
         margin-bottom: 0;
       }
     }

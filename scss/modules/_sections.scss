@@ -7,6 +7,15 @@ Stylesheet: Sections
 /* ==========================================================================
   Sections
    ========================================================================== */
+
+// IE 10 & 11 min height does not work, height must be set but this would
+// break mobile so use this to target on ie10+11
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .section {
+    height: 100%;
+  }
+}
+
 .section {
   position: relative; // Required fallback
   top: 0;
@@ -16,9 +25,9 @@ Stylesheet: Sections
   width: 100%;
   min-height: 100%; // Fallbacks
   min-height: 100vh; // Fallbacks
-  // min-height: calc(100vh - 50px);
 
   align-content: flex-end;
+
 
   &.intro {
     z-index: 10;
@@ -66,20 +75,14 @@ Stylesheet: Sections
       color: $base;
     }
   }
-
-  @media screen and (min-width: $laptop) {
-    // min-height: calc(100vh - 100px);
-  }
 }
 
 /* ==========================================================================
-  Con
+  Content
    ========================================================================== */
 
 .content {
   width: 100%;
-  // position: absolute;
-  // bottom: 0;
   padding: 4.125rem 1.25rem 1.25rem;
 
   font-size: 1.25rem;
@@ -99,12 +102,16 @@ Stylesheet: Sections
   }
 
   &.push-up {
+    @media screen and (min-height: 1200px) and (max-width: $lg-desktop) {
+      padding-bottom: 100px;
+    }
+
     @media screen and (min-width: $lg-desktop) {
-      padding-bottom: 10%;
+      padding-bottom: 200px;
     }
 
     @media screen and (min-width: $xl-desktop) {
-      padding-bottom: 8%;
+      padding-bottom: 175px;
     }
   }
 
@@ -117,12 +124,14 @@ Stylesheet: Sections
 
     transition: all 1s ease-out;
 
+    overflow-wrap: normal;
+
     @media screen and (min-width: $tablet) {
       max-width: 80%;
     }
 
     @media screen and (min-width: $laptop) {
-      max-width: 54%;
+      max-width: 70%;
     }
 
     @media screen and (min-width: $sm-desktop) {
@@ -130,7 +139,7 @@ Stylesheet: Sections
     }
 
     @media screen and (min-width: $xl-desktop) {
-      max-width: 930px;
+      max-width: 835px;
     }
 
     &.hide-left {

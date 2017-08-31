@@ -23,18 +23,34 @@ body {
 
   &.faded {
     opacity: 0;
+
+    .scroll-container {
+      opacity: 0;
+    }
   }
 
   &.faded-in {
     transition: opacity 500ms ease-in;
 
     opacity: 1 !important;
+
+    .scroll-container {
+      transition: opacity 500ms ease-in;
+
+      opacity: 1 !important;
+    }
   }
 
   &.faded-out {
     transition: opacity 500ms ease-in;
 
     opacity: 0 !important;
+
+    .scroll-container {
+      transition: opacity 500ms ease-in;
+
+      opacity: 0 !important;
+    }
   }
 
   &.slide-left {
@@ -50,48 +66,32 @@ body {
   }
 
   &.sticky-enabled {
-    .controls {
-      display: block;
+    @media screen and (min-width: $controls-on) {
+      .controls {
+        display: block;
+      }
     }
 
-    .section {
-      position: sticky;
+    @media screen and (min-width: $laptop) {
+      .section {
+        position: sticky;
+      }
     }
   }
 }
 
-@keyframes slide-left {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+.scroll-container {
+  position: absolute;
+
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  width: 100%;
+  height: 100%;
+
+  scroll-behavior: smooth;
 }
 
-@keyframes slide-right {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-
-
-@media screen and (min-width: $controls-on) {
-  .scroll-container {
-    position: absolute;
-
-    overflow: auto;
-
-    width: 100%;
-    height: 100%;
-
-    scroll-behavior: smooth;
-  }
-}
 
 @media screen and (min-width: $tablet) {
   .col-2 {
@@ -106,5 +106,25 @@ body {
 
       font-size: 1rem;
     }
+  }
+}
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(100%);
   }
 }

@@ -8,6 +8,16 @@ Stylesheet: Header
   Header
    ========================================================================== */
 
+.sticky-enabled {
+  .header {
+    @media screen and (min-width: $laptop) {
+      position: fixed;
+
+      height: auto;
+    }
+  }
+}
+
 .header {
   position: relative;
   z-index: 9999;
