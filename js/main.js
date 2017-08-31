@@ -1,6 +1,6 @@
 var nine = {
   canScroll: true,
-  duration: 1000,
+  duration: 500,
   scrollContainer: document.getElementById('scroll'),
   scrollStart: 0,
   pages: document.querySelectorAll(".section"),
@@ -73,37 +73,6 @@ nine.scrollSpy = () => {
 };
 
 /* ==========================================================================
-  nine.chnageHeaderClass
-   ========================================================================== */
-
-nine.changeHeaderClass = (className) => {
-  document.querySelector('.header').setAttribute('class', `header ${className}`);
-};
-
-/* ==========================================================================
-  nine.animatation()
-   ========================================================================== */
-
-nine.animateLoad = () => {
-  window.setTimeout(() => {
-    document.body.classList.add('faded-in');
-    nine.masonaryHeight();
-
-    window.setTimeout(() => {
-      var hidden = document.querySelectorAll(".hide-left");
-      Array.prototype.forEach.call(hidden, function(el, i) {
-        el.classList.remove('hide-left');
-      });
-
-      var hidden = document.querySelectorAll(".hide-down");
-      Array.prototype.forEach.call(hidden, function(el, i) {
-        el.classList.remove('hide-down');
-      });
-    }, 1000)
-  }, 1000);
-};
-
-/* ==========================================================================
   nine.scrollTo()
   ========================================================================== */
 
@@ -170,6 +139,7 @@ nine.scrollHandler = function(pageId) {
     nine.scrollStart = nine.scrollContainer.scrollTop;
 
     if (timeout !== null) {
+      console.log('stop');
         event.preventDefault();
         return false;
     }
@@ -399,6 +369,7 @@ nine.updateControls = () => {
    ========================================================================== */
 
 nine.checkSticky = () => {
+  console.log('Checking Sticky');
   // return false; // turn stick off
   var el = document.createElement('a');
   var mStyle = el.style;
@@ -407,7 +378,7 @@ nine.checkSticky = () => {
   var sticky = mStyle.position.indexOf('sticky')!==-1;
   var sections = document.querySelectorAll('.section');
 
-  var windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+  var windowHeight = nine.windowSize().h;
 
   if (sticky) {
     sections.forEach(function(el) {
@@ -425,6 +396,7 @@ nine.checkSticky = () => {
 
     return true;
   } else {
+    document.body.classList.remove("sticky-enabled");
 
     // TODO: disable scroll swipe if sticky off
     // window.removeEventListener('wheel', nine.scrollListener);
@@ -442,6 +414,37 @@ nine.swipeScroll = () => {
     new nine.scrollHandler(el.id);
   });
 }
+
+/* ==========================================================================
+  nine.changeHeaderClass
+   ========================================================================== */
+
+nine.changeHeaderClass = (className) => {
+  document.querySelector('.header').setAttribute('class', `header ${className}`);
+};
+
+/* ==========================================================================
+  nine.animatation()
+   ========================================================================== */
+
+nine.animateLoad = () => {
+  window.setTimeout(() => {
+    document.body.classList.add('faded-in');
+    nine.masonaryHeight();
+
+    window.setTimeout(() => {
+      var hidden = document.querySelectorAll(".hide-left");
+      Array.prototype.forEach.call(hidden, function(el, i) {
+        el.classList.remove('hide-left');
+      });
+
+      var hidden = document.querySelectorAll(".hide-down");
+      Array.prototype.forEach.call(hidden, function(el, i) {
+        el.classList.remove('hide-down');
+      });
+    }, 1000)
+  }, 1000);
+};
 
 /* ==========================================================================
   nine.animatePortrait()
