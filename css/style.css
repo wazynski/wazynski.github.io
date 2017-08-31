@@ -554,10 +554,6 @@ body {
   @media screen and (min-width: 768px) {
     body.sticky-enabled .controls {
       display: block; } }
-  @media screen and (min-width: 1024px) {
-    body.sticky-enabled .section {
-      position: -webkit-sticky;
-      position: sticky; } }
 
 .scroll-container {
   position: absolute;
@@ -752,7 +748,7 @@ Stylesheet: Controls
   Controls
    ========================================================================== */
 .controls {
-  display: none; }
+  display: none !important; }
   @media screen and (min-width: 768px) {
     .controls {
       position: fixed;
