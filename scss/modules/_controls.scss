@@ -10,7 +10,7 @@ Stylesheet: Controls
 $controls: $secondary;
 
 .controls {
-  display: none !important;
+  display: none;
 
   @media screen and (min-width: $controls-on) {
     position: fixed;

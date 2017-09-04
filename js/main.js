@@ -1,6 +1,6 @@
 var nine = {
   canScroll: true,
-  duration: 500,
+  duration: 800,
   scrollContainer: document.getElementById('scroll'),
   scrollStart: 0,
   pages: document.querySelectorAll(".section"),
@@ -51,6 +51,23 @@ nine.scrollSpy = () => {
 
     for (i in sections) {
       if (scrollPosition >= sections[i].top  && scrollPosition <= sections[i].bottom) {
+        var activeSections = document.querySelector('.section.active');
+
+        if (activeSections) {
+          activeSections.classList.remove('active');
+        }
+
+        var currentSection = document.querySelectorAll('.section')[parseInt(i)];
+
+        if (currentSection) {
+          currentSection.classList.add('active')
+        }
+
+        if (nine.currentPage != i) {
+          // TODO: rethink how things work with hash nav
+          // Causeing browser jumping
+          // window.location.hash=currentSection.id;
+        }
 
         if (sections[i].classes.includes('light')) {
           nine.changeHeaderClass('dark');
@@ -62,7 +79,7 @@ nine.scrollSpy = () => {
       // Count as being in next page if 25% scrolled into it.
       var scrollOffset = 0.75;
 
-      if ((scrollPosition >= sections[i].top - (sections[i].height * scrollOffset))  && scrollPosition <= sections[i].bottom) {
+      if ((scrollPosition >= sections[i].top - (sections[i].height * scrollOffset)) && scrollPosition <= sections[i].bottom) {
         if (nine.currentPage != i) {
           nine.currentPage = parseInt(i);
           nine.updateControls();
@@ -139,7 +156,6 @@ nine.scrollHandler = function(pageId) {
     nine.scrollStart = nine.scrollContainer.scrollTop;
 
     if (timeout !== null) {
-      console.log('stop');
         event.preventDefault();
         return false;
     }
@@ -267,7 +283,6 @@ nine.nextPage = () => {
   if (nine.currentPage + 1 < nine.pages.length && nine.canScroll) {
     nine.scrollDirection = 'down';
     var nextPage = nine.pages[nine.currentPage + 1].id;
-
     nine.scrollToPage(nextPage);
     return true;
   }
@@ -282,7 +297,6 @@ nine.prevPage = () => {
   if (nine.currentPage - 1 >= 0 && nine.canScroll) {
     nine.scrollDirection = 'up';
     var prevPage = nine.pages[nine.currentPage - 1].id;
-
     nine.scrollToPage(prevPage, nine.calculateOffset());
     return true;
   }
@@ -369,8 +383,7 @@ nine.updateControls = () => {
    ========================================================================== */
 
 nine.checkSticky = () => {
-  console.log('Checking Sticky');
-  // return false; // turn stick off
+  return false; // turn stick off
   var el = document.createElement('a');
   var mStyle = el.style;
 
@@ -451,19 +464,20 @@ nine.animateLoad = () => {
    ========================================================================== */
 
 nine.animatePortrait = () => {
-  var page = document.getElementById('two');
-  var offsetTop = page.offsetTop;
   var portrait = document.querySelector('.portrait .faded');
-  var startPoint = 0.98;
 
   if (portrait) {
+    var page = document.getElementById('about');
+    var offsetTop = page.offsetTop;
+    var startPoint = 0.98;
+
     function portraitChange() {
       var scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
 
       if (nine.windowSize().w > 1280) {
         startPoint = 0.5;
       } else if (nine.windowSize().w < 1024) {
-        offsetTop = page.offsetHeight + document.getElementById('one').offsetHeight - portrait.offsetHeight;
+        offsetTop = page.offsetHeight + document.getElementById('intro').offsetHeight - portrait.offsetHeight;
       }
 
       if (scrollPosition > offsetTop * startPoint) {
@@ -509,16 +523,7 @@ nine.pageTransisition = (href, bg, slide) => {
   }
 
   document.body.style.backgroundColor = bg;
-
-  // if (slide) {
-  //   if (slide == "left") {
-  //     document.body.classList.add('slide-left');
-  //   } else {
-  //     document.body.classList.add('slide-right');
-  //   }
-  // } else {
   document.body.classList.add('faded-out');
-  // }
 
   setTimeout(function(){
     window.location.href = href;
@@ -603,6 +608,7 @@ nine.windowSize = (w) => {
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // nine.hashNavigationColor();
   nine.scrollSpy();
   nine.sticky = nine.checkSticky();
   nine.keyboardNav();

@@ -525,35 +525,18 @@ body {
   background: #E6E6E4; }
   body.about {
     background: #313B41; }
-  body.faded {
-    opacity: 0; }
-    body.faded .scroll-container {
-      opacity: 0; }
-  body.faded-in {
-    -webkit-transition: opacity 500ms ease-in;
-    transition: opacity 500ms ease-in;
-    opacity: 1 !important; }
-    body.faded-in .scroll-container {
-      -webkit-transition: opacity 500ms ease-in;
-      transition: opacity 500ms ease-in;
-      opacity: 1 !important; }
-  body.faded-out {
-    -webkit-transition: opacity 500ms ease-in;
-    transition: opacity 500ms ease-in;
-    opacity: 0 !important; }
-    body.faded-out .scroll-container {
-      -webkit-transition: opacity 500ms ease-in;
-      transition: opacity 500ms ease-in;
-      opacity: 0 !important; }
-  body.slide-left .page-wrap {
-    -webkit-animation: slide-left 500ms forwards;
-            animation: slide-left 500ms forwards; }
-  body.slide-right .page-wrap {
-    -webkit-animation: slide-right 500ms forwards;
-            animation: slide-right 500ms forwards; }
   @media screen and (min-width: 768px) {
-    body.sticky-enabled .controls {
+    body .controls {
       display: block; } }
+  @media screen and (min-width: 1024px) {
+    body.sticky-enabled .section {
+      position: -webkit-sticky;
+      position: sticky; } }
+  body.page .scroll-container {
+    position: relative;
+    overflow: auto;
+    height: auto;
+    scroll-behavior: normal; }
 
 .scroll-container {
   position: absolute;
@@ -573,38 +556,6 @@ body {
       margin: 0;
       font-size: 1rem; } }
 
-@-webkit-keyframes slide-left {
-  0% {
-    -webkit-transform: translateX(0%);
-            transform: translateX(0%); }
-  100% {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%); } }
-
-@keyframes slide-left {
-  0% {
-    -webkit-transform: translateX(0%);
-            transform: translateX(0%); }
-  100% {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%); } }
-
-@-webkit-keyframes slide-right {
-  0% {
-    -webkit-transform: translateX(0%);
-            transform: translateX(0%); }
-  100% {
-    -webkit-transform: translateX(100%);
-            transform: translateX(100%); } }
-
-@keyframes slide-right {
-  0% {
-    -webkit-transform: translateX(0%);
-            transform: translateX(0%); }
-  100% {
-    -webkit-transform: translateX(100%);
-            transform: translateX(100%); } }
-
 /* ==========================================================================
 Site Name: Ninesenses
 Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
@@ -617,7 +568,8 @@ Stylesheet: Header
 @media screen and (min-width: 1024px) {
   .sticky-enabled .header {
     position: fixed;
-    height: auto; } }
+    height: auto;
+    pointer-events: none; } }
 
 .header {
   position: relative;
@@ -637,7 +589,8 @@ Stylesheet: Header
   @media screen and (min-width: 1279px) {
     .header {
       position: fixed;
-      height: auto; } }
+      height: auto;
+      pointer-events: none; } }
   .header .logo {
     display: none; }
     @media screen and (min-width: 768px) {
@@ -659,6 +612,7 @@ Stylesheet: Header
     -webkit-transition: all 1s ease-out;
     transition: all 1s ease-out;
     text-decoration: none;
+    pointer-events: all;
     color: #313B41; }
     .header a::before {
       display: none; }
@@ -748,7 +702,7 @@ Stylesheet: Controls
   Controls
    ========================================================================== */
 .controls {
-  display: none !important; }
+  display: none; }
   @media screen and (min-width: 768px) {
     .controls {
       position: fixed;
@@ -890,8 +844,6 @@ Stylesheet: Sections
     @media screen and (min-width: 1800px) {
       .content .wrap {
         max-width: 835px; } }
-    .content .wrap.hide-left {
-      left: -1000px; }
   .content p {
     position: relative;
     color: #707070;
@@ -1238,4 +1190,122 @@ Stylesheet: Contact
     color: #707070; }
   .section.contact dd {
     color: #313B41; }
+
+/* ==========================================================================
+Site Name: Ninesenses
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: Animations
+========================================================================== */
+/* ==========================================================================
+  Body
+   ========================================================================== */
+body {
+  background: #E6E6E4; }
+  body.about {
+    background: #313B41; }
+  body.faded {
+    opacity: 0; }
+    body.faded .scroll-container {
+      opacity: 0; }
+  body.faded-in {
+    -webkit-transition: opacity 500ms ease-in;
+    transition: opacity 500ms ease-in;
+    opacity: 1 !important; }
+    body.faded-in .scroll-container {
+      -webkit-transition: opacity 500ms ease-in;
+      transition: opacity 500ms ease-in;
+      opacity: 1 !important; }
+  body.faded-out {
+    -webkit-transition: opacity 500ms ease-in;
+    transition: opacity 500ms ease-in;
+    opacity: 0 !important; }
+    body.faded-out .scroll-container {
+      -webkit-transition: opacity 500ms ease-in;
+      transition: opacity 500ms ease-in;
+      opacity: 0 !important; }
+  body.slide-left .page-wrap {
+    -webkit-animation: slide-left 500ms forwards;
+            animation: slide-left 500ms forwards; }
+  body.slide-right .page-wrap {
+    -webkit-animation: slide-right 500ms forwards;
+            animation: slide-right 500ms forwards; }
+
+@-webkit-keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); }
+  100% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%); } }
+
+@keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); }
+  100% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%); } }
+
+@-webkit-keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); }
+  100% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%); } }
+
+@keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); }
+  100% {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%); } }
+
+/* ==========================================================================
+  Sections
+   ========================================================================== */
+.section {
+  /* ==========================================================================
+     Aniumation starts
+     ========================================================================== */ }
+  .section .wrap * {
+    -webkit-transition: -webkit-transform 1250ms ease-out;
+    transition: -webkit-transform 1250ms ease-out;
+    transition: transform 1250ms ease-out;
+    transition: transform 1250ms ease-out, -webkit-transform 1250ms ease-out; }
+  .section .wrap.hide-left {
+    left: -1000px; }
+  .section .wrap h2 {
+    -webkit-transform: translate(-20px);
+            transform: translate(-20px); }
+  .section .wrap p {
+    -webkit-transform: translate(20px);
+            transform: translate(20px); }
+  .section.contact .col-2 {
+    -webkit-transform: translate(0px, 20px);
+            transform: translate(0px, 20px); }
+    .section.contact .col-2.footer {
+      -webkit-transform: translate(0px, 0px);
+              transform: translate(0px, 0px); }
+      .section.contact .col-2.footer .content {
+        -webkit-transition: -webkit-transform 1.25s ease;
+        transition: -webkit-transform 1.25s ease;
+        transition: transform 1.25s ease;
+        transition: transform 1.25s ease, -webkit-transform 1.25s ease;
+        -webkit-transform: translate(20px, 0px);
+                transform: translate(20px, 0px); }
+  .section.active.intro {
+    background-size: contain; }
+  .section.active .wrap h2,
+  .section.active .wrap p {
+    -webkit-transform: translate(0px);
+            transform: translate(0px); }
+  .section.active.contact .col-2 {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px); }
+    .section.active.contact .col-2 .content {
+      -webkit-transform: translate(0px, 0px);
+              transform: translate(0px, 0px); }
 /*# sourceMappingURL=style.css.map */

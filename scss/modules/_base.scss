@@ -21,61 +21,29 @@ body {
     background: $base;
   }
 
-  &.faded {
-    opacity: 0;
-
-    .scroll-container {
-      opacity: 0;
-    }
-  }
-
-  &.faded-in {
-    transition: opacity 500ms ease-in;
-
-    opacity: 1 !important;
-
-    .scroll-container {
-      transition: opacity 500ms ease-in;
-
-      opacity: 1 !important;
-    }
-  }
-
-  &.faded-out {
-    transition: opacity 500ms ease-in;
-
-    opacity: 0 !important;
-
-    .scroll-container {
-      transition: opacity 500ms ease-in;
-
-      opacity: 0 !important;
-    }
-  }
-
-  &.slide-left {
-    .page-wrap {
-      animation: slide-left 500ms forwards;
-    }
-  }
-
-  &.slide-right {
-    .page-wrap {
-      animation: slide-right 500ms forwards;
+  @media screen and (min-width: $controls-on) {
+    .controls {
+      display: block;
     }
   }
 
   &.sticky-enabled {
-    @media screen and (min-width: $controls-on) {
-      .controls {
-        display: block;
-      }
-    }
-
     @media screen and (min-width: $laptop) {
       .section {
-        // position: sticky;
+        position: sticky;
       }
+    }
+  }
+
+  &.page {
+    .scroll-container {
+      position: relative;
+
+      overflow: auto;
+
+      height: auto;
+
+      scroll-behavior: normal;
     }
   }
 }
@@ -106,25 +74,5 @@ body {
 
       font-size: 1rem;
     }
-  }
-}
-
-@keyframes slide-left {
-  0% {
-    transform: translateX(0%);
-  }
-
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes slide-right {
-  0% {
-    transform: translateX(0%);
-  }
-
-  100% {
-    transform: translateX(100%);
   }
 }
