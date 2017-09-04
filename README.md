@@ -1,14 +1,12 @@
-Ninesenses
+# Ninesenses
 
 Please feel free to steal, read, hack this code. However, all the content despite being hosted publicly is subject to copyright of Tom Skarbek-Wazynki, so no pinching that!
 
-Site: ninesenses.co.uk
-Twitter: @wazynski
-License
+- Site: ninesenses.co.uk
+- Twitter: @wazynski
+- License: The MIT License (MIT)
 
-The MIT License (MIT)
-
-Copyright (c) Tom Skarbek-Wazynski
+Content Copyright (c) Tom Skarbek-Wazynski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
