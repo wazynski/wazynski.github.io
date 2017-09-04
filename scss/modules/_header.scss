@@ -14,6 +14,8 @@ Stylesheet: Header
       position: fixed;
 
       height: auto;
+
+      pointer-events: none;
     }
   }
 }
@@ -37,6 +39,8 @@ Stylesheet: Header
     position: fixed;
 
     height: auto;
+
+    pointer-events: none;
   }
 
 
@@ -68,6 +72,7 @@ Stylesheet: Header
 
     transition: all 1s ease-out;
     text-decoration: none;
+    pointer-events: all;
 
     color: $base;
 

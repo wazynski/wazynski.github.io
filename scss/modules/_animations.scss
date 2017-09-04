@@ -1,0 +1,150 @@
+/* ==========================================================================
+Site Name: Ninesenses
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: Animations
+========================================================================== */
+/* ==========================================================================
+  Body
+   ========================================================================== */
+
+body {
+  background: $background;
+
+  &.about {
+    background: $base;
+  }
+
+  &.faded {
+    opacity: 0;
+
+    .scroll-container {
+      opacity: 0;
+    }
+  }
+
+  &.faded-in {
+    transition: opacity 500ms ease-in;
+
+    opacity: 1 !important;
+
+    .scroll-container {
+      transition: opacity 500ms ease-in;
+
+      opacity: 1 !important;
+    }
+  }
+
+  &.faded-out {
+    transition: opacity 500ms ease-in;
+
+    opacity: 0 !important;
+
+    .scroll-container {
+      transition: opacity 500ms ease-in;
+
+      opacity: 0 !important;
+    }
+  }
+
+  &.slide-left {
+    .page-wrap {
+      animation: slide-left 500ms forwards;
+    }
+  }
+
+  &.slide-right {
+    .page-wrap {
+      animation: slide-right 500ms forwards;
+    }
+  }
+}
+
+
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+/* ==========================================================================
+  Sections
+   ========================================================================== */
+
+.section {
+  .wrap {
+    * {
+      transition: transform 1250ms ease-out;
+    }
+
+    &.hide-left {
+      left: -1000px;
+    }
+
+    h2 {
+      transform: translate(-20px);
+    }
+
+    p {
+      transform: translate(20px);
+    }
+  }
+
+  &.contact {
+    .col-2 {
+      transform: translate(0px, 20px);
+
+      &.footer {
+        transform: translate(0px, 0px);
+
+        .content {
+          transition: transform 1.25s ease;
+          transform: translate(20px, 0px);
+        }
+      }
+    }
+  }
+
+  /* ==========================================================================
+     Aniumation starts
+     ========================================================================== */
+
+  &.active {
+    &.intro {
+      background-size: contain;
+    }
+
+    .wrap {
+      h2,
+      p {
+        transform: translate(0px);
+      }
+    }
+
+    &.contact {
+      .col-2 {
+        transform: translate(0px, 0px);
+
+        .content {
+          transform: translate(0px, 0px);
+        }
+      }
+    }
+  }
+}
