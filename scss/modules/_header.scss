@@ -59,7 +59,7 @@ Stylesheet: Header
       width: auto;
       height: 50px;
 
-      transition: all 1s ease-out;
+      transition: all 750ms ease-in-out;
     }
   }
 
@@ -70,7 +70,7 @@ Stylesheet: Header
 
     display: inline-block;
 
-    transition: all 1s ease-out;
+    transition: all 750ms ease-in-out;
     text-decoration: none;
     pointer-events: all;
 
@@ -87,14 +87,11 @@ Stylesheet: Header
     &.hide-left {
       left: -500px;
     }
-    // background: hotpink;
 
     &:hover {
-      // padding-top: 5px;
       padding-left: 10px;
 
       .logo {
-        // top: -5px;
         padding-left: 10px;
       }
     }

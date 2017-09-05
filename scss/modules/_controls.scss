@@ -37,10 +37,11 @@ $controls: $secondary;
         margin: 0 auto 10px;
 
         cursor: pointer;
+        transition: background 100ms linear;
 
         border: 1px solid $controls;
         border-radius: 50%;
-        background: none;;
+        background: none;
 
         &.active {
           background: $controls;

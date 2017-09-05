@@ -90,7 +90,7 @@ body {
 .section {
   .wrap {
     * {
-      transition: transform 1250ms ease-out;
+      transition: transform 1250ms cubic-bezier(.645, .045, .355, 1);
     }
 
     &.hide-left {
@@ -98,24 +98,24 @@ body {
     }
 
     h2 {
-      transform: translate(-20px);
+      transform: translate(-10px);
     }
 
     p {
-      transform: translate(20px);
+      transform: translate(10px);
     }
   }
 
   &.contact {
     .col-2 {
-      transform: translate(0px, 20px);
+      transform: translate(0px, 10px);
 
       &.footer {
         transform: translate(0px, 0px);
 
         .content {
-          transition: transform 1.25s ease;
-          transform: translate(20px, 0px);
+          transition: transform 1250ms cubic-bezier(.645, .045, .355, 1);
+          transform: translate(10px, 0px);;
         }
       }
     }
