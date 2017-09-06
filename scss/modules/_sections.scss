@@ -103,17 +103,17 @@ Stylesheet: Sections
   }
 
   &.push-up {
-    @media screen and (min-height: 1200px) and (max-width: $lg-desktop) {
-      padding-bottom: 100px;
-    }
-
-    @media screen and (min-width: $lg-desktop) {
-      padding-bottom: 200px;
-    }
-
-    @media screen and (min-width: $xl-desktop) {
-      padding-bottom: 175px;
-    }
+    // @media screen and (min-height: 1200px) and (max-width: $lg-desktop) {
+    //   padding-bottom: 100px;
+    // }
+    //
+    // @media screen and (min-width: $lg-desktop) {
+    //   padding-bottom: 200px;
+    // }
+    //
+    // @media screen and (min-width: $xl-desktop) {
+    //   padding-bottom: 175px;
+    // }
   }
 
 

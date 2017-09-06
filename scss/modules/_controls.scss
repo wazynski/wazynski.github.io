@@ -12,6 +12,10 @@ $controls: $secondary;
 .controls {
   display: none;
 
+  &.on {
+    display: block;
+  }
+
   @media screen and (min-width: $controls-on) {
     position: fixed;
     z-index: 9999;

@@ -1,5 +1,6 @@
 var nine = {
   sticky: false,
+  fullscreen: false,
   // Scolling Related
   currentPageIndex: null,
   currentPage: null,
@@ -8,6 +9,9 @@ var nine = {
   scrollContainer: document.getElementById('scroll'),
   pages: document.querySelectorAll(".section"),
   scrollDirection: null,
+  prevTime: new Date().getTime(),
+  scrollHistory: [],
+  windowHeight: null,
 };
 
 /* ==========================================================================
@@ -379,54 +383,74 @@ if (!String.prototype.includes) {
 // }
 
 /* ==========================================================================
-  nine.checkSticky() - http://trialstravails.blogspot.co.uk/2016/06/detecting-css-position-sticky-support.html
+  nine.checkFullscreen()
+   ========================================================================== */
+
+nine.checkFullscreen = () => {
+  // return false; // turn fullscreen off
+  var fullscreen = true;
+
+  var windowHeight = nine.windowSize().h;
+
+  // if any section is longer the window height disable fullscreen
+  nine.pages.forEach(function(el) {
+    if (el.offsetHeight > windowHeight) {
+      fullscreen = false;
+    }
+  });
+
+  return fullscreen;
+}
+
+/* ==========================================================================
+  enableFullscreen()
+  - Enable fullscreen mode if checkFullscreen passes
+   ========================================================================== */
+
+nine.enableFullscreen = (debounced) => {
+  if (nine.checkFullscreen()) {
+    nine.fullscreen = true;
+    document.body.classList.add("fullscreen");
+    nine.windowHeight = nine.windowSize().h; // Used to help with resize
+  } else {
+    nine.fullscreen = false;
+    document.body.classList.remove("fullscreen");
+    nine.windowHeight = nine.windowSize().h; // Used to help with resize
+  }
+};
+
+/* ==========================================================================
+  nine.checkSticky() - http://trialstravails.bspot.co.uk/2016/06/detecting-css-position-sticky-support.html
    ========================================================================== */
 
 nine.checkSticky = () => {
-  return false; // turn stick off
+  // return false; // turn stick off
   var el = document.createElement('a');
   var mStyle = el.style;
 
   mStyle.cssText = "position:sticky;position:-webkit-sticky;position:-ms-sticky;";
   var sticky = mStyle.position.indexOf('sticky')!==-1;
 
-
   var windowHeight = nine.windowSize().h;
 
-  if (sticky) {
-    nine.pages.forEach(function(el) {
-      if (el.offsetHeight > windowHeight) {
-        sticky = false;
-      }
-    });
-  }
-
-  if (sticky) {
-    document.body.classList.add("sticky-enabled");
-
-    // TODO: enable scroll swipe if sticky on
-    // nine.swipeScroll();
-
-    return true;
-  } else {
-    document.body.classList.remove("sticky-enabled");
-
-    // TODO: disable scroll swipe if sticky off
-    // window.removeEventListener('wheel', nine.scrollListener);
-
-    return false;
-  }
+  return sticky;
 }
 
 /* ==========================================================================
-  nine.swipeScroll()
+  enableSticky()
+  - Enable Sticky
    ========================================================================== */
 
-// nine.swipeScroll = () => {
-//   Array.prototype.forEach.call(nine.pages, function(el) {
-//     new nine.scrollHandler(el.id);
-//   });
-// }
+nine.enableSticky = (debounced) => {
+  if (nine.checkSticky() && nine.checkFullscreen()) {
+    nine.sticky = true;
+    nine.fullscreen = true;
+    document.body.classList.add("sticky-enabled");
+  } else {
+    nine.sticky = false;
+    document.body.classList.remove("sticky-enabled");
+  }
+};
 
 /* ==========================================================================
   nine.changeHeaderClass
@@ -736,8 +760,6 @@ nine.calculateDestiny = (element, offset) => {
     if (nine.sticky) {
       offset = nine.calculateGap(newIndex, element, offset);
     }
-  } else {
-    return; // Trying to scroll to current element.
   }
 
   // Calculate the pixel position of the element, using offset if required
@@ -871,6 +893,38 @@ nine.updateCurrent = (element) => {
 nine.getScrolledPosition = () => {
   return document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
 };
+
+/* ==========================================================================
+  nine.resetPosition()
+  - Handles rezise events when fullscreen is one to make
+    sure slide is positioned correctly.
+   ========================================================================== */
+
+nine.resetPosition = () => {
+  if (nine.fullscreen == true) {
+    var section,
+        destiny;
+
+    if (nine.currentPage != null) {
+      var section = document.getElementById(nine.currentPage);
+    } else {
+      var section = document.querySelectorAll('.sections')[0];
+      nine.currentPage = section.id;
+      nine.currentPageIndex = 0;
+    }
+
+    var offset = nine.calculateOffset();
+
+    if (nine.sticky && offset > 0) {
+      destiny = section.offsetTop - offset;
+    } else {
+      destiny = section.offsetTop;
+    }
+
+    nine.animateScoll(destiny, section, 0);
+  }
+}
+
 // ##########################################################################
 
 
@@ -887,27 +941,77 @@ nine.getScrolledPosition = () => {
 // ##########################################################################
 
 /* ==========================================================================
-  nine.setupControls()
+  nine.addFullscreenNav()
   - adds dots and next & prev controls to site
   =========================================================================== */
-nine.setupControls = () => {
-  var dots = document.querySelector('.dots')
 
-  if (dots) {
-    Array.prototype.forEach.call(nine.pages, function(el, i) {
-      var dot = document.createElement('li');
-      dot.setAttribute('data-page', i);
-      dots.appendChild(dot);
-      dot.addEventListener('click', (element) => nine.dotClick(element));
-    });
+nine.addFullscreenNav = () => {
+  var controls = document.querySelector('.controls');
 
-    document.querySelector('.dots li').classList.add('active')
+  if (controls) {
+    controls.classList.add('on');
 
-    document.querySelector('.next').addEventListener('click', () => nine.nextPage());
-    document.querySelector('.prev').addEventListener('click', () => nine.prevPage());
+    var nav = document.querySelector('.dots')
 
-    nine.updateControls();
+    if (nav) {
+      Array.prototype.forEach.call(nine.pages, function(el, i) {
+        var dot = document.createElement('li');
+        dot.setAttribute('data-page', i);
+        nav.appendChild(dot);
+        dot.addEventListener('click', (element) => nine.dotClick(element));
+      });
+
+      document.querySelector('.dots li').classList.add('active')
+
+      document.querySelector('.next').addEventListener('click', nine.arrowNextClickHandler);
+      document.querySelector('.prev').addEventListener('click', nine.arrowPrevClickHandler);
+
+      nine.updateControls();
+    }
   }
+};
+
+/* ==========================================================================
+  nine.removeFullscreenNav()
+  - remove dots and next & prev controls to site
+  =========================================================================== */
+
+nine.removeFullscreenNav = () => {
+  var controls = document.querySelector('.controls');
+
+  if (controls) {
+    controls.classList.remove('on');
+
+    var nav = document.querySelector('.dots')
+    var dots = document.querySelectorAll('.dots li');
+
+    if (nav && dots) {
+      Array.prototype.forEach.call(dots, function(el, i) {
+        el.parentNode.removeChild(el);
+      });
+
+      document.querySelector('.next').removeEventListener('click', nine.arrowNextClickHandler);
+      document.querySelector('.prev').removeEventListener('click', nine.arrowPrevClickHandler);
+    }
+  }
+};
+
+/* ==========================================================================
+   nine.arrowNextClickHandler()
+   - click handler for next arrow
+   ========================================================================== */
+
+nine.arrowNextClickHandler = () => {
+  nine.nextPage();
+};
+
+/* ==========================================================================
+   nine.arrowPrevClickHandler()
+   - click handler for prev arrow
+   ========================================================================== */
+
+nine.arrowPrevClickHandler = () => {
+  nine.prevPage();
 };
 
  /* ==========================================================================
@@ -931,7 +1035,6 @@ nine.dotClick = (element, repeat) => {
   } else if (repeat == false) {
     // Is currently scrolling. Try again after duration.
     setTimeout(function(){
-      console.log('try again');
       nine.dotClick(element, true);
     }, nine.scrollDuration);
    }
@@ -943,10 +1046,18 @@ nine.dotClick = (element, repeat) => {
     ========================================================================== */
 
 nine.updateControls = (newIndex) => {
-  if (newIndex == null) {
+  if (newIndex == null && nine.currentPageIndex == null) {
+    newIndex = 0;
+  }  else {
     newIndex = nine.currentPageIndex;
   }
-  document.querySelector('.dots li.active').classList.remove('active');
+
+  var active = document.querySelector('.dots li.active')
+
+  if (active) {
+    document.querySelector('.dots li.active').classList.remove('active');
+  }
+
   document.querySelectorAll('.dots li')[newIndex].classList.add('active');
 
   document.querySelector('.next').classList.remove('disabled');
@@ -977,7 +1088,6 @@ nine.nextPage = (repeat) => {
     return true;
   } else if (nine.currentPageIndex + 1 < nine.pages.length && repeat == false) {
     setTimeout(function(){
-      console.log('try again');
       nine.nextPage(true);
     }, nine.scrollDuration);
   }
@@ -1000,7 +1110,6 @@ nine.prevPage = (repeat) => {
     return true;
   } else if (nine.currentPageIndex - 1 >= 0 && repeat == false) {
     setTimeout(function(){
-      console.log('try again');
       nine.prevPage(true);
     }, nine.scrollDuration);
   }
@@ -1023,11 +1132,11 @@ nine.prevPage = (repeat) => {
     ==========================================================================
  // ##########################################################################
  /* ==========================================================================
-   nine.keyboardNav()
+   nine.addKeyboardNav()
    - enables up and down to be used to navigate slides
     ========================================================================== */
 
-nine.keyboardNav = () => {
+nine.addKeyboardNav = () => {
   document.onkeydown = function(event) {
     if (!event) {
       event = window.event;
@@ -1061,8 +1170,125 @@ nine.keyboardNav = () => {
         nine.nextPage();
         break;
     }
-  };
+  }
+};
+
+/* ==========================================================================
+  nine.removeKeyboardNav()
+  - enables up and down to be used to navigate slides
+   ========================================================================== */
+
+nine.removeKeyboardNav = () => {
+ document.onkeydown = null;
+};
+
+/* ==========================================================================
+  nine.addScrollInput()
+  - Add listeners for scroll
+   ========================================================================== */
+
+nine.addScrollInput = () => {
+  var wrapper = window;
+
+  if(wrapper.addEventListener) {
+    wrapper.addEventListener('mousewheel', nine.mouseWheelHandler, false); // ie9, chrome, safari, opera use mousewheel
+
+    // wrapper.addEventListener('wheel', nine.mouseWheelHandler, false); // firefox
+  } else {
+    wrapper.attachEvent('onmousewheel', nine.mouseWheelHandler); // IE 6/7/8 not really supported anyway
+  }
+};
+
+/* ==========================================================================
+  nine.removeScrollInput()
+  - Remove listeners for scroll
+   ========================================================================== */
+
+nine.removeScrollInput = () => {
+  var wrapper = window;
+
+  if(wrapper.addEventListener) {
+    wrapper.removeEventListener('mousewheel', nine.mouseWheelHandler, false); // ie9, chrome, safari, opera use mousewheel
+
+    wrapper.removeEventListener('wheel', nine.mouseWheelHandler, false); // firefox
+  } else {
+    wrapper.detachEvent('onmousewheel', nine.mouseWheelHandler); // IE 6/7/8 not really supported anyway
+  }
 }
+
+/* ==========================================================================
+  nine.mouseWheelHandler()
+  - process scrolling
+  - Line 1099: https://github.com/alvarotrigo/fullPage.js/blob/master/pure%20javascript%20(Alpha)/javascript.fullPage.js
+  - https://www.sitepoint.com/html5-javascript-mouse-wheel/
+   ========================================================================== */
+
+nine.mouseWheelHandler = (e) => {
+  nine.preventDefault(e); // prevent normall scrolling
+
+  var curTime = new Date().getTime();
+
+  // cross-browser wheel delta
+  e = window.event || e || e.originalEvent;
+
+  var value = e.wheelDelta || -e.deltaY || -e.detail;
+  var delta = Math.max(-1, Math.min(1, value));
+
+  //Limiting the array to 150 (lets not waist memory!)
+  if(nine.scrollHistory.length > 149){
+      nine.scrollHistory.shift(); // rmeoves first element
+  }
+
+  //keeping record of the previous scrollings
+  nine.scrollHistory.push(Math.abs(value));
+
+  var timeDiff = curTime - nine.prevTime;
+  nine.prevTime = curTime;
+
+  // haven't they scrolled in a while?
+  // (enough to be consider a different scrolling action to scroll another section)
+  if(timeDiff > 200){
+    // emptying the array, we dont care about old scrollings for our averages
+    nine.scrollHistory = [];
+  }
+
+  function getAverage(elements, number) {
+    var sum = 0;
+
+    //taking `number` elements from the end to make the average, if there are not enought, 1
+    var lastElements = elements.slice(Math.max(elements.length - number, 1));
+
+    for(var i = 0; i < lastElements.length; i++){
+        sum = sum + lastElements[i];
+    }
+    return Math.ceil(sum/number);
+  }
+
+  if(nine.canScroll){
+    var averageEnd = getAverage(nine.scrollHistory, 10);
+    var averageMiddle = getAverage(nine.scrollHistory, 70);
+    var isAccelerating = averageEnd >= averageMiddle;
+
+    if(isAccelerating){
+      if (delta < 0) { //scrolling down?
+        nine.scrolling('down');
+      }else { //scrolling up?
+        nine.scrolling('up');
+      }
+    }
+  }
+
+  return false;
+};
+
+
+nine.scrolling = (type) => {
+  if (type == 'down') {
+    nine.nextPage();
+  } else {
+    nine.prevPage();
+  }
+};
 
  // ##########################################################################
 
@@ -1187,42 +1413,76 @@ nine.debounce = (func, wait, immediate) => {
 	};
 };
 
+/* ==========================================================================
+  nine.preventDeafult(event)
+   ========================================================================== */
+
+nine.preventDefault = (event) => {
+  event.preventDefault ? event.preventDefault() : event.returnValue = false;
+}
+
 // ##########################################################################
 
 
 
 
 
+// ##########################################################################
+/* ==========================================================================
+  nine.fullscreenMode
+  - will enable or sidable all methods required for fullscreen mode
+   ========================================================================== */
+nine.fullscreenMode = (debounced) => {
+
+  //TODO: reset position when chaning between the two modes.
+
+  if (nine.checkFullscreen() && nine.fullscreen == false) {
+    nine.enableFullscreen();
+    nine.enableSticky();
+    nine.hashChangeLisener();
+    nine.addFullscreenNav();
+    nine.addKeyboardNav();
+    nine.addScrollInput();
+    nine.setCurrentPage();
+  } else if (nine.checkFullscreen() == false && nine.fullscreen == true) { // Used to be on but now can't be so disable
+    nine.enableFullscreen(); // Will toggle off due to failing test
+    nine.enableSticky(); // Will toggle off due to failing fullscreen test
+    nine.removeFullscreenNav();
+    nine.removeKeyboardNav();
+    nine.removeScrollInput();
+  }
+
+  if (!debounced) {
+    var fullscreenModeDebounced = nine.debounce(function() {
+      nine.fullscreenMode(true);
+    }, 250);
+
+    window.addEventListener('resize', fullscreenModeDebounced);
+  } else {
+    nine.resetPosition();
+    // nine.setCurrentPage();
+  }
+};
+
+// ##########################################################################
 
 
+
+
+// ##########################################################################
 /* ==========================================================================
   Document Load
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // nine.hashNavigationColor();
-  // nine.scrollSpy();
-  nine.sticky = nine.checkSticky();
-  // nine.keyboardNav();
-  // nine.controls();
   nine.masonaryHeight();
   nine.animateLinks();
-
-  var checkStickyDebounced = nine.debounce(function() {
-  	nine.sticky = nine.checkSticky();
-  }, 250);
-
-  window.addEventListener('resize', checkStickyDebounced);
 
   window.addEventListener('resize', function() {
     nine.masonaryHeight();
   });
 
-  // new
-  nine.setCurrentPage();
-  nine.hashChangeLisener();
-  nine.setupControls();
-  nine.keyboardNav();
+  nine.fullscreenMode();
 });
 
 /* ==========================================================================
@@ -1231,6 +1491,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.onload = () => {
   nine.animateLoad();
-  nine.animatePortrait();
+  // nine.animatePortrait();
   nine.masonaryHeight();
 };
+
+// ##########################################################################
