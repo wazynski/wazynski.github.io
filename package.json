@@ -13,7 +13,8 @@
 		"space": 2,
     "globals": ["document", "window"],
     "rules":  {
-      "no-extend-native": ["error", { "exceptions": ["Object"] }]
+      "no-extend-native": ["error", { "exceptions": ["Object", "String"] } ],
+      "capitalized-comments": "off"
     }
   }
 }

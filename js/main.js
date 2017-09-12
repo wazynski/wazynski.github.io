@@ -1,7 +1,10 @@
+/* ==========================================================================
+  Namespace
+   ========================================================================== */
+
 const nine = {
   sticky: false,
   fullscreen: false,
-  // Scolling Related
   currentPageIndex: null,
   currentPage: null,
   canScroll: true,
@@ -16,34 +19,17 @@ const nine = {
 };
 
 /* ==========================================================================
-    Polyfils
+  Support Checks & Enablers
    ========================================================================== */
 
-if (!String.prototype.includes) {
-  String.prototype.includes = function (search, start) {
-    if (typeof start !== 'number') {
-      start = 0;
-    }
-
-    if (start + search.length > this.length) {
-      return false;
-    }
-
-    return this.indexOf(search, start) !== -1;
-  };
-}
-
-/* ==========================================================================
-  nine.supports3D()
-   ========================================================================== */
 /**
-* Checks for translate3d support
-* @return boolean
+* support3d - Checks for browser support of 3d transforms
+*
+* @returns {boolean}
+*
 * http://stackoverflow.com/questions/5661671/detecting-transform-translate3d-support
 */
-
 nine.support3d = () => {
-  return false;
   const el = document.createElement('p');
   let has3d;
   const transforms = {
@@ -69,10 +55,11 @@ nine.support3d = () => {
   return (has3d !== undefined && has3d.length > 0 && has3d !== 'none');
 };
 
-/* ==========================================================================
-  nine.checkFullscreen()
-   ========================================================================== */
-
+/**
+ * checkFullscreen - Checks if window height is greater than any section.
+ *
+ * @returns {boolean}
+ */
 nine.checkFullscreen = () => {
   let fullscreen = true;
 
@@ -93,25 +80,29 @@ nine.checkFullscreen = () => {
   return fullscreen;
 };
 
-/* ==========================================================================
-  enableFullscreen()
-  - Enable fullscreen mode if checkFullscreen passes
-   ========================================================================== */
-
+/**
+ * enableFullscreen - Adds CSS classes required for fullscreen supports3
+ */
 nine.enableFullscreen = () => {
   if (nine.checkFullscreen()) {
     nine.fullscreen = true;
-    document.body.classList.add('fullscreen');
+    nine.addClass(document.body, 'fullscreen');
+
+    if (nine.supports3d === false) {
+      nine.addClass(document.body, 'no-css3');
+    }
   } else {
     nine.fullscreen = false;
-    document.body.classList.remove('fullscreen');
+    nine.removeClass(document.body, 'fullscreen');
+    nine.removeClass(document.body, 'no-css3');
   }
 };
 
-/* ==========================================================================
-  nine.checkSticky() - http://trialstravails.bspot.co.uk/2016/06/detecting-css-position-sticky-support.html
-   ========================================================================== */
-
+/**
+ * checkSticky - Checks if browser supports CSS property position:sticky
+ *
+ * @returns {boolean}
+ */
 nine.checkSticky = () => {
   const el = document.createElement('a');
   const mStyle = el.style;
@@ -119,15 +110,15 @@ nine.checkSticky = () => {
   mStyle.cssText = 'position:sticky;position:-webkit-sticky;position:-ms-sticky;';
   let sticky = mStyle.position.indexOf('sticky') !== -1;
 
-  sticky = false; // Return false to DISABLED.
+  sticky = false; // Disable
   return sticky;
 };
 
-/* ==========================================================================
-  enableSticky()
-  - Enable Sticky
-   ========================================================================== */
-
+/**
+ * enableSticky - Adds CSS classes required for position: sticky to be used.
+ *
+ * @returns {boolean}
+ */
 nine.enableSticky = () => {
   if (nine.checkSticky() && nine.checkFullscreen()) {
     nine.sticky = true;
@@ -140,17 +131,22 @@ nine.enableSticky = () => {
 };
 
 /* ==========================================================================
-  nine.changeHeaderClass
+  Animations
    ========================================================================== */
 
+/**
+ * changeHeaderClass - Replaces current header classes with new className
+ *                     for color chnage animation
+ * @param {String} className Name of class to be added to header element
+ */
 nine.changeHeaderClass = className => {
   document.querySelector('.header').setAttribute('class', `header ${className}`);
 };
 
-/* ==========================================================================
-  nine.animatation()
-   ========================================================================== */
-
+/**
+ * [animateLoad description]
+ * @returns {[type]}
+ */
 nine.animateLoad = () => {
   window.setTimeout(() => {
     document.body.classList.add('faded-in');
@@ -169,10 +165,6 @@ nine.animateLoad = () => {
     }, 1000);
   }, 1000);
 };
-
-/* ==========================================================================
-  nine.animatePortrait()
-   ========================================================================== */
 
 // nine.animatePortrait = () => {
 //   const portrait = document.querySelector('.portrait .faded');
@@ -207,10 +199,11 @@ nine.animateLoad = () => {
 //   }
 // };
 
-/* ==========================================================================
-  nine.pageTransisition()
-   ========================================================================== */
-
+/**
+ * pageTransisition - Chnages background color, fades out body and redirects to href
+ * @param {String} href
+ * @param {String} bg Background color
+ */
 nine.pageTransisition = (href, bg) => {
   if (!bg) {
     bg = '#E6E6E4';
@@ -224,10 +217,23 @@ nine.pageTransisition = (href, bg) => {
   }, 600);
 };
 
-/* ==========================================================================
-  nine.aboutHeight
-   ========================================================================== */
+/**
+ * animateLinks - Gets all anchor elements and adds a call to pageTransisition() on click
+ */
+nine.animateLinks = () => {
+  const anchorElements = document.getElementsByTagName('a');
+  Array.prototype.forEach.call(anchorElements, el => {
+    el.onclick = () => {
+      nine.pageTransisition(this.href, el.getAttribute('data-bg'));
+      return false;
+    };
+  });
+};
 
+/**
+ * masonaryHeight - Calculates the correct height of the masonary element
+ *                  for flex-box based masonary
+ */
 nine.masonaryHeight = () => {
   const masonary = document.querySelector('.masonary');
   let lheight = 0;
@@ -263,32 +269,47 @@ nine.masonaryHeight = () => {
 };
 
 /* ==========================================================================
-  nine.animateLinks
+  Fullscreen
    ========================================================================== */
 
-nine.animateLinks = () => {
-  const anchorElements = document.getElementsByTagName('a');
-  Array.prototype.forEach.call(anchorElements, el => {
-    el.onclick = () => {
-      nine.pageTransisition(this.href, el.getAttribute('data-bg'), el.getAttribute('data-slide'));
-      return false;
-    };
-  });
+/**
+ * fullscreenMode - Setups fullscreen slideshow
+ * @param   {Boolean} debounced Has be called after being debounced?
+ */
+nine.fullscreenMode = debounced => {
+  if (nine.checkFullscreen() && nine.fullscreen === false) {
+    nine.enableFullscreen();
+    nine.enableSticky();
+    nine.hashChangeLisener();
+    nine.addFullscreenNav();
+    nine.addKeyboardNav();
+    nine.addScrollInput();
+    nine.setCurrentPage();
+  } else if (nine.checkFullscreen() === false && nine.fullscreen === true) { // Used to be on but now can't be so disable
+    nine.enableFullscreen(); // Will toggle off due to failing test
+    nine.enableSticky(); // Will toggle off due to failing fullscreen test
+    nine.removeFullscreenNav();
+    nine.removeKeyboardNav();
+    nine.removeScrollInput();
+  }
+
+  if (debounced) {
+    nine.resetPosition();
+  } else {
+    const fullscreenModeDebounced = nine.debounce(() => {
+      nine.fullscreenMode(true);
+    }, 250);
+    window.addEventListener('resize', fullscreenModeDebounced);
+  }
 };
 
-// ##########################################################################
-
-// ##########################################################################
 /* ==========================================================================
    Scrolling
-   ==========================================================================
- // #########################################################################
+   ========================================================================== */
 
- /* ==========================================================================
-  setCurrentPage()
-  - Sets the current page on load based off hash.
-  ========================================================================== */
-
+/**
+ * setCurrentPage - Based on hash sets the fullscreen slideshow to the correct page.
+ */
 nine.setCurrentPage = () => {
   const section = nine.getHash();
 
@@ -306,19 +327,17 @@ nine.setCurrentPage = () => {
   }
 };
 
-/* ==========================================================================
-    nine.updateHash(url)
-    - Updates the hash in the url to the value of url.
-  ========================================================================== */
-
+/**
+ * updateHash - Adds a hash to url
+ * @param {String} url The value the hash should be updated to.
+ */
 nine.updateHash = url => {
   window.location.hash = url;
 };
 
-/* ==========================================================================
-  nine.hashChangeLisener()
-  ========================================================================== */
-
+/**
+ * hashChangeLisener - Adds event listeners for hash change calling hashChangeHandler()
+ */
 nine.hashChangeLisener = () => {
   if (document.addEventListener) {
     window.addEventListener('hashchange', nine.hashChangeHandler, false); // IE9, Chrome, Safari, Oper
@@ -327,11 +346,9 @@ nine.hashChangeLisener = () => {
   }
 };
 
-/* ==========================================================================
-  nine.hashChangeHandler()
-  - Listens to chnages on the hash when back button is used.
-   ========================================================================== */
-
+/**
+ * hashChangeHandler - Processes hash changes
+ */
 nine.hashChangeHandler = () => {
   const section = nine.getHash();
 
@@ -340,11 +357,11 @@ nine.hashChangeHandler = () => {
   }
 };
 
-/* ==========================================================================
-  nine.scrollToSection(destiny)
-  - scroll to the a section using ID
-   ========================================================================== */
-
+/**
+ * scrollToSection - Scorlls slideshow to the section
+ * @param {String}  elementId Id of the element to be scrolled to
+ * @param {Integer} offset   Pixel offset that needs to be taken into account
+ */
 nine.scrollToSection = (elementId, offset) => {
   const element = document.getElementById(elementId);
 
@@ -366,11 +383,11 @@ nine.scrollToSection = (elementId, offset) => {
   }
 };
 
-/* ==========================================================================
-  nine.silentScrollToSection(destiny)
-  - scroll to the a section using ID with duration 0
-   ========================================================================== */
-
+/**
+ * silentScrollToSection - Scrolls to section with a duration of 0 to quick jump.
+ * @param {String}  elementId ID of the element to be scrolled to
+ * @param {Integer} offset    Pixel offset that needs to be taken into account
+ */
 nine.silentScrollToSection = (elementId, offset) => {
   const element = document.getElementById(elementId);
 
@@ -392,13 +409,11 @@ nine.silentScrollToSection = (elementId, offset) => {
   }
 };
 
-/* ==========================================================================
-  nine.calculateOffset
-  - If a user has scroled half way onto a section there will be an offset
-    if position is sticky.
-  - Returns offset in pixels.
-   ========================================================================== */
-
+/**
+ * calculateOffset - If user has scrolled half way onto a section, calulate offset
+ *                   required to get to next slide. Only needed if positioon: sticky being used
+ * @returns {Integer} The offset in pixels.
+ */
 nine.calculateOffset = () => {
   let offset = 0;
 
@@ -433,10 +448,14 @@ nine.calculateOffset = () => {
   return 0;
 };
 
-/* ==========================================================================
-  nine.calculateGap(newIndex)
-   ========================================================================== */
-
+/**
+ * calculateGap - If there is slides between the current and target there is a
+ *                gap that needs calculating and offseting
+ * @param   {Integer} newIndex The index of the new slide
+ * @param   {Object}  element  The element being traveled to
+ * @param   {Integer} offset   Any currently caclulated offset
+ * @returns {Integer} New offset
+ */
 nine.calculateGap = (newIndex, element, offset) => {
   const gap = Math.abs(nine.currentPageIndex - newIndex) - 1;
 
@@ -449,12 +468,12 @@ nine.calculateGap = (newIndex, element, offset) => {
   return offset;
 };
 
-/* ==========================================================================
-  nine.calculateDestiny()
-  - Works out direction and depending on sticky corrects offset.
-  - Returns the destiny in pixels.
-   ========================================================================== */
-
+/**
+ * nine.calculateDestiny - Works out direction and depending on position: sticky and corrects offset.
+ * @param   {Object} element The element to travel to
+ * @param   {Integer} offset  Any existing offset
+ * @returns {Integer} New offset
+ */
 nine.calculateDestiny = (element, offset) => {
   let destiny;
 
@@ -482,11 +501,12 @@ nine.calculateDestiny = (element, offset) => {
   return destiny;
 };
 
-/* ==========================================================================
-  nine.translateScroll()
-  - animate the scrolling of the page
-  ========================================================================== */
-
+/**
+ * translateScroll - Scroll Page using CSS3 transform and translate
+ * @param {Integer} endLocation The location to scroll to in pixels
+ * @param {Object}  element     The element we are scrolling to
+ * @param {Integer} duration    How long in ms should we take to scroll
+ */
 nine.translateScroll = (endLocation, element, duration) => {
   const translate3d = 'translate3d(0px, -' + endLocation + 'px, 0px)';
 
@@ -520,25 +540,34 @@ nine.translateScroll = (endLocation, element, duration) => {
   }, 10);
 };
 
+/**
+ * translatePortrait - Move the portrait element along with the translate so it appears fixed.
+ * @param   {Integer} endLocation The location to scroll to in pixels
+ */
 nine.translatePortrait = endLocation => {
   const portrait = document.querySelector('.portrait');
   const portraitPosition = 'translate3d(0px, ' + endLocation + 'px, 0px)';
   nine.setTransforms(portrait, portraitPosition);
 };
 
-/* ==========================================================================
-  nine.animateScroll()
-  - animate the scrolling of the page
-  ========================================================================== */
-
+/**
+ * animateScroll - Scroll page with a jQuery-like scroll animation
+ * @param {Integer} endLocation The location to scroll to in pixels
+ * @param {Object}  element     The element we are scrolling to
+ * @param {Integer} duration    How long in ms should we take to scroll
+ */
 nine.animateScroll = (endLocation, element, duration) => {
-  console.log('here');
+  console.log('1');
+  console.log(endLocation);
+  console.log(element);
+  console.log(duration);
+  nine.canScroll = false;
+
   if (endLocation === null) {
     return;
   }
 
   const startLocation = nine.getScrolledPosition();
-  nine.canScroll = false;
 
   if (duration === null) {
     duration = nine.scrollDuration;
@@ -553,24 +582,29 @@ nine.animateScroll = (endLocation, element, duration) => {
   let timeLapsed = 0;
   let percentage;
   let position;
-
+  console.log('2');
   const easing = function (progress) {
-    return progress < 0.5 ? 4 * progress * progress * progress : (progress - 1) * (2 * progress - 2) * (2 * progress - 2) + 1; // Acceleration until halfway, then deceleration
+    return progress < 0.5 ? 4 * progress * progress * progress : ((progress - 1) * ((2 * progress) - 2) * ((2 * progress) - 2)) + 1; // Acceleration until halfway, then deceleration
   };
+
+  console.log('3');
 
   function stopAnimationIfRequired(pos) {
     if (pos === endLocation) {
-      cancelAnimationFrame(runAnimation);
+      window.cancelAnimationFrame(runAnimation);
       finishedScroll();
     }
   }
 
   function finishedScroll() {
+    console.log('finishedScroll');
     // Remove active status from all
     nine.canScroll = true;
     nine.scrollDirection = null;
     nine.scrollEnd(element);
   }
+
+  console.log('4');
 
   const animate = function () {
     timeLapsed += 16;
@@ -582,22 +616,27 @@ nine.animateScroll = (endLocation, element, duration) => {
       position = (startLocation + distance) * easing(percentage);
     }
     nine.scrollContainer.scrollTop = position;
-    runAnimation = requestAnimationFrame(animate);
+    runAnimation = window.requestAnimationFrame(animate);
     stopAnimationIfRequired(position);
   };
 
+  console.log('5');
+
   nine.scrollStart(element);
 
+  console.log('6');
+
   // Loop the animation function
-  runAnimation = requestAnimationFrame(animate);
+  runAnimation = window.requestAnimationFrame(animate);
+  console.log('7');
 };
 
-/* ==========================================================================
-  nine.scrollStart()
-  - Called just before scrolling starts
-   ========================================================================== */
-
+/**
+ * scrollStart - Called at scroll start and setups css classes for active sections, headers, etc
+ * @param {Object} element Element we are scrolling to
+ */
 nine.scrollStart = element => {
+  console.log('scrollStart - start');
   // Change header class - duration is same as slide duration for natural feel.
   if (element.classList.value.includes('light')) {
     nine.changeHeaderClass('dark');
@@ -624,14 +663,15 @@ nine.scrollStart = element => {
     nine.addClass(element, 'active');
     nine.updateControls(nine.getSectionIndex(element));
   }, nine.scrollDuration * 0.33);
+  console.log('scrollStart - end');
 };
 
-/* ==========================================================================
-  nine.scrollEnd()
-  - Called after an element has been scrolled to.
-   ========================================================================== */
-
+ /**
+  * scrollEnd - Called at scroll end aupdates hash, current page, controls, etc.
+  * @param {Object} element Element we are scrolling to
+  */
 nine.scrollEnd = element => {
+  console.log('scrollEnd - start');
   if (element === null) {
     return;
   } // No element
@@ -641,33 +681,32 @@ nine.scrollEnd = element => {
   nine.updateCurrent(element);
   nine.addClass(document.body, element.id + '-active');
   nine.updateControls();
+  console.log('scrollEnd - end');
 };
 
-/* ==========================================================================
-  nine.updateCurrent
-  - Updates globals to current values
-   ========================================================================== */
-
+/**
+ * updateCurrent - Updates globals to current values
+ * @param {Object} element Element we are scrolling to
+ */
 nine.updateCurrent = element => {
   nine.currentPage = element.id;
   nine.currentPageIndex = nine.getSectionIndex(element);
 };
 
-/* ==========================================================================
-  nine.getScrolledPosition()
-  - Returns position of scroll in the window in pixels.
-   ========================================================================== */
-
+/**
+ * getScrolledPosition - Get the current Scroll position of the browser
+ * @returns {Integer} ScrollTop in pixels
+ */
 nine.getScrolledPosition = () => {
+  console.log('==========');
+  console.log(document.documentElement.scrollTop || nine.scrollContainer.scrollTop);
+  console.log('==========');
   return document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
 };
 
-/* ==========================================================================
-  nine.resetPosition()
-  - Handles rezise events when fullscreen is one to make
-    sure slide is positioned correctly.
-   ========================================================================== */
-
+/**
+ * resetPosition - Resets fullscreen to correct position after browser resize event
+ */
 nine.resetPosition = () => {
   if (nine.fullscreen === true) {
     let section;
@@ -697,19 +736,13 @@ nine.resetPosition = () => {
   }
 };
 
-// ##########################################################################
-
-// ##########################################################################
 /* ==========================================================================
    Controls
    ==========================================================================
-// ##########################################################################
 
-/* ==========================================================================
-  nine.addFullscreenNav()
-  - adds dots and next & prev controls to site
-  =========================================================================== */
-
+/**
+ * addFullscreenNav - adds dots and next & prev controls to site with event handlers
+ */
 nine.addFullscreenNav = () => {
   const controls = document.querySelector('.controls');
 
@@ -736,11 +769,9 @@ nine.addFullscreenNav = () => {
   }
 };
 
-/* ==========================================================================
-  nine.removeFullscreenNav()
-  - remove dots and next & prev controls to site
-  =========================================================================== */
-
+/**
+ * removeFullscreenNav - remove dots and next & prev controls to site and event handlers
+ */
 nine.removeFullscreenNav = () => {
   const controls = document.querySelector('.controls');
 
@@ -761,29 +792,25 @@ nine.removeFullscreenNav = () => {
   }
 };
 
-/* ==========================================================================
-   nine.arrowNextClickHandler()
-   - click handler for next arrow
-   ========================================================================== */
-
+/**
+ * arrowNextClickHandler
+ */
 nine.arrowNextClickHandler = () => {
   nine.nextPage();
 };
 
-/* ==========================================================================
-   nine.arrowPrevClickHandler()
-   - click handler for prev arrow
-   ========================================================================== */
-
+/**
+ * arrowPrevClickHandler
+ */
 nine.arrowPrevClickHandler = () => {
   nine.prevPage();
 };
 
- /* ==========================================================================
-   nine.dotClick()
-   - handles when use clicks on a dot
-    ========================================================================== */
-
+/**
+ * dotClick - Handler for dot clicks
+ * @param   {Object} element
+ * @param   {Boolean} repeat True if called recurvisley
+ */
 nine.dotClick = (element, repeat) => {
   if (repeat === null) {
     repeat = false;
@@ -805,11 +832,10 @@ nine.dotClick = (element, repeat) => {
   }
 };
 
- /* ==========================================================================
-   nine.updateControls()
-   - Update controls to latest section
-    ========================================================================== */
-
+/**
+ * updateControls - Update controls to new values
+ * @param   {Integer} newIndex Index of the new slide in slides array
+ */
 nine.updateControls = newIndex => {
   if (newIndex === undefined) {
     newIndex = null;
@@ -841,11 +867,10 @@ nine.updateControls = newIndex => {
   }
 };
 
-/* ==========================================================================
- nine.nextPage()
- - moves to the next slide
-  ========================================================================== */
-
+/**
+ * nextPage - Navigates to next page
+ * @param   {Boolean} repeat True if called recurvisley
+ */
 nine.nextPage = repeat => {
   if (repeat === null) {
     repeat = false;
@@ -863,11 +888,10 @@ nine.nextPage = repeat => {
   return false;
 };
 
-/* ==========================================================================
- nine.prevPage()
- - moves to the previous slide
-  ========================================================================== */
-
+/**
+ * prevPage - Navigates to prev page
+ * @param   {Boolean} repeat True if called recurvisley
+ */
 nine.prevPage = repeat => {
   if (repeat === null) {
     repeat = false;
@@ -885,18 +909,13 @@ nine.prevPage = repeat => {
   return false;
 };
 
- // ##########################################################################
+/* ==========================================================================
+  Inputs
+  ========================================================================== */
 
- // ##########################################################################
- /* ==========================================================================
-    Inputs
-    ==========================================================================
- // ##########################################################################
- /* ==========================================================================
-   nine.addKeyboardNav()
-   - enables up and down to be used to navigate slides
-    ========================================================================== */
-
+/**
+ * addKeyboardNav - Allow for buttons presses to navigate fullscreen slideshow
+ */
 nine.addKeyboardNav = () => {
   document.onkeydown = function (event) {
     if (!event) {
@@ -935,37 +954,31 @@ nine.addKeyboardNav = () => {
   };
 };
 
-/* ==========================================================================
-  nine.removeKeyboardNav()
-  - enables up and down to be used to navigate slides
-   ========================================================================== */
-
+/**
+ * removeKeyboardNav - removes key press event handlers
+ */
 nine.removeKeyboardNav = () => {
   document.onkeydown = null;
 };
 
-/* ==========================================================================
-  nine.addScrollInput()
-  - Add listeners for scroll
-   ========================================================================== */
-
+/**
+ * addScrollInput - Handle scroll input to naviagte to slides
+ */
 nine.addScrollInput = () => {
   const wrapper = window;
 
   if (wrapper.addEventListener) {
     wrapper.addEventListener('mousewheel', nine.mouseWheelHandler, false); // Ie9, chrome, safari, opera use mousewheel
 
-    // wrapper.addEventListener('wheel', nine.mouseWheelHandler, false); // firefox
+    wrapper.addEventListener('wheel', nine.mouseWheelHandler, false); // firefox
   } else {
     wrapper.attachEvent('onmousewheel', nine.mouseWheelHandler); // IE 6/7/8 not really supported anyway
   }
 };
 
-/* ==========================================================================
-  nine.removeScrollInput()
-  - Remove listeners for scroll
-   ========================================================================== */
-
+/**
+ * removeScrollInput - Remove scroll handling
+ */
 nine.removeScrollInput = () => {
   const wrapper = window;
 
@@ -978,13 +991,12 @@ nine.removeScrollInput = () => {
   }
 };
 
-/* ==========================================================================
-  nine.mouseWheelHandler()
-  - process scrolling
-  - Line 1099: https://github.com/alvarotrigo/fullPage.js/blob/master/pure%20javascript%20(Alpha)/javascript.fullPage.js
-  - https://www.sitepoint.com/html5-javascript-mouse-wheel/
-   ========================================================================== */
-
+/**
+ * mouseWheelHandler - Process wheel events to scroll to next or prev section
+ * @param   {Object} e Scroll event
+ * Line 1099: https://github.com/alvarotrigo/fullPage.js/blob/master/pure%20javascript%20(Alpha)/javascript.fullPage.js
+ * https://www.sitepoint.com/html5-javascript-mouse-wheel/
+ */
 nine.mouseWheelHandler = e => {
   nine.preventDefault(e); // Prevent normall scrolling
 
@@ -1043,6 +1055,10 @@ nine.mouseWheelHandler = e => {
   return false;
 };
 
+/**
+ * scrolling - Calls prevPage() or nextPage() depending on scroll direction type
+ * @param   {String} type
+ */
 nine.scrolling = type => {
   if (type === 'down') {
     nine.nextPage();
@@ -1051,61 +1067,55 @@ nine.scrolling = type => {
   }
 };
 
- // ##########################################################################
-
-// ##########################################################################
 /* ==========================================================================
    Helpers
    ==========================================================================
-// ##########################################################################
 
- /* ==========================================================================
-   nine.getHash()
-   - Gets current url hash
-   ========================================================================== */
-
+/**
+ * getHash - gets current hash value
+ */
 nine.getHash = () => {
   const value = window.location.hash.replace('#', '').split('/');
   return value[0];
 };
-/* ==========================================================================
-  nine.addClass(element, className)
-  - Checks if element hasClass if not adds it
-   ========================================================================== */
 
+/**
+ * addClass
+ * @param {Object} element
+ * @param {String} className
+ */
 nine.addClass = (element, className) => {
   if (element && !nine.hasClass(element, className)) {
     element.classList.add(className);
   }
 };
 
-/* ==========================================================================
-  nine.removeClass(element, className)
-  - Checks if element hasClass if it does removes it
-   ========================================================================== */
-
+ /**
+  * removeClass
+  * @param {Object} element
+  * @param {String} className
+  */
 nine.removeClass = (element, className) => {
   if (element && nine.hasClass(element, className)) {
     element.classList.remove(className);
   }
 };
 
-/* ==========================================================================
-  nine.hasClass(element, className)
-  - Checks if element has a class
-  - Returns true or false
-   ========================================================================== */
-
+/**
+ * hasClass - Checks if element has class
+ * @param   {Object}  element
+ * @param   {String}  className
+ * @returns {Boolean}
+ */
 nine.hasClass = (element, className) => {
   return element.classList.contains(className);
 };
 
-/* ==========================================================================
-  getSectionindex(section)
-  - Finds out what the index of the element is in the list of sections
-  - Returns index
-   ========================================================================== */
-
+/**
+ * getSectionIndex - Get the index of an element in the slides array
+ * @param   {Object} element
+ * @returns {Integer}
+ */
 nine.getSectionIndex = element => {
   let index;
 
@@ -1118,11 +1128,11 @@ nine.getSectionIndex = element => {
   return index;
 };
 
-/* ==========================================================================
-  nine.windowWidth
-  - Gets window size reliably
-   ========================================================================== */
-
+/**
+ * windowSize - Reliably gets window sizes
+ * @param   {Object} w The window to use.
+ * @returns {Object} {w: width, h: height}
+ */
 nine.windowSize = w => {
   // Use the specified window or the current window if no argument
   w = w || window;
@@ -1143,11 +1153,12 @@ nine.windowSize = w => {
   return {w: d.body.clientWidth, h: d.body.clientHeight};
 };
 
-/* ==========================================================================
-  nine.debounce()
-  - Debounces actions be with a timer.
- ========================================================================== */
-
+/**
+ * debounce - Debounces actions be with a timer.
+ * @param   {Object}  func      Function to be called
+ * @param   {Integer} wait      How long to wasit until call
+ * @param   {Boolean} immediate Call it immediately?
+ */
 nine.debounce = (func, wait, immediate) => {
   let timeout;
   return function () {
@@ -1168,10 +1179,10 @@ nine.debounce = (func, wait, immediate) => {
   };
 };
 
-/* ==========================================================================
-  nine.preventDeafult(event)
-   ========================================================================== */
-
+/**
+ * preventDefault
+ * @param   {Object} event
+ */
 nine.preventDefault = event => {
   if (event.preventDefault) {
     event.preventDefault();
@@ -1180,11 +1191,11 @@ nine.preventDefault = event => {
   }
 };
 
-/* ==========================================================================
-  nine.setTransforms(el, translate3d)
-  - sets tranlstaion on an element
-  ========================================================================== */
-
+/**
+ * setTransforms - adds CSS treansform to an element
+ * @param {Object} element
+ * @param {String} translate3d
+ */
 nine.setTransforms = (element, translate3d) => {
   nine.css(element, {
     '-webkit-transform': translate3d,
@@ -1194,11 +1205,11 @@ nine.setTransforms = (element, translate3d) => {
   });
 };
 
-/* ==========================================================================
-  nine.css(el, props)
-  - adds css to elements
-  ========================================================================== */
-
+/**
+ * css - add CSS to an element
+ * @param {Object} el
+ * @param {Object} props
+ */
 nine.css = (el, props) => {
   let key;
   for (key in props) {
@@ -1211,44 +1222,6 @@ nine.css = (el, props) => {
   return el;
 };
 
-// ##########################################################################
-
-// ##########################################################################
-/* ==========================================================================
-  nine.fullscreenMode
-  - will enable or sidable all methods required for fullscreen mode
-   ========================================================================== */
-nine.fullscreenMode = debounced => {
-  if (nine.checkFullscreen() && nine.fullscreen === false) {
-    nine.enableFullscreen();
-    nine.enableSticky();
-    nine.hashChangeLisener();
-    nine.addFullscreenNav();
-    nine.addKeyboardNav();
-    nine.addScrollInput();
-    nine.setCurrentPage();
-  } else if (nine.checkFullscreen() === false && nine.fullscreen === true) { // Used to be on but now can't be so disable
-    nine.enableFullscreen(); // Will toggle off due to failing test
-    nine.enableSticky(); // Will toggle off due to failing fullscreen test
-    nine.removeFullscreenNav();
-    nine.removeKeyboardNav();
-    nine.removeScrollInput();
-  }
-
-  if (debounced) {
-    nine.resetPosition();
-  } else {
-    const fullscreenModeDebounced = nine.debounce(() => {
-      nine.fullscreenMode(true);
-    }, 250);
-
-    window.addEventListener('resize', fullscreenModeDebounced);
-  }
-};
-
-// ##########################################################################
-
-// ##########################################################################
 /* ==========================================================================
   Document Load
    ========================================================================== */
@@ -1275,4 +1248,20 @@ window.onload = () => {
   nine.masonaryHeight();
 };
 
-// ##########################################################################
+/* ==========================================================================
+    Polyfils
+   ========================================================================== */
+
+if (!String.prototype.includes) {
+  String.prototype.includes = function (search, start) {
+    if (typeof start !== 'number') {
+      start = 0;
+    }
+
+    if (start + search.length > this.length) {
+      return false;
+    }
+
+    return this.indexOf(search, start) !== -1;
+  };
+}
