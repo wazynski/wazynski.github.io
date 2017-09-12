@@ -86,63 +86,64 @@ body {
 /* ==========================================================================
   Sections
    ========================================================================== */
-
-.section {
-  .wrap {
-    * {
-      transition: transform 1250ms cubic-bezier(.645, .045, .355, 1);
-    }
-
-    &.hide-left {
-      left: -1000px;
-    }
-
-    h2 {
-      transform: translate(-10px);
-    }
-
-    p {
-      transform: translate(10px);
-    }
-  }
-
-  &.contact {
-    .col-2 {
-      transform: translate(0px, 10px);
-
-      &.footer {
-        transform: translate(0px, 0px);
-
-        .content {
-          transition: transform 1250ms cubic-bezier(.645, .045, .355, 1);
-          transform: translate(10px, 0px);;
-        }
-      }
-    }
-  }
-
-  /* ==========================================================================
-     Aniumation starts
-     ========================================================================== */
-
-  &.active {
-    &.intro {
-      background-size: contain;
-    }
-
+.fullscreen {
+  .section {
     .wrap {
-      h2,
+      * {
+        transition: transform 1250ms cubic-bezier(.645, .045, .355, 1);
+      }
+
+      &.hide-left {
+        left: -1000px;
+      }
+
+      h2 {
+        transform: translate(-10px);
+      }
+
       p {
-        transform: translate(0px);
+        transform: translate(10px);
       }
     }
 
     &.contact {
       .col-2 {
-        transform: translate(0px, 0px);
+        transform: translate(0px, 10px);
 
-        .content {
+        &.footer {
           transform: translate(0px, 0px);
+
+          .content {
+            transition: transform 1250ms cubic-bezier(.645, .045, .355, 1);
+            transform: translate(10px, 0px);;
+          }
+        }
+      }
+    }
+
+    /* ==========================================================================
+     Aniumation starts
+     ========================================================================== */
+
+    &.active {
+      &.intro {
+        background-size: contain;
+      }
+
+      .wrap {
+        h2,
+        p {
+          transform: translate(0px);
+        }
+      }
+
+      &.contact {
+        .col-2 {
+          transform: translate(0px, 0px);
+
+          .content {
+            transform: translate(0px, 0px);
+          }
         }
       }
     }

@@ -62,7 +62,7 @@
       var hash = location.hash.split('#')[1];
       switch(hash) {
         case 'intro':
-          document.body.style.backgroundColor = '#E6E6E4';
+          document.body.style.backgroundColor = '#F2F2F2';
           break;
         case 'about':
           document.body.style.backgroundColor = '#313B41';
@@ -79,25 +79,34 @@
     </script>
     <script>document.body.classList.add('faded');</script>
 
-    <div id="scroll" class="scroll-container page-wrap">
-      <header class="header dark">
-        <a class="hide-left" href="/">
-          <img src="/img/logo.svg" alt="" class="logo">
-          <h1>Ninesenses</h1>
-          <span>&mdash; Design &amp; Development Consultants</span>
-        </a>
-      </header>
+    <header class="header dark">
+      <a class="hide-left" href="/">
+        <h1>Ninesenses</h1>
+        <span>Design &amp; Development Consultants</span>
+      </a>
 
-      <div class="controls">
-        <ul class="dots"></ul>
-        <button class="prev disabled">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 50" stroke-linejoin="round"><path d="M0.3 10.3c-0.4 0.4-0.4 1.1 0 1.6 0.4 0.4 1.1 0.4 1.6 0l8-8 0 45.1c0 0.6 0.5 1.1 1.1 1.1 0.6 0 1.1-0.5 1.1-1.1l0-45.1 8 8c0.4 0.4 1.2 0.4 1.6 0 0.4-0.4 0.4-1.2 0-1.6l-9.9-10c-0.4-0.4-1.1-0.4-1.6 0l-9.9 10Z" fill="#707070"/></svg>
-        </button>
-        <button class="next">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 50" stroke-linejoin="round"><path d="M21.7 39.7c0.4-0.4 0.4-1.1 0-1.6 -0.4-0.4-1.1-0.4-1.6 0l-8 8 0-45.1c0-0.6-0.5-1.1-1.1-1.1 -0.6 0-1.1 0.5-1.1 1.1l0 45.1 -8-8c-0.4-0.4-1.2-0.4-1.6 0 -0.4 0.4-0.4 1.2 0 1.6l9.9 10c0.4 0.4 1.1 0.4 1.6 0l9.9-10Z" fill="#707070"/></svg>
-        </button>
-      </div>
+      <button class="menu">
+        Menu
+        <span class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </header>
 
+    <div class="controls">
+      <ul class="dots"></ul>
+      <button class="prev disabled">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 50" stroke-linejoin="round"><path d="M0.3 10.3c-0.4 0.4-0.4 1.1 0 1.6 0.4 0.4 1.1 0.4 1.6 0l8-8 0 45.1c0 0.6 0.5 1.1 1.1 1.1 0.6 0 1.1-0.5 1.1-1.1l0-45.1 8 8c0.4 0.4 1.2 0.4 1.6 0 0.4-0.4 0.4-1.2 0-1.6l-9.9-10c-0.4-0.4-1.1-0.4-1.6 0l-9.9 10Z" fill="#707070"/></svg>
+      </button>
+      <button class="next">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 50" stroke-linejoin="round"><path d="M21.7 39.7c0.4-0.4 0.4-1.1 0-1.6 -0.4-0.4-1.1-0.4-1.6 0l-8 8 0-45.1c0-0.6-0.5-1.1-1.1-1.1 -0.6 0-1.1 0.5-1.1 1.1l0 45.1 -8-8c-0.4-0.4-1.2-0.4-1.6 0 -0.4 0.4-0.4 1.2 0 1.6l9.9 10c0.4 0.4 1.1 0.4 1.6 0l9.9-10Z" fill="#707070"/></svg>
+      </button>
+    </div>
+
+    <div id="fullpage" class="scroll-container page-wrap">
+      
       <div id="intro" class="section intro light active">
         <section class="content push-up">
           <div class="wrap hide-left">

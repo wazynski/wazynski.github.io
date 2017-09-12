@@ -22,15 +22,15 @@ Stylesheet: Footer
 
   order: -1;
 
-  &.about-page {
-    background: $base;
-
-    dl {
-      dt {
-        color: $white;
-      }
-    }
-  }
+  // &.about-page {
+  //   background: $base;
+  //
+  //   dl {
+  //     dt {
+  //       color: $white;
+  //     }
+  //   }
+  // }
 
   .content {
     display: block; // not flex
@@ -75,6 +75,12 @@ Stylesheet: Footer
   @media screen and (min-width: $sm-desktop) {
     span {
       display: inline;
+    }
+  }
+
+  @media screen and (min-width: $xl-desktop) {
+    .content {
+      padding: 5rem 4.6875rem 3.125rem;
     }
   }
 }

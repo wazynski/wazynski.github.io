@@ -8,14 +8,47 @@ Stylesheet: Header
   Header
    ========================================================================== */
 
-.sticky-enabled {
+.fullscreen {
   .header {
-    @media screen and (min-width: $laptop) {
-      position: fixed;
+    position: fixed;
 
-      height: auto;
+    height: auto;
 
-      pointer-events: none;
+    pointer-events: none;
+
+    background: none;
+  }
+}
+
+// .page {
+//   .header {
+//     text-align: center;
+//
+//     a {
+//       padding-left: 0;
+//
+//       &::before {
+//         position: relative;
+//         top: 0;
+//
+//         margin: 0 auto 10px;
+//       }
+//
+//       &:hover {
+//         transform: translate(0, 20px);
+//       }
+//     }
+//   }
+// }
+
+.header.menu-alt .menu {
+  .hamburger {
+    span {
+      background: $linen;
+    }
+
+    &::before {
+      background: $linen;
     }
   }
 }
@@ -33,40 +66,130 @@ Stylesheet: Header
   transition: color .5s ease;
   text-transform: uppercase;
 
+  background: $background;
+
   line-height: 1;
 
-  @media screen and (min-width: $sm-desktop) {
-    position: fixed;
+  .menu {
+    position: relative;
 
-    height: auto;
+    float: right;
 
-    pointer-events: none;
-  }
+    margin-right: 15px;
+    padding-right: 50px;
 
+    cursor: pointer;
+    transition: all 750ms cubic-bezier(.645, .045, .355, 1);
+    text-transform: uppercase;
+    pointer-events: all;
 
+    border: 0;
+    outline: 0;
+    background: none;
 
-  .logo {
-    display: none;
+    font-size: .875rem;
+    line-height: 26px;
 
-    @media screen and (min-width: $tablet) {
+    &:hover,
+    &:focus {
+      padding-right: 40px;
+
+      .hamburger {
+        span {
+          background: $mustard;
+        }
+      }
+
+      .hamburger::before {
+        transform: translate(30px);
+      }
+
+      .hamburger::after {
+        transform: translate(-30px);
+      }
+    }
+
+    .hamburger {
       position: absolute;
-      z-index: -1;
-      top: -10px;
-      left: -75px;
+      top: 0;
+      right: 0;
 
-      display: block;
+      display: inline-block;
 
-      width: auto;
-      height: 50px;
+      width: 30px;
+      height: 30px;
+      padding-top: 4px;
 
-      transition: all 750ms ease-in-out;
+      transition: background 750ms cubic-bezier(.645, .045, .355, 1);
+      text-align: center;
+
+      border: 0;
+      border-radius: 50%;
+      background: $secondary;
+
+      &::before {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        right: 15px;
+
+        width: 30px;
+        height: 30px;
+
+        content: '';
+        transition: all 750ms cubic-bezier(.645, .045, .355, 1);
+        // opacity: .8;
+
+        border-radius: 50%;
+        background: $gainsboro;
+      }
+
+      &::after {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        right: -15px;
+
+        width: 30px;
+        height: 30px;
+
+        content: '';
+        transition: all 750ms cubic-bezier(.645, .045, .355, 1);
+        // opacity: .8;
+
+        border-radius: 50%;
+        background: $mustard;
+      }
+
+      span {
+        position: relative;
+        top: 5px;
+
+        display: block;
+
+        width: 16px;
+        height: 2px;
+        margin: 0 auto 2px;
+
+        transition: background 750ms cubic-bezier(.645, .045, .355, 1);
+
+        border-radius: .1rem;
+        // border-radius: 1px;
+        // background: $white;
+        background: $gainsboro;
+
+        &:last-child {
+          margin: 0 auto;
+        }
+      }
     }
   }
+
 
   a {
     position: relative;
     z-index: 1;
-    left: 0;
+    // left: 0;
 
     display: inline-block;
 
@@ -76,23 +199,42 @@ Stylesheet: Header
 
     color: $base;
 
+    &::after {
+      display: none;
+    }
+
     &::before {
       display: none;
     }
 
     @media screen and (min-width: $tablet) {
-      left: 60px;
-    }
+      padding-left: 85px;
 
-    &.hide-left {
-      left: -500px;
+      &::before {
+        position: absolute;
+        z-index: -1;
+        top: -14px;
+        left: 0;
+
+        display: block;
+
+        width: 75px;
+        height: 58px;
+
+        content: '';
+        transition: transform 750ms cubic-bezier(.645, .045, .355, 1);
+
+        background: url('../img/logo.svg') no-repeat center center;
+        background-size: contain;
+      }
     }
 
     &:hover {
-      padding-left: 10px;
+      transition: transform 750ms cubic-bezier(.645, .045, .355, 1);
+      transform: translate(20px);
 
-      .logo {
-        padding-left: 10px;
+      &::before {
+        transform: rotate(180deg);
       }
     }
   }
@@ -107,9 +249,21 @@ Stylesheet: Header
   }
 
   span {
+    display: inline-block;
+
+    max-width: 100px;
+
     color: $secondary;
 
     font-weight: 400;
+
+    @media screen and (min-width: 380px) {
+      max-width: 200px;
+    }
+
+    @media screen and (min-width: 540px) {
+      max-width: none;
+    }
   }
 
   &.light a {

@@ -102,6 +102,20 @@ Stylesheet: Sections
     font-size: 2.5rem;
   }
 
+  @media screen and (min-width: $xl-desktop) {
+    padding: 5rem 4.6875rem 3.125rem;
+
+    font-size: 2.75rem;
+  }
+
+  @media screen and (min-width: $xxl-desktop) {
+    font-size: 3rem;
+
+    h2 {
+      font-size: 1.125rem;
+    }
+  }
+
   &.push-up {
     // @media screen and (min-height: 1200px) and (max-width: $lg-desktop) {
     //   padding-bottom: 100px;
@@ -140,7 +154,11 @@ Stylesheet: Sections
     }
 
     @media screen and (min-width: $xl-desktop) {
-      max-width: 835px;
+      max-width: 60%;
+    }
+
+    @media screen and (min-width: $xxl-desktop) {
+      max-width: 60%;
     }
   }
 

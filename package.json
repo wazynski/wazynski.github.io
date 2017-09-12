@@ -1,0 +1,19 @@
+{
+  "name": "ninesenses",
+  "version": "1.0.0",
+  "description": "Ninesenses Website",
+  "main": "js/min/main-min.js",
+  "repository": "https://wazynski@github.com/wazynski/ninesenses.git",
+  "author": "Tom Skarbek-Wazynski <wazynski@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "xo": "^0.18.2"
+  },
+	"xo": {
+		"space": 2,
+    "globals": ["document", "window"],
+    "rules":  {
+      "no-extend-native": ["error", { "exceptions": ["Object"] }]
+    }
+  }
+}
