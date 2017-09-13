@@ -79,7 +79,7 @@ Stylesheet: Header
     padding-right: 50px;
 
     cursor: pointer;
-    transition: all 750ms cubic-bezier(.645, .045, .355, 1);
+    transition: all 750ms $easing;
     text-transform: uppercase;
     pointer-events: all;
 
@@ -120,7 +120,7 @@ Stylesheet: Header
       height: 30px;
       padding-top: 4px;
 
-      transition: background 750ms cubic-bezier(.645, .045, .355, 1);
+      transition: background 750ms $easing;
       text-align: center;
 
       border: 0;
@@ -137,7 +137,7 @@ Stylesheet: Header
         height: 30px;
 
         content: '';
-        transition: all 750ms cubic-bezier(.645, .045, .355, 1);
+        transition: all 750ms $easing;
         // opacity: .8;
 
         border-radius: 50%;
@@ -154,7 +154,7 @@ Stylesheet: Header
         height: 30px;
 
         content: '';
-        transition: all 750ms cubic-bezier(.645, .045, .355, 1);
+        transition: all 750ms $easing;
         // opacity: .8;
 
         border-radius: 50%;
@@ -171,7 +171,7 @@ Stylesheet: Header
         height: 2px;
         margin: 0 auto 2px;
 
-        transition: background 750ms cubic-bezier(.645, .045, .355, 1);
+        transition: background 750ms $easing;
 
         border-radius: .1rem;
         // border-radius: 1px;
@@ -222,7 +222,7 @@ Stylesheet: Header
         height: 58px;
 
         content: '';
-        transition: transform 750ms cubic-bezier(.645, .045, .355, 1);
+        transition: transform 750ms $easing;
 
         background: url('../img/logo.svg') no-repeat center center;
         background-size: contain;
@@ -230,7 +230,7 @@ Stylesheet: Header
     }
 
     &:hover {
-      transition: transform 750ms cubic-bezier(.645, .045, .355, 1);
+      transition: transform 750ms $easing;
       transform: translate(20px);
 
       &::before {

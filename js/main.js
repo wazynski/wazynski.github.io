@@ -104,14 +104,14 @@ nine.enableFullscreen = () => {
  * @returns {boolean}
  */
 nine.checkSticky = () => {
-  const el = document.createElement('a');
-  const mStyle = el.style;
-
-  mStyle.cssText = 'position:sticky;position:-webkit-sticky;position:-ms-sticky;';
-  let sticky = mStyle.position.indexOf('sticky') !== -1;
-
-  sticky = false; // Disable
-  return sticky;
+  return false;
+  // const el = document.createElement('a');
+  // const mStyle = el.style;
+  //
+  // mStyle.cssText = 'position:sticky;position:-webkit-sticky;position:-ms-sticky;';
+  // const sticky = mStyle.position.indexOf('sticky') !== -1;
+  //
+  // return sticky;
 };
 
 /**
@@ -158,9 +158,14 @@ nine.animateLoad = () => {
         el.classList.remove('hide-left');
       });
 
-      hidden = document.querySelectorAll('.hide-down');
+      hidden = document.querySelectorAll('.hide-right');
       Array.prototype.forEach.call(hidden, el => {
-        el.classList.remove('hide-down');
+        el.classList.remove('hide-right');
+      });
+
+      hidden = document.querySelectorAll('.background-hide');
+      Array.prototype.forEach.call(hidden, el => {
+        el.classList.remove('background-hide');
       });
     }, 1000);
   }, 1000);
@@ -519,6 +524,11 @@ nine.translateScroll = (endLocation, element, duration) => {
       '-webkit-transition': transition,
       transition
     });
+
+    nine.css(document.querySelector('.portrait'), {
+      '-webkit-transition': transition,
+      transition
+    });
   } else {
     nine.addClass(nine.scrollContainer, 'notransition');
   }
@@ -546,8 +556,14 @@ nine.translateScroll = (endLocation, element, duration) => {
  */
 nine.translatePortrait = endLocation => {
   const portrait = document.querySelector('.portrait');
-  const portraitPosition = 'translate3d(0px, ' + endLocation + 'px, 0px)';
-  nine.setTransforms(portrait, portraitPosition);
+
+  if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+    const top = endLocation + 'px';
+    nine.css(portrait, {top});
+  } else {
+    const portraitPosition = 'translate3d(0px, ' + endLocation + 'px, 0px)';
+    nine.setTransforms(portrait, portraitPosition);
+  }
 };
 
 /**
@@ -557,10 +573,6 @@ nine.translatePortrait = endLocation => {
  * @param {Integer} duration    How long in ms should we take to scroll
  */
 nine.animateScroll = (endLocation, element, duration) => {
-  console.log('1');
-  console.log(endLocation);
-  console.log(element);
-  console.log(duration);
   nine.canScroll = false;
 
   if (endLocation === null) {
@@ -582,12 +594,9 @@ nine.animateScroll = (endLocation, element, duration) => {
   let timeLapsed = 0;
   let percentage;
   let position;
-  console.log('2');
   const easing = function (progress) {
     return progress < 0.5 ? 4 * progress * progress * progress : ((progress - 1) * ((2 * progress) - 2) * ((2 * progress) - 2)) + 1; // Acceleration until halfway, then deceleration
   };
-
-  console.log('3');
 
   function stopAnimationIfRequired(pos) {
     if (pos === endLocation) {
@@ -597,14 +606,11 @@ nine.animateScroll = (endLocation, element, duration) => {
   }
 
   function finishedScroll() {
-    console.log('finishedScroll');
     // Remove active status from all
     nine.canScroll = true;
     nine.scrollDirection = null;
     nine.scrollEnd(element);
   }
-
-  console.log('4');
 
   const animate = function () {
     timeLapsed += 16;
@@ -620,15 +626,10 @@ nine.animateScroll = (endLocation, element, duration) => {
     stopAnimationIfRequired(position);
   };
 
-  console.log('5');
-
   nine.scrollStart(element);
-
-  console.log('6');
 
   // Loop the animation function
   runAnimation = window.requestAnimationFrame(animate);
-  console.log('7');
 };
 
 /**
@@ -636,7 +637,6 @@ nine.animateScroll = (endLocation, element, duration) => {
  * @param {Object} element Element we are scrolling to
  */
 nine.scrollStart = element => {
-  console.log('scrollStart - start');
   // Change header class - duration is same as slide duration for natural feel.
   if (element.classList.value.includes('light')) {
     nine.changeHeaderClass('dark');
@@ -663,7 +663,6 @@ nine.scrollStart = element => {
     nine.addClass(element, 'active');
     nine.updateControls(nine.getSectionIndex(element));
   }, nine.scrollDuration * 0.33);
-  console.log('scrollStart - end');
 };
 
  /**
@@ -671,7 +670,6 @@ nine.scrollStart = element => {
   * @param {Object} element Element we are scrolling to
   */
 nine.scrollEnd = element => {
-  console.log('scrollEnd - start');
   if (element === null) {
     return;
   } // No element
@@ -681,7 +679,6 @@ nine.scrollEnd = element => {
   nine.updateCurrent(element);
   nine.addClass(document.body, element.id + '-active');
   nine.updateControls();
-  console.log('scrollEnd - end');
 };
 
 /**
@@ -698,9 +695,6 @@ nine.updateCurrent = element => {
  * @returns {Integer} ScrollTop in pixels
  */
 nine.getScrolledPosition = () => {
-  console.log('==========');
-  console.log(document.documentElement.scrollTop || nine.scrollContainer.scrollTop);
-  console.log('==========');
   return document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
 };
 
@@ -708,9 +702,13 @@ nine.getScrolledPosition = () => {
  * resetPosition - Resets fullscreen to correct position after browser resize event
  */
 nine.resetPosition = () => {
+  console.log('here');
+  console.log(nine.fullscreen);
   if (nine.fullscreen === true) {
     let section;
     let destiny;
+
+    console.log('1');
 
     if (nine.currentPage === null) {
       section = document.querySelectorAll('.sections')[0];
