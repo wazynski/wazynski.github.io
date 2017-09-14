@@ -3,7 +3,6 @@
    ========================================================================== */
 
 const nine = {
-  sticky: false,
   fullscreen: false,
   currentPageIndex: null,
   currentPage: null,
@@ -103,37 +102,6 @@ nine.enableFullscreen = () => {
     nine.fullscreen = false;
     nine.removeClass(document.body, 'fullscreen');
     nine.removeClass(document.body, 'no-css3');
-  }
-};
-
-/**
- * checkSticky - Checks if browser supports CSS property position:sticky
- *
- * @returns {boolean}
- */
-nine.checkSticky = () => {
-  const el = document.createElement('a');
-  const mStyle = el.style;
-
-  mStyle.cssText = 'position:sticky;position:-webkit-sticky;position:-ms-sticky;';
-  const sticky = mStyle.position.indexOf('sticky') !== -1;
-
-  return sticky;
-};
-
-/**
- * enableSticky - Adds CSS classes required for position: sticky to be used.
- *
- * @returns {boolean}
- */
-nine.enableSticky = () => {
-  if (nine.checkSticky() && nine.checkFullscreen()) {
-    nine.sticky = true;
-    nine.fullscreen = true;
-    document.body.classList.add('sticky-enabled');
-  } else {
-    nine.sticky = false;
-    document.body.classList.remove('sticky-enabled');
   }
 };
 
@@ -291,7 +259,6 @@ nine.masonaryHeight = () => {
 nine.fullscreenMode = debounced => {
   if (nine.checkFullscreen() && nine.fullscreen === false) {
     nine.enableFullscreen();
-    nine.enableSticky();
     nine.hashChangeLisener();
     nine.addFullscreenNav();
     nine.addKeyboardNav();
@@ -300,7 +267,6 @@ nine.fullscreenMode = debounced => {
     nine.detectswipe('fullpage', nine.handleSwipe);
   } else if (nine.checkFullscreen() === false && nine.fullscreen === true) { // Used to be on but now can't be so disable
     nine.enableFullscreen(); // Will toggle off due to failing test
-    nine.enableSticky(); // Will toggle off due to failing fullscreen test
     nine.removeFullscreenNav();
     nine.removeKeyboardNav();
     nine.removeScrollInput();
@@ -332,8 +298,7 @@ nine.setCurrentPage = () => {
     if (element) {
       nine.updateCurrent(element);
       nine.scrollStart(element); // Simulate start of scroll to set all calsses correctly.
-      // nine.scrollToSection(element.id); // Make sure we are definley at the correct section.
-      nine.silentScrollToSection(element.id);
+      nine.scrollToSection(element.id, 0); // Make sure we are definley at the correct section.
     }
   } else {
     nine.updateCurrent(document.querySelectorAll('.section')[0]);
@@ -373,145 +338,33 @@ nine.hashChangeHandler = () => {
 /**
  * scrollToSection - Scorlls slideshow to the section
  * @param {String}  elementId Id of the element to be scrolled to
- * @param {Integer} offset   Pixel offset that needs to be taken into account
  */
-nine.scrollToSection = (elementId, offset) => {
+nine.scrollToSection = (elementId, duration) => {
   const element = document.getElementById(elementId);
 
   if (element === null) {
     return;
-  } // No element
-
-  // If there is a gap between slides increase the duration by the gap.
-  // var gap = Math.abs(nine.currentPageIndex - nine.getSectionIndex(element));
-  // var duration = nine.scrollDuration * gap;
-  const duration = nine.scrollDuration;
-
-  const destiny = nine.calculateDestiny(element, offset);
-
-  if (nine.supports3d) {
-    nine.translateScroll(destiny, element, duration);
-  } else {
-    nine.animateScroll(destiny, element, duration);
-  }
-};
-
-/**
- * silentScrollToSection - Scrolls to section with a duration of 0 to quick jump.
- * @param {String}  elementId ID of the element to be scrolled to
- * @param {Integer} offset    Pixel offset that needs to be taken into account
- */
-nine.silentScrollToSection = (elementId, offset) => {
-  const element = document.getElementById(elementId);
-
-  if (element === null) {
-    return;
-  } // No element
-
-  // If there is a gap between slides increase the duration by the gap.
-  // var gap = Math.abs(nine.currentPageIndex - nine.getSectionIndex(element));
-  // var duration = nine.scrollDuration * gap;
-  const duration = 0;
-
-  const destiny = nine.calculateDestiny(element, offset);
-
-  if (nine.supports3d) {
-    nine.translateScroll(destiny, element, duration);
-  } else {
-    nine.animateScroll(destiny, element, duration);
-  }
-};
-
-/**
- * calculateOffset - If user has scrolled half way onto a section, calulate offset
- *                   required to get to next slide. Only needed if positioon: sticky being used
- * @returns {Integer} The offset in pixels.
- */
-nine.calculateOffset = () => {
-  let offset = 0;
-
-  // If user has manuall scrolled part way onto next one there will be an offset to account for.
-  if (nine.sticky) {
-    if (nine.currentPageIndex + 1 < nine.pages.length) {
-      const nextPageOffset = document.getElementById(nine.pages[nine.currentPageIndex + 1].id).offsetTop;
-      let prevPage;
-
-      if (nine.currentPageIndex - 1 >= 0) {
-        prevPage = nine.pages[nine.currentPageIndex - 1].id;
-      } else {
-        prevPage = nine.pages[nine.currentPageIndex].id;
-      }
-
-      const prevPageEl = document.getElementById(prevPage);
-      const prevPageOffsetBottom = prevPageEl.offsetTop + prevPageEl.offsetHeight;
-
-      if (nextPageOffset !== prevPageOffsetBottom) {
-        offset = prevPageOffsetBottom - nextPageOffset;
-      }
-    } else {
-      const scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
-      const currentPageOffset = document.getElementById(nine.pages[nine.currentPageIndex].id).offsetTop;
-
-      if (scrollPosition !== currentPageOffset) {
-        offset = scrollPosition - currentPageOffset;
-      }
-    }
-    return offset;
-  }
-  return 0;
-};
-
-/**
- * calculateGap - If there is slides between the current and target there is a
- *                gap that needs calculating and offseting
- * @param   {Integer} newIndex The index of the new slide
- * @param   {Object}  element  The element being traveled to
- * @param   {Integer} offset   Any currently caclulated offset
- * @returns {Integer} New offset
- */
-nine.calculateGap = (newIndex, element, offset) => {
-  const gap = Math.abs(nine.currentPageIndex - newIndex) - 1;
-
-  for (let i = 1; i <= gap; i++) {
-    offset += element.offsetHeight;
   }
 
-  offset += nine.calculateOffset();
-
-  return offset;
-};
-
-/**
- * nine.calculateDestiny - Works out direction and depending on position: sticky and corrects offset.
- * @param   {Object} element The element to travel to
- * @param   {Integer} offset  Any existing offset
- * @returns {Integer} New offset
- */
-nine.calculateDestiny = (element, offset) => {
-  let destiny;
-
-  if (typeof offset === 'undefined') {
-    offset = 0;
+  if (duration === null || duration === undefined) {
+    duration = nine.scrollDuration;
   }
 
   const newIndex = nine.getSectionIndex(element);
+
   if (newIndex > nine.currentPageIndex) {
     nine.scrollDirection = 'down';
   } else if (newIndex < nine.currentPageIndex) {
     nine.scrollDirection = 'up';
-    if (nine.sticky) {
-      offset = nine.calculateGap(newIndex, element, offset);
-    }
   }
 
-  // Calculate the pixel position of the element, using offset if required
-  if (nine.scrollDirection === 'up' && nine.sticky === true) {
-    destiny = element.offsetTop - element.offsetHeight - offset;
+  const destiny = element.offsetTop;
+
+  if (nine.supports3d) {
+    nine.translateScroll(destiny, element, duration);
   } else {
-    destiny = element.offsetTop - offset;
+    nine.animateScroll(destiny, element, duration);
   }
-
-  return destiny;
 };
 
 /**
@@ -715,7 +568,6 @@ nine.getScrolledPosition = () => {
 nine.resetPosition = () => {
   if (nine.fullscreen === true) {
     let section;
-    let destiny;
 
     if (nine.currentPage === null) {
       section = document.querySelectorAll('.sections')[0];
@@ -725,13 +577,7 @@ nine.resetPosition = () => {
       section = document.getElementById(nine.currentPage);
     }
 
-    const offset = nine.calculateOffset();
-
-    if (nine.sticky && offset > 0) {
-      destiny = section.offsetTop - offset;
-    } else {
-      destiny = section.offsetTop;
-    }
+    const destiny = section.offsetTop;
 
     if (nine.supports3d) {
       nine.translateScroll(destiny, section, 0);
