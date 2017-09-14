@@ -15,7 +15,11 @@ const nine = {
   prevTime: new Date().getTime(),
   scrollHistory: [],
   fullScreenEnableFrom: 768,
-  supports3d: false
+  supports3d: false,
+  isTouchDevice: navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/),
+  isTouch: (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints)),
+  touchStartY: 0,
+  touchEndY: 0
 };
 
 /* ==========================================================================
@@ -63,6 +67,10 @@ nine.support3d = () => {
 nine.checkFullscreen = () => {
   let fullscreen = true;
 
+  // Remove any exisiting translates as this will affect height.
+  nine.scrollContainer.removeAttribute('style');
+  document.querySelector('.portrait').removeAttribute('style');
+
   const windowHeight = nine.windowSize().h;
   const windowWidth = nine.windowSize().w;
 
@@ -104,14 +112,13 @@ nine.enableFullscreen = () => {
  * @returns {boolean}
  */
 nine.checkSticky = () => {
-  return false;
-  // const el = document.createElement('a');
-  // const mStyle = el.style;
-  //
-  // mStyle.cssText = 'position:sticky;position:-webkit-sticky;position:-ms-sticky;';
-  // const sticky = mStyle.position.indexOf('sticky') !== -1;
-  //
-  // return sticky;
+  const el = document.createElement('a');
+  const mStyle = el.style;
+
+  mStyle.cssText = 'position:sticky;position:-webkit-sticky;position:-ms-sticky;';
+  const sticky = mStyle.position.indexOf('sticky') !== -1;
+
+  return sticky;
 };
 
 /**
@@ -290,6 +297,7 @@ nine.fullscreenMode = debounced => {
     nine.addKeyboardNav();
     nine.addScrollInput();
     nine.setCurrentPage();
+    nine.detectswipe('fullpage', nine.handleSwipe);
   } else if (nine.checkFullscreen() === false && nine.fullscreen === true) { // Used to be on but now can't be so disable
     nine.enableFullscreen(); // Will toggle off due to failing test
     nine.enableSticky(); // Will toggle off due to failing fullscreen test
@@ -556,13 +564,16 @@ nine.translateScroll = (endLocation, element, duration) => {
  */
 nine.translatePortrait = endLocation => {
   const portrait = document.querySelector('.portrait');
-
-  if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-    const top = endLocation + 'px';
-    nine.css(portrait, {top});
+  if (nine.windowSize().w >= 1024) {
+    if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+      const top = endLocation + 'px';
+      nine.css(portrait, {top});
+    } else {
+      const portraitPosition = 'translate3d(0px, ' + endLocation + 'px, 0px)';
+      nine.setTransforms(portrait, portraitPosition);
+    }
   } else {
-    const portraitPosition = 'translate3d(0px, ' + endLocation + 'px, 0px)';
-    nine.setTransforms(portrait, portraitPosition);
+    document.querySelector('.portrait').removeAttribute('style');
   }
 };
 
@@ -702,13 +713,9 @@ nine.getScrolledPosition = () => {
  * resetPosition - Resets fullscreen to correct position after browser resize event
  */
 nine.resetPosition = () => {
-  console.log('here');
-  console.log(nine.fullscreen);
   if (nine.fullscreen === true) {
     let section;
     let destiny;
-
-    console.log('1');
 
     if (nine.currentPage === null) {
       section = document.querySelectorAll('.sections')[0];
@@ -1263,3 +1270,76 @@ if (!String.prototype.includes) {
     return this.indexOf(search, start) !== -1;
   };
 }
+
+/**
+ * [detectswipe description]
+ * @param   {[type]} el   [description]
+ * @param   {[type]} func [description]
+ * @returns {[type]}
+ *
+ * https://stackoverflow.com/questions/15084675/how-to-implement-swipe-gestures-for-mobile-devices
+ */
+nine.detectswipe = (el, func) => {
+  const swipeDetection = {};
+  swipeDetection.sX = 0;
+  swipeDetection.sY = 0;
+  swipeDetection.eX = 0;
+  swipeDetection.eY = 0;
+  const minX = 30;  // min x swipe for horizontal swipe
+  const maxX = 30;  // max x difference for vertical swipe
+  const minY = 50;  // min y swipe for vertical swipe
+  const maxY = 60;  // max y difference for horizontal swipe
+  let direc = '';
+  const element = document.getElementById(el);
+  element.addEventListener('touchstart', e => {
+    const t = e.touches[0];
+    swipeDetection.sX = t.screenX;
+    swipeDetection.sY = t.screenY;
+  }, false);
+  element.addEventListener('touchmove', e => {
+    if (nine.fullscreen) {
+      nine.preventDefault(e);
+    }
+    const t = e.touches[0];
+    swipeDetection.eX = t.screenX;
+    swipeDetection.eY = t.screenY;
+  }, false);
+  element.addEventListener('touchend', () => {
+    // horizontal detection else if vertical detection
+    if ((((swipeDetection.eX - minX > swipeDetection.sX) || (swipeDetection.eX + minX < swipeDetection.sX)) && ((swipeDetection.eY < swipeDetection.sY + maxY) && (swipeDetection.sY > swipeDetection.eY - maxY) && (swipeDetection.eX > 0)))) {
+      if (swipeDetection.eX > swipeDetection.sX) {
+        direc = 'r';
+      } else {
+        direc = 'l';
+      }
+    } else if ((((swipeDetection.eY - minY > swipeDetection.sY) || (swipeDetection.eY + minY < swipeDetection.sY)) && ((swipeDetection.eX < swipeDetection.sX + maxX) && (swipeDetection.sX > swipeDetection.eX - maxX) && (swipeDetection.eY > 0)))) {
+      if (swipeDetection.eY > swipeDetection.sY) {
+        direc = 'd';
+      } else {
+        direc = 'u';
+      }
+    }
+
+    if (direc !== '') {
+      if (typeof func === 'function') {
+        func(direc);
+      }
+    }
+
+    direc = '';
+    swipeDetection.sX = 0;
+    swipeDetection.sY = 0;
+    swipeDetection.eX = 0;
+    swipeDetection.eY = 0;
+  }, false);
+};
+
+nine.handleSwipe = direction => {
+  if (nine.fullscreen && nine.isTouch) {
+    if (direction === 'u') {
+      nine.nextPage();
+    } else {
+      nine.prevPage();
+    }
+  }
+};

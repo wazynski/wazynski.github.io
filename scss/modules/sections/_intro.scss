@@ -17,11 +17,6 @@ Stylesheet: Intro
   background: $background url('../img/background.svg') no-repeat center center;
   background-size: contain;
 
-  @media screen and (min-height: 568px) {
-    height: calc(100vh - 86px);
-    min-height: calc(100vh - 86px);
-  }
-
   @media screen and (min-width: $tablet) {
     height: calc(100vh - 100px);
     min-height: calc(100vh - 100px);
