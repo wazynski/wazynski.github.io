@@ -21,15 +21,16 @@ Stylesheet: Sections
   top: 0;
 
   display: flex;
+  overflow: hidden;
 
   width: 100%;
 
   align-content: flex-end;
 
-  @media screen and (min-width: $tablet) {
-    min-height: 100%; // Fallbacks
-    min-height: 100vh; // Fallbacks
-  }
+  // @media screen and (min-width: $tablet) {
+  //   min-height: 100%; // Fallbacks
+  //   min-height: 100vh; // Fallbacks
+  // }
 
   &.intro {
     z-index: 10;

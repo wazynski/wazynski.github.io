@@ -4,30 +4,29 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Intro
 ========================================================================== */
-.fullscreen {
-  @media screen and (min-width: $tablet) {
-    .section.intro {
-      height: calc(100vh);
-      min-height: calc(100vh);
-    }
-  }
-}
+// .fullscreen {
+//   @media screen and (min-width: $tablet) {
+//     .section.intro {
+//       height: calc(100vh);
+//       min-height: calc(100vh);
+//     }
+//   }
+// }
 
 .section.intro {
   background: $background url('../img/background.svg') no-repeat center center;
   background-size: contain;
 
-  @media screen and (min-width: $tablet) {
-    height: calc(100vh - 100px);
-    min-height: calc(100vh - 100px);
-  }
+  // @media screen and (min-width: $tablet) {
+  //   height: calc(100vh - 100px);
+  //   min-height: calc(100vh - 100px);
+  // }
 
 
   @media screen and (min-width: $sm-desktop) {
-    height: 100%;
-    min-height: 100%;
-    min-height: 100vh;
-
+    // height: 100%;
+    // min-height: 100%;
+    // min-height: 100vh;
     background-position: 25px center;
   }
 
@@ -44,16 +43,6 @@ Stylesheet: Intro
       @media screen and (min-width: $xl-desktop) {
         // max-width: 835px;
       }
-    }
-  }
-}
-
-.sticky-enabled {
-  .section.intro {
-    @media screen and (min-width: $laptop) {
-      height: 100%;
-      min-height: 100%;
-      min-height: 100vh;
     }
   }
 }

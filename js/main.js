@@ -13,7 +13,8 @@ const nine = {
   scrollDirection: null,
   prevTime: new Date().getTime(),
   scrollHistory: [],
-  fullScreenEnableFrom: 768,
+  fullScreenWidthEnableFrom: 768,
+  fullScreenHeightEnableFrom: 928,
   supports3d: false,
   isTouchDevice: navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/),
   isTouch: (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints)),
@@ -64,27 +65,40 @@ nine.support3d = () => {
  * @returns {boolean}
  */
 nine.checkFullscreen = () => {
-  let fullscreen = true;
-
-  // Remove any exisiting translates as this will affect height.
-  nine.scrollContainer.removeAttribute('style');
-  document.querySelector('.portrait').removeAttribute('style');
-
+  // let fullscreen = true;
+  //
+  // // Remove any exisiting translates as this will affect height.
+  // nine.scrollContainer.removeAttribute('style');
+  // document.querySelector('.portrait').removeAttribute('style');
+  //
+  // const windowHeight = nine.windowSize().h;
+  // const windowWidth = nine.windowSize().w;
+  //
+  // if (windowWidth >= nine.fullScreenEnableFrom) {
+  //   // If any section is longer the window height disable fullscreen
+  //   nine.pages.forEach(el => {
+  //     if (el.offsetHeight > windowHeight) {
+  //       fullscreen = false;
+  //     }
+  //   });
+  // } else {
+  //   fullscreen = false;
+  // }
+  //
+  // return fullscreen;
+  //
+  //
   const windowHeight = nine.windowSize().h;
   const windowWidth = nine.windowSize().w;
 
-  if (windowWidth >= nine.fullScreenEnableFrom) {
-    // If any section is longer the window height disable fullscreen
-    nine.pages.forEach(el => {
-      if (el.offsetHeight > windowHeight) {
-        fullscreen = false;
-      }
-    });
-  } else {
-    fullscreen = false;
+  document.querySelector('.dim').innerHTML = windowWidth + ' ' + windowHeight;
+  console.log(windowWidth + ' ' + windowHeight);
+
+  if (windowHeight >= nine.fullScreenHeightEnableFrom && windowWidth >= nine.fullScreenWidthEnableFrom) {
+    return true;
   }
 
-  return fullscreen;
+  return false;
 };
 
 /**
@@ -98,6 +112,19 @@ nine.enableFullscreen = () => {
     if (nine.supports3d === false) {
       nine.addClass(document.body, 'no-css3');
     }
+
+    const windowHeight = nine.windowSize().h + 'px';
+
+    nine.pages.forEach(el => {
+      console.log(el);
+      // nine.css(el, {
+      //   height: windowHeight
+      // });
+
+      el.style.height = windowHeight;
+
+      console.log(el);
+    });
   } else {
     nine.fullscreen = false;
     nine.removeClass(document.body, 'fullscreen');
@@ -1155,14 +1182,18 @@ nine.detectswipe = (el, func) => {
     if ((((swipeDetection.eX - minX > swipeDetection.sX) || (swipeDetection.eX + minX < swipeDetection.sX)) && ((swipeDetection.eY < swipeDetection.sY + maxY) && (swipeDetection.sY > swipeDetection.eY - maxY) && (swipeDetection.eX > 0)))) {
       if (swipeDetection.eX > swipeDetection.sX) {
         direc = 'r';
+        console.log('r');
       } else {
         direc = 'l';
+        console.log('l');
       }
     } else if ((((swipeDetection.eY - minY > swipeDetection.sY) || (swipeDetection.eY + minY < swipeDetection.sY)) && ((swipeDetection.eX < swipeDetection.sX + maxX) && (swipeDetection.sX > swipeDetection.eX - maxX) && (swipeDetection.eY > 0)))) {
       if (swipeDetection.eY > swipeDetection.sY) {
         direc = 'd';
+        console.log('d');
       } else {
         direc = 'u';
+        console.log('u');
       }
     }
 
@@ -1181,6 +1212,7 @@ nine.detectswipe = (el, func) => {
 };
 
 nine.handleSwipe = direction => {
+  console.log(direction);
   if (nine.fullscreen && nine.isTouch) {
     if (direction === 'u') {
       nine.nextPage();
