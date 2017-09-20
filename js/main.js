@@ -66,33 +66,8 @@ nine.support3d = () => {
  * @returns {boolean}
  */
 nine.checkFullscreen = () => {
-  // let fullscreen = true;
-  //
-  // // Remove any exisiting translates as this will affect height.
-  // nine.scrollContainer.removeAttribute('style');
-  // document.querySelector('.portrait').removeAttribute('style');
-  //
-  // const windowHeight = nine.windowSize().h;
-  // const windowWidth = nine.windowSize().w;
-  //
-  // if (windowWidth >= nine.fullScreenEnableFrom) {
-  //   // If any section is longer the window height disable fullscreen
-  //   nine.pages.forEach(el => {
-  //     if (el.offsetHeight > windowHeight) {
-  //       fullscreen = false;
-  //     }
-  //   });
-  // } else {
-  //   fullscreen = false;
-  // }
-  //
-  // return fullscreen;
-  //
-  //
   const windowHeight = nine.windowSize().h;
   const windowWidth = nine.windowSize().w;
-
-  document.querySelector('.dim').innerHTML = windowWidth + ' ' + windowHeight;
 
   if (windowHeight >= nine.fullScreenHeightEnableFrom && windowWidth >= nine.fullScreenWidthEnableFrom) {
     return true;
@@ -176,38 +151,36 @@ nine.animateLoad = () => {
   }, 1000);
 };
 
-// nine.animatePortrait = () => {
-//   const portrait = document.querySelector('.portrait .faded');
-//
-//   if (portrait) {
-//     nine.scrollContainer.addEventListener('scroll', () => {
-//       nine.portraitChange();
-//     });
-//   }
-// };
-//
-// nine.portraitChange = () => {
-//   const page = document.getElementById('about');
-//   let offsetTop = page.offsetTop;
-//   let startPoint = 0.98;
-//
-//   const portrait = document.querySelector('.portrait .faded');
-//   const scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
-//
-//   if (nine.windowSize().w > 1280) {
-//     startPoint = 0.5;
-//   } else if (nine.windowSize().w < 1024) {
-//     offsetTop = page.offsetHeight + document.getElementById('intro').offsetHeight - portrait.offsetHeight;
-//   }
-//
-//   if (scrollPosition > offsetTop * startPoint) {
-//     if (portrait.style.opacity === 0) {
-//       portrait.style.opacity = 1;
-//     }
-//   } else if (portrait.style.opacity === 1) {
-//     portrait.style.opacity = 0;
-//   }
-// };
+nine.animatePortrait = () => {
+  const portrait = document.querySelector('.portrait .faded');
+
+  if (portrait) {
+    window.addEventListener('scroll', () => {
+      nine.portraitChange();
+    });
+  }
+};
+
+nine.portraitChange = () => {
+
+  if (!nine.fullscreen) {
+    const page = document.getElementById('about');
+    const offsetTop = page.offsetTop;
+
+    const portrait = document.querySelector('.portrait .faded');
+    const startPoint = 1.25;
+
+    const scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop || document.body.scrollTop;
+
+    if (scrollPosition > offsetTop * startPoint) {
+      if (portrait.style.opacity === '' || portrait.style.opacity === '0') {
+        portrait.style.opacity = 1;
+      }
+    } else if (portrait.style.opacity === '1') {
+      portrait.style.opacity = 0;
+    }
+  }
+};
 
 /**
  * pageTransisition - Chnages background color, fades out body and redirects to href
@@ -1203,6 +1176,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   nine.masonaryHeight();
   nine.animateLinks();
+  nine.animatePortrait();
 
   window.addEventListener('resize', () => {
     nine.masonaryHeight();
