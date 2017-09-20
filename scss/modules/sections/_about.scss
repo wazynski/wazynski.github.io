@@ -7,6 +7,13 @@ Stylesheet: About
 $portrait-detach: $laptop;
 
 .section.about {
+  overflow: visible; // Required for portrait to show on Webkit
+
+  padding-bottom: 400px;
+
+  transform: translate3d(0, 0, 0); // Flicker on mobile fix https://stackoverflow.com/questions/12278587/webkit-text-flickers-when-using-css-transform-scale
+  // -webkit-backface-visibility: hidden;
+
   flex-wrap: wrap;
 
   .content {
@@ -30,6 +37,14 @@ $portrait-detach: $laptop;
 
   @media screen and (min-width: $portrait-detach) {
     flex-direction: row;
+
+    padding-bottom: 0;
+
+    transform: none;
+
+    .content {
+      padding-bottom: 3.125rem;
+    }
   }
 
   a {
@@ -47,22 +62,34 @@ $portrait-detach: $laptop;
   }
 }
 
-
 /* ==========================================================================
   Portrait
    ========================================================================== */
 
-.portrait {
-  position: relative;
+.fullscreen .portrait {
+  position: fixed; // to fix flickr issue on webkit.
+}
 
-  width: 100%;
+.portrait {
+  position: absolute;
+  z-index: 400;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
   height: 400px;
+
+  transform: translate3d(0, 0, 0); // Flicker on mobile fix https://stackoverflow.com/questions/12278587/webkit-text-flickers-when-using-css-transform-scale
+
+  // -webkit-backface-visibility: hidden;
 
   @media screen and (min-width: $portrait-detach) {
     position: fixed;
     z-index: 400;
     top: 0;
-    right: 0;
+    right: 75px;
+    bottom: auto;
+    left: auto;
 
     display: block;
 
@@ -80,22 +107,28 @@ $portrait-detach: $laptop;
 
   div {
     position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
     width: 100%;
     height: 500px;
 
     transition: opacity 750ms linear;
+    transform: translate3d(0, 0, 0); // Flicker on mobile fix https://stackoverflow.com/questions/12278587/webkit-text-flickers-when-using-css-transform-scale
 
+    background-image: url('../img/tom-side.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    // -webkit-backface-visibility: hidden;
 
     @media screen and (min-width: $portrait-detach) {
-      top: 0;
-      bottom: 0;
-
       height: auto;
-      margin-top: 125px;
+      // margin-top: 125px; // With menu
+      margin-top: 50px;
       margin-bottom: 50px;
     }
 
@@ -108,12 +141,6 @@ $portrait-detach: $laptop;
 
       opacity: 0;
       background-image: url('../img/tom-front.jpg');
-    }
-
-    &:last-child {
-      z-index: 1;
-
-      background-image: url('../img/tom-side.jpg');
     }
   }
 }
@@ -249,7 +276,7 @@ $portrait-detach: $laptop;
     &.skills {
       padding-bottom: 1.25rem;
 
-      background: $beau-blue;
+      background: $background;
 
       @media screen and (min-width: $tablet) {
         padding-bottom: 1.875rem;
@@ -260,7 +287,7 @@ $portrait-detach: $laptop;
   .masonary {
     height: auto;
 
-    background: $beau-blue;
+    background: $background;
   }
 
 

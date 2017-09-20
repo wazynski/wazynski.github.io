@@ -14,6 +14,8 @@ Stylesheet: Intro
 // }
 
 .section.intro {
+  transform: translate3d(0, 0, 0); // Flicker on mobile fix https://stackoverflow.com/questions/12278587/webkit-text-flickers-when-using-css-transform-scale
+
   background: $background url('../img/background.svg') no-repeat center center;
   background-size: contain;
 

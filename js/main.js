@@ -14,12 +14,13 @@ const nine = {
   prevTime: new Date().getTime(),
   scrollHistory: [],
   fullScreenWidthEnableFrom: 768,
-  fullScreenHeightEnableFrom: 928,
+  fullScreenHeightEnableFrom: 672,
   supports3d: false,
   isTouchDevice: navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/),
   isTouch: (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints)),
   touchStartY: 0,
-  touchEndY: 0
+  touchEndY: 0,
+  touchSensitivity: 5
 };
 
 /* ==========================================================================
@@ -92,7 +93,6 @@ nine.checkFullscreen = () => {
   const windowWidth = nine.windowSize().w;
 
   document.querySelector('.dim').innerHTML = windowWidth + ' ' + windowHeight;
-  console.log(windowWidth + ' ' + windowHeight);
 
   if (windowHeight >= nine.fullScreenHeightEnableFrom && windowWidth >= nine.fullScreenWidthEnableFrom) {
     return true;
@@ -105,9 +105,15 @@ nine.checkFullscreen = () => {
  * enableFullscreen - Adds CSS classes required for fullscreen supports3
  */
 nine.enableFullscreen = () => {
+  const html = document.getElementsByTagName('html')[0];
+
   if (nine.checkFullscreen()) {
     nine.fullscreen = true;
     nine.addClass(document.body, 'fullscreen');
+
+    nine.css(html, {
+      overflow: 'hidden'
+    });
 
     if (nine.supports3d === false) {
       nine.addClass(document.body, 'no-css3');
@@ -116,18 +122,15 @@ nine.enableFullscreen = () => {
     const windowHeight = nine.windowSize().h + 'px';
 
     nine.pages.forEach(el => {
-      console.log(el);
-      // nine.css(el, {
-      //   height: windowHeight
-      // });
-
       el.style.height = windowHeight;
-
-      console.log(el);
+      el.style.minHeight = windowHeight;
     });
   } else {
     nine.fullscreen = false;
     nine.removeClass(document.body, 'fullscreen');
+    nine.css(html, {
+      overflow: 'auto'
+    });
     nine.removeClass(document.body, 'no-css3');
   }
 };
@@ -291,12 +294,13 @@ nine.fullscreenMode = debounced => {
     nine.addKeyboardNav();
     nine.addScrollInput();
     nine.setCurrentPage();
-    nine.detectswipe('fullpage', nine.handleSwipe);
+    nine.enableTouch();
   } else if (nine.checkFullscreen() === false && nine.fullscreen === true) { // Used to be on but now can't be so disable
     nine.enableFullscreen(); // Will toggle off due to failing test
     nine.removeFullscreenNav();
     nine.removeKeyboardNav();
     nine.removeScrollInput();
+    nine.disableTouch();
   }
 
   if (debounced) {
@@ -604,6 +608,14 @@ nine.resetPosition = () => {
       section = document.getElementById(nine.currentPage);
     }
 
+    // Reset height
+    const windowHeight = nine.windowSize().h + 'px';
+
+    nine.pages.forEach(el => {
+      el.style.height = windowHeight;
+      el.style.minHeight = windowHeight;
+    });
+
     const destiny = section.offsetTop;
 
     if (nine.supports3d) {
@@ -788,7 +800,7 @@ nine.prevPage = repeat => {
 };
 
 /* ==========================================================================
-  Inputs
+  keyboard
   ========================================================================== */
 
 /**
@@ -838,6 +850,10 @@ nine.addKeyboardNav = () => {
 nine.removeKeyboardNav = () => {
   document.onkeydown = null;
 };
+
+/* ==========================================================================
+  Scrolling
+   ========================================================================== */
 
 /**
  * addScrollInput - Handle scroll input to naviagte to slides
@@ -923,9 +939,9 @@ nine.mouseWheelHandler = e => {
 
     if (isAccelerating) {
       if (delta < 0) { // Scrolling down?
-        nine.scrolling('down');
+        nine.nextPage();
       } else { // Scrolling up?
-        nine.scrolling('up');
+        nine.prevPage();
       }
     }
   }
@@ -933,16 +949,94 @@ nine.mouseWheelHandler = e => {
   return false;
 };
 
+/* ==========================================================================
+  Touch
+   ========================================================================== */
+
 /**
- * scrolling - Calls prevPage() or nextPage() depending on scroll direction type
- * @param   {String} type
+ * enableTouch
  */
-nine.scrolling = type => {
-  if (type === 'down') {
-    nine.nextPage();
-  } else {
-    nine.prevPage();
+nine.enableTouch = () => {
+  if (nine.isTouchDevice || nine.isTouch) {
+    window.addEventListener('touchstart', nine.touchStartHandler, {passive: false});
+    window.addEventListener('touchmove', nine.touchMoveHandler, {passive: false});
   }
+};
+
+/**
+ * disableTouch
+ */
+nine.disableTouch = () => {
+  if (nine.isTouchDevice || nine.isTouch) {
+    window.removeEventListener('touchstart', nine.touchStartHandler, {passive: false});
+    window.removeEventListener('touchmove', nine.touchMoveHandler, {passive: false});
+  }
+};
+
+/**
+* touchStartHandler - on touch start record touch start positions
+* @param   {object} event
+*/
+nine.touchStartHandler = event => {
+  const e = window.event || event || event.originalEvent;
+
+  if (nine.isReallyTouch(e)) {
+    const touchEvents = nine.getEventsPage(e);
+    nine.touchStartY = touchEvents.y;
+    nine.touchStartX = touchEvents.x;
+  }
+};
+
+/**
+* touchMoveHandler - on touch move calulate the direction and call next or prev if valid
+* @param   {object} event
+*/
+nine.touchMoveHandler = event => {
+  const e = window.event || event || event.originalEvent;
+
+  if (nine.isReallyTouch(e)) {
+    nine.preventDefault(event);
+
+    const touchEvents = nine.getEventsPage(e);
+
+    if (nine.canScroll) {
+      nine.touchEndY = touchEvents.y;
+
+      if (Math.abs(nine.touchStartY - nine.touchEndY) > (nine.windowSize().h / 100 * nine.touchSensitivity)) {
+        if (nine.touchStartY > nine.touchEndY) { // down
+          nine.nextPage();
+        } else if (nine.touchEndY > nine.touchStartY) { // up
+          nine.prevPage();
+        }
+      }
+    }
+  }
+};
+
+/**
+* isReallyTouch - As IE >= 10 fires both touch and mouse events when using a mouse in a touchscreen
+*                 this way we make sure that is really a touch event what IE is detecting.
+* @param   {object}  e touch event
+* @returns {Boolean}
+*/
+nine.isReallyTouch = e => {
+ // If is not IE   ||  IE is detecting `touch` or `pen`
+  return typeof e.pointerType === 'undefined' || e.pointerType !== 'mouse';
+};
+
+/**
+* getEventsPage - Gets the pageX and pageY properties depending on the browser.
+*                 https://github.com/alvarotrigo/fullPage.js/issues/194#issuecomment-34069854
+* @param   {object} e touch event
+* @returns {object}
+*/
+nine.getEventsPage = e => {
+  const events = [];
+
+  events.y = (typeof e.pageY !== 'undefined' && (e.pageY || e.pageX) ? e.pageY : e.touches[0].pageY);
+  events.x = (typeof e.pageX !== 'undefined' && (e.pageY || e.pageX) ? e.pageX : e.touches[0].pageX);
+
+  return events;
 };
 
 /* ==========================================================================
@@ -1143,81 +1237,3 @@ if (!String.prototype.includes) {
     return this.indexOf(search, start) !== -1;
   };
 }
-
-/**
- * [detectswipe description]
- * @param   {[type]} el   [description]
- * @param   {[type]} func [description]
- * @returns {[type]}
- *
- * https://stackoverflow.com/questions/15084675/how-to-implement-swipe-gestures-for-mobile-devices
- */
-nine.detectswipe = (el, func) => {
-  const swipeDetection = {};
-  swipeDetection.sX = 0;
-  swipeDetection.sY = 0;
-  swipeDetection.eX = 0;
-  swipeDetection.eY = 0;
-  const minX = 30;  // min x swipe for horizontal swipe
-  const maxX = 30;  // max x difference for vertical swipe
-  const minY = 50;  // min y swipe for vertical swipe
-  const maxY = 60;  // max y difference for horizontal swipe
-  let direc = '';
-  const element = document.getElementById(el);
-  element.addEventListener('touchstart', e => {
-    const t = e.touches[0];
-    swipeDetection.sX = t.screenX;
-    swipeDetection.sY = t.screenY;
-  }, false);
-  element.addEventListener('touchmove', e => {
-    if (nine.fullscreen) {
-      nine.preventDefault(e);
-    }
-    const t = e.touches[0];
-    swipeDetection.eX = t.screenX;
-    swipeDetection.eY = t.screenY;
-  }, false);
-  element.addEventListener('touchend', () => {
-    // horizontal detection else if vertical detection
-    if ((((swipeDetection.eX - minX > swipeDetection.sX) || (swipeDetection.eX + minX < swipeDetection.sX)) && ((swipeDetection.eY < swipeDetection.sY + maxY) && (swipeDetection.sY > swipeDetection.eY - maxY) && (swipeDetection.eX > 0)))) {
-      if (swipeDetection.eX > swipeDetection.sX) {
-        direc = 'r';
-        console.log('r');
-      } else {
-        direc = 'l';
-        console.log('l');
-      }
-    } else if ((((swipeDetection.eY - minY > swipeDetection.sY) || (swipeDetection.eY + minY < swipeDetection.sY)) && ((swipeDetection.eX < swipeDetection.sX + maxX) && (swipeDetection.sX > swipeDetection.eX - maxX) && (swipeDetection.eY > 0)))) {
-      if (swipeDetection.eY > swipeDetection.sY) {
-        direc = 'd';
-        console.log('d');
-      } else {
-        direc = 'u';
-        console.log('u');
-      }
-    }
-
-    if (direc !== '') {
-      if (typeof func === 'function') {
-        func(direc);
-      }
-    }
-
-    direc = '';
-    swipeDetection.sX = 0;
-    swipeDetection.sY = 0;
-    swipeDetection.eX = 0;
-    swipeDetection.eY = 0;
-  }, false);
-};
-
-nine.handleSwipe = direction => {
-  console.log(direction);
-  if (nine.fullscreen && nine.isTouch) {
-    if (direction === 'u') {
-      nine.nextPage();
-    } else {
-      nine.prevPage();
-    }
-  }
-};

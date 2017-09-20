@@ -27,10 +27,10 @@ Stylesheet: Sections
 
   align-content: flex-end;
 
-  // @media screen and (min-width: $tablet) {
-  //   min-height: 100%; // Fallbacks
-  //   min-height: 100vh; // Fallbacks
-  // }
+  @media screen and (min-width: $tablet) {
+    min-height: 100%; // Fallbacks
+    min-height: 100vh; // Fallbacks
+  }
 
   &.intro {
     z-index: 10;
@@ -95,7 +95,9 @@ Stylesheet: Sections
 
   @media screen and (min-width: $tablet) {
     padding: 5rem 3.125rem 3.125rem;
+  }
 
+  @media screen and (min-width: $tablet) and (min-height: 850px) {
     font-size: 1.875rem;
   }
 

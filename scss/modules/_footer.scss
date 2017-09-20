@@ -4,6 +4,7 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Footer
 ========================================================================== */
+
 .section.contact {
   flex-direction: column-reverse;
 
@@ -13,7 +14,6 @@ Stylesheet: Footer
 }
 
 .footer {
-  // height: 170px;
   overflow: hidden;
 
   width: 100%;
@@ -21,16 +21,6 @@ Stylesheet: Footer
   background: $mustard;
 
   order: -1;
-
-  // &.about-page {
-  //   background: $base;
-  //
-  //   dl {
-  //     dt {
-  //       color: $white;
-  //     }
-  //   }
-  // }
 
   .content {
     display: block; // not flex
@@ -59,16 +49,18 @@ Stylesheet: Footer
   }
 
   @media screen and (min-width: $tablet) {
-    // height: 170px;
-
     .content {
-      display: block; // not flex
-
-      padding: 5rem 3.125rem 1.25rem;
+      padding: 2rem 3.125rem 1.25rem;
     }
 
     .wrap {
       font-size: 0;
+    }
+  }
+
+  @media screen and (min-width: $tablet) and (min-height: 850px) {
+    .content {
+      padding: 3.125rem 3.125rem 3.125rem;
     }
   }
 
