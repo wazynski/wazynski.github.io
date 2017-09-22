@@ -35,6 +35,10 @@ const nine = {
 * http://stackoverflow.com/questions/5661671/detecting-transform-translate3d-support
 */
 nine.support3d = () => {
+  if (navigator.userAgent.toLowerCase().indexOf('edge') > -1) {
+    return false;
+  }
+
   const el = document.createElement('p');
   let has3d;
   const transforms = {
@@ -96,7 +100,7 @@ nine.enableFullscreen = () => {
 
     const windowHeight = nine.windowSize().h + 'px';
 
-    nine.pages.forEach(el => {
+    Array.prototype.forEach.call(nine.pages, el => {
       el.style.height = windowHeight;
       el.style.minHeight = windowHeight;
     });
@@ -170,9 +174,7 @@ nine.portraitChange = () => {
     const portrait = document.querySelector('.portrait .faded');
     const startPoint = 1.25;
 
-    const scrollPosition = document.documentElement.scrollTop || nine.scrollContainer.scrollTop || document.body.scrollTop;
-
-    if (scrollPosition > offsetTop * startPoint) {
+    if (nine.getScrolledPosition() > offsetTop * startPoint) {
       if (portrait.style.opacity === '' || portrait.style.opacity === '0') {
         portrait.style.opacity = 1;
       }
@@ -381,7 +383,7 @@ nine.translateScroll = (endLocation, element, duration) => {
   const translate3d = 'translate3d(0px, -' + endLocation + 'px, 0px)';
 
   if (duration > 0) {
-    const transition = 'all ' + duration + 'ms ease';
+    const transition = 'all ' + duration + 'ms ease-in-out';
 
     nine.removeClass(nine.scrollContainer, 'notransition');
 
@@ -425,6 +427,9 @@ nine.translatePortrait = endLocation => {
     if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
       const top = endLocation + 'px';
       nine.css(portrait, {top});
+    } else if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) {
+      /* Microsoft Internet Explorer detected in 6-11. */
+      // Do nothing as posiution: fixed works as expected.
     } else {
       const portraitPosition = 'translate3d(0px, ' + endLocation + 'px, 0px)';
       nine.setTransforms(portrait, portraitPosition);
@@ -441,63 +446,45 @@ nine.translatePortrait = endLocation => {
  * @param {Integer} duration    How long in ms should we take to scroll
  */
 nine.animateScroll = (endLocation, element, duration) => {
-  nine.canScroll = false;
-
-  if (endLocation === null) {
-    return;
-  }
-
-  const startLocation = nine.getScrolledPosition();
-
   if (duration === null) {
     duration = nine.scrollDuration;
   }
 
-  // Calculate how far to scroll
-  const distance = endLocation - startLocation;
-
-  let runAnimation;
-
-  // Set the animation variables to 0/undefined.
-  let timeLapsed = 0;
-  let percentage;
-  let position;
-  const easing = function (progress) {
-    return progress < 0.5 ? 4 * progress * progress * progress : ((progress - 1) * ((2 * progress) - 2) * ((2 * progress) - 2)) + 1; // Acceleration until halfway, then deceleration
+  const start = nine.getScrolledPosition();
+  const startTime = 'now' in window.performance ? window.performance.now() : new Date().getTime();
+  const easing = function (t) {
+    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1; // Acceleration until halfway, then deceleration
   };
 
-  function stopAnimationIfRequired(pos) {
-    if (pos === endLocation) {
-      window.cancelAnimationFrame(runAnimation);
-      finishedScroll();
-    }
-  }
+  const destinationOffsetToScroll = endLocation;
 
-  function finishedScroll() {
-    // Remove active status from all
-    nine.canScroll = true;
-    nine.scrollDirection = null;
-    nine.scrollEnd(element);
-  }
+  function scroll() {
+    nine.canScroll = false;
 
-  const animate = function () {
-    timeLapsed += 16;
-    percentage = timeLapsed / duration;
-    if (percentage > 1) {
-      percentage = 1;
-      position = endLocation;
-    } else {
-      position = (startLocation + distance) * easing(percentage);
+    const now = 'now' in window.performance ? window.performance.now() : new Date().getTime();
+    const time = Math.min(1, ((now - startTime) / duration));
+    const timeFunction = easing(time);
+
+    const position = Math.ceil((timeFunction * (destinationOffsetToScroll - start)) + start);
+
+    if (nine.scrollContainer.scrollTop !== position) {
+      nine.scrollContainer.scrollTop = position;
     }
-    nine.scrollContainer.scrollTop = position;
-    runAnimation = window.requestAnimationFrame(animate);
-    stopAnimationIfRequired(position);
-  };
+
+    //  console.log('Now: ' + now + ' Start Time: ' + startTime + ' Time: ' + time + ' TF: ' + timeFunction + ' Des: ' + destinationOffsetToScroll + ' Start: ' + start + ' = Pos:' + position + ' ScrolTop: ' + nine.scrollContainer.scrollTop);
+
+    if (position === destinationOffsetToScroll) {
+      nine.canScroll = true;
+      nine.scrollDirection = null;
+      nine.scrollEnd(element);
+      return;
+    }
+
+    window.requestAnimationFrame(scroll);
+  }
 
   nine.scrollStart(element);
-
-  // Loop the animation function
-  runAnimation = window.requestAnimationFrame(animate);
+  scroll();
 };
 
 /**
@@ -506,7 +493,7 @@ nine.animateScroll = (endLocation, element, duration) => {
  */
 nine.scrollStart = element => {
   // Change header class - duration is same as slide duration for natural feel.
-  if (element.classList.value.includes('light')) {
+  if (element.classList.contains('light')) {
     nine.changeHeaderClass('dark');
   } else {
     nine.changeHeaderClass('light');
@@ -563,7 +550,7 @@ nine.updateCurrent = element => {
  * @returns {Integer} ScrollTop in pixels
  */
 nine.getScrolledPosition = () => {
-  return document.documentElement.scrollTop || nine.scrollContainer.scrollTop;
+  return document.documentElement.scrollTop || nine.scrollContainer.scrollTop || document.body.scrollTop;
 };
 
 /**
@@ -584,7 +571,7 @@ nine.resetPosition = () => {
     // Reset height
     const windowHeight = nine.windowSize().h + 'px';
 
-    nine.pages.forEach(el => {
+    Array.prototype.forEach.call(nine.pages, el => {
       el.style.height = windowHeight;
       el.style.minHeight = windowHeight;
     });
@@ -1182,6 +1169,7 @@ document.addEventListener('DOMContentLoaded', () => {
     nine.masonaryHeight();
   });
 
+  nine.translatePortrait();
   nine.fullscreenMode();
 });
 

@@ -101,19 +101,19 @@ Stylesheet: Sections
     font-size: 1.875rem;
   }
 
-  @media screen and (min-width: $lg-desktop) {
+  @media screen and (min-width: $lg-desktop) and (min-height: 850px) {
     padding: 5rem 3.125rem 3.125rem;
 
     font-size: 2.5rem;
   }
 
-  @media screen and (min-width: $xl-desktop) {
+  @media screen and (min-width: $xl-desktop) and (min-height: 850px) {
     padding: 5rem 4.6875rem 3.125rem;
 
     font-size: 2.75rem;
   }
 
-  @media screen and (min-width: $xxl-desktop) {
+  @media screen and (min-width: $xxl-desktop) and (min-height: 850px) {
     font-size: 3rem;
 
     h2 {

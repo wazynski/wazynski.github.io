@@ -41,18 +41,6 @@ Stylesheet: Header
 //   }
 // }
 
-.header.menu-alt .menu {
-  .hamburger {
-    span {
-      background: $linen;
-    }
-
-    &::before {
-      background: $linen;
-    }
-  }
-}
-
 .header {
   position: relative;
   z-index: 9999;
@@ -63,12 +51,23 @@ Stylesheet: Header
   height: 86px;
   padding: 1.25rem;
 
-  transition: color .5s ease;
   text-transform: uppercase;
 
   background: $background;
 
   line-height: 1;
+
+  &.menu-alt .menu {
+    .hamburger {
+      span {
+        background: $linen;
+      }
+
+      &::before {
+        background: $linen;
+      }
+    }
+  }
 
   .menu {
     position: relative;
@@ -193,7 +192,7 @@ Stylesheet: Header
 
     display: inline-block;
 
-    transition: all 750ms ease-in-out;
+    transition: all 750ms ease;
     text-decoration: none;
     pointer-events: all;
 
@@ -219,7 +218,7 @@ Stylesheet: Header
         display: block;
 
         width: 75px;
-        height: 58px;
+        height: 56px;
 
         content: '';
         transition: transform 750ms $easing;
@@ -239,6 +238,10 @@ Stylesheet: Header
     }
   }
 
+  h1 {
+    transition: color 750ms ease;
+  }
+
 
   h1,
   span {
@@ -253,7 +256,7 @@ Stylesheet: Header
 
     max-width: 100px;
 
-    color: $secondary;
+    color: $secondary !important;
 
     font-weight: 400;
 
@@ -266,12 +269,16 @@ Stylesheet: Header
     }
   }
 
-  &.light a {
-    color: $white;
+  &.light {
+    a h1 {
+      color: $white;
+    }
   }
 
-  &.dark a {
-    color: $base;
+  &.dark {
+    a h1 {
+      color: $base;
+    }
   }
 
   /* ==========================================================================

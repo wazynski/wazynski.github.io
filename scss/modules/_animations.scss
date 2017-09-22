@@ -60,14 +60,14 @@ body {
     left: auto;
   }
 }
-//
-// .slide-in {
-//   transition: all 1s $easing;
-// }
-//
-// .background-hide {
-//   background-position: -1800px center !important;
-// }
+
+.slide-in {
+  transition: all 1s $easing;
+}
+
+.background-hide {
+  background-position: -1800px center !important;
+}
 
 /* ==========================================================================
   Sections
