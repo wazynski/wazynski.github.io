@@ -625,16 +625,6 @@
 		"oAP": "\/js\/min\/lib-min.js.map",
 		"oF": 0
 		},
-	"\/js\/min\/location-min.js": {
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/js\/min\/min\/location-min-min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 1
-		},
 	"\/js\/min\/main-min.js": {
 		"ft": 64,
 		"ma": 1,
