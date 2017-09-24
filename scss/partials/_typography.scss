@@ -19,7 +19,7 @@ a {
 
   color: $base;
 
-  &::before {
+  &::after {
     position: absolute;
     bottom: -1px;
     left: 0;
@@ -42,7 +42,7 @@ a {
     color: $mustard;
   }
 
-  &:hover::before {
+  &:hover::after {
     visibility: visible;
 
     -webkit-transform: scaleX(1);

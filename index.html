@@ -19,7 +19,7 @@
 
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
     <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
@@ -62,7 +62,7 @@
       var hash = location.hash.split('#')[1];
       switch(hash) {
         case 'intro':
-          document.body.style.backgroundColor = '#E6E6E4';
+          document.body.style.backgroundColor = '#F2F2F2';
           break;
         case 'about':
           document.body.style.backgroundColor = '#313B41';
@@ -78,29 +78,38 @@
       }
     </script>
     <script>document.body.classList.add('faded');</script>
-    <div id="scroll" class="scroll-container page-wrap">
-      <header class="header dark">
-        <a class="hide-left" href="/">
-          <img src="/img/logo.svg" alt="" class="logo">
-          <h1>Ninesenses</h1>
-          <span>&mdash; Design &amp; Development Consultants</span>
-        </a>
-      </header>
 
-      <div class="controls">
-        <ul class="dots">
-        </ul>
-        <button class="prev disabled">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 50" stroke-linejoin="round"><path d="M0.3 10.3c-0.4 0.4-0.4 1.1 0 1.6 0.4 0.4 1.1 0.4 1.6 0l8-8 0 45.1c0 0.6 0.5 1.1 1.1 1.1 0.6 0 1.1-0.5 1.1-1.1l0-45.1 8 8c0.4 0.4 1.2 0.4 1.6 0 0.4-0.4 0.4-1.2 0-1.6l-9.9-10c-0.4-0.4-1.1-0.4-1.6 0l-9.9 10Z" fill="#707070"/></svg>
-        </button>
-        <button class="next">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 50" stroke-linejoin="round"><path d="M21.7 39.7c0.4-0.4 0.4-1.1 0-1.6 -0.4-0.4-1.1-0.4-1.6 0l-8 8 0-45.1c0-0.6-0.5-1.1-1.1-1.1 -0.6 0-1.1 0.5-1.1 1.1l0 45.1 -8-8c-0.4-0.4-1.2-0.4-1.6 0 -0.4 0.4-0.4 1.2 0 1.6l9.9 10c0.4 0.4 1.1 0.4 1.6 0l9.9-10Z" fill="#707070"/></svg>
-        </button>
-      </div>
+    <header class="header dark">
+      <a class="hide-left slide-in" href="/">
+        <h1>Ninesenses</h1>
+        <span>Design &amp; Development Consultants</span>
+      </a>
 
-      <div id="intro" class="section intro light active">
+      <!-- <button class="menu hide-right slide-in">
+        Menu
+        <span class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button> -->
+    </header>
+
+    <div class="controls hide-right slide-in">
+      <ul class="dots"></ul>
+      <button class="prev disabled">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 50" stroke-linejoin="round"><path d="M0.3 10.3c-0.4 0.4-0.4 1.1 0 1.6 0.4 0.4 1.1 0.4 1.6 0l8-8 0 45.1c0 0.6 0.5 1.1 1.1 1.1 0.6 0 1.1-0.5 1.1-1.1l0-45.1 8 8c0.4 0.4 1.2 0.4 1.6 0 0.4-0.4 0.4-1.2 0-1.6l-9.9-10c-0.4-0.4-1.1-0.4-1.6 0l-9.9 10Z" fill="#707070"></path></svg>
+      </button>
+      <button class="next">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 50" stroke-linejoin="round"><path d="M21.7 39.7c0.4-0.4 0.4-1.1 0-1.6 -0.4-0.4-1.1-0.4-1.6 0l-8 8 0-45.1c0-0.6-0.5-1.1-1.1-1.1 -0.6 0-1.1 0.5-1.1 1.1l0 45.1 -8-8c-0.4-0.4-1.2-0.4-1.6 0 -0.4 0.4-0.4 1.2 0 1.6l9.9 10c0.4 0.4 1.1 0.4 1.6 0l9.9-10Z" fill="#707070"></path></svg>
+      </button>
+    </div>
+
+    <div id="fullpage" class="scroll-container page-wrap">
+
+      <div id="intro" class="section intro light active background-hide slide-in">
         <section class="content push-up">
-          <div class="wrap hide-left">
+          <div class="wrap hide-left slide-in">
             <h2>Welcome</h2>
             <p>
               Ninesenses is an independent and collaborative creative consultancy based in the centre of Lancaster, England. Established in 2016 by multi&#8209;disciplinary designer and developer Tom Skarbek&#8209;Wazynski.
@@ -111,7 +120,7 @@
 
       <div id="about" class="section about dark">
         <section class="content push-up">
-          <div class="wrap slide-right">
+          <div class="wrap">
             <h2>About</h2>
 
             <p>
@@ -125,7 +134,7 @@
           </div>
         </section>
 
-        <div class="portrait">
+        <div class="portrait hide-right slide-in">
           <div class="faded"></div>
           <div></div>
         </div>
@@ -151,7 +160,7 @@
           <div class="wrap">
             <h2>Contact</h2>
             <p>
-              Close&#8209;knit relationships with my clients are really important, I like to work with you to ensure that together we create the best possible brands and solutions for you and your customers.
+              Close&#8209;knit relationships with my clients are really important, I like to work with you to ensure that together we create the best possible solution for you and your customers.
             </p>
             <p>
               So, if you have a <span class="highlight">project or an idea</span>, please drop me an email or call for a chat.

@@ -8,17 +8,38 @@ Stylesheet: Header
   Header
    ========================================================================== */
 
-.sticky-enabled {
+.fullscreen {
   .header {
-    @media screen and (min-width: $laptop) {
-      position: fixed;
+    position: fixed;
 
-      height: auto;
+    height: auto;
 
-      pointer-events: none;
-    }
+    pointer-events: none;
+
+    background: none;
   }
 }
+
+// .page {
+//   .header {
+//     text-align: center;
+//
+//     a {
+//       padding-left: 0;
+//
+//       &::before {
+//         position: relative;
+//         top: 0;
+//
+//         margin: 0 auto 10px;
+//       }
+//
+//       &:hover {
+//         transform: translate(0, 20px);
+//       }
+//     }
+//   }
+// }
 
 .header {
   position: relative;
@@ -30,74 +51,195 @@ Stylesheet: Header
   height: 86px;
   padding: 1.25rem;
 
-  transition: color .5s ease;
   text-transform: uppercase;
+
+  background: $background;
 
   line-height: 1;
 
-  @media screen and (min-width: $sm-desktop) {
-    position: fixed;
+  &.menu-alt .menu {
+    .hamburger {
+      span {
+        background: $linen;
+      }
 
-    height: auto;
-
-    pointer-events: none;
-  }
-
-
-
-  .logo {
-    display: none;
-
-    @media screen and (min-width: $tablet) {
-      position: absolute;
-      z-index: -1;
-      top: -10px;
-      left: -75px;
-
-      display: block;
-
-      width: auto;
-      height: 50px;
-
-      transition: all 1s ease-out;
+      &::before {
+        background: $linen;
+      }
     }
   }
+
+  .menu {
+    position: relative;
+
+    float: right;
+
+    margin-right: 15px;
+    padding-right: 50px;
+
+    cursor: pointer;
+    transition: all 750ms $easing;
+    text-transform: uppercase;
+    pointer-events: all;
+
+    border: 0;
+    outline: 0;
+    background: none;
+
+    font-size: .875rem;
+    line-height: 26px;
+
+    &:hover,
+    &:focus {
+      padding-right: 40px;
+
+      .hamburger {
+        span {
+          background: $mustard;
+        }
+      }
+
+      .hamburger::before {
+        transform: translate(30px);
+      }
+
+      .hamburger::after {
+        transform: translate(-30px);
+      }
+    }
+
+    .hamburger {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      display: inline-block;
+
+      width: 30px;
+      height: 30px;
+      padding-top: 4px;
+
+      transition: background 750ms $easing;
+      text-align: center;
+
+      border: 0;
+      border-radius: 50%;
+      background: $secondary;
+
+      &::before {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        right: 15px;
+
+        width: 30px;
+        height: 30px;
+
+        content: '';
+        transition: all 750ms $easing;
+        // opacity: .8;
+
+        border-radius: 50%;
+        background: $gainsboro;
+      }
+
+      &::after {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        right: -15px;
+
+        width: 30px;
+        height: 30px;
+
+        content: '';
+        transition: all 750ms $easing;
+        // opacity: .8;
+
+        border-radius: 50%;
+        background: $mustard;
+      }
+
+      span {
+        position: relative;
+        top: 5px;
+
+        display: block;
+
+        width: 16px;
+        height: 2px;
+        margin: 0 auto 2px;
+
+        transition: background 750ms $easing;
+
+        border-radius: .1rem;
+        // border-radius: 1px;
+        // background: $white;
+        background: $gainsboro;
+
+        &:last-child {
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+
 
   a {
     position: relative;
     z-index: 1;
-    left: 0;
+    // left: 0;
 
     display: inline-block;
 
-    transition: all 1s ease-out;
+    transition: all 750ms ease;
     text-decoration: none;
     pointer-events: all;
 
     color: $base;
+
+    &::after {
+      display: none;
+    }
 
     &::before {
       display: none;
     }
 
     @media screen and (min-width: $tablet) {
-      left: 60px;
-    }
+      padding-left: 85px;
 
-    &.hide-left {
-      left: -500px;
-    }
-    // background: hotpink;
+      &::before {
+        position: absolute;
+        z-index: -1;
+        top: -14px;
+        left: 0;
 
-    &:hover {
-      // padding-top: 5px;
-      padding-left: 10px;
+        display: block;
 
-      .logo {
-        // top: -5px;
-        padding-left: 10px;
+        width: 75px;
+        height: 56px;
+
+        content: '';
+        transition: transform 750ms $easing;
+
+        background: url('../img/logo.svg') no-repeat center center;
+        background-size: contain;
       }
     }
+
+    &:hover {
+      transition: transform 750ms $easing;
+      transform: translate(20px);
+
+      &::before {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  h1 {
+    transition: color 750ms ease;
   }
 
 
@@ -110,17 +252,33 @@ Stylesheet: Header
   }
 
   span {
-    color: $secondary;
+    display: inline-block;
+
+    max-width: 100px;
+
+    color: $secondary !important;
 
     font-weight: 400;
+
+    @media screen and (min-width: 380px) {
+      max-width: 200px;
+    }
+
+    @media screen and (min-width: 540px) {
+      max-width: none;
+    }
   }
 
-  &.light a {
-    color: $white;
+  &.light {
+    a h1 {
+      color: $white;
+    }
   }
 
-  &.dark a {
-    color: $base;
+  &.dark {
+    a h1 {
+      color: $base;
+    }
   }
 
   /* ==========================================================================
