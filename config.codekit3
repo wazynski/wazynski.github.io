@@ -677,6 +677,14 @@
 		"oAP": "\/build\/node_modules",
 		"oF": 0
 		},
+	"\/package.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/package-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
 	"\/README.html": {
 		"ft": 8192,
 		"oA": 2,
@@ -932,6 +940,12 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/temp",
+		"oF": 0
+		},
+	"\/yarn.lock": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/yarn.lock",
 		"oF": 0
 		}
 	},
