@@ -59,50 +59,54 @@
 
 <body class="about page">
     <script>document.body.classList.add('faded');</script>
-    <div id="fullpage" class="scroll-container page-wrap">
+    <div id="scroll" class="scroll-container page-wrap">
       <header class="header light">
-        <a class="left-in" href="/">
+        <a class="hide-left" href="/">
           <h1>Ninesenses</h1>
-          <span>Design &amp; Development Consultants</span>
+          <span>&mdash; Design &amp; Development Consultants</span>
         </a>
-
-        <!-- <button class="menu">
-          Menu
-          <span class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </button> -->
       </header>
 
-      <article id="about" class="section about page light">
-        <header>
-          <h1>About &mdash;</h1>
-          <p>A little bit about Tom</p>
-        </header>
+      <article id="about" class="section about page dark">
         <div class="masonary">
+          <div class="block left">
+            <h2>About Tom Skarbek&#8209;Wazynski</h2>
+
+            <p>
+              A designer &amp; full stack developer with over 9 years experience. I enjoy working with a diverse range of clients to plan, design and develop, extraordinary brands, websites and apps.
+            </p>
+          </div>
+
+
           <div class="block images right">
             <img class="headshot" src="/img/about/tom.jpg" alt="A picture of Tom Skarbek-Wazynski he looks super professional and hireable!">
           </div>
 
-          <div class="block intro left">
-            <!-- <h2>About Tom Skarbek&#8209;Wazynski</h2> -->
-            <p>
-              A designer &amp; full stack developer with over 9 years experience. I enjoy working with a diverse range of clients to plan, design and develop, extraordinary brands, websites and apps.
-            </p>
+          <div class="block left">
             <p>
               I’m also a keen photographer, although I spend far too much time taking photos and not using them. However, I do give away what I do process royalty free on <a href="https://unsplash.com/@wazynski">Unsplash</a>.
             </p>
+          </div>
+
+          <div class="block images right">
+            <div class="col-2">
+              <img src="/img/about/pier.jpg" alt="An awesome shot of a pier in Vencie showing amazing composition skills.">
+              <img src="/img/about/church.jpg" alt="A church in a valley surrounded by beautiful mountains in Norway. God would be proud of this shot!">
+            </div>
+            <img src="/img/about/sydney.jpg" alt="The view from a hill of a beach near Sydney, it looks like it would be a nice place to swim, but wait, sharks!">
+            <div class="col-2">
+              <img src="/img/about/sorrento.jpg" alt="A stormy day in Sorrento, Italy, best to go back inside and have another pizza.">
+              <img src="/img/about/bergen.jpg" alt="Some colourful houses on a misty hill in Bergen. Something that should be on a postcard!">
+            </div>
+          </div>
+
+          <div class="block left">
             <p>
-              Previously I was the lead innovation developer at Lancaster University, where I helped to start the <a href="http://itpi.lancaster.ac.uk/innovation/">Innovation Hub</a>. Prior to that I was a design partner at <a href="http://singlemaltdesign.co.uk">Single Malt</a> and a co-founder and lead developer of Porters Coffee.
+              Previously I was the <span class="highlight">lead innovation developer</span> at Lancaster University, where I helped to start the <a href="http://itpi.lancaster.ac.uk/innovation/">Innovation Hub</a>. Prior to that I was a <span class="highlight">design partner</span> at <a href="http://singlemaltdesign.co.uk">Single Malt</a> and a co-founder and <span class="highlight">lead developer</span> of Porters Coffee.
             </p>
             <p>
                 I also enjoy a good whisky or classic Negroni.
             </p>
-          </div>
-
-          <div class="block left likes">
 
             <h2>Things I like</h2>
 
@@ -147,26 +151,10 @@
               <li>Not owning a Eames Lounge Chair.</li>
             </ul>
 
-          </div>
-
-
-          <div class="block images right">
-            <div class="col-2">
-              <img src="/img/about/sorrento.jpg" alt="A stormy day in Sorrento, Italy, best to go back inside and have another pizza.">
-              <img src="/img/about/church.jpg" alt="A church in a valley surrounded by beautiful mountains in Norway. God would be proud of this shot!">
-            </div>
-            <img src="/img/about/sydney.jpg" alt="The view from a hill of a beach near Sydney, it looks like it would be a nice place to swim, but wait, sharks!">
-            <div class="col-2">
-              <img src="/img/about/lemnos.jpg" alt="Looks like something out of Gladiator, but it's not, it's a fort in Lemnos, Greece!">
-              <img src="/img/about/bergen.jpg" alt="Some colourful houses on a misty hill in Bergen. Something that should be on a postcard!">
-            </div>
-          </div>
-
-
-          <div class="block left skills">
             <h2>Skills</h2>
             <aside class="skills col-2">
               <div class="col">
+                <h3>Graphic Design</h3>
                 <ul>
                   <li>UI Design</li>
                   <li>Web &amp; Digital Design</li>
@@ -177,6 +165,7 @@
               </div>
 
               <div class="col">
+                <h3>Full Stack Development</h3>
                 <ul>
                   <li>HTML / CSS / JS</li>
                   <li>Wordpress / Shopify / Umbraco</li>
@@ -213,19 +202,8 @@
             <p>
               <a href="/#about" data-bg="#313B41">&larr; That's enough about me.</a>
             </p>
-          </div>
 
-          <div class="block images right">
-            <div class="col-2">
-              <img src="/img/about/lioness.jpg" alt="A gorgeous Lioness, much better than your average house cat!">
-              <img src="/img/about/trees.jpg" alt="A tree lined silhouetted sunset with birdies flying. It's super artistic.">
-            </div>
-          </div>
-        </div>
-
-        <div class="section contact">
-          <section class="content">
-            <div class="wrap">
+            <div class="contact">
               <h2>Contact</h2>
               <p>
                 Now you know a bit about me, let's chat. If you have a project or an idea, please call me or drop me an email and I can get to know a bit about you.
@@ -245,7 +223,7 @@
                 </dl>
               </div>
             </div>
-          </section>
+          </div>
         </div>
       </article>
 

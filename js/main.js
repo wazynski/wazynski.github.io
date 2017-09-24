@@ -73,8 +73,10 @@ nine.checkFullscreen = () => {
   const windowHeight = nine.windowSize().h;
   const windowWidth = nine.windowSize().w;
 
-  if (windowHeight >= nine.fullScreenHeightEnableFrom && windowWidth >= nine.fullScreenWidthEnableFrom) {
-    return true;
+  if (!nine.hasClass(document.body, 'page')) {
+    if (windowHeight >= nine.fullScreenHeightEnableFrom && windowWidth >= nine.fullScreenWidthEnableFrom) {
+      return true;
+    }
   }
 
   return false;
@@ -1169,7 +1171,6 @@ document.addEventListener('DOMContentLoaded', () => {
     nine.masonaryHeight();
   });
 
-  nine.translatePortrait();
   nine.fullscreenMode();
 });
 
