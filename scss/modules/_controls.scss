@@ -19,18 +19,16 @@ $controls: $secondary;
   @media screen and (min-width: $controls-on) {
     position: fixed;
     z-index: 9999;
-    right: 50px;
-    // bottom: 220px;
-    bottom: 120px;
+    right: 25px;
+    bottom: 25px;
 
     width: 16px;
 
     text-align: right;
-    // display: block
-    //
-    @media screen and (min-height: 850px) {
-      bottom: 180px;
-    }
+
+    // @media screen and (min-height: 850px) {
+    //   bottom: 180px;
+    // }
 
     ul {
       width: 16px;
@@ -93,9 +91,5 @@ $controls: $secondary;
         }
       }
     }
-  }
-
-  @media screen and (min-width: $laptop) {
-    right: 42px;
   }
 }

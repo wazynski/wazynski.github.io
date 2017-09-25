@@ -1,0 +1,115 @@
+/* ==========================================================================
+  Circles
+   ========================================================================== */
+
+.circles {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+
+  width: 600px;
+  height: 400px;
+  margin: -200px 0 0 -300px;
+
+  transition: all 750ms ease;
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+
+    width: 400px;
+    height: 400px;
+
+    content: '';
+    transition: all 250ms ease;
+
+    border-radius: 50%;
+    background: $gainsboro;
+    background-position: center center;
+    background-size: cover;
+  }
+
+  &:after {
+    left: 200px;
+
+    background: $mustard;
+
+    mix-blend-mode: multiply;
+  }
+}
+
+.about-active {
+  .circles {
+    // opacity: .25;
+    &:before {
+      background-image: url('../img/tom-side.jpg');
+    }
+
+    &:after {
+      background-color: $dingley;
+    }
+  }
+}
+
+.services-active {
+  .circles {
+    &:before {
+      background-image: url('../img/code.png');
+      background-size: auto;
+      // background-color: $gold;
+    }
+
+    &:after {
+      background-color: $code-red;
+    }
+  }
+}
+
+.porters-active {
+  background: #FDCA58;
+
+  .circles {
+    &:before {
+      background-image: url('../img/coffee-temp.jpg');
+      // background-size: auto;
+      // background-color: $gold;
+    }
+
+    &:after {
+      background-color: #374246;
+    }
+  }
+}
+
+.badge-active {
+  background: #252525;
+
+  .circles {
+    &:before {
+      background-image: url('../img/coffee-temp.jpg');
+      // background-size: auto;
+      // background-color: $gold;
+    }
+
+    &:after {
+      background-color: $saffron;
+    }
+  }
+}
+
+.contact-active {
+  .circles {
+    &:before {
+      // background-color: $platinum;
+    }
+
+    &:after {
+      background-color: $firebush;
+    }
+  }
+}

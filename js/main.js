@@ -20,7 +20,8 @@ const nine = {
   isTouch: (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints)),
   touchStartY: 0,
   touchEndY: 0,
-  touchSensitivity: 5
+  touchSensitivity: 5,
+  circles: document.querySelector('.circles')
 };
 
 /* ==========================================================================
@@ -119,15 +120,6 @@ nine.enableFullscreen = () => {
 /* ==========================================================================
   Animations
    ========================================================================== */
-
-/**
- * changeHeaderClass - Replaces current header classes with new className
- *                     for color chnage animation
- * @param {String} className Name of class to be added to header element
- */
-nine.changeHeaderClass = className => {
-  document.querySelector('.header').setAttribute('class', `header ${className}`);
-};
 
 /**
  * [animateLoad description]
@@ -494,21 +486,6 @@ nine.animateScroll = (endLocation, element, duration) => {
  * @param {Object} element Element we are scrolling to
  */
 nine.scrollStart = element => {
-  // Change header class - duration is same as slide duration for natural feel.
-  if (element.classList.contains('light')) {
-    nine.changeHeaderClass('dark');
-  } else {
-    nine.changeHeaderClass('light');
-  }
-
-  // Change menu colours dependent on slide
-  const header = document.querySelector('.header');
-  if (element.id === 'services') {
-    nine.addClass(header, 'menu-alt');
-  } else {
-    nine.removeClass(header, 'menu-alt');
-  }
-
   // Delay until part way through scroll to chnages make feel smooth.
   setTimeout(() => {
     // Remove other active classes
@@ -516,6 +493,7 @@ nine.scrollStart = element => {
     if (activePages) {
       nine.removeClass(activePages, 'active');
       nine.removeClass(document.body, activePages.id + '-active');
+      nine.addClass(document.body, element.id + '-active');
     }
     nine.addClass(element, 'active');
     nine.updateControls(nine.getSectionIndex(element));
@@ -534,7 +512,7 @@ nine.scrollEnd = element => {
   // Update to new state.
   nine.updateHash(element.id);
   nine.updateCurrent(element);
-  nine.addClass(document.body, element.id + '-active');
+  // nine.addClass(document.body, element.id + '-active');
   nine.updateControls();
 };
 

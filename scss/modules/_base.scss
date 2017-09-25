@@ -23,6 +23,8 @@ html {
 }
 
 body {
+  transition: background 750ms ease;
+
   background: $background;
 
   -webkit-backface-visibility: hidden;

@@ -25,59 +25,28 @@ Stylesheet: Sections
 
   width: 100%;
 
-  align-content: flex-end;
-
   @media screen and (min-width: $tablet) {
     min-height: 100%; // Fallbacks
     min-height: 100vh; // Fallbacks
   }
-
-  &.intro {
-    z-index: 10;
-
-    background: $platinum;
-  }
-
-  &.about {
-    z-index: 20;
-
-    background: $paynes-grey;
-  }
-
-  &.services {
-    z-index: 30;
-
-    background: $gainsboro;
-  }
-
-  &.contact {
-    z-index: 40;
-
-    min-height: 100vh;
-
-    background: $platinum;
-  }
-
-
-  &.dark {
-    h2 {
-      color: $white;
-    }
-
-    .highlight {
-      color: $white;
-    }
-  }
-
-  &.light {
-    h2 {
-      color: $secondary;
-    }
-
-    .highlight {
-      color: $base;
-    }
-  }
+  //
+  // &.intro {
+  //   z-index: 10;
+  // }
+  //
+  // &.about {
+  //   z-index: 20;
+  // }
+  //
+  // &.services {
+  //   z-index: 30;
+  // }
+  //
+  // &.contact {
+  //   z-index: 40;
+  //
+  //   min-height: 100vh;
+  // }
 }
 
 
@@ -86,92 +55,42 @@ Stylesheet: Sections
    ========================================================================== */
 
 .content {
-  width: 100%;
-  padding: 4.125rem 1.25rem 1.25rem;
+  position: absolute;
+  left: 50%;
 
-  font-size: 1.25rem;
+  width: 50%;
+  max-width: 900px;
+  margin: 0;
+  padding: 0 3.125rem 0 150px;
 
-  align-self: flex-end;
+  color: $white;
 
-  @media screen and (min-width: $tablet) {
-    padding: 5rem 3.125rem 3.125rem;
+  font-size: 1.5rem;
+
+  align-self: center;
+
+  h2 {
+    color: $white;
   }
 
-  @media screen and (min-width: $tablet) and (min-height: 850px) {
-    font-size: 1.875rem;
-  }
-
-  @media screen and (min-width: $lg-desktop) and (min-height: 850px) {
-    padding: 5rem 3.125rem 3.125rem;
-
-    font-size: 2.5rem;
-  }
-
-  @media screen and (min-width: $xl-desktop) and (min-height: 850px) {
-    padding: 5rem 4.6875rem 3.125rem;
-
-    font-size: 2.75rem;
-  }
-
-  @media screen and (min-width: $xxl-desktop) and (min-height: 850px) {
-    font-size: 3rem;
-
-    h2 {
-      font-size: 1.125rem;
-    }
-  }
-
-  &.push-up {
-    // @media screen and (min-height: 1200px) and (max-width: $lg-desktop) {
-    //   padding-bottom: 100px;
-    // }
-    //
-    // @media screen and (min-width: $lg-desktop) {
-    //   padding-bottom: 200px;
-    // }
-    //
-    // @media screen and (min-width: $xl-desktop) {
-    //   padding-bottom: 175px;
-    // }
-  }
-
-
-
-  .wrap {
-    position: relative;
-    z-index: 500;
-    left: 0;
-
-    transition: all 1s ease-out;
-
-    overflow-wrap: normal;
-
-    @media screen and (min-width: $tablet) {
-      max-width: 80%;
-    }
-
-    @media screen and (min-width: $laptop) {
-      max-width: 70%;
-    }
-
-    @media screen and (min-width: $sm-desktop) {
-      max-width: 50%;
-    }
-
-    @media screen and (min-width: $xl-desktop) {
-      max-width: 60%;
-    }
-
-    @media screen and (min-width: $xxl-desktop) {
-      max-width: 60%;
-    }
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 400;
   }
 
   p {
     position: relative;
 
-    color: $secondary;
+    color: $white;
 
     font-weight: 400;
+  }
+
+  a {
+    color: $mustard;
+  }
+
+  dt {
+    color: $secondary;
   }
 }

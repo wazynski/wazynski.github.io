@@ -6,63 +6,63 @@ Stylesheet: About
 ========================================================================== */
 $portrait-detach: $laptop;
 
-.section.about {
-  position: relative;
-
-  overflow: visible; // Required for portrait to show on Webkit
-
-  padding-bottom: 400px;
-
-  transform: translate3d(0, 0, 0); // Flicker on mobile fix https://stackoverflow.com/questions/12278587/webkit-text-flickers-when-using-css-transform-scale
-  // -webkit-backface-visibility: hidden;
-
-  flex-wrap: wrap;
-
-  .content {
-    width: 100%;
-    padding-bottom: 0;
-
-    .wrap {
-      @media screen and (min-width: $laptop) {
-        max-width: 52%;
-      }
-
-      @media screen and (min-width: $sm-desktop) {
-        max-width: 50%;
-      }
-
-      // @media screen and (min-width: $xl-desktop) {
-      //   max-width: 835px;
-      // }
-    }
-  }
-
-  @media screen and (min-width: $portrait-detach) {
-    flex-direction: row;
-
-    padding-bottom: 0;
-
-    transform: none;
-
-    .content {
-      padding-bottom: 3.125rem;
-    }
-  }
-
-  a {
-    color: lighten($secondary, 20%);
-
-    &:hover {
-      color: $mustard;
-    }
-  }
-
-  &.active {
-    .portrait div:first-child {
-      opacity: 1;
-    }
-  }
-}
+// .section.about {
+//   position: relative;
+//
+//   overflow: visible; // Required for portrait to show on Webkit
+//
+//   padding-bottom: 400px;
+//
+//   transform: translate3d(0, 0, 0); // Flicker on mobile fix https://stackoverflow.com/questions/12278587/webkit-text-flickers-when-using-css-transform-scale
+//   // -webkit-backface-visibility: hidden;
+//
+//   flex-wrap: wrap;
+//
+//   .content {
+//     width: 100%;
+//     padding-bottom: 0;
+//
+//     .wrap {
+//       @media screen and (min-width: $laptop) {
+//         max-width: 52%;
+//       }
+//
+//       @media screen and (min-width: $sm-desktop) {
+//         max-width: 50%;
+//       }
+//
+//       // @media screen and (min-width: $xl-desktop) {
+//       //   max-width: 835px;
+//       // }
+//     }
+//   }
+//
+//   @media screen and (min-width: $portrait-detach) {
+//     flex-direction: row;
+//
+//     padding-bottom: 0;
+//
+//     transform: none;
+//
+//     .content {
+//       padding-bottom: 3.125rem;
+//     }
+//   }
+//
+//   a {
+//     color: lighten($secondary, 20%);
+//
+//     &:hover {
+//       color: $mustard;
+//     }
+//   }
+//
+//   &.active {
+//     .portrait div:first-child {
+//       opacity: 1;
+//     }
+//   }
+// }
 
 /* ==========================================================================
   Portrait
@@ -71,82 +71,82 @@ $portrait-detach: $laptop;
 .fullscreen .portrait {
   position: fixed; // to fix flickr issue on webkit.
 }
-
-.portrait {
-  position: absolute;
-  z-index: 400;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  height: 400px;
-
-  transform: translate3d(0, 0, 0); // Flicker on mobile fix https://stackoverflow.com/questions/12278587/webkit-text-flickers-when-using-css-transform-scale
-
-  will-change: transform;
-
-  @media screen and (min-width: $portrait-detach) {
-    position: fixed;
-    top: 0;
-    right: 75px;
-    bottom: auto;
-    left: auto;
-
-    display: block;
-
-    width: 40%;
-    height: 100%;
-  }
-
-  @media screen and (min-width: $sm-desktop) {
-    position: fixed;
-    top: 0;
-    right: 100px;
-  }
-
-  div {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-
-    width: 100%;
-    height: 500px;
-
-    transition: opacity 750ms linear;
-    transform: translate3d(0, 0, 0); // Flicker on mobile fix https://stackoverflow.com/questions/12278587/webkit-text-flickers-when-using-css-transform-scale
-
-    background-image: url('../img/tom-side.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    // -webkit-backface-visibility: hidden;
-
-    @media screen and (min-width: $portrait-detach) {
-      height: auto;
-      // margin-top: 125px; // With menu
-      margin-top: 50px;
-      margin-bottom: 50px;
-    }
-
-    @media screen and (min-width: $sm-desktop) {
-      margin-bottom: 50px;
-    }
-
-    &:first-child {
-      z-index: 2;
-
-      transition: opacity 750ms linear;
-
-      opacity: 0;
-      background-image: url('../img/tom-front.jpg');
-
-      will-change: opacity;
-    }
-  }
-}
+//
+// .portrait {
+//   position: absolute;
+//   z-index: 400;
+//   right: 0;
+//   bottom: 0;
+//   left: 0;
+//
+//   height: 400px;
+//
+//   transform: translate3d(0, 0, 0); // Flicker on mobile fix https://stackoverflow.com/questions/12278587/webkit-text-flickers-when-using-css-transform-scale
+//
+//   will-change: transform;
+//
+//   @media screen and (min-width: $portrait-detach) {
+//     position: fixed;
+//     top: 0;
+//     right: 75px;
+//     bottom: auto;
+//     left: auto;
+//
+//     display: block;
+//
+//     width: 40%;
+//     height: 100%;
+//   }
+//
+//   @media screen and (min-width: $sm-desktop) {
+//     position: fixed;
+//     top: 0;
+//     right: 100px;
+//   }
+//
+//   div {
+//     position: absolute;
+//     z-index: 1;
+//     top: 0;
+//     right: 0;
+//     bottom: 0;
+//     left: 0;
+//
+//     width: 100%;
+//     height: 500px;
+//
+//     transition: opacity 750ms linear;
+//     transform: translate3d(0, 0, 0); // Flicker on mobile fix https://stackoverflow.com/questions/12278587/webkit-text-flickers-when-using-css-transform-scale
+//
+//     background-image: url('../img/tom-side.jpg');
+//     background-repeat: no-repeat;
+//     background-position: center;
+//     background-size: cover;
+//     // -webkit-backface-visibility: hidden;
+//
+//     @media screen and (min-width: $portrait-detach) {
+//       height: auto;
+//       // margin-top: 125px; // With menu
+//       margin-top: 50px;
+//       margin-bottom: 50px;
+//     }
+//
+//     @media screen and (min-width: $sm-desktop) {
+//       margin-bottom: 50px;
+//     }
+//
+//     &:first-child {
+//       z-index: 2;
+//
+//       transition: opacity 750ms linear;
+//
+//       opacity: 0;
+//       background-image: url('../img/tom-front.jpg');
+//
+//       will-change: opacity;
+//     }
+//   }
+// }
 
 /* ==========================================================================
   Page
