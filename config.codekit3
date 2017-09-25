@@ -768,6 +768,19 @@
 		"oS": 3,
 		"uL": 1
 		},
+	"\/scss\/modules\/_menu.scss": {
+		"aP": 1,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 1,
+		"oA": 1,
+		"oAP": "\/css\/_menu.css",
+		"oF": 0,
+		"oS": 3,
+		"uL": 1
+		},
 	"\/scss\/modules\/_sections.scss": {
 		"aP": 1,
 		"bl": 0,

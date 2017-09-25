@@ -29,24 +29,6 @@ Stylesheet: Sections
     min-height: 100%; // Fallbacks
     min-height: 100vh; // Fallbacks
   }
-  //
-  // &.intro {
-  //   z-index: 10;
-  // }
-  //
-  // &.about {
-  //   z-index: 20;
-  // }
-  //
-  // &.services {
-  //   z-index: 30;
-  // }
-  //
-  // &.contact {
-  //   z-index: 40;
-  //
-  //   min-height: 100vh;
-  // }
 }
 
 
@@ -61,36 +43,48 @@ Stylesheet: Sections
   width: 50%;
   max-width: 900px;
   margin: 0;
-  padding: 0 3.125rem 0 150px;
+  padding: 0 100px 0 150px;
 
-  color: $white;
+  color: $platinum;
 
   font-size: 1.5rem;
 
   align-self: center;
 
   h2 {
-    color: $white;
+    color: $platinum;
   }
 
   h1 {
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: 300;
   }
 
   p {
     position: relative;
 
-    color: $white;
+    color: $platinum;
 
-    font-weight: 400;
+    font-weight: 300;
   }
 
   a {
     color: $mustard;
   }
 
-  dt {
+  // dt {
+  //   color: $secondary;
+  // }
+
+  dd {
     color: $secondary;
+  }
+
+  .col-2 {
+    align-items: flex-start;
+
+    .col {
+      vertical-align: top;
+    }
   }
 }
