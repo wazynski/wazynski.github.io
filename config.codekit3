@@ -15,6 +15,42 @@
 		"oAP": "\/.gitignore",
 		"oF": 0
 		},
+	"\/404.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/404.html",
+		"oF": 0
+		},
+	"\/_config.yml": {
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/_config.yml",
+		"oF": 0
+		},
+	"\/_posts\/2017-09-27-welcome-to-jekyll.markdown": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/_posts\/2017-09-27-welcome-to-jekyll.markdown",
+		"oF": 0
+		},
+	"\/about.md": {
+		"cS": 0,
+		"eF": 1,
+		"eL": 1,
+		"eLB": 0,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"oA": 0,
+		"oAP": "\/about.html",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
+		},
 	"\/about\/index.html": {
 		"ft": 8192,
 		"oA": 2,
@@ -47,6 +83,18 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/faq\/index.html",
+		"oF": 0
+		},
+	"\/Gemfile": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/Gemfile",
+		"oF": 0
+		},
+	"\/Gemfile.lock": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/Gemfile.lock",
 		"oF": 0
 		},
 	"\/img\/about\/bergen.jpg": {
@@ -616,6 +664,24 @@
 		"oAP": "\/index.html",
 		"oF": 0
 		},
+	"\/index.md": {
+		"cS": 0,
+		"eF": 1,
+		"eL": 1,
+		"eLB": 0,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"oA": 0,
+		"oAP": "\/index.html",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
+		},
 	"\/js\/lib.js": {
 		"ft": 64,
 		"ma": 1,
@@ -650,12 +716,6 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/js\/min\/main-min.js.map",
-		"oF": 0
-		},
-	"\/node_modules": {
-		"ft": 65536,
-		"oA": 2,
-		"oAP": "\/build\/node_modules",
 		"oF": 0
 		},
 	"\/package.json": {
@@ -947,12 +1007,6 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/services\/index.html",
-		"oF": 0
-		},
-	"\/temp": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/temp",
 		"oF": 0
 		},
 	"\/yarn.lock": {
