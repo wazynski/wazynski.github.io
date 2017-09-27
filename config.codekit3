@@ -43,6 +43,12 @@
 		"oAP": "\/css\/style.css.map",
 		"oF": 0
 		},
+	"\/faq\/index.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/faq\/index.html",
+		"oF": 0
+		},
 	"\/img\/about\/bergen.jpg": {
 		"ft": 16384,
 		"iS": 414653,
@@ -936,6 +942,12 @@
 		"oF": 0,
 		"oS": 3,
 		"uL": 1
+		},
+	"\/services\/index.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/services\/index.html",
+		"oF": 0
 		},
 	"\/temp": {
 		"ft": 8192,
