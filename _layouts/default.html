@@ -1,0 +1,124 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	{% include head.html %}
+		<body>
+		{% include controls.html %}
+
+		{% include menu.html %}
+
+		<div class="circles"></div>
+
+		<div id="fullpage" class="scroll-container page-wrap">
+
+      <section id="intro" class="section intro light active background-hide slide-in">
+        <header class="header dark">
+          <a class="" href="/">
+            <h1>Tom Skarbek-Wazynski</h1>
+            <span>Branding, Design &amp; Development</span>
+          </a>
+        </header>
+      </section>
+
+      <div id="about" class="section about">
+        <section class="content">
+          <h2>{{page.about_title}}</h2>
+
+          <p>
+						{{page.about_text}}
+          </p>
+
+          <p>
+            <a href="{{page.about_url}}">{{page.about_url_text}}</a>
+          </p>
+        </section>
+      </div>
+
+      <div id="services" class="section services">
+        <section class="content">
+          <h2>{{page.services_title}}</h2>
+
+					{{page.services_text}}
+
+          <p>
+            I specialise in brand identity, creative direction, design and bespoke development.
+          </p>
+          <p>
+            Through creative integrity, research, communication and working collaboratively with a wide range of creatives I produce high-quality solutions, that make things smarter, helpful, easy to use, beautiful and most importantly fun.
+          </p>
+        </section>
+      </div>
+
+      <div id="porters" class="section project porters">
+        <section class="content">
+          <!-- <h2>Select Project</h2> -->
+
+          <h1>Porters Trading Limited</h1>
+          <p>
+            Flame roasted coffee delivered directly to your door.
+          </p>
+
+          <dl>
+            <dt>Disciplines</dt>
+            <dd>Branding, Strategy, Design, Development, Marketing</dd>
+          </dl>
+        </section>
+      </div>
+
+      <div id="badges" class="section project badges">
+        <section class="content">
+          <!-- <h2>Select Project</h2> -->
+
+          <h1>Badge Backpack</h1>
+          <p>
+            A gamified campus for all students and staff
+          </p>
+
+          <dl>
+            <dt>Disciplines</dt>
+            <dd>Branding, Design, Development</dd>
+          </dl>
+
+        </section>
+      </div>
+
+      <div id="contact" class="section contact">
+        <section class="content">
+            <h2>Contact</h2>
+            <p>
+              Close&#8209;knit relationships with my clients are really important, I like to work with you to ensure that together we create the best possible solution for you and your customers.
+            </p>
+            <p>
+              So, if you have a <span class="highlight">project or an idea</span>, please drop me an email or call for a chat.
+            </p>
+            <div class="col-2">
+              <dl>
+                <dt>Mail</dt>
+                <dd><a href="mailto:{{site.email}}">{{site.obfuscated_email}}</a></dd>
+                <dt>Twitter</dt>
+                <dd><a href="https://twitter.com/{{site.twitter_username}}">@{{site.twitter_username}}</a></dd>
+              </dl>
+              <dl>
+                <dt>Telephone</dt>
+                <dd><a href="tel:{{site.tel}}">{{site.formated_tel}}</a></dd>
+                <dt>Instagram</dt>
+                <dd><a href="https://www.instagram.com/{{site.instagram_username}}/">{{site.instagram_username}}</a></dd>
+              </dl>
+              <footer class="footer col-2">
+                <dl>
+                  <dt>Copyright</dt>
+                  <dd>{{site.copyright}}</dd>
+                </dl>
+                <dl>
+                  <dt>Colphon</dt>
+                  <dd>{{site.colphon}}</dd>
+                </dl>
+              </footer>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+		{% include footer.html %}
+	</body>
+</html>

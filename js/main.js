@@ -149,34 +149,34 @@ nine.animateLoad = () => {
   }, 1000);
 };
 
-nine.animatePortrait = () => {
-  const portrait = document.querySelector('.portrait .faded');
+// nine.animatePortrait = () => {
+//   const portrait = document.querySelector('.portrait .faded');
+//
+//   if (portrait) {
+//     window.addEventListener('scroll', () => {
+//       nine.portraitChange();
+//     });
+//   }
+// };
 
-  if (portrait) {
-    window.addEventListener('scroll', () => {
-      nine.portraitChange();
-    });
-  }
-};
-
-nine.portraitChange = () => {
-
-  if (!nine.fullscreen) {
-    const page = document.getElementById('about');
-    const offsetTop = page.offsetTop;
-
-    const portrait = document.querySelector('.portrait .faded');
-    const startPoint = 1.25;
-
-    if (nine.getScrolledPosition() > offsetTop * startPoint) {
-      if (portrait.style.opacity === '' || portrait.style.opacity === '0') {
-        portrait.style.opacity = 1;
-      }
-    } else if (portrait.style.opacity === '1') {
-      portrait.style.opacity = 0;
-    }
-  }
-};
+// nine.portraitChange = () => {
+//
+//   if (!nine.fullscreen) {
+//     const page = document.getElementById('about');
+//     const offsetTop = page.offsetTop;
+//
+//     const portrait = document.querySelector('.portrait .faded');
+//     const startPoint = 1.25;
+//
+//     if (nine.getScrolledPosition() > offsetTop * startPoint) {
+//       if (portrait.style.opacity === '' || portrait.style.opacity === '0') {
+//         portrait.style.opacity = 1;
+//       }
+//     } else if (portrait.style.opacity === '1') {
+//       portrait.style.opacity = 0;
+//     }
+//   }
+// };
 
 /**
  * pageTransisition - Chnages background color, fades out body and redirects to href
@@ -386,10 +386,10 @@ nine.translateScroll = (endLocation, element, duration) => {
       transition
     });
 
-    nine.css(document.querySelector('.portrait'), {
-      '-webkit-transition': transition,
-      transition
-    });
+    // nine.css(document.querySelector('.portrait'), {
+    //   '-webkit-transition': transition,
+    //   transition
+    // });
   } else {
     nine.addClass(nine.scrollContainer, 'notransition');
   }
@@ -397,7 +397,7 @@ nine.translateScroll = (endLocation, element, duration) => {
   nine.scrollStart(element);
   nine.canScroll = false;
 
-  nine.translatePortrait(endLocation, duration);
+  // nine.translatePortrait(endLocation, duration);
   nine.setTransforms(nine.scrollContainer, translate3d);
 
   setTimeout(() => {
@@ -415,23 +415,23 @@ nine.translateScroll = (endLocation, element, duration) => {
  * translatePortrait - Move the portrait element along with the translate so it appears fixed.
  * @param   {Integer} endLocation The location to scroll to in pixels
  */
-nine.translatePortrait = endLocation => {
-  const portrait = document.querySelector('.portrait');
-  if (nine.windowSize().w >= 1024) {
-    if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-      const top = endLocation + 'px';
-      nine.css(portrait, {top});
-    } else if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) {
-      /* Microsoft Internet Explorer detected in 6-11. */
-      // Do nothing as posiution: fixed works as expected.
-    } else {
-      const portraitPosition = 'translate3d(0px, ' + endLocation + 'px, 0px)';
-      nine.setTransforms(portrait, portraitPosition);
-    }
-  } else {
-    document.querySelector('.portrait').removeAttribute('style');
-  }
-};
+// nine.translatePortrait = endLocation => {
+//   const portrait = document.querySelector('.portrait');
+//   if (nine.windowSize().w >= 1024) {
+//     if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+//       const top = endLocation + 'px';
+//       nine.css(portrait, {top});
+//     } else if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) {
+//       /* Microsoft Internet Explorer detected in 6-11. */
+//       // Do nothing as posiution: fixed works as expected.
+//     } else {
+//       const portraitPosition = 'translate3d(0px, ' + endLocation + 'px, 0px)';
+//       nine.setTransforms(portrait, portraitPosition);
+//     }
+//   } else {
+//     document.querySelector('.portrait').removeAttribute('style');
+//   }
+// };
 
 /**
  * animateScroll - Scroll page with a jQuery-like scroll animation
@@ -1143,7 +1143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   nine.masonaryHeight();
   nine.animateLinks();
-  nine.animatePortrait();
+  // nine.animatePortrait();
 
   window.addEventListener('resize', () => {
     nine.masonaryHeight();

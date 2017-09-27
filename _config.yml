@@ -1,43 +1,62 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+# Site settings ################################################################
+business_name: Ninesenses
+title: Tom-Skarbek-Wazynski
+subtitle: Branding, Design &amp; Development
 
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-title: Your awesome title
-email: your-email@example.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+# Contact ######################################################################
+email: tom@ninesenses.co.uk
+obfuscated_email: tom[@]ninesenses.co.uk
 
-# Build settings
-markdown: kramdown
-theme: minima
+tel: +441524542864
+formated_tel: +44 [0] 1524 542 864
+
+twitter_username: wazynski
+instagram_username: wazynski
+
+
+# Meta #########################################################################
+description: >-
+  Ninesenses is an independent creative studio in Lancaster.
+  Specialising in brand identity, creative direction, design
+  and bespoke development.
+description: >-
+  Ninesenses, Tom Skarbek-Wazynski, web design,
+  website design, web development, branding, digital marketing,
+  online marketing, email marketing
+author: "copyright ©2017 : ninesenses : http://ninesenses.co.uk : tom@ninesenses.co.uk"
+
+# Open Graph settings ##########################################################
+og_title: Home
+og_type: website
+og_description: >-
+  Ninesenses is an independent creative consultancy producing high
+  quality branding and bespoke development for ...
+og_site_name: Ninesenses
+og_image: http://ninesenses.co.uk/img/og.png
+og_image_width: 200
+og_image_height: 200
+
+# Footer #######################################################################
+colphon: Typeset in Sofia Pro
+copyright: All rights reserved <span>© Tom Skarbek-Wazynski</span>
+
+# Typekit ID ###################################################################
+typekit: fte0rot
+
+# Analytics ID #################################################################
+ga: UA-60687760-1
+
+# URL ##########################################################################
+baseurl: ""
+url: ""
+
+# Build ########################################################################
+# TODO: This isn't compressed yet.
 plugins:
-  - jekyll-feed
+  - jekyll-babel
 
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+# Use this for production
+# sass:
+#  style: compressed
+
+exclude: [.scss, README.md, node_modules, yarn.lock, package.json]

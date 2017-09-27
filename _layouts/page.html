@@ -1,0 +1,22 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	{% include head.html %}
+	<body class="about page"> <!-- TODO: Make this config/dynamic driven -->
+		<script>document.body.classList.add('faded');</script>
+		<div class="circles"></div>
+
+		{% include menu.html %}
+
+		<div class="page-wrap">
+			<header class="page-header header">
+        <h1>About</h1>
+        <span>A little about Tom Skarbek-Wazynski</span>
+      </header>
+
+			<article class="content">
+				{{ content }}
+			</article>
+		</div>
+  {% include footer.html %}
+  </body>
+</html>
