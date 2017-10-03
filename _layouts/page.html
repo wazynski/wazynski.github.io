@@ -9,12 +9,33 @@
 
 		<div class="page-wrap">
 			<header class="page-header header">
-        <h1>About</h1>
-        <span>A little about Tom Skarbek-Wazynski</span>
+        <h1>{{ page.title }}</h1>
+        <span>{{ page.subtitle }}</span>
       </header>
 
 			<article class="content">
 				{{ content }}
+
+				<div class="contact">
+          <h2>{{ page.contact_title }}</h2>
+          <p>
+          	{{ page.contact_text }}
+          </p>
+          <div class="col-2">
+						<dl>
+							<dt>Mail</dt>
+							<dd><a href="mailto:{{site.email}}">{{site.obfuscated_email}}</a></dd>
+							<dt>Twitter</dt>
+							<dd><a href="https://twitter.com/{{site.twitter_username}}">@{{site.twitter_username}}</a></dd>
+						</dl>
+						<dl>
+							<dt>Telephone</dt>
+							<dd><a href="tel:{{site.tel}}">{{site.formated_tel}}</a></dd>
+							<dt>Instagram</dt>
+							<dd><a href="https://www.instagram.com/{{site.instagram_username}}/">{{site.instagram_username}}</a></dd>
+						</dl>
+          </div>
+        </div>
 			</article>
 		</div>
   {% include footer.html %}

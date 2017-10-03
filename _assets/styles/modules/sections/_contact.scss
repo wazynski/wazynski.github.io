@@ -29,7 +29,12 @@
 //     color: $base;
 //   }
 // }
-//
+
+
 .footer {
-  margin-top: 1rem;
+  margin-top: 2rem;
+
+  dl {
+    font-size: .75rem;
+  }
 }

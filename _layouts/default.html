@@ -13,8 +13,8 @@
       <section id="intro" class="section intro light active background-hide slide-in">
         <header class="header dark">
           <a class="" href="/">
-            <h1>Tom Skarbek-Wazynski</h1>
-            <span>Branding, Design &amp; Development</span>
+            <h1>{{site.title}}</h1>
+            <span>{{site.subtitle}}</span>
           </a>
         </header>
       </section>
@@ -23,9 +23,7 @@
         <section class="content">
           <h2>{{page.about_title}}</h2>
 
-          <p>
-						{{page.about_text}}
-          </p>
+					{{page.about_text}}
 
           <p>
             <a href="{{page.about_url}}">{{page.about_url_text}}</a>
@@ -39,18 +37,14 @@
 
 					{{page.services_text}}
 
-          <p>
-            I specialise in brand identity, creative direction, design and bespoke development.
-          </p>
-          <p>
-            Through creative integrity, research, communication and working collaboratively with a wide range of creatives I produce high-quality solutions, that make things smarter, helpful, easy to use, beautiful and most importantly fun.
+					<p>
+            <a href="{{page.services_url}}">{{page.services_url_text}}</a>
           </p>
         </section>
       </div>
 
       <div id="porters" class="section project porters">
         <section class="content">
-          <!-- <h2>Select Project</h2> -->
 
           <h1>Porters Trading Limited</h1>
           <p>
@@ -66,7 +60,6 @@
 
       <div id="badges" class="section project badges">
         <section class="content">
-          <!-- <h2>Select Project</h2> -->
 
           <h1>Badge Backpack</h1>
           <p>
@@ -83,14 +76,11 @@
 
       <div id="contact" class="section contact">
         <section class="content">
-            <h2>Contact</h2>
-            <p>
-              Close&#8209;knit relationships with my clients are really important, I like to work with you to ensure that together we create the best possible solution for you and your customers.
-            </p>
-            <p>
-              So, if you have a <span class="highlight">project or an idea</span>, please drop me an email or call for a chat.
-            </p>
-            <div class="col-2">
+            <h2>{{page.contact_title}}</h2>
+
+					  {{page.contact_text}}
+
+					  <div class="col-2">
               <dl>
                 <dt>Mail</dt>
                 <dd><a href="mailto:{{site.email}}">{{site.obfuscated_email}}</a></dd>
