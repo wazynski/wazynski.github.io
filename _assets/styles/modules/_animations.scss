@@ -24,9 +24,9 @@ body {
   }
 
   &.faded-in {
-    transition: opacity 500ms ease-in;
+    transition: opacity 500ms ease-in background 750ms ease;
 
-    opacity: 1 !important;
+    opacity: 1 !important;;
 
     .scroll-container {
       transition: opacity 500ms ease-in;
@@ -36,9 +36,9 @@ body {
   }
 
   &.faded-out {
-    transition: opacity 500ms ease-in;
+    transition: opacity 500ms ease-in background 750ms ease;
 
-    opacity: 0 !important;
+    opacity: 0 !important;;
 
     .scroll-container {
       transition: opacity 500ms ease-in;

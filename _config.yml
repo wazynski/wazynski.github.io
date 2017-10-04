@@ -13,16 +13,7 @@ formated_tel: +44 [0] 1524 542 864
 twitter_username: wazynski
 instagram_username: wazynski
 
-
 # Meta #########################################################################
-description: >-
-  Ninesenses is an independent creative studio in Lancaster.
-  Specialising in brand identity, creative direction, design
-  and bespoke development.
-description: >-
-  Ninesenses, Tom Skarbek-Wazynski, web design,
-  website design, web development, branding, digital marketing,
-  online marketing, email marketing
 author: "copyright ©2017 : ninesenses : http://ninesenses.co.uk : tom@ninesenses.co.uk"
 
 # Open Graph settings ##########################################################
@@ -31,7 +22,6 @@ og_type: website
 og_description: >-
   Ninesenses is an independent creative consultancy producing high
   quality branding and bespoke development for ...
-og_site_name: Ninesenses
 og_image: http://ninesenses.co.uk/img/og.png
 og_image_width: 200
 og_image_height: 200
