@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="en">
 	{% include head.html %}
-	<body class="about page"> <!-- TODO: Make this config/dynamic driven -->
+	<body class="{{page.title | downcase}} {{page.layout}}"> <!-- TODO: Make this config/dynamic driven -->
 		<script>document.body.classList.add('faded');</script>
 		<div class="circles"></div>
 
@@ -16,26 +16,29 @@
 			<article class="content">
 				{{ content }}
 
-				<div class="contact">
-          <h2>{{ page.contact_title }}</h2>
-          <p>
-          	{{ page.contact_text }}
-          </p>
-          <div class="col-2">
-						<dl>
-							<dt>Mail</dt>
-							<dd><a href="mailto:{{site.email}}">{{site.obfuscated_email}}</a></dd>
-							<dt>Twitter</dt>
-							<dd><a href="https://twitter.com/{{site.twitter_username}}">@{{site.twitter_username}}</a></dd>
-						</dl>
-						<dl>
-							<dt>Telephone</dt>
-							<dd><a href="tel:{{site.tel}}">{{site.formated_tel}}</a></dd>
-							<dt>Instagram</dt>
-							<dd><a href="https://www.instagram.com/{{site.instagram_username}}/">{{site.instagram_username}}</a></dd>
-						</dl>
+
+        {% if page.contact_text %}
+  				<div class="contact">
+            <h2>{{ page.contact_title }}</h2>
+            <p>
+            	{{ page.contact_text }}
+            </p>
+            <div class="col-2">
+  						<dl>
+  							<dt>Mail</dt>
+  							<dd><a href="mailto:{{site.email}}">{{site.obfuscated_email}}</a></dd>
+  							<dt>Twitter</dt>
+  							<dd><a href="https://twitter.com/{{site.twitter_username}}">@{{site.twitter_username}}</a></dd>
+  						</dl>
+  						<dl>
+  							<dt>Telephone</dt>
+  							<dd><a href="tel:{{site.tel}}">{{site.formated_tel}}</a></dd>
+  							<dt>Instagram</dt>
+  							<dd><a href="https://www.instagram.com/{{site.instagram_username}}/">{{site.instagram_username}}</a></dd>
+  						</dl>
+            </div>
           </div>
-        </div>
+        {% endif %}
 			</article>
 		</div>
   {% include footer.html %}
