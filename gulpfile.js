@@ -106,7 +106,8 @@ gulp.task('build:jekyll', function() {
 
 // Runs jekyll build command using test config.
 gulp.task('build:jekyll:test', function() {
-    var shellCommand = 'bundle exec jekyll build --config _config.yml,_config.test.yml';
+    // var shellCommand = 'bundle exec jekyll build --config _config.yml,_config.test.yml';
+    var shellCommand = 'bundle exec jekyll build --config _config.yml';
 
     return gulp.src('')
         .pipe(run(shellCommand))
@@ -115,7 +116,8 @@ gulp.task('build:jekyll:test', function() {
 
 // Runs jekyll build command using local config.
 gulp.task('build:jekyll:local', function() {
-    var shellCommand = 'bundle exec jekyll build --config _config.yml,_config.test.yml,_config.dev.yml';
+    // var shellCommand = 'bundle exec jekyll build --config _config.yml,_config.test.yml,_config.dev.yml';
+    var shellCommand = 'bundle exec jekyll build --config _config.yml';
 
     return gulp.src('')
         .pipe(run(shellCommand))

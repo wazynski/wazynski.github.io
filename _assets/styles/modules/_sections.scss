@@ -18,12 +18,16 @@ Stylesheet: Sections
 
 .section {
   position: relative; // Required fallback
+  z-index: 5;
   top: 0;
 
   display: flex;
   overflow: hidden;
 
   width: 100%;
+
+  background-position: center center;
+  background-size: cover;
 
   @media screen and (min-width: $tablet) {
     min-height: 100%; // Fallbacks
@@ -37,19 +41,40 @@ Stylesheet: Sections
    ========================================================================== */
 
 .content {
-  position: absolute;
-  left: 50%;
-
-  width: 50%;
+  // position: absolute;
   max-width: 900px;
   margin: 0;
-  padding: 0 100px 0 150px;
+  padding: 0 2.5rem 1.25rem 1.25rem;
 
   color: $platinum;
 
-  font-size: 1.5rem;
+  font-size: 1rem;
 
-  align-self: center;
+  align-self: flex-end;
+
+  @media screen and (min-width: $tablet) {
+    width: 600px;
+    margin: 0 auto;
+    // padding: 0 0 0 150px;
+    padding: 250px 0 0;
+
+    font-size: 1.5rem;
+
+    align-self: center;
+
+    // left: 50%;
+    //
+    // width: 50%;
+  }
+
+  @media screen and (min-width: $laptop) {
+    position: absolute;
+    left: 50%;
+
+    width: 50%;
+    margin: 0 0 0 auto;
+    padding: 0 100px 0 150px;
+  }
 
   h2 {
     color: $platinum;
@@ -88,3 +113,74 @@ Stylesheet: Sections
     }
   }
 }
+//
+// .porters {
+//   &.active {
+//     &::after {
+//       animation: imageAnimation 20s linear infinite;
+//       animation-direction: alternate;
+//     }
+//   }
+//
+//   &:after {
+//     position: absolute;
+//     z-index: -1;
+//     top: 0;
+//     right: 0;
+//     bottom: 0;
+//     left: 0;
+//
+//     display: block;
+//
+//     width: 100%;
+//     height: 100%;
+//
+//     content: '';
+//
+//     background-image: url('../img/coffee-temp.jpg');
+//     background-position: center center;
+//     background-size: cover;
+//   }
+// }
+//
+// .badges {
+//   &.active {
+//     &::after {
+//       animation: imageAnimation 20s linear infinite;
+//       animation-direction: alternate;
+//     }
+//   }
+//
+//   &:after {
+//     position: absolute;
+//     z-index: -1;
+//     top: 0;
+//     right: 0;
+//     bottom: 0;
+//     left: 0;
+//
+//     display: block;
+//
+//     width: 100%;
+//     height: 100%;
+//
+//     content: '';
+//
+//     background-image: url('../img/backpack.jpg');
+//     background-position: center center;
+//     background-size: cover;
+//
+//     animation-fill-mode: forwards;
+//   }
+// }
+//
+// @keyframes imageAnimation {
+//   0% {
+//     transform: scale(1);
+//     animation-timing-function: ease-in;
+//   }
+//   100% {
+//     transform: scale(1.1);
+//     animation-timing-function: ease-out;
+//   }
+// }

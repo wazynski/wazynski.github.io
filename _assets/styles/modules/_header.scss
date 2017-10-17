@@ -8,49 +8,32 @@ Stylesheet: Header
   Header
    ========================================================================== */
 
-// .fullscreen {
-//   .header {
-//     position: fixed;
-//
-//     height: auto;
-//
-//     pointer-events: none;
-//
-//     background: none;
-//   }
-// }
-
-// .page {
-//   .header {
-//     text-align: center;
-//
-//     a {
-//       padding-left: 0;
-//
-//       &::before {
-//         position: relative;
-//         top: 0;
-//
-//         margin: 0 auto 10px;
-//       }
-//
-//       &:hover {
-//         transform: translate(0, 20px);
-//       }
-//     }
-//   }
-// }
-
 .header {
   z-index: 9999;
 
-  width: 50%;
-  margin: 0 0 0 auto;
-  padding: 0 0 0 150px;
+  width: 100%;
+  // width: 50%;
+  // margin: 0 0 0 auto;
+  // padding: 0 0 0 150px;
+  //
+  padding: 0 2.5rem 2.25rem 1.25rem;
 
   line-height: 1;
 
-  align-self: center;
+  align-self: flex-end;
+
+  @media screen and (min-width: $tablet) {
+    width: 100%;
+    margin: 0 0 0 auto;
+    padding: 200px 0 0 150px;
+
+    align-self: center;
+  }
+
+  @media screen and (min-width: $laptop) {
+    width: 50%;
+    padding: 0 0 0 150px;
+  }
 
   a {
     z-index: 1;
@@ -67,6 +50,7 @@ Stylesheet: Header
   }
 
   h1 {
+    margin-top: 0;
     margin-bottom: .25rem;
 
     transition: color 750ms ease;
@@ -83,8 +67,6 @@ Stylesheet: Header
 
   span {
     display: inline-block;
-
-    max-width: 100px;
 
     color: $secondary !important;
 

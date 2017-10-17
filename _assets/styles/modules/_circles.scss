@@ -5,14 +5,28 @@
 .circles {
   position: absolute;
   z-index: 0;
-  top: 50%;
+  top: 35%;
   left: 50%;
 
-  width: 600px;
-  height: 400px;
-  margin: -200px 0 0 -300px;
+  display: none;
+
+  width: 290px;
+  height: 190px;
+  margin: -95px 0 0 -145px;
 
   transition: all 750ms ease;
+
+  @media screen and (min-width: $tablet) {
+    top: 35%;
+
+    width: 600px;
+    height: 400px;
+    margin: -200px 0 0 -300px;
+  }
+
+  @media screen and (min-width: $laptop) {
+    top: 50%;
+  }
 
   &:before,
   &:after {
@@ -22,8 +36,8 @@
 
     display: block;
 
-    width: 400px;
-    height: 400px;
+    width: 190px;
+    height: 190px;
 
     content: '';
     transition: all 250ms ease;
@@ -32,84 +46,40 @@
     background: $gainsboro;
     background-position: center center;
     background-size: cover;
+
+    @media screen and (min-width: $tablet) {
+      width: 400px;
+      height: 400px;
+    }
   }
 
   &:after {
-    left: 200px;
+    left: 100px;
 
     background: $mustard;
 
     mix-blend-mode: multiply;
-  }
-}
 
-.about-active {
-  .circles {
-    // opacity: .25;
-    &:before {
-      background-image: url('../img/tom-side.jpg');
-    }
-
-    &:after {
-      background-color: $dingley;
+    @media screen and (min-width: $tablet) {
+      left: 200px;
     }
   }
 }
 
-.services-active {
+.porters-active,
+.badges-active {
   .circles {
-    &:before {
-      background-image: url('../img/code.png');
-      background-size: auto;
-      // background-color: $gold;
-    }
-
-    &:after {
-      background-color: $code-red;
-    }
-  }
-}
-
-.porters-active {
-  background: #FDCA58;
-
-  .circles {
-    &:before {
-      background-image: url('../img/coffee-temp.jpg');
-      // background-size: auto;
-      // background-color: $gold;
-    }
-
-    &:after {
-      background-color: #374246;
-    }
-  }
-}
-
-.badge-active {
-  background: #252525;
-
-  .circles {
-    &:before {
-      background-image: url('../img/coffee-temp.jpg');
-      // background-size: auto;
-      // background-color: $gold;
-    }
-
-    &:after {
-      background-color: $saffron;
-    }
+    z-index: -30;
   }
 }
 
 .contact-active {
   .circles {
-    &:before {
-      // background-color: $platinum;
+    &::before {
+      background: darken($base, 10%);
     }
-
-    &:after {
-      background-color: $firebush;
+    &::after {
+      background: darken($base, 5%);
     }
   }
 }

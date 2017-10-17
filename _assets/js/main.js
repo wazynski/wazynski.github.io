@@ -13,15 +13,16 @@ const nine = {
   scrollDirection: null,
   prevTime: new Date().getTime(),
   scrollHistory: [],
-  fullScreenWidthEnableFrom: 768,
-  fullScreenHeightEnableFrom: 672,
+  fullScreenWidthEnableFrom: 0,
+  fullScreenHeightEnableFrom: 0,
   supports3d: false,
   isTouchDevice: navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/),
   isTouch: (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints)),
   touchStartY: 0,
   touchEndY: 0,
   touchSensitivity: 5,
-  circles: document.querySelector('.circles')
+  circles: document.querySelector('.circles'),
+  prevBackground: null
 };
 
 /* ==========================================================================
@@ -486,8 +487,14 @@ nine.animateScroll = (endLocation, element, duration) => {
  * @param {Object} element Element we are scrolling to
  */
 nine.scrollStart = element => {
-  // Delay until part way through scroll to chnages make feel smooth.
+  // Delay until part way through scroll to changes make feel smooth.
   setTimeout(() => {
+    // testing
+    //
+
+    const bgs = document.querySelectorAll('.bgs li');
+    nine.prevBackground = document.querySelector('.bgs li.active');
+    nine.addClass(bgs[nine.getSectionIndex(element)], 'active');
     // Remove other active classes
     const activePages = document.querySelector('.section.active');
     if (activePages) {
@@ -512,6 +519,7 @@ nine.scrollEnd = element => {
   // Update to new state.
   nine.updateHash(element.id);
   nine.updateCurrent(element);
+  nine.removeClass(nine.prevBackground, 'active');
   // nine.addClass(document.body, element.id + '-active');
   nine.updateControls();
 };

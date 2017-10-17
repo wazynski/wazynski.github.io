@@ -10,86 +10,92 @@ Stylesheet: Controls
 $controls: $secondary;
 
 .controls {
-  display: none;
+  // @media screen and (min-width: $controls-on) {
+  position: fixed;
+  z-index: 9999;
+  right: 15px;
+  bottom: 26px;
+
+  width: 16px;
+
+  text-align: right;
+  // display: none !important;
 
   &.on {
     display: block;
   }
 
-  @media screen and (min-width: $controls-on) {
-    position: fixed;
-    z-index: 9999;
+  @media screen and (min-width: $tablet) {
     right: 25px;
     bottom: 50px;
+  }
+
+  // @media screen and (min-height: 850px) {
+  //   bottom: 180px;
+  // }
+
+  ul {
+    display: none;
 
     width: 16px;
 
-    text-align: right;
+    list-style: none;
 
-    // @media screen and (min-height: 850px) {
-    //   bottom: 180px;
-    // }
-
-    ul {
-      width: 16px;
-
-      list-style: none;
-
-      li {
-        display: block;
-
-        width: 10px;
-        height: 10px;
-        margin: 0 auto 10px;
-
-        cursor: pointer;
-        transition: background 100ms linear;
-
-        border: 1px solid $controls;
-        border-radius: 50%;
-        background: none;
-
-        &.active {
-          background: $controls;
-        }
-
-        &:hover {
-          opacity: .5;
-          background: $controls;
-        }
-      }
-    }
-
-    button {
+    li {
       display: block;
 
-      width: 16px;
-      height: 28px;
-      margin: 0 0 10px;
-      padding: 0;
+      width: 10px;
+      height: 10px;
+      margin: 0 auto 10px;
 
-      transition: opacity 500ms linear;
-      text-align: center;
+      cursor: pointer;
+      transition: background 100ms linear;
 
-      opacity: 1;
-      border: 0;
-      outline: 0;
+      border: 1px solid $controls;
+      border-radius: 50%;
       background: none;
 
-      &.disabled {
-        opacity: 0;
+      &.active {
+        background: $controls;
       }
 
-      svg {
-        display: inline-block;
+      &:hover {
+        opacity: .5;
+        background: $controls;
+      }
+    }
+  }
 
-        width: 12px;
-        margin: 0 auto;
+  button {
+    display: block;
 
-        path {
-          fill: $controls;
-        }
+    width: 16px;
+    height: 28px;
+    margin: 0 0 10px;
+    padding: 0;
+
+    transition: opacity 500ms linear;
+    text-align: center;
+
+    opacity: 1;
+    border: 0;
+    outline: 0;
+    background: none;
+
+    &.disabled {
+      opacity: 0;
+    }
+
+    svg {
+      display: inline-block;
+
+      width: 12px;
+      margin: 0 auto;
+
+      path {
+        fill: $controls;
       }
     }
   }
 }
+// }

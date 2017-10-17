@@ -4,34 +4,17 @@
 //
 // Stylesheet: Contact
 // ========================================================================== */
-// .section.contact {
-//   .content {
-//     order: 1;
-//   }
-//
-//   a {
-//     color: $base;
-//
-//     &:hover {
-//       color: $base;
-//     }
-//
-//     &::before {
-//       background-color: $base;
-//     }
-//   }
-//
-//   dt {
-//     color: $secondary;
-//   }
-//
-//   dd {
-//     color: $base;
-//   }
-// }
 
+.contact {
+  dt,
+  dd {
+    font-size: .75rem;
+  }
+}
 
 .footer {
+  display: none;
+
   margin-top: 2rem;
 
   dl {

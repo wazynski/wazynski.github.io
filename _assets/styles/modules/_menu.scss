@@ -1,6 +1,13 @@
 /* ==========================================================================
   Menu
    ========================================================================== */
+
+.default {
+  .home {
+    display: none;
+  }
+}
+
 .home {
   position: fixed;
   z-index: 9999;
@@ -64,6 +71,8 @@
   right: 25px;
   left: auto;
 
+  display: none;
+
   width: 100%;
   margin-top: -50%;
 
@@ -72,6 +81,10 @@
   // transform: translate(50%,-50%) rotate(-90deg) translateY(-50%);
   transform-origin: bottom right;
   text-align: center;
+
+  @media screen and (min-width: $tablet) {
+    display: block;
+  }
 
   a {
     display: inline-block;

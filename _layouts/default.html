@@ -1,16 +1,26 @@
 <!doctype html>
 <html class="no-js" lang="en">
 	{% include head.html %}
-		<body>
+	<body class="default">
+		<div class="circles"></div>
+
 		{% include controls.html %}
 
 		{% include menu.html %}
 
-		<div class="circles"></div>
+		<ul class="bgs">
+			<li class="bg active"></li>
+			<li class="bg"></li>
+			<li class="bg"></li>
+			<li class="bg"></li>
+			<li class="bg"></li>
+		</ul>
+
 
 		<div id="fullpage" class="scroll-container page-wrap">
 
       <section id="intro" class="section intro light active">
+
         <header class="header dark">
           <a class="" href="/">
             <h1>{{site.title}}</h1>
@@ -19,31 +29,9 @@
         </header>
       </section>
 
-      <div id="about" class="section about">
-        <section class="content">
-          <h2>{{page.about_title}}</h2>
 
-					{{page.about_text}}
 
-          <p>
-            <a href="{{page.about_url}}">{{page.about_url_text}}</a>
-          </p>
-        </section>
-      </div>
-
-      <div id="services" class="section services">
-        <section class="content">
-          <h2>{{page.services_title}}</h2>
-
-					{{page.services_text}}
-
-					<p>
-            <a href="{{page.services_url}}">{{page.services_url_text}}</a>
-          </p>
-        </section>
-      </div>
-
-      <!-- <div id="porters" class="section project porters">
+      <div id="porters" class="section project porters">
         <section class="content">
 
           <h1>Porters Trading Limited</h1>
@@ -72,7 +60,7 @@
           </dl>
 
         </section>
-      </div> -->
+      </div>
 
       <div id="contact" class="section contact">
         <section class="content">

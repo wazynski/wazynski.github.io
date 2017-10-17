@@ -25,16 +25,16 @@ about_url: /about
 about_url_text: Find out more about Tom &rarr;
 
 # Services
-services_title:
+services_title: What I do
 services_text: >-
   <p>
     I specialise in brand identity, creative direction, design and bespoke development.
   </p>
-  <p>
+  <!-- <p>
     Through creative integrity, research, communication and working collaboratively with a wide range of creatives I produce high-quality solutions, that make things smarter, helpful, easy to use, beautiful and most importantly fun.
-  </p>
-services_url: /about
-services_url_text: Find out more about Tom &rarr;
+  </p> -->
+services_url: /services
+services_url_text: Find out more about my services &rarr;
 
 # Contact
 contact_title: Contact
