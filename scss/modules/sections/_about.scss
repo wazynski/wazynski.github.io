@@ -6,36 +6,21 @@ Stylesheet: About
 ========================================================================== */
 $portrait-detach: $laptop;
 
-.experience {
-  padding-bottom: 1.25rem;
-
-  @media screen and (min-width: $tablet) {
-    padding-bottom: 1.875rem;
-  }
-
-  ul,
-  dl {
-    margin: 1.5rem 0;
-
-    vertical-align: top;
-
-    font-size: 1rem;
-
-    li,
-    dd {
-      color: lighten($secondary, 20%);
-    }
-  }
-}
-
-
 .section.about {
   position: relative;
+
+  overflow: visible; // Required for portrait to show on Webkit
+
+  padding-bottom: 400px;
+
+  transform: translate3d(0, 0, 0); // Flicker on mobile fix https://stackoverflow.com/questions/12278587/webkit-text-flickers-when-using-css-transform-scale
+  // -webkit-backface-visibility: hidden;
 
   flex-wrap: wrap;
 
   .content {
     width: 100%;
+    padding-bottom: 0;
 
     .wrap {
       @media screen and (min-width: $laptop) {
@@ -46,14 +31,22 @@ $portrait-detach: $laptop;
         max-width: 50%;
       }
 
-      @media screen and (min-width: $xl-desktop) {
-        max-width: 835px;
-      }
+      // @media screen and (min-width: $xl-desktop) {
+      //   max-width: 835px;
+      // }
     }
   }
 
   @media screen and (min-width: $portrait-detach) {
     flex-direction: row;
+
+    padding-bottom: 0;
+
+    transform: none;
+
+    .content {
+      padding-bottom: 3.125rem;
+    }
   }
 
   a {
@@ -63,24 +56,43 @@ $portrait-detach: $laptop;
       color: $mustard;
     }
   }
-}
 
+  &.active {
+    .portrait div:first-child {
+      opacity: 1;
+    }
+  }
+}
 
 /* ==========================================================================
   Portrait
    ========================================================================== */
 
-.portrait {
-  position: relative;
+.fullscreen .portrait {
+  position: fixed; // to fix flickr issue on webkit.
+}
 
-  width: 100%;
-  height: 500px;
+.portrait {
+  position: absolute;
+  z-index: 400;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 400px;
+
+  transform: translate3d(0, 0, 0); // Flicker on mobile fix https://stackoverflow.com/questions/12278587/webkit-text-flickers-when-using-css-transform-scale
+
+  will-change: transform;
 
   @media screen and (min-width: $portrait-detach) {
-    position: absolute;
-    z-index: 400;
+    position: fixed;
     top: 0;
-    right: 0;
+    right: 75px;
+    bottom: auto;
+    left: auto;
+
+    display: block;
 
     width: 40%;
     height: 100%;
@@ -94,21 +106,27 @@ $portrait-detach: $laptop;
 
   div {
     position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
     width: 100%;
     height: 500px;
 
-    transition: opacity 600ms linear;
+    transition: opacity 750ms linear;
+    transform: translate3d(0, 0, 0); // Flicker on mobile fix https://stackoverflow.com/questions/12278587/webkit-text-flickers-when-using-css-transform-scale
 
+    background-image: url('../img/tom-side.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    // -webkit-backface-visibility: hidden;
 
     @media screen and (min-width: $portrait-detach) {
-      top: 0;
-      bottom: 0;
-
       height: auto;
+      // margin-top: 125px; // With menu
       margin-top: 50px;
       margin-bottom: 50px;
     }
@@ -120,14 +138,12 @@ $portrait-detach: $laptop;
     &:first-child {
       z-index: 2;
 
+      transition: opacity 750ms linear;
+
       opacity: 0;
       background-image: url('../img/tom-front.jpg');
-    }
 
-    &:last-child {
-      z-index: 1;
-
-      background-image: url('../img/tom-side.jpg');
+      will-change: opacity;
     }
   }
 }
@@ -136,8 +152,17 @@ $portrait-detach: $laptop;
   Page
    ========================================================================== */
 .about {
+  .header {
+    background: $base;
+  }
   .footer {
     display: block;
+
+    background: $base;
+
+    dt {
+      color: $white;
+    }
   }
 }
 
@@ -315,7 +340,7 @@ $portrait-detach: $laptop;
   }
 
   @media screen and (min-width: $sm-desktop) {
-    padding: 20rem 3.125rem 3.125rem;
+    padding: 15rem 3.125rem 3.125rem;
   }
 
   @media screen and (min-width: $lg-desktop) {
@@ -330,6 +355,8 @@ $portrait-detach: $laptop;
   }
 
   @media screen and (min-width: $xl-desktop) {
+    padding: 15rem 4.6875rem 3.125rem;
+
     .block {
       font-size: 2.25rem;
     }
