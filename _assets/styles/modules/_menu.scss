@@ -2,23 +2,28 @@
   Menu
    ========================================================================== */
 
-.default {
-  .home {
-    display: none;
-  }
-}
+// .default {
+//   .home {
+//     display: none;
+//   }
+// }
 
 .home {
   position: fixed;
   z-index: 9999;
-  top: 50px;
-  right: 25px;
+  top: 3.125rem;
+  // right: 25px;
+  right: 15px;
   left: auto;
 
   display: block;
 
   width: 20px;
   height: 30px;
+
+  @media screen and (min-width: $tablet) {
+    right: 23px;
+  }
 
   &:hover {
     &:before {
@@ -50,7 +55,7 @@
     // opacity: .5;
 
     border-radius: 50%;
-    background: #898E91;
+    background: $secondary;
     background-position: center center;
     background-size: cover;
   }
@@ -58,7 +63,7 @@
   &:after {
     top: 10px;
 
-    background: #A9ACAD;
+    background: lighten($secondary, 3%);
 
     mix-blend-mode: multiply;
   }
@@ -68,7 +73,7 @@
   position: fixed;
   z-index: 9998;
   top: 50%;
-  right: 25px;
+  right: 17px;
   left: auto;
 
   display: none;
@@ -81,6 +86,9 @@
   // transform: translate(50%,-50%) rotate(-90deg) translateY(-50%);
   transform-origin: bottom right;
   text-align: center;
+  @media screen and (min-width: $tablet) {
+    right: 25px;
+  }
 
   @media screen and (min-width: $tablet) {
     display: block;
@@ -89,28 +97,30 @@
   a {
     display: inline-block;
 
+    height: 16px;
     margin: 0 1rem;
 
     letter-spacing: .01rem;
     text-transform: uppercase;
 
-    color: $dim-gray;
+    color: $secondary;
 
     font-size: .825rem;
     font-weight: 300;
+    line-height: 1;
 
     &.active {
-      color: lighten($dim-gray, 30%);
+      color: lighten($secondary, 30%);
     }
 
     &:hover {
-      color: lighten($dim-gray, 15%);
+      color: lighten($secondary, 15%);
     }
 
     &:after {
       height: 2px;
 
-      background: lighten($dim-gray, 15%);
+      background: lighten($secondary, 15%);
     }
   }
 }

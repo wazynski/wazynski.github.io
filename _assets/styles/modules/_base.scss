@@ -24,40 +24,16 @@ html {
 }
 
 body {
+  height: 100%;
+  margin: 0;
+
   transition: background-color 750ms ease;
-  // border-right: 50px solid $platinum;
-  // border-left: 50px solid $platinum;
 
   background: $background;
 
   -webkit-backface-visibility: hidden;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0,0,0,0);;
 
-  // &::before,
-  // &::after {
-  //   position: fixed;
-  //   right: 0;
-  //   left: 0;
-  //
-  //   height: 50px;
-  //
-  //   content: '';
-  //
-  //   background: $platinum;
-  // }
-  //
-  //
-  // &::before {
-  //   top: 0;
-  // }
-  //
-  // &::after {
-  //   bottom: 0;
-  // }
-
-  &.about {
-    background: $base;
-  }
 
   &.fullscreen {
     position: relative;
@@ -128,59 +104,5 @@ body {
 
       font-size: 1rem;
     }
-  }
-}
-
-.bgs {
-  li {
-    position: fixed;
-    z-index: -5;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    // background: hotpink;
-
-    transition: all 750ms $easing;
-
-    opacity: 0;
-    background-position: center;
-    background-size: cover;
-    //
-    &:nth-child(1) {
-      background: $background;
-    }
-
-    &:nth-child(2) {
-      background-image: url('../img/porters-bg.jpg');
-    }
-
-    &:nth-child(3) {
-      background-image: url('../img/backpack.jpg');
-    }
-
-    &:nth-child(4) {
-      background: $background;
-    }
-
-    &.active {
-      animation: imageAnimation 20s linear infinite;
-      animation-direction: alternate;
-
-      opacity: 1;
-
-      animation-fill-mode: forwards;
-    }
-  }
-}
-
-@keyframes imageAnimation {
-  0% {
-    transform: scale(1);
-    animation-timing-function: ease-in;
-  }
-  100% {
-    transform: scale(1.1);
-    animation-timing-function: ease-out;
   }
 }

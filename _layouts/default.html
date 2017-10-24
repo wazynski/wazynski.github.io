@@ -1,23 +1,24 @@
 <!doctype html>
 <html class="no-js" lang="en">
-	{% include head.html %}
-	<body class="default">
-		<div class="circles"></div>
+  {% include head.html %}
+  <body class="default">
+    <!-- <div class="circle"></div> -->
 
-		{% include controls.html %}
+    {% include controls.html %}
 
-		{% include menu.html %}
+    {% include menu.html %}
 
-		<ul class="bgs">
-			<li class="bg active"></li>
-			<li class="bg"></li>
-			<li class="bg"></li>
-			<li class="bg"></li>
-			<li class="bg"></li>
-		</ul>
+    <ul class="bgs">
+      <li class="bg active"></li>
+      <li class="bg"></li>
+      <li class="bg"></li>
+      <li class="bg"></li>
+      <li class="bg"></li>
+      <li class="bg"></li>
+    </ul>
 
 
-		<div id="fullpage" class="scroll-container page-wrap">
+    <div id="fullpage" class="scroll-container page-wrap">
 
       <section id="intro" class="section intro light active">
 
@@ -29,10 +30,33 @@
         </header>
       </section>
 
+      <div id="about" class="section about">
+       	<section class="content">
+        	 <h2>{{page.about_title}}</h2>
 
+         	{{page.about_text}}
+
+         <p>
+           <a href="{{page.about_url}}">{{page.about_url_text}}</a>
+         </p>
+       	</section>
+     	</div>
+
+     <div id="services" class="section services">
+       <section class="content">
+         <h2>{{page.services_title}}</h2>
+
+         {{page.services_text}}
+
+         <p>
+           <a href="{{page.services_url}}">{{page.services_url_text}}</a>
+         </p>
+       </section>
+     </div>
 
       <div id="porters" class="section project porters">
         <section class="content">
+          <h2>Select Project</h2>
 
           <h1>Porters Trading Limited</h1>
           <p>
@@ -48,6 +72,7 @@
 
       <div id="badges" class="section project badges">
         <section class="content">
+          <h2>Select Project</h2>
 
           <h1>Badge Backpack</h1>
           <p>
@@ -66,9 +91,9 @@
         <section class="content">
             <h2>{{page.contact_title}}</h2>
 
-					  {{page.contact_text}}
+            {{page.contact_text}}
 
-					  <div class="col-2">
+            <div class="col-2">
               <dl>
                 <dt>Mail</dt>
                 <dd><a href="mailto:{{site.email}}">{{site.obfuscated_email}}</a></dd>
@@ -97,6 +122,6 @@
       </div>
     </div>
 
-		{% include footer.html %}
-	</body>
+    {% include footer.html %}
+  </body>
 </html>

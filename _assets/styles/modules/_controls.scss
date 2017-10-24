@@ -13,7 +13,7 @@ $controls: $secondary;
   // @media screen and (min-width: $controls-on) {
   position: fixed;
   z-index: 9999;
-  right: 15px;
+  right: 17px;
   bottom: 26px;
 
   width: 16px;
@@ -27,12 +27,14 @@ $controls: $secondary;
 
   @media screen and (min-width: $tablet) {
     right: 25px;
-    bottom: 50px;
+    bottom: 3.125rem;
   }
 
-  // @media screen and (min-height: 850px) {
+  // @media screen and (min-height: 83.125rem) {
   //   bottom: 180px;
   // }
+  //
+
 
   ul {
     display: none;
@@ -40,6 +42,10 @@ $controls: $secondary;
     width: 16px;
 
     list-style: none;
+
+    // @media screen and (min-width: $laptop) {
+    //   display: block;
+    // }
 
     li {
       display: block;

@@ -19,7 +19,9 @@ $mustard: #FFD657;
 $beau-blue: #C0DAEA;
 $gainsboro: #D6E4E1;
 $mango-tango: #FD7F44;
-$white: #FFFFFF;
+$white: #FCFCFC;
+$vulcan: #10141B;
+$comet: #555B6E;
 // Services
 $gold: #D5A86F;
 $dark-blue: #03213D;
@@ -29,11 +31,13 @@ $firebush: #E1954A;
 $aquamarine: #66E5AC;
 $code-red: #E26F76;
 //Colors
-$base: $paynes-grey;
-$secondary: $dim-gray;
-$background: $base;
-
-
+$base: $white;
+$secondary: $comet;
+$background: $vulcan;
+// Debug
+$debug: hotpink;
+$debug-2: lightblue;
+$debug-3: lightgreen;
 /* ==========================================================================
   Fonts
 ========================================================================== */
@@ -55,6 +59,6 @@ $laptop: 1024px;
 $sm-desktop: 1279px;
 $lg-desktop: 1440px;
 $xl-desktop: 1800px;
-$xxl-desktop: 2560px;
+$xxl-desktop: 253.75rem;
 //
 $controls-on: $tablet;

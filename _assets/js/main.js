@@ -494,6 +494,8 @@ nine.scrollStart = element => {
 
     const bgs = document.querySelectorAll('.bgs li');
     nine.prevBackground = document.querySelector('.bgs li.active');
+    nine.addClass(nine.prevBackground, 'previous');
+    nine.removeClass(nine.prevBackground, 'active');
     nine.addClass(bgs[nine.getSectionIndex(element)], 'active');
     // Remove other active classes
     const activePages = document.querySelector('.section.active');
@@ -519,7 +521,7 @@ nine.scrollEnd = element => {
   // Update to new state.
   nine.updateHash(element.id);
   nine.updateCurrent(element);
-  nine.removeClass(nine.prevBackground, 'active');
+  nine.removeClass(nine.prevBackground, 'previous');
   // nine.addClass(document.body, element.id + '-active');
   nine.updateControls();
 };

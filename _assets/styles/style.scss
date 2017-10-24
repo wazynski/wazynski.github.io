@@ -23,7 +23,9 @@ Stylesheet: Style
 @import 'modules/footer';
 @import 'modules/controls';
 @import 'modules/sections';
-@import 'modules/circles';
+// @import 'modules/circles';
+@import 'modules/backgrounds';
+@import 'modules/page';
 
 @import 'modules/sections/intro';
 @import 'modules/sections/about';

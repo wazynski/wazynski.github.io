@@ -2,6 +2,45 @@
   Circles
    ========================================================================== */
 
+.circle {
+  position: absolute;
+  // position: absolute;
+  // z-index: 0;
+  // top: 0;
+  // left: 0;
+  //
+  // display: block;
+  //
+  // width: 50%;
+  // height: 100%;
+  //
+  // border-radius: 50%;
+  // background: $secondary;
+  //
+
+  width: 50%;
+  height: 100%;
+
+  background: url('../img/tom-side.jpg');
+  background-position: center center;
+  background-size: cover;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .circles {
   position: absolute;
   z-index: 0;

@@ -41,10 +41,10 @@ Stylesheet: Sections
    ========================================================================== */
 
 .content {
-  // position: absolute;
-  max-width: 900px;
+  width: 100%;
+  max-width: 800px;
   margin: 0;
-  padding: 0 2.5rem 1.25rem 1.25rem;
+  padding: 0 3.75rem 1.25rem 1.25rem;
 
   color: $platinum;
 
@@ -53,34 +53,31 @@ Stylesheet: Sections
   align-self: flex-end;
 
   @media screen and (min-width: $tablet) {
-    width: 600px;
-    margin: 0 auto;
-    // padding: 0 0 0 150px;
-    padding: 250px 0 0;
+    position: absolute;
+    left: 40%;
+
+    width: 60%;
+    padding: 0 4.6875rem;
 
     font-size: 1.5rem;
 
     align-self: center;
-
-    // left: 50%;
-    //
-    // width: 50%;
   }
 
-  @media screen and (min-width: $laptop) {
-    position: absolute;
+  @media screen and (min-width: $sm-desktop) {
     left: 50%;
 
-    width: 50%;
-    margin: 0 0 0 auto;
-    padding: 0 100px 0 150px;
+    width: calc(50%);
   }
 
   h2 {
-    color: $platinum;
+    margin-top: 0;
+
+    color: $secondary;
   }
 
   h1 {
+    // margin-top: 0;
     font-size: 1.5rem;
     font-weight: 300;
   }
@@ -94,12 +91,9 @@ Stylesheet: Sections
   }
 
   a {
-    color: $mustard;
+    color: $secondary;
   }
 
-  // dt {
-  //   color: $secondary;
-  // }
 
   dd {
     color: $secondary;

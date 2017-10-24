@@ -9,12 +9,6 @@ Stylesheet: Animations
    ========================================================================== */
 
 body {
-  background: $background;
-
-  &.about {
-    background: $base;
-  }
-
   &.faded {
     opacity: 0;
 
@@ -44,91 +38,6 @@ body {
       transition: opacity 500ms ease-in;
 
       opacity: 0 !important;
-    }
-  }
-}
-
-.hide-left {
-  transform: translate3d(-2000px, 0, 0);
-}
-
-.hide-right {
-  transform: translate3d(2000px, 0, 0);
-
-  &.portrait {
-    right: -2000px;
-    left: auto;
-  }
-}
-
-.slide-in {
-  transition: all 1s $easing;
-}
-
-.background-hide {
-  background-position: -1800px center !important;
-}
-
-/* ==========================================================================
-  Sections
-   ========================================================================== */
-
-.fullscreen {
-  .section {
-    .wrap {
-      * {
-        transition: transform 1250ms $easing;
-      }
-
-      h2 {
-        transform: translate3d(-10px, 0, 0);
-      }
-
-      p {
-        transform: translate3d(10px, 0, 0);
-      }
-    }
-
-    &.contact {
-      .col-2 {
-        transform: translate3d(0px, 10px, 0);
-
-        &.footer {
-          transform: translate3d(0px, 0px, 0);
-
-          .content {
-            transition: transform 1250ms $easing;
-            transform: translate3d(10px, 0px, 0);
-          }
-        }
-      }
-    }
-
-    /* ==========================================================================
-     Aniumation starts
-     ========================================================================== */
-
-    &.active {
-      &.intro {
-        background-size: contain;
-      }
-
-      .wrap {
-        h2,
-        p {
-          transform: translate3d(0px, 0, 0);
-        }
-      }
-
-      &.contact {
-        .col-2 {
-          transform: translate3d(0px, 0px, 0);
-
-          .content {
-            transform: translate3d(0px, 0px, 0);
-          }
-        }
-      }
     }
   }
 }

@@ -1,0 +1,106 @@
+/* ==========================================================================
+Site Name: Ninesenses
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: Backgrounds
+========================================================================== */
+
+.bgs {
+  margin: 0;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    width: calc(100% - 3.125rem);
+
+    content: '';
+
+    background: lighten($background, 10%);
+
+    mix-blend-mode: multiply;
+
+    @media screen and (min-width: $tablet) {
+      display: none;
+    }
+  }
+
+  li {
+    position: fixed;
+    z-index: -5;
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    width: calc(100% - 3.125rem);
+
+    transition: opacity 750ms cubic-bezier(.77, 0, .175, 1);
+
+    opacity: 0;
+    background-position: center;
+    background-size: cover;;
+
+    @media screen and (min-width: $tablet) {
+      width: 40%;
+    }
+
+    @media screen and (min-width: $sm-desktop) {
+      width: 50%;
+    }
+
+    &:nth-child(1) {
+      background-image: url('../img/tom-side.jpg');
+    }
+
+    &:nth-child(2) {
+      background-image: url('../img/tom-front.jpg');
+    }
+
+    &:nth-child(3) {
+      background-image: url('../img/services-temp.jpg');
+    }
+
+    &:nth-child(4) {
+      background-image: url('../img/porters.jpg');
+    }
+
+    &:nth-child(5) {
+      background-image: url('../img/backpack-temp.jpg');
+    }
+
+    &:nth-child(6) {
+      background-image: url('../img/contact-temp.webp');
+      background-position: right center;
+    }
+
+    &.active {
+      z-index: -1;
+      // animation: imageAnimation 20s linear infinite;
+      // animation-direction: alternate;
+
+      opacity: 1;
+
+      // animation-fill-mode: forwards;
+    }
+
+    &.previous {
+      z-index: -2;
+
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes imageAnimation {
+  0% {
+    transform: scale(1);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: scale(1.1);
+    animation-timing-function: ease-out;
+  }
+}

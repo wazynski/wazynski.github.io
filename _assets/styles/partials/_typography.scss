@@ -28,7 +28,7 @@ a {
     visibility: hidden;
 
     width: 100%;
-    height: 4px;
+    height: 2px;
 
     content: '';
     -webkit-transition: all .3s $easing;
@@ -36,11 +36,15 @@ a {
     -webkit-transform: scaleX(0);
     transform: scaleX(0);
 
-    background-color: $mustard;
+    background-color: $secondary;
+
+    @media screen and (min-width: $tablet) {
+      height: 4px;
+    }
   }
 
   &:hover {
-    color: $mustard;
+    color: $secondary;
   }
 
   &:hover::after {
@@ -78,7 +82,7 @@ dl {
   }
 
   dd {
-    margin: 0 0 1.5rem;
+    margin: 0 0 1rem;
 
     &:last-child {
       margin: 0;
