@@ -40,11 +40,10 @@ gulp.task('build:styles:main', function() {
 gulp.task('build:styles', ['build:styles:main']);
 
 // Deletes CSS.
-gulp.task('clean:styles', function(callback) {
-    del([paths.jekyllCssFiles + 'main.css',
+gulp.task('clean:styles', function() {
+    return del([paths.jekyllCssFiles + 'main.css',
         paths.siteCssFiles + 'main.css',
     ]);
-    callback();
 });
 
 // Concatenates and uglifies global JS files and outputs result to the
@@ -71,13 +70,12 @@ gulp.task('clean:styles', function(callback) {
 });
 
 
-gulp.task('clean:scripts', function(callback) {
-    del([paths.jekyllJsFiles + 'main.js', paths.siteJsFiles + 'main.js']);
-    callback();
+gulp.task('clean:scripts', function() {
+    return del([paths.jekyllJsFiles + 'main.js', paths.siteJsFiles + 'main.js']);
 });
 
  // Optimizes and copies image files.
-gulp.task('build:images', function() {
+gulp.task('build:images', ['clean:images'], function() {
     return gulp.src(paths.imageFilesGlob)
         .pipe(imagemin())
         .pipe(gulp.dest(paths.jekyllImageFiles))
@@ -86,9 +84,8 @@ gulp.task('build:images', function() {
 });
 
 // Deletes processed images.
-gulp.task('clean:images', function(callback) {
-    del([paths.jekyllImageFiles, paths.siteImageFiles]);
-    callback();
+gulp.task('clean:images', function() {
+    return del([paths.jekyllImageFiles, paths.siteImageFiles], {force:true});
 });
 
 
@@ -155,7 +152,7 @@ gulp.task('build:test', function(callback) {
 
 // Builds site anew using local config.
 gulp.task('build:local', function(callback) {
-    runSequence('clean',
+    runSequence('clean', 'clean:images',
         ['build:scripts', 'build:images', 'build:styles'],
         'build:jekyll:local',
         callback);

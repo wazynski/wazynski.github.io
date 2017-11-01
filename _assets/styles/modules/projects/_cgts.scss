@@ -1,0 +1,260 @@
+/* ==========================================================================
+Site Name: Ninesenses
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: Can Get The Staff
+========================================================================== */
+
+$project-base: #64F66C;
+$text-base: #1E1B2F;
+$gradient-bg: $project-base;
+$gradient-cutoff: 66.25%;
+
+.project.cgts {
+  .project-section {
+    color: $text-base;
+    .content {
+      color: $text-base;
+    }
+  }
+
+  .project-cover {
+    .cover-inner {
+      padding-bottom: 3rem;
+
+      background: $project-base;
+    }
+
+    .cover-logo {
+      img {
+        // width: 90%;
+        max-width: 500px;
+        padding: 3rem 0;
+      }
+    }
+
+    .cover-pullup {
+      background: $gradient-bg; /* Old browsers */
+      background: -moz-linear-gradient(top, $gradient-bg 0%, $gradient-bg $gradient-cutoff, $base $gradient-cutoff, $base 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, $gradient-bg 0%, $gradient-bg $gradient-cutoff, $base $gradient-cutoff, $base 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, $gradient-bg 0%, $gradient-bg $gradient-cutoff, $base $gradient-cutoff, $base 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#555b6e+0,555b6e+50,ffffff+50,ffffff+100 */
+
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-bg', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+    }
+  }
+
+  .project-intro {
+    .content {
+      width: 100%;
+    }
+  }
+
+  // .project-intro {
+  //   background: #FFFFFF;
+  //
+  //   .content {
+  //     p,
+  //     h1,
+  //     dl,
+  //     dd,
+  //     dt {
+  //       color: #272727;
+  //     }
+  //   }
+  // }
+
+  // .split {
+  //   .count,
+  //   .subtitle {
+  //     color: #FFFFFF;
+  //   }
+  //
+  //   @media screen and (min-width: $tablet) {
+  //     &.split-right {
+  //       .count {
+  //         color: #272727;
+  //       }
+  //     }
+  //
+  //     &.split-left {
+  //       .subtitle {
+  //         color: #272727;
+  //       }
+  //     }
+  //   }
+  //
+  //   .col.image::before {
+  //     background: $porters-yellow;
+  //   }
+  // }
+  //
+  // .project-colors {
+  //   .primary {
+  //     li {
+  //       &:nth-child(1) {
+  //         background: #272727;
+  //       }
+  //
+  //       &:nth-child(2) {
+  //         background: $porters-yellow;
+  //       }
+  //     }
+  //   }
+  //
+  //   .secondary {
+  //     li {
+  //       &:nth-child(1) {
+  //         background: #374246;
+  //       }
+  //
+  //       &:nth-child(2) {
+  //         background: #F28871;
+  //       }
+  //
+  //       &:nth-child(3) {
+  //         background: #DCD2C7;
+  //       }
+  //
+  //       &:nth-child(4) {
+  //         background: #A5C1AC;
+  //       }
+  //     }
+  //   }
+  // }
+  //
+  // .project-typeface {
+  //   // // background-color: #DCD2C7;
+  //   //
+  //   // .subtitle,
+  //   // .count {
+  //   //   color: $base;
+  //   // }
+  // }
+  //
+  // .project-example {
+  //   background-color: #FFFFFF;
+  //
+  //   .subtitle,
+  //   .count {
+  //     color: $base;
+  //   }
+  // }
+}
+
+
+
+// /* ==========================================================================
+// Site Name: Ninesenses
+// Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+//
+// Stylesheet: Porters
+// ========================================================================== */
+//
+// .project.cgts {
+//   .section {
+//     background: #FFFFFF;
+//
+//     .content {
+//       p,
+//       h1,
+//       dl,
+//       dd,
+//       dt {
+//         color: #031919;
+//       }
+//     }
+//
+//     a {
+//       color: #64F66C;
+//     }
+//
+//     &.project-example {
+//       background: #6DF574;
+//     }
+//   }
+//
+//   .project-cover {
+//     .cover-logo {
+//       img {
+//         max-width: 500px;
+//       }
+//     }
+//   }
+//
+//   .project-intro {
+//     background: #64F66C;
+//
+//     .content {
+//       p {
+//         color: #031919;
+//       }
+//     }
+//   }
+//
+//   .project-brief {
+//     .col.image::before {
+//       background: #6DF574;
+//     }
+//   }
+//
+//
+//
+//   .project-colors {
+//     background: $base;
+//
+//     font-weight: 600;
+//
+//     align-content: center;
+//
+//     .primary {
+//       li {
+//         &:nth-child(1) {
+//           background: #272727;
+//         }
+//
+//         &:nth-child(2) {
+//           background: #FDCA58;
+//         }
+//       }
+//     }
+//
+//     .secondary {
+//       li {
+//         &:nth-child(1) {
+//           background: #374246;
+//         }
+//
+//         &:nth-child(2) {
+//           background: #F28871;
+//         }
+//
+//         &:nth-child(3) {
+//           background: #DCD2C7;
+//         }
+//
+//         &:nth-child(4) {
+//           background: #A5C1AC;
+//         }
+//       }
+//     }
+//   }
+//
+//   .project-typeface {
+//     // background-color: #DCD2C7;
+//
+//     .subtitle,
+//     .count {
+//       color: $base;
+//     }
+//   }
+//
+//   .project-example {
+//     background-color: #272727;
+//
+//     .subtitle,
+//     .count {
+//       color: $base;
+//     }
+//   }
+// }

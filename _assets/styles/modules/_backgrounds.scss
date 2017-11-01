@@ -11,11 +11,9 @@ Stylesheet: Backgrounds
   &::before {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 3.125rem;
     bottom: 0;
     left: 0;
-
-    width: calc(100% - 3.125rem);
 
     content: '';
 
@@ -32,10 +30,9 @@ Stylesheet: Backgrounds
     position: fixed;
     z-index: -5;
     top: 0;
+    right: 3.125rem;
     bottom: 0;
     left: 0;
-
-    width: calc(100% - 3.125rem);
 
     transition: opacity 750ms cubic-bezier(.77, 0, .175, 1);
 
@@ -64,7 +61,7 @@ Stylesheet: Backgrounds
     }
 
     &:nth-child(4) {
-      background-image: url('../img/porters.jpg');
+      background-image: url('../img/case-studies/porters/porters.jpg');
     }
 
     &:nth-child(5) {
@@ -72,6 +69,15 @@ Stylesheet: Backgrounds
     }
 
     &:nth-child(6) {
+      background-image: url('../img/case-studies/majik/majik-cover.jpg');
+      background-position: right center;
+    }
+
+    &:nth-child(7) {
+      background-image: url('../img/case-studies/cangetthestaff/cgts-brief.jpg');
+    }
+
+    &:nth-child(8) {
       background-image: url('../img/contact-temp.webp');
       background-position: right center;
     }

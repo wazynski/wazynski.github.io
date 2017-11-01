@@ -1,0 +1,464 @@
+/* ==========================================================================
+Site Name: Ninesenses
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: Projects
+========================================================================== */
+/* ==========================================================================
+  Variables
+  ========================================================================== */
+
+$gradient-bg: $comet;
+$gradient-cutoff: 66.25%;
+
+/* ==========================================================================
+  All Sections
+   ========================================================================== */
+
+.project {
+  background: $base;
+
+  .project-section {
+    position: relative;
+
+    width: 100%;
+    padding-top: 74px;
+
+    background-position: center center;
+    background-size: cover;
+
+    .content {
+      color: $background;
+    }
+
+    @media screen and (min-width: $tablet) {
+      width: 100%;
+      padding-top: 0;
+    }
+
+    figure {
+      position: relative;
+
+      overflow: hidden;
+
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 50px;
+
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        display: block;
+
+        min-width: 101%;
+        max-width: none;
+        min-height: 101%;
+        max-height: none;
+
+        transform: translate3d(-50%, -50%, 0);
+      }
+    }
+
+    .subtitle,
+    .count {
+      @include font-size(16);
+
+      position: absolute;
+      z-index: 1;
+      top: 52px;
+      left: 1.25rem;
+
+      display: none;
+
+      color: $background;
+
+      @media screen and (min-width: $tablet) {
+        left: 2.0625rem;
+      }
+
+      span {
+        color: $comet;
+      }
+    }
+
+    .count {
+      right: 1.25rem;
+      left: auto;
+
+      @media screen and (min-width: $tablet) {
+        right: 4.125rem;
+      }
+    }
+
+    /* ==========================================================================
+  Cover
+========================================================================== */
+
+    &.project-cover {
+      display: block;
+
+      width: 100%;
+      padding: 0;
+
+      .cover-inner {
+        width: 100%;
+        padding: 4.125rem 1.5rem 4.125rem;
+        padding-top: 4.125rem;
+
+        background: $comet;
+      }
+
+      .cover-logo {
+        width: 100%;
+
+        text-align: center;
+
+        align-self: center;
+
+        img {
+          display: block;
+
+          width: 80%;
+          max-width: 200px;
+          margin: 0 auto;
+        }
+      }
+
+      .cover-pullup {
+        width: 100%;
+        padding: 0 2rem;
+
+        background: $gradient-bg; /* Old browsers */
+        background: -moz-linear-gradient(top, $gradient-bg 0%, $gradient-bg $gradient-cutoff, $base $gradient-cutoff, $base 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, $gradient-bg 0%, $gradient-bg $gradient-cutoff, $base $gradient-cutoff, $base 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, $gradient-bg 0%, $gradient-bg $gradient-cutoff, $base $gradient-cutoff, $base 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#555b6e+0,555b6e+50,ffffff+50,ffffff+100 */
+
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-bg', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+
+        img {
+          display: block;
+
+          width: 100%;
+          max-width: 1024px;
+          height: auto;
+          margin: 0 auto;
+        }
+      }
+    }
+
+    /* ==========================================================================
+  Quote, Intro
+========================================================================== */
+
+    &.project-quote,
+    &.project-intro {
+      .content {
+        position: static;
+
+        width: 100%;
+        max-width: none;
+        padding: 1.25rem;
+
+        text-align: center;
+
+        @media screen and (min-width: $tablet) {
+          padding: 4.125rem;
+        }
+
+        p {
+          @include font-size(22);
+
+          max-width: 800px;
+          margin-right: auto;
+          margin-left: auto;
+
+          @media screen and (min-width: $tablet) {
+            @include font-size(30);
+          }
+
+          @media screen and (min-width: $sm-desktop) {
+            @include font-size(36);
+          }
+        }
+      }
+    }
+
+    &.project-secondary-image {
+      position: relative;
+
+      width: 100%;
+      height: 600px;
+    }
+
+
+    /* ==========================================================================
+  Example
+  =========================================================================== */
+
+    &.project-example {
+      // padding: 4.125rem  4.125rem 4.125rem   2.0625rem;
+      padding: 1.25rem;
+
+
+      .project-image {
+        align-self: center;
+      }
+
+      img {
+        display: block;
+
+        width: 100%;
+        height: auto;
+        max-height: 100%;
+
+        // @media screen and (orientation: landscape) {
+        //   width: auto;
+        //   height: 100%;
+        // }
+      }
+    }
+
+    /* ==========================================================================
+  Colors
+   ========================================================================== */
+
+    &.project-colors {
+      padding-right: 1.25rem;
+      padding-left: 1.25rem;
+
+      align-content: center;
+
+      @media screen and (min-width: $tablet) {
+        padding: 4.125rem 4.125rem 4.125rem 2.0625rem;
+      }
+
+      .colors {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        max-height: 100%;
+
+        align-self: center;
+      }
+
+      h2 {
+        @include font-size(16);
+
+        margin: 0 0 1rem;
+      }
+
+      ul {
+        display: flex;
+
+        width: 100%;
+        max-height: 50%;
+        margin: 0;
+        padding: 0;
+
+        list-style: none;
+
+        flex-wrap: wrap;
+        align-self: center;
+
+        li {
+          @include font-size(12);
+
+          display: flex;
+
+          width: 100%;
+          padding: 1rem;
+
+          text-transform: uppercase;
+
+          color: $base;
+
+          flex-grow: 1;
+          flex-shrink: 0;
+          flex-basis: 50%;
+          align-items: flex-start;
+
+          @media screen and (min-width: $tablet) {
+            flex-basis: 25%;
+            align-items: flex-end;
+          }
+
+          @media screen and (min-width: $sm-desktop) {
+            @include font-size(16);
+          }
+
+          &:after {
+            display: block;
+
+            padding-bottom: 100%;
+
+            content: '';
+
+            @media screen and (min-width: $lg-desktop) {
+              padding-bottom: 75%;
+            }
+
+            @media screen and (min-width: $xl-desktop) {
+              padding-bottom: 60%;
+            }
+
+            @media screen and (min-width: $xxl-desktop) {
+              padding-bottom: 50%;
+            }
+          }
+        }
+      }
+    }
+
+    /* ==========================================================================
+  Splits
+   ========================================================================== */
+
+    &.split {
+      .col {
+        &.image {
+          position: absolute;
+          z-index: -1;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+
+          &::before {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+
+            content: '';
+            transform: translate3d(0, 0, 0);
+
+            background: lighten($background, 10%);
+
+            mix-blend-mode: multiply;
+
+            @media screen and (min-width: $tablet) {
+              display: none;
+            }
+          }
+
+          @media screen and (min-width: $tablet) {
+            right: auto;
+
+            width: 40%;
+          }
+        }
+
+        &.info {
+          display: flex;
+
+          width: 100%;
+          height: 100%;
+
+          align-content: center;
+
+          .content {
+            color: $base;
+
+            align-self: center;
+
+            h1,
+            h2,
+            dt,
+            dd,
+            p {
+              color: $base;
+            }
+
+            dd {
+              margin-bottom: 3rem;
+            }
+
+            @media screen and (min-width: $tablet) {
+              color: $comet;
+
+              h1,
+              h2,
+              dt,
+              dd,
+              p {
+                color: $comet;
+              }
+            }
+          }
+        }
+      }
+
+      @media screen and (min-width: $tablet) {
+        .col {
+          &.image,
+          &.info {
+            position: relative;
+
+            display: flex;
+
+            .content {
+              left: 0;
+
+              width: 100%;
+              max-width: none;
+              padding-right: 4.6875rem;
+              padding-left: 4.6875rem;
+            }
+          }
+
+          &.image {
+            width: 40%;
+          }
+
+          &.info {
+            width: 60%;
+          }
+        }
+      }
+
+      @media screen and (min-width: $sm-desktop) {
+        .col {
+          &.image,
+          &.info {
+            width: 50%;
+          }
+        }
+      }
+    }
+
+
+
+    figure {
+      position: relative;
+
+      overflow: hidden;
+
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 50px;
+
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        display: block;
+
+        min-width: 101%;
+        max-width: none;
+        min-height: 101%;
+        max-height: none;
+
+        transform: translate3d(-50%, -50%, 0);
+      }
+    }
+  }
+}

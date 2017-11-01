@@ -23,7 +23,7 @@ Stylesheet: Style
 @import 'modules/footer';
 @import 'modules/controls';
 @import 'modules/sections';
-// @import 'modules/circles';
+@import 'modules/projects';
 @import 'modules/backgrounds';
 @import 'modules/page';
 
@@ -32,5 +32,8 @@ Stylesheet: Style
 @import 'modules/sections/services';
 @import 'modules/sections/case_studies';
 @import 'modules/sections/contact';
+
+@import 'modules/projects/porters';
+@import 'modules/projects/cgts';
 
 @import 'modules/animations';
