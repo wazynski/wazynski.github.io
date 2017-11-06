@@ -6,13 +6,22 @@ Stylesheet: Can Get The Staff
 ========================================================================== */
 
 $project-base: #64F66C;
+$project-secondary: #6533E5;
 $text-base: #1E1B2F;
+$background-alt: #E6E6E6;
 $gradient-bg: $project-base;
 $gradient-cutoff: 66.25%;
 
 .project.cgts {
   .project-section {
     color: $text-base;
+    a {
+      color: $project-secondary;
+
+      &:after {
+        background-color: $project-secondary;
+      }
+    }
     .content {
       color: $text-base;
     }
@@ -44,217 +53,7 @@ $gradient-cutoff: 66.25%;
     }
   }
 
-  .project-intro {
-    .content {
-      width: 100%;
-    }
-  }
-
-  // .project-intro {
-  //   background: #FFFFFF;
-  //
-  //   .content {
-  //     p,
-  //     h1,
-  //     dl,
-  //     dd,
-  //     dt {
-  //       color: #272727;
-  //     }
-  //   }
-  // }
-
-  // .split {
-  //   .count,
-  //   .subtitle {
-  //     color: #FFFFFF;
-  //   }
-  //
-  //   @media screen and (min-width: $tablet) {
-  //     &.split-right {
-  //       .count {
-  //         color: #272727;
-  //       }
-  //     }
-  //
-  //     &.split-left {
-  //       .subtitle {
-  //         color: #272727;
-  //       }
-  //     }
-  //   }
-  //
-  //   .col.image::before {
-  //     background: $porters-yellow;
-  //   }
-  // }
-  //
-  // .project-colors {
-  //   .primary {
-  //     li {
-  //       &:nth-child(1) {
-  //         background: #272727;
-  //       }
-  //
-  //       &:nth-child(2) {
-  //         background: $porters-yellow;
-  //       }
-  //     }
-  //   }
-  //
-  //   .secondary {
-  //     li {
-  //       &:nth-child(1) {
-  //         background: #374246;
-  //       }
-  //
-  //       &:nth-child(2) {
-  //         background: #F28871;
-  //       }
-  //
-  //       &:nth-child(3) {
-  //         background: #DCD2C7;
-  //       }
-  //
-  //       &:nth-child(4) {
-  //         background: #A5C1AC;
-  //       }
-  //     }
-  //   }
-  // }
-  //
-  // .project-typeface {
-  //   // // background-color: #DCD2C7;
-  //   //
-  //   // .subtitle,
-  //   // .count {
-  //   //   color: $base;
-  //   // }
-  // }
-  //
-  // .project-example {
-  //   background-color: #FFFFFF;
-  //
-  //   .subtitle,
-  //   .count {
-  //     color: $base;
-  //   }
+  // .pages {
+  //   background: $background-alt;
   // }
 }
-
-
-
-// /* ==========================================================================
-// Site Name: Ninesenses
-// Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
-//
-// Stylesheet: Porters
-// ========================================================================== */
-//
-// .project.cgts {
-//   .section {
-//     background: #FFFFFF;
-//
-//     .content {
-//       p,
-//       h1,
-//       dl,
-//       dd,
-//       dt {
-//         color: #031919;
-//       }
-//     }
-//
-//     a {
-//       color: #64F66C;
-//     }
-//
-//     &.project-example {
-//       background: #6DF574;
-//     }
-//   }
-//
-//   .project-cover {
-//     .cover-logo {
-//       img {
-//         max-width: 500px;
-//       }
-//     }
-//   }
-//
-//   .project-intro {
-//     background: #64F66C;
-//
-//     .content {
-//       p {
-//         color: #031919;
-//       }
-//     }
-//   }
-//
-//   .project-brief {
-//     .col.image::before {
-//       background: #6DF574;
-//     }
-//   }
-//
-//
-//
-//   .project-colors {
-//     background: $base;
-//
-//     font-weight: 600;
-//
-//     align-content: center;
-//
-//     .primary {
-//       li {
-//         &:nth-child(1) {
-//           background: #272727;
-//         }
-//
-//         &:nth-child(2) {
-//           background: #FDCA58;
-//         }
-//       }
-//     }
-//
-//     .secondary {
-//       li {
-//         &:nth-child(1) {
-//           background: #374246;
-//         }
-//
-//         &:nth-child(2) {
-//           background: #F28871;
-//         }
-//
-//         &:nth-child(3) {
-//           background: #DCD2C7;
-//         }
-//
-//         &:nth-child(4) {
-//           background: #A5C1AC;
-//         }
-//       }
-//     }
-//   }
-//
-//   .project-typeface {
-//     // background-color: #DCD2C7;
-//
-//     .subtitle,
-//     .count {
-//       color: $base;
-//     }
-//   }
-//
-//   .project-example {
-//     background-color: #272727;
-//
-//     .subtitle,
-//     .count {
-//       color: $base;
-//     }
-//   }
-// }

@@ -6,9 +6,16 @@ Stylesheet: Porters
 ========================================================================== */
 
 $project-base: #FDCA58;
-$text-base: #272727;
+$project-secondary: #272727;
+$text-base: $project-secondary;
+$background-alt: lighten($project-secondary, 75%);
 $gradient-bg: $project-base;
 $gradient-cutoff: 66.25%;
+//
+$colors-1: #374246;
+$colors-2: #744C4F;
+$colors-3: #DCD2C7;
+$colors-4: #A6C1AC;
 
 .project.porters {
   .project-section {
@@ -34,94 +41,84 @@ $gradient-cutoff: 66.25%;
     }
   }
 
-  // .project-intro {
-  //   background: #FFFFFF;
-  //
-  //   .content {
-  //     p,
-  //     h1,
-  //     dl,
-  //     dd,
-  //     dt {
-  //       color: #272727;
-  //     }
-  //   }
-  // }
+  .project-logo {
+    background: $background-alt;
 
-  // .split {
-  //   .count,
-  //   .subtitle {
-  //     color: #FFFFFF;
-  //   }
-  //
-  //   @media screen and (min-width: $tablet) {
-  //     &.split-right {
-  //       .count {
-  //         color: #272727;
-  //       }
-  //     }
-  //
-  //     &.split-left {
-  //       .subtitle {
-  //         color: #272727;
-  //       }
-  //     }
-  //   }
-  //
-  //   .col.image::before {
-  //     background: $porters-yellow;
-  //   }
-  // }
-  //
-  // .project-colors {
-  //   .primary {
-  //     li {
-  //       &:nth-child(1) {
-  //         background: #272727;
-  //       }
-  //
-  //       &:nth-child(2) {
-  //         background: $porters-yellow;
-  //       }
-  //     }
-  //   }
-  //
-  //   .secondary {
-  //     li {
-  //       &:nth-child(1) {
-  //         background: #374246;
-  //       }
-  //
-  //       &:nth-child(2) {
-  //         background: #F28871;
-  //       }
-  //
-  //       &:nth-child(3) {
-  //         background: #DCD2C7;
-  //       }
-  //
-  //       &:nth-child(4) {
-  //         background: #A5C1AC;
-  //       }
-  //     }
-  //   }
-  // }
-  //
-  // .project-typeface {
-  //   // // background-color: #DCD2C7;
-  //   //
-  //   // .subtitle,
-  //   // .count {
-  //   //   color: $base;
-  //   // }
-  // }
-  //
-  // .project-example {
-  //   background-color: #FFFFFF;
-  //
-  //   .subtitle,
-  //   .count {
-  //     color: $base;
-  //   }
-  // }
+    header {
+      // color: $base;
+    }
+
+    .col-2:first-child {
+      background: $base;
+    }
+    .col-2:last-child {
+      background: $project-secondary;
+    }
+  }
+
+  .project-pattern,
+  .project-typography {
+    background: $background-alt;
+  }
+
+  .order {
+    background: $background-alt;
+  }
+
+  .project-colors {
+    background: $background-alt;
+
+    .colors span {
+      background: $background-alt;
+    }
+
+    .primary {
+      li {
+        &:nth-child(1) {
+          background: $project-secondary;
+        }
+
+        &:nth-child(2) {
+          background: $project-base;
+        }
+      }
+    }
+
+    .secondary {
+      li {
+        &:nth-child(1) {
+          background: $colors-1;
+        }
+
+        &:nth-child(2) {
+          background: $colors-2;
+        }
+
+        &:nth-child(3) {
+          background: $colors-3;
+        }
+
+        &:nth-child(4) {
+          background: $colors-4;
+        }
+      }
+    }
+  }
+
+  .labels {
+    img {
+      max-width: 400px;
+    }
+  }
+
+  .booklet {
+    @media screen and (min-width: $tablet ) {
+      .col-2:first-child {
+        padding-right: .5rem;
+      }
+      .col-2:last-child {
+        padding-left: .5rem;
+      }
+    }
+  }
 }

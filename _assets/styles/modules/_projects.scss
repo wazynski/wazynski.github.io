@@ -27,7 +27,18 @@ $gradient-cutoff: 66.25%;
     background-position: center center;
     background-size: cover;
 
+    a {
+      color: $comet;
+    }
+
+    .wrapper {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
     .content {
+      position: static;
+
       color: $background;
     }
 
@@ -36,62 +47,77 @@ $gradient-cutoff: 66.25%;
       padding-top: 0;
     }
 
-    figure {
-      position: relative;
-
-      overflow: hidden;
+    aside,
+    header {
+      display: flex;
 
       width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 50px;
 
-      img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
+      align-items: flex-end;
+
+      h2 {
+        @include font-size(14);
+
+        width: 50%;
+
+        text-transform: none;
+
+        font-weight: 400;
+      }
+
+      .credit,
+      .disciplines,
+      .count {
+        @include font-size(14);
 
         display: block;
 
-        min-width: 101%;
-        max-width: none;
-        min-height: 101%;
-        max-height: none;
+        width: 50%;
 
-        transform: translate3d(-50%, -50%, 0);
+        text-align: right;
       }
     }
 
-    .subtitle,
-    .count {
-      @include font-size(16);
+    figure {
+      margin: 0;
 
-      position: absolute;
-      z-index: 1;
-      top: 52px;
-      left: 1.25rem;
+      img {
+        width: 100%;
+        height: 100%;
 
-      display: none;
+        object-fit: cover;
+      }
+    }
 
-      color: $background;
+    &.project-content {
+      padding: 2.5rem 1.25rem;
+
+      &.project-lead-in {
+        padding-bottom: 0;
+
+        .content {
+          padding-bottom: 0;
+
+          p:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
 
       @media screen and (min-width: $tablet) {
-        left: 2.0625rem;
+        padding: 4.125rem;
       }
 
-      span {
-        color: $comet;
-      }
-    }
+      .content {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0;
 
-    .count {
-      right: 1.25rem;
-      left: auto;
-
-      @media screen and (min-width: $tablet) {
-        right: 4.125rem;
+        text-align: center;
       }
     }
+
 
     /* ==========================================================================
   Cover
@@ -143,7 +169,7 @@ $gradient-cutoff: 66.25%;
           display: block;
 
           width: 100%;
-          max-width: 1024px;
+          max-width: 1200px;
           height: auto;
           margin: 0 auto;
         }
@@ -156,42 +182,65 @@ $gradient-cutoff: 66.25%;
 
     &.project-quote,
     &.project-intro {
-      .content {
-        position: static;
+      p {
+        @include font-size(22);
 
-        width: 100%;
-        max-width: none;
-        padding: 1.25rem;
-
-        text-align: center;
+        margin: 0 auto;
 
         @media screen and (min-width: $tablet) {
-          padding: 4.125rem;
+          @include font-size(30);
         }
 
-        p {
-          @include font-size(22);
-
-          max-width: 800px;
-          margin-right: auto;
-          margin-left: auto;
-
-          @media screen and (min-width: $tablet) {
-            @include font-size(30);
-          }
-
-          @media screen and (min-width: $sm-desktop) {
-            @include font-size(36);
-          }
+        @media screen and (min-width: $sm-desktop) {
+          @include font-size(36);
         }
       }
     }
+
+    /* ==========================================================================
+    Images
+   ========================================================================== */
 
     &.project-secondary-image {
       position: relative;
 
       width: 100%;
-      height: 600px;
+
+      figure {
+        overflow: hidden;
+
+        max-height: 1000px;
+        // &:after {
+        //   display: block;
+        //
+        //   padding-bottom: 150%;
+        //
+        //   content: '';
+        //
+        //   @media screen and (min-width: $tablet) {
+        //     padding-bottom: 100%;
+        //   }
+        //
+        //   @media screen and (min-width: $sm-desktop) {
+        //     padding-bottom: 50%;
+        //   }
+        // }
+      }
+
+
+      &.split {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        figure {
+          width: 100%;
+
+          @media screen and (min-width: $tablet) {
+            width: 50%;
+          }
+        }
+      }
     }
 
 
@@ -200,25 +249,103 @@ $gradient-cutoff: 66.25%;
   =========================================================================== */
 
     &.project-example {
-      // padding: 4.125rem  4.125rem 4.125rem   2.0625rem;
-      padding: 1.25rem;
-
+      &.project-logo {
+        .project-image {
+          img {
+            max-width: 250px;
+          }
+        }
+      }
 
       .project-image {
+        width: 100%;
+
         align-self: center;
+
+        &.fill img {
+          max-width: none;
+        }
       }
 
       img {
         display: block;
 
         width: 100%;
+        // max-width: 1000px;
         height: auto;
-        max-height: 100%;
+        margin: 0 auto;
+      }
 
-        // @media screen and (orientation: landscape) {
-        //   width: auto;
-        //   height: 100%;
-        // }
+      .examples {
+        padding: 2rem 0 0;
+      }
+
+      .split {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        .col-2 {
+          width: 100%;
+
+          &.contain {
+            padding: 2rem 1.25rem;
+          }
+
+          &:first-child {
+            margin-bottom: 1rem;
+          }
+
+          @media screen and (min-width: $tablet) {
+            width: 50%;
+
+            &:first-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+
+    /* ==========================================================================
+  Project Brief
+   ========================================================================== */
+
+    &.project-brief {
+      .content {
+        padding: 2rem 0;
+      }
+    }
+
+    /* ==========================================================================
+  Typography
+   ========================================================================== */
+
+    &.project-typography {
+      h3 {
+        @include font-size(14);
+
+        margin-top: 3rem;
+      }
+
+      .examples {
+        padding: 1rem 0;
+
+        img {
+          margin: 0;
+        }
+      }
+
+      aside {
+        @include font-size(14);
+
+        display: block;
+
+        &:after {
+          display: block;
+
+          content: '—';
+        }
       }
     }
 
@@ -227,14 +354,7 @@ $gradient-cutoff: 66.25%;
    ========================================================================== */
 
     &.project-colors {
-      padding-right: 1.25rem;
-      padding-left: 1.25rem;
-
       align-content: center;
-
-      @media screen and (min-width: $tablet) {
-        padding: 4.125rem 4.125rem 4.125rem 2.0625rem;
-      }
 
       .colors {
         display: flex;
@@ -242,6 +362,7 @@ $gradient-cutoff: 66.25%;
 
         width: 100%;
         max-height: 100%;
+        padding: 2rem 0;
 
         align-self: center;
       }
@@ -257,7 +378,7 @@ $gradient-cutoff: 66.25%;
 
         width: 100%;
         max-height: 50%;
-        margin: 0;
+        margin: 0 0 2rem;
         padding: 0;
 
         list-style: none;
@@ -265,200 +386,210 @@ $gradient-cutoff: 66.25%;
         flex-wrap: wrap;
         align-self: center;
 
+        &:last-child {
+          margin: 0;
+        }
+
+        &.primary {
+          li {
+            padding: 4rem 0 0;
+          }
+        }
+
+        &.secondary {
+          li {
+            padding: 2rem 0 0;
+          }
+        }
+
         li {
           @include font-size(12);
 
           display: flex;
 
           width: 100%;
-          padding: 1rem;
+          // text-transform: uppercase;
 
-          text-transform: uppercase;
-
-          color: $base;
+          background: $comet;
 
           flex-grow: 1;
           flex-shrink: 0;
           flex-basis: 50%;
-          align-items: flex-start;
+          align-items: flex-end;
+
+          span {
+            display: block;
+
+            width: 100%;
+            padding: .5rem 0 .5rem 0;
+
+            background: $base;
+
+            &:after {
+              display: block;
+
+              content: '—';
+            }
+          }
 
           @media screen and (min-width: $tablet) {
             flex-basis: 25%;
-            align-items: flex-end;
+            // align-items: flex-end;
           }
 
           @media screen and (min-width: $sm-desktop) {
-            @include font-size(16);
-          }
-
-          &:after {
-            display: block;
-
-            padding-bottom: 100%;
-
-            content: '';
-
-            @media screen and (min-width: $lg-desktop) {
-              padding-bottom: 75%;
-            }
-
-            @media screen and (min-width: $xl-desktop) {
-              padding-bottom: 60%;
-            }
-
-            @media screen and (min-width: $xxl-desktop) {
-              padding-bottom: 50%;
-            }
+            @include font-size(14);
           }
         }
-      }
-    }
-
-    /* ==========================================================================
-  Splits
-   ========================================================================== */
-
-    &.split {
-      .col {
-        &.image {
-          position: absolute;
-          z-index: -1;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-
-          &::before {
-            position: absolute;
-            z-index: 1;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-
-            content: '';
-            transform: translate3d(0, 0, 0);
-
-            background: lighten($background, 10%);
-
-            mix-blend-mode: multiply;
-
-            @media screen and (min-width: $tablet) {
-              display: none;
-            }
-          }
-
-          @media screen and (min-width: $tablet) {
-            right: auto;
-
-            width: 40%;
-          }
-        }
-
-        &.info {
-          display: flex;
-
-          width: 100%;
-          height: 100%;
-
-          align-content: center;
-
-          .content {
-            color: $base;
-
-            align-self: center;
-
-            h1,
-            h2,
-            dt,
-            dd,
-            p {
-              color: $base;
-            }
-
-            dd {
-              margin-bottom: 3rem;
-            }
-
-            @media screen and (min-width: $tablet) {
-              color: $comet;
-
-              h1,
-              h2,
-              dt,
-              dd,
-              p {
-                color: $comet;
-              }
-            }
-          }
-        }
-      }
-
-      @media screen and (min-width: $tablet) {
-        .col {
-          &.image,
-          &.info {
-            position: relative;
-
-            display: flex;
-
-            .content {
-              left: 0;
-
-              width: 100%;
-              max-width: none;
-              padding-right: 4.6875rem;
-              padding-left: 4.6875rem;
-            }
-          }
-
-          &.image {
-            width: 40%;
-          }
-
-          &.info {
-            width: 60%;
-          }
-        }
-      }
-
-      @media screen and (min-width: $sm-desktop) {
-        .col {
-          &.image,
-          &.info {
-            width: 50%;
-          }
-        }
-      }
-    }
-
-
-
-    figure {
-      position: relative;
-
-      overflow: hidden;
-
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 50px;
-
-      img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-
-        display: block;
-
-        min-width: 101%;
-        max-width: none;
-        min-height: 101%;
-        max-height: none;
-
-        transform: translate3d(-50%, -50%, 0);
       }
     }
   }
 }
+/* ==========================================================================
+  Splits
+   ========================================================================== */
+//
+//     &.split {
+//       .col {
+//         &.image {
+//           position: absolute;
+//           z-index: -1;
+//           top: 0;
+//           right: 0;
+//           bottom: 0;
+//           left: 0;
+//
+//           &::before {
+//             position: absolute;
+//             z-index: 1;
+//             top: 0;
+//             right: 0;
+//             bottom: 0;
+//             left: 0;
+//
+//             content: '';
+//             transform: translate3d(0, 0, 0);
+//
+//             background: lighten($background, 10%);
+//
+//             mix-blend-mode: multiply;
+//
+//             @media screen and (min-width: $tablet) {
+//               display: none;
+//             }
+//           }
+//
+//           @media screen and (min-width: $tablet) {
+//             right: auto;
+//
+//             width: 40%;
+//           }
+//         }
+//
+//         &.info {
+//           display: flex;
+//
+//           width: 100%;
+//           height: 100%;
+//
+//           align-content: center;
+//
+//           .content {
+//             color: $base;
+//
+//             align-self: center;
+//
+//             h1,
+//             h2,
+//             dt,
+//             dd,
+//             p {
+//               color: $base;
+//             }
+//
+//             dd {
+//               margin-bottom: 3rem;
+//             }
+//
+//             @media screen and (min-width: $tablet) {
+//               color: $comet;
+//
+//               h1,
+//               h2,
+//               dt,
+//               dd,
+//               p {
+//                 color: $comet;
+//               }
+//             }
+//           }
+//         }
+//       }
+//
+//       @media screen and (min-width: $tablet) {
+//         .col {
+//           &.image,
+//           &.info {
+//             position: relative;
+//
+//             display: flex;
+//
+//             .content {
+//               left: 0;
+//
+//               width: 100%;
+//               max-width: none;
+//               padding-right: 4.6875rem;
+//               padding-left: 4.6875rem;
+//             }
+//           }
+//
+//           &.image {
+//             width: 40%;
+//           }
+//
+//           &.info {
+//             width: 60%;
+//           }
+//         }
+//       }
+//
+//       @media screen and (min-width: $sm-desktop) {
+//         .col {
+//           &.image,
+//           &.info {
+//             width: 50%;
+//           }
+//         }
+//       }
+//     }
+//
+//
+//
+//     figure {
+//       position: relative;
+//
+//       overflow: hidden;
+//
+//       width: 100%;
+//       height: 100%;
+//       margin: 0;
+//       padding: 50px;
+//
+//       img {
+//         position: absolute;
+//         top: 50%;
+//         left: 50%;
+//
+//         display: block;
+//
+//         min-width: 101%;
+//         max-width: none;
+//         min-height: 101%;
+//         max-height: none;
+//
+//         transform: translate3d(-50%, -50%, 0);
+//       }
+//     }
+//   }
+// }
