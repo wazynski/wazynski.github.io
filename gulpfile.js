@@ -75,7 +75,7 @@ gulp.task('clean:scripts', function() {
 });
 
  // Optimizes and copies image files.
-gulp.task('build:images', ['clean:images'], function() {
+gulp.task('build:images', function() {
     return gulp.src(paths.imageFilesGlob)
         .pipe(imagemin())
         .pipe(gulp.dest(paths.jekyllImageFiles))
@@ -122,9 +122,8 @@ gulp.task('build:jekyll:local', function() {
 });
 
 // Deletes the entire _site directory.
-gulp.task('clean:jekyll', function(callback) {
-    del(['_site']);
-    callback();
+gulp.task('clean:jekyll', function() {
+    return(del(['_site']));
 });
 
 // Main clean task.

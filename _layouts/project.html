@@ -1,11 +1,12 @@
 <!doctype html>
 <html class="no-js" lang="en">
   {% include head.html %}
-  <body class="project {{page.project_title}} page">
+  <body class="project {{page.project_id}} page">
     {% include menu.html %}
 
     {{page.content}}
 
     {% include footer.html %}
+    <script src="/assets/js/lazysizes.min.js"></script>
   </body>
 </html>

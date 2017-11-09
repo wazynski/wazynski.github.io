@@ -33,6 +33,24 @@ Stylesheet: Sections
     min-height: 100%; // Fallbacks
     min-height: 100vh; // Fallbacks
   }
+
+  &.case-study {
+    .content {
+      h1 a {
+        @include font-size(20);
+
+        color: $base;
+
+        @media screen and (min-width: $tablet) {
+          @include font-size(28);
+        }
+
+        &:after {
+          background-color: $base;
+        }
+      }
+    }
+  }
 }
 
 

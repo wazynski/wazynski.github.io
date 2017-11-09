@@ -10,7 +10,7 @@ $project-secondary: #272727;
 $text-base: $project-secondary;
 $background-alt: lighten($project-secondary, 75%);
 $gradient-bg: $project-base;
-$gradient-cutoff: 66.25%;
+$gradient-cutoff: 74.75%;
 //
 $colors-1: #374246;
 $colors-2: #744C4F;
@@ -56,9 +56,34 @@ $colors-4: #A6C1AC;
     }
   }
 
-  .project-pattern,
+  .project-pattern {
+    background: $background-alt;
+
+    img {
+      min-width: 600px;
+    }
+  }
+
   .project-typography {
     background: $background-alt;
+    .type-one {
+      img {
+        max-width: 1651px;
+        margin: 0 auto;
+      }
+    }
+    .type-two {
+      img {
+        max-width: 450px;
+        margin: 0 auto;
+      }
+    }
+    .type-three {
+      img {
+        max-width: 1024px;
+        margin: 0 auto;
+      }
+    }
   }
 
   .order {

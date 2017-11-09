@@ -261,6 +261,7 @@ nine.fullscreenMode = debounced => {
     nine.enableFullscreen();
     nine.hashChangeLisener();
     nine.addFullscreenNav();
+    nine.addBackgrounds();
     nine.addKeyboardNav();
     nine.addScrollInput();
     nine.setCurrentPage();
@@ -489,10 +490,8 @@ nine.animateScroll = (endLocation, element, duration) => {
 nine.scrollStart = element => {
   // Delay until part way through scroll to changes make feel smooth.
   setTimeout(() => {
-    // testing
-    //
-
     const bgs = document.querySelectorAll('.bgs li');
+    // nine.removeClass(document.querySelector('.bgs li.previous'), 'previous');
     nine.prevBackground = document.querySelector('.bgs li.active');
     nine.addClass(nine.prevBackground, 'previous');
     nine.removeClass(nine.prevBackground, 'active');
@@ -578,7 +577,19 @@ nine.resetPosition = () => {
 
 /* ==========================================================================
    Controls
-   ==========================================================================
+   ========================================================================= */
+
+nine.addBackgrounds = () => {
+  const bgs = document.querySelector('.bgs');
+
+  Array.prototype.forEach.call(nine.pages, (el, i) => {
+    const bg = document.createElement('li');
+    bgs.appendChild(bg);
+  });
+
+  document.querySelector('.dots li').classList.add('active');
+}
+
 
 /**
  * addFullscreenNav - adds dots and next & prev controls to site with event handlers

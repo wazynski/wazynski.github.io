@@ -26,6 +26,27 @@ Stylesheet: Backgrounds
     }
   }
 
+  // &::after {
+  //   position: absolute;
+  //   z-index: -6;
+  //   top: 0;
+  //   right: 3.125rem;
+  //   bottom: 0;
+  //   left: 0;
+  //
+  //   content: '';
+  //
+  //   background: black;
+  //
+  //   @media screen and (min-width: $tablet) {
+  //     width: 40%;
+  //   }
+  //
+  //   @media screen and (min-width: $sm-desktop) {
+  //     width: 50%;
+  //   }
+  // }
+
   li {
     position: fixed;
     z-index: -5;
@@ -34,11 +55,11 @@ Stylesheet: Backgrounds
     bottom: 0;
     left: 0;
 
-    transition: opacity 750ms cubic-bezier(.77, 0, .175, 1);
+    transition: opacity 500ms ease-in-out;
 
     opacity: 0;
     background-position: center;
-    background-size: cover;;
+    background-size: cover;
 
     @media screen and (min-width: $tablet) {
       width: 40%;
@@ -57,29 +78,25 @@ Stylesheet: Backgrounds
     }
 
     &:nth-child(3) {
-      background-image: url('../img/services-temp.jpg');
+      background-image: url('../img/services.jpg');
     }
 
     &:nth-child(4) {
-      background-image: url('../img/case-studies/porters/porters.jpg');
+      background-image: url('../img/case-studies/porters/porters-secondary-1.jpg');
     }
 
     &:nth-child(5) {
-      background-image: url('../img/backpack-temp.jpg');
+      background-image: url('../img/case-studies/majik/majik-secondary-2.jpg');
+      // background-position: right center;
     }
 
     &:nth-child(6) {
-      background-image: url('../img/case-studies/majik/majik-cover.jpg');
-      background-position: right center;
+      background-image: url('../img/case-studies/cangetthestaff/cgts-secondary-1.jpg');
     }
 
     &:nth-child(7) {
-      background-image: url('../img/case-studies/cangetthestaff/cgts-brief.jpg');
-    }
-
-    &:nth-child(8) {
-      background-image: url('../img/contact-temp.webp');
-      background-position: right center;
+      background-image: url('../img/contact.jpg');
+      // background-position: right center;
     }
 
     &.active {
@@ -95,6 +112,8 @@ Stylesheet: Backgrounds
     &.previous {
       z-index: -2;
 
+      transition: none;
+
       opacity: 1;
     }
   }
@@ -105,6 +124,7 @@ Stylesheet: Backgrounds
     transform: scale(1);
     animation-timing-function: ease-in;
   }
+
   100% {
     transform: scale(1.1);
     animation-timing-function: ease-out;

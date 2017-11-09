@@ -16,6 +16,12 @@ instagram_username: wazynski
 # Meta #########################################################################
 author: "copyright ©2017 : ninesenses : http://ninesenses.co.uk : tom@ninesenses.co.uk"
 
+# Collections ##################################################################
+collections:
+  projects:
+    output: true
+    permalink: /case-studies/:name
+
 # Open Graph settings ##########################################################
 og_title: Home
 og_type: website

@@ -22,7 +22,6 @@ $gradient-cutoff: 66.25%;
     position: relative;
 
     width: 100%;
-    padding-top: 74px;
 
     background-position: center center;
     background-size: cover;
@@ -262,8 +261,12 @@ $gradient-cutoff: 66.25%;
 
         align-self: center;
 
-        &.fill img {
-          max-width: none;
+        &.fill {
+          overflow: hidden;
+
+          img {
+            max-width: none;
+          }
         }
       }
 
@@ -305,6 +308,31 @@ $gradient-cutoff: 66.25%;
           }
         }
       }
+
+      .grid {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        .col-2,
+        .project-image {
+          padding-bottom: 10px;
+        }
+
+        .col-2 {
+          @media screen and (min-width: $tablet) {
+            width: 50%;
+
+            &:nth-child(odd) {
+              padding-right: 5px;
+            }
+
+            &:nth-child(even) {
+              padding-left: 5px;
+            }
+          }
+        }
+      }
     }
 
     /* ==========================================================================
@@ -341,11 +369,11 @@ $gradient-cutoff: 66.25%;
 
         display: block;
 
-        &:after {
-          display: block;
-
-          content: '—';
-        }
+        // &:after {
+        //   display: block;
+        //
+        //   content: '—';
+        // }
       }
     }
 
