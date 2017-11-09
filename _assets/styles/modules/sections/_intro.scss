@@ -4,17 +4,10 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: Intro
 ========================================================================== */
-// .fullscreen {
-//   @media screen and (min-width: $tablet) {
-//     .section.intro {
-//       height: calc(100vh);
-//       min-height: calc(100vh);
-//     }
-//   }
+
+// 
+// .section.intro {
+//   display: flex;
+//
+//   transform: translate3d(0, 0, 0); // Flicker on mobile fix https://stackoverflow.com/questions/12278587/webkit-text-flickers-when-using-css-transform-scale
 // }
-
-.section.intro {
-  display: flex;
-
-  transform: translate3d(0, 0, 0); // Flicker on mobile fix https://stackoverflow.com/questions/12278587/webkit-text-flickers-when-using-css-transform-scale
-}

@@ -36,7 +36,6 @@ $gradient-cutoff: 74.75%;
 
     .cover-logo {
       img {
-        // width: 90%;
         max-width: 500px;
         padding: 3rem 0;
       }
@@ -52,8 +51,4 @@ $gradient-cutoff: 74.75%;
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-bg', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
     }
   }
-
-  // .pages {
-  //   background: $background-alt;
-  // }
 }

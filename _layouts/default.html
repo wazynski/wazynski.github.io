@@ -2,6 +2,8 @@
 <html class="no-js" lang="en">
   {% include head.html %}
   <body class="default">
+    <script>document.body.classList.add('faded');</script>
+
     {% include controls.html %}
 
     {% include menu.html %}
@@ -61,7 +63,7 @@
               <dd>{{ item.disciplines }}</dd>
             </dl>
 
-            <a href="{{ item.url }}">Find out more &rarr;</a>
+            <a class="more" href="{{ item.url }}">Find out more &rarr;</a>
           </section>
         </div>
       {% endfor %}

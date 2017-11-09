@@ -29,6 +29,9 @@ Stylesheet: Sections
   background-position: center center;
   background-size: cover;
 
+  -webkit-backface-visibility: hidden;
+
+
   @media screen and (min-width: $tablet) {
     min-height: 100%; // Fallbacks
     min-height: 100vh; // Fallbacks
@@ -49,6 +52,12 @@ Stylesheet: Sections
           background-color: $base;
         }
       }
+
+      .more {
+        display: inline-block;
+
+        margin-top: 2rem;
+      }
     }
   }
 }
@@ -68,6 +77,7 @@ Stylesheet: Sections
 
   font-size: 1rem;
 
+  -webkit-backface-visibility: hidden;
   align-self: flex-end;
 
   @media screen and (min-width: $tablet) {
@@ -97,13 +107,13 @@ Stylesheet: Sections
   h1 {
     // margin-top: 0;
     font-size: 1.5rem;
-    font-weight: 300;
+    font-weight: 400;
   }
 
   p {
     position: relative;
 
-    font-weight: 300;
+    font-weight: 400;
   }
 
   a {
@@ -123,74 +133,3 @@ Stylesheet: Sections
     }
   }
 }
-//
-// .porters {
-//   &.active {
-//     &::after {
-//       animation: imageAnimation 20s linear infinite;
-//       animation-direction: alternate;
-//     }
-//   }
-//
-//   &:after {
-//     position: absolute;
-//     z-index: -1;
-//     top: 0;
-//     right: 0;
-//     bottom: 0;
-//     left: 0;
-//
-//     display: block;
-//
-//     width: 100%;
-//     height: 100%;
-//
-//     content: '';
-//
-//     background-image: url('../img/coffee-temp.jpg');
-//     background-position: center center;
-//     background-size: cover;
-//   }
-// }
-//
-// .badges {
-//   &.active {
-//     &::after {
-//       animation: imageAnimation 20s linear infinite;
-//       animation-direction: alternate;
-//     }
-//   }
-//
-//   &:after {
-//     position: absolute;
-//     z-index: -1;
-//     top: 0;
-//     right: 0;
-//     bottom: 0;
-//     left: 0;
-//
-//     display: block;
-//
-//     width: 100%;
-//     height: 100%;
-//
-//     content: '';
-//
-//     background-image: url('../img/backpack.jpg');
-//     background-position: center center;
-//     background-size: cover;
-//
-//     animation-fill-mode: forwards;
-//   }
-// }
-//
-// @keyframes imageAnimation {
-//   0% {
-//     transform: scale(1);
-//     animation-timing-function: ease-in;
-//   }
-//   100% {
-//     transform: scale(1.1);
-//     animation-timing-function: ease-out;
-//   }
-// }

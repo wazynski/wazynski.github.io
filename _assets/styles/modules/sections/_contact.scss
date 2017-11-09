@@ -4,24 +4,3 @@
 //
 // Stylesheet: Contact
 // ========================================================================== */
-
-.contact {
-  dt,
-  dd {
-    // font-size: .75rem;
-  }
-}
-
-.footer {
-  display: none;
-
-  margin-top: 2rem;
-
-  @media screen and (min-width: $tablet) {
-    display: block;
-  }
-
-  dl {
-    font-size: .75rem;
-  }
-}

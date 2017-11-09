@@ -5,76 +5,16 @@
 // Stylesheet: Footer
 // ========================================================================== */
 
+.footer {
+  display: none;
 
+  margin-top: 2rem;
 
-// .section.contact {
-//   flex-direction: column-reverse;
-//
-//   .content {
-//     order: 1;
-//   }
-// }
-//
-// .footer {
-//   overflow: hidden;
-//
-//   width: 100%;
-//
-//   background: $mustard;
-//
-//   order: -1;
-//
-//   .content {
-//     display: block; // not flex
-//
-//     padding: 2rem 1.25rem 1.25rem;
-//   }
-//
-//   span {
-//     display: block;
-//   }
-//
-//   dl {
-//     vertical-align: top;
-//
-//     &:first-child {
-//       margin-bottom: 0;
-//     }
-//
-//     &:last-child {
-//       margin-bottom: 0;
-//     }
-//
-//     dt {
-//       color: $base;
-//     }
-//   }
-//
-//   @media screen and (min-width: $tablet) {
-//     .content {
-//       padding: 2rem 3.125rem 1.25rem;
-//     }
-//
-//     .wrap {
-//       font-size: 0;
-//     }
-//   }
-//
-//   @media screen and (min-width: $tablet) and (min-height: 83.125rem) {
-//     .content {
-//       padding: 3.125rem 3.125rem 3.125rem;
-//     }
-//   }
-//
-//   @media screen and (min-width: $sm-desktop) {
-//     span {
-//       display: inline;
-//     }
-//   }
-//
-//   @media screen and (min-width: $xl-desktop) {
-//     .content {
-//       padding: 5rem 4.6875rem 3.125rem;
-//     }
-//   }
-// }
+  @media screen and (min-width: $tablet) {
+    display: block;
+  }
+
+  dl {
+    font-size: .75rem;
+  }
+}

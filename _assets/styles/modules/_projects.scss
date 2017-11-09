@@ -18,6 +18,28 @@ $gradient-cutoff: 66.25%;
 .project {
   background: $base;
 
+  img {
+    transition: opacity 1500ms;
+  }
+
+  .lazyload {
+    transition: opacity 1500ms;
+
+    opacity: 0;
+  }
+  .lazyloading {
+    transition: opacity 1500ms;
+
+    opacity: 1;
+    background: url('../img/loading.svg') no-repeat center center;
+  }
+
+  .lazyloaded {
+    transition: opacity 1500ms;
+
+    opacity: 1;
+  }
+
   .project-section {
     position: relative;
 
@@ -208,7 +230,9 @@ $gradient-cutoff: 66.25%;
       figure {
         overflow: hidden;
 
-        max-height: 1000px;
+        img {
+          max-height: 1000px;
+        }
         // &:after {
         //   display: block;
         //
@@ -471,153 +495,58 @@ $gradient-cutoff: 66.25%;
         }
       }
     }
+
+    &.project-next {
+      a {
+        position: relative;
+
+        display: flex;
+
+        width: 100%;
+
+        align-items: center;
+
+        &:after {
+          display: none;
+        }
+
+        &:hover {
+          transition: opacity 300ms ease-in-out;
+
+          opacity: .75;
+        }
+      }
+
+      span {
+        @include font-size(24);
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        display: block;
+
+        width: 100%;
+
+        text-align: center;
+
+        color: $base;
+
+        align-self: center;
+
+        @media screen and (min-width: $tablet) {
+          @include font-size(32);
+        }
+      }
+
+      figure {
+        width: 100%;
+        img {
+          max-height: 400px;
+        }
+      }
+    }
   }
 }
-/* ==========================================================================
-  Splits
-   ========================================================================== */
-//
-//     &.split {
-//       .col {
-//         &.image {
-//           position: absolute;
-//           z-index: -1;
-//           top: 0;
-//           right: 0;
-//           bottom: 0;
-//           left: 0;
-//
-//           &::before {
-//             position: absolute;
-//             z-index: 1;
-//             top: 0;
-//             right: 0;
-//             bottom: 0;
-//             left: 0;
-//
-//             content: '';
-//             transform: translate3d(0, 0, 0);
-//
-//             background: lighten($background, 10%);
-//
-//             mix-blend-mode: multiply;
-//
-//             @media screen and (min-width: $tablet) {
-//               display: none;
-//             }
-//           }
-//
-//           @media screen and (min-width: $tablet) {
-//             right: auto;
-//
-//             width: 40%;
-//           }
-//         }
-//
-//         &.info {
-//           display: flex;
-//
-//           width: 100%;
-//           height: 100%;
-//
-//           align-content: center;
-//
-//           .content {
-//             color: $base;
-//
-//             align-self: center;
-//
-//             h1,
-//             h2,
-//             dt,
-//             dd,
-//             p {
-//               color: $base;
-//             }
-//
-//             dd {
-//               margin-bottom: 3rem;
-//             }
-//
-//             @media screen and (min-width: $tablet) {
-//               color: $comet;
-//
-//               h1,
-//               h2,
-//               dt,
-//               dd,
-//               p {
-//                 color: $comet;
-//               }
-//             }
-//           }
-//         }
-//       }
-//
-//       @media screen and (min-width: $tablet) {
-//         .col {
-//           &.image,
-//           &.info {
-//             position: relative;
-//
-//             display: flex;
-//
-//             .content {
-//               left: 0;
-//
-//               width: 100%;
-//               max-width: none;
-//               padding-right: 4.6875rem;
-//               padding-left: 4.6875rem;
-//             }
-//           }
-//
-//           &.image {
-//             width: 40%;
-//           }
-//
-//           &.info {
-//             width: 60%;
-//           }
-//         }
-//       }
-//
-//       @media screen and (min-width: $sm-desktop) {
-//         .col {
-//           &.image,
-//           &.info {
-//             width: 50%;
-//           }
-//         }
-//       }
-//     }
-//
-//
-//
-//     figure {
-//       position: relative;
-//
-//       overflow: hidden;
-//
-//       width: 100%;
-//       height: 100%;
-//       margin: 0;
-//       padding: 50px;
-//
-//       img {
-//         position: absolute;
-//         top: 50%;
-//         left: 50%;
-//
-//         display: block;
-//
-//         min-width: 101%;
-//         max-width: none;
-//         min-height: 101%;
-//         max-height: none;
-//
-//         transform: translate3d(-50%, -50%, 0);
-//       }
-//     }
-//   }
-// }

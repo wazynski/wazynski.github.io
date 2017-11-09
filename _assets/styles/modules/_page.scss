@@ -9,6 +9,8 @@ Stylesheet: Page
   // overflow: hidden;
   height: 100%;
 
+  transition: opacity 500ms;
+
   .page-background {
     position: fixed;
     z-index: -1;
@@ -23,7 +25,6 @@ Stylesheet: Page
     background-position: center;
     background-size: cover;
 
-    mix-blend-mode: multiply;
     background-blend-mode: multiply;
 
     @media screen and (min-width: $tablet) {

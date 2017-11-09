@@ -50,7 +50,7 @@ gulp.task('clean:styles', function() {
 // appropriate location.
  gulp.task('build:scripts', function() {
      return gulp.src([
-         paths.jsFiles + '/lib' + paths.jsPattern,
+         paths.jsFiles + paths.jsPattern,
          paths.jsFiles + '/*.js'
      ])
         .pipe(concat('main.js'))
