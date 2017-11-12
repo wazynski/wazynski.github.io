@@ -4,3 +4,17 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 
 Stylesheet: services
 ========================================================================== */
+
+.services {
+  ul {
+    overflow: hidden;
+
+    li {
+      @include font-size(16);
+
+      float: left;
+
+      width: 50%;
+    }
+  }
+}

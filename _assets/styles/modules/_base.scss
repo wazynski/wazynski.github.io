@@ -32,7 +32,49 @@ body {
 
   text-rendering: geometricPrecision;
   -webkit-backface-visibility: hidden;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+  @media screen and (max-height: 350px) and (orientation: landscape) {
+    &:after {
+      position: absolute;
+      z-index: 999;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      display: block;
+
+      content: '';
+
+      background-color: $background;
+      background-image: url('../img/logo.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      // background-size: contain;
+    }
+  }
+
+  @media screen and (max-width: 300px) and (orientation: portrait) {
+    &:after {
+      position: absolute;
+      z-index: 999;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      display: block;
+
+      content: '';
+
+      background-color: $background;
+      background-image: url('../img/logo.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      // background-size: contain;
+    }
+  }
 
   &.fullscreen {
     position: relative;

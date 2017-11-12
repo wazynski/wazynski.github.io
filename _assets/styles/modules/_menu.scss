@@ -16,7 +16,7 @@
 
 .home {
   position: fixed;
-  z-index: 9999;
+  z-index: 998;
   top: 3.125rem;
   // right: 25px;
   right: 15px;
@@ -77,7 +77,7 @@
 
 .menu {
   position: fixed;
-  z-index: 9998;
+  z-index: 997;
   top: 50%;
   right: 17px;
   left: auto;
@@ -100,16 +100,22 @@
     display: block;
   }
 
+
+  button,
   a {
     display: inline-block;
 
     height: 16px;
     margin: 0 1rem;
+    padding: 0;
 
     letter-spacing: .01rem;
     text-transform: uppercase;
 
     color: $secondary;
+    border: 0;
+    outline: none;
+    background: none;
 
     font-size: .825rem;
     font-weight: 400;

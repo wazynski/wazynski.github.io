@@ -5,6 +5,14 @@ Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
 Stylesheet: Backgrounds
 ========================================================================== */
 
+.four-oh-four {
+  .bgs {
+    li:first-child {
+      background-image: url('../img/error.jpg');
+    }
+  }
+}
+
 .bgs {
   margin: 0;
 

@@ -16,6 +16,8 @@ $colors-1: #374246;
 $colors-2: #744C4F;
 $colors-3: #DCD2C7;
 $colors-4: #A6C1AC;
+//
+$project-next: #753FA1;
 
 .project.porters {
   .project-section {
@@ -146,4 +148,8 @@ $colors-4: #A6C1AC;
       }
     }
   }
+
+  // .project-next {
+  //   background: $project-next;
+  // }
 }
