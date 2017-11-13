@@ -13,7 +13,15 @@ formated_tel: +44 [0] 1524 542 864
 twitter_username: wazynski
 instagram_username: wazynski
 
+
 # Meta #########################################################################
+description: >-
+  Home of developer, designer and brand consultant Tom Skarbek-Wazynski. Tom helps companies look their best and make their products exceptional to use.
+
+keywords: >-
+  Ninesenses, Tom Skarbek-Wazynski, web design, website design, web development, branding,
+  digital marketing, online marketing, email marketing
+
 author: "copyright ©2017 : ninesenses : http://ninesenses.co.uk : tom@ninesenses.co.uk"
 
 # Collections ##################################################################
@@ -51,8 +59,6 @@ env: develop
 
 plugins:
   - jekyll-babel
-
-gems:
   - octopress-minify-html
 
 

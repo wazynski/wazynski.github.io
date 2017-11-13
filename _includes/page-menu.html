@@ -1,6 +1,8 @@
 <a href="/" class="home"></a>
 {% if page.project_id %}
   <a href="/#{{page.project_id}}" class="home"></a>
+{% else if page.project_id %}
+  <a href="/#{{page.id}}" class="home"></a>
 {% else %}
   <a href="/" class="home"></a>
 {% endif %}

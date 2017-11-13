@@ -3,9 +3,8 @@ layout: default
 
 # Meta
 description: >-
-  Ninesenses is an independent creative studio in Lancaster.
-  Specialising in brand identity, creative direction, design
-  and bespoke development.
+  Home of developer, designer and brand consultant Tom Skarbek-Wazynski. Tom helps companies look their best and make their products exceptional to use.
+
 keywords: >-
   Ninesenses, Tom Skarbek-Wazynski, web design, website design, web development, branding,
   digital marketing, online marketing, email marketing
@@ -27,11 +26,8 @@ about_url_text: Find out more about Tom &rarr;
 services_title: What I do
 services_text: >-
   <p>
-    I specialise in brand identity, creative direction, design and bespoke development.
+    I specialise in brand identity, creative direction, design and bespoke development. Helping companies look their best and make their products exceptional to use.
   </p>
-  <!-- <p>
-    Through creative integrity, research, communication and working collaboratively with a wide range of creatives I produce high-quality solutions, that make things smarter, helpful, easy to use, beautiful and most importantly fun.
-  </p> -->
 services_url: /services
 services_url_text: Find out more about my services &rarr;
 

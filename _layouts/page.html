@@ -1,8 +1,8 @@
 <!doctype html>
 <html class="no-js" lang="en">
   {% include head.html %}
-  <body class="{{page.title | downcase}} {{page.layout}}">
-    <!-- <script>document.body.classList.add('faded');</script> -->
+  <body class="{{page.title | downcase}} {{page.layout}} faded">
+    {% include fade.html %}
 
     {% include page-menu.html %}
 
@@ -16,12 +16,26 @@
     <article id="page-wrap" class="content">
       {{ content }}
 
+
+      {% if page.contact_text %}
+        <div class="testimonial">
+          <blockquote>
+            {{ page.testimonial }}
+            <footer>
+              <img src="/assets/img/{{page.credit_image}}" alt="">
+              <span>{{page.credit}} - <a href="{{page.credit_link}}">{{page.credit_company}}</a>
+            </footer>
+          </blockquote>
+        </div>
+      {% endif %}
+
+
       {% if page.contact_text %}
         <div id="contact" class="contact">
 		      <h2>{{ page.contact_title }}</h2>
-          <p>
-            {{ page.contact_text }}
-          </p>
+
+          {{ page.contact_text }}
+
           <div class="col-2">
             <dl>
               <dt>Mail</dt>

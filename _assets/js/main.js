@@ -122,53 +122,57 @@ nine.enableFullscreen = () => {
   Animations
    ========================================================================== */
 
+/**
+ * contactScroll - scroll to contact area on page.
+ * @returns {[type]}
+ */
 nine.contactScroll = () => {
-   const contactLink = document.getElementById('contact-link');
-   if (contactLink) {
-     contactLink.onclick = () => {
-       if (nine.fullscreen) {
-         nine.scrollToSection('contact');
-         return false;
-       }
-     };
-   }
- };
+  const contactLink = document.getElementById('contact-link');
+  if (contactLink) {
+    contactLink.onclick = () => {
+      if (nine.fullscreen) {
+        nine.scrollToSection('contact');
+        return false;
+      }
+    };
+  }
+};
 
-// /**
-//  * [animateLoad description]
-//  * @returns {[type]}
-//  */
-// nine.animateLoad = () => {
-//   window.setTimeout(() => {
-//     // document.body.classList.add('faded-in');
-//   }, 1000);
-// };
-//
-// /**
-//  * pageTransisition - Chnages background color, fades out body and redirects to href
-//  * @param {String} href
-//  * @param {String} bg Background color
-//  */
-// nine.pageTransisition = href => {
-//   document.body.classList.add('faded-out');
-//
-//   setTimeout(() => {
-//     window.location.href = href;
-//   }, 600);
-// };
-//
-// /**
-//  * animateLinks - Gets all anchor elements and adds a call to pageTransisition() on click
-//  */
-// nine.animateLinks = () => {
-//   const anchorElements = document.getElementsByTagName('a');
-//   Array.prototype.forEach.call(anchorElements, el => {
-//     el.onclick = () => {
-//       nine.pageTransisition(el.href);
-//       return false;
-//     };
-//   });
-// };
+/**
+ * animateLoad - animate page load.
+ * @returns {[type]}
+ */
+nine.animateLoad = () => {
+  window.setTimeout(() => {
+    document.body.classList.add('faded-in');
+  }, 1000);
+};
+
+/**
+ * pageTransisition - Chnages background color, fades out body and redirects to href
+ * @param {String} href
+ * @param {String} bg Background color
+ */
+nine.pageTransisition = href => {
+  document.body.classList.add('faded-out');
+
+  setTimeout(() => {
+    window.location.href = href;
+  }, 600);
+};
+
+/**
+ * animateLinks - Gets all anchor elements and adds a call to pageTransisition() on click
+ */
+nine.animateLinks = () => {
+  const anchorElements = document.getElementsByTagName('a');
+  Array.prototype.forEach.call(anchorElements, el => {
+    el.onclick = () => {
+      nine.pageTransisition(el.href);
+      return false;
+    };
+  });
+};
 
 /* ==========================================================================
   Fullscreen
@@ -1089,7 +1093,7 @@ document.addEventListener('DOMContentLoaded', () => {
   nine.supports3d = nine.support3d();
 
   // nine.masonaryHeight();
-  // nine.animateLinks();
+  nine.animateLinks();
   // nine.animatePortrait();
 
   // window.addEventListener('resize', () => {
@@ -1105,7 +1109,7 @@ document.addEventListener('DOMContentLoaded', () => {
    ========================================================================== */
 
 window.onload = () => {
-  // nine.animateLoad();
+  nine.animateLoad();
   // nine.masonaryHeight();
 };
 
