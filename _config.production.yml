@@ -59,7 +59,7 @@ env: production
 
 plugins:
   - jekyll-babel
-
+  - octopress-minify-html
 
 # Server Config options
 livereload: true     # You no longer need to include --livereload

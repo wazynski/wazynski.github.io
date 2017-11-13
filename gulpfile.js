@@ -181,8 +181,8 @@ gulp.task('default', ['build']);
 // Deploy
 
 gulp.task('deploy', ['build:production'], function() {
-  return gulp.src('./dist/**/*')
-    .pipe(ghPages());
+  return gulp.src('./_site/**/*')
+    .pipe(ghPages({ branch: "master", push: false }));
 });
 
 
