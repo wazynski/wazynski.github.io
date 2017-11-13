@@ -11,6 +11,7 @@ $text-base: #1E1B2F;
 $background-alt: #E6E6E6;
 $gradient-bg: $project-base;
 $gradient-cutoff: 74.75%;
+$project-next: #FDCA58;
 
 .project.cgts {
   .project-section {
@@ -51,4 +52,20 @@ $gradient-cutoff: 74.75%;
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-bg', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
     }
   }
+
+  // .project-next {
+  //   background: $project-next;
+  //
+  //   a {
+  //     color: $base;
+  //
+  //     &:after {
+  //       background-color: #252525;
+  //     }
+  //
+  //     span {
+  //       color: #252525;
+  //     }
+  //   }
+  // }
 }
