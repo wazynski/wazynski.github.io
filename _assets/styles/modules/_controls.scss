@@ -1,0 +1,107 @@
+/* ==========================================================================
+Site Name: Ninesenses
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: Controls
+========================================================================== */
+/* ==========================================================================
+  Controls
+   ========================================================================== */
+$controls: $secondary;
+
+.controls {
+  // @media screen and (min-width: $controls-on) {
+  position: fixed;
+  z-index: 998;
+  right: 17px;
+  bottom: 26px;
+
+  width: 16px;
+
+  text-align: right;
+  // display: none !important;
+
+  &.on {
+    display: block;
+  }
+
+  @media screen and (min-width: $tablet) {
+    right: 25px;
+    bottom: 3.125rem;
+  }
+
+  // @media screen and (min-height: 83.125rem) {
+  //   bottom: 180px;
+  // }
+  //
+
+
+  ul {
+    display: none;
+
+    width: 16px;
+
+    list-style: none;
+
+    // @media screen and (min-width: $laptop) {
+    //   display: block;
+    // }
+
+    li {
+      display: block;
+
+      width: 10px;
+      height: 10px;
+      margin: 0 auto 10px;
+
+      cursor: pointer;
+      transition: background 100ms linear;
+
+      border: 1px solid $controls;
+      border-radius: 50%;
+      background: none;
+
+      &.active {
+        background: $controls;
+      }
+
+      &:hover {
+        opacity: .5;
+        background: $controls;
+      }
+    }
+  }
+
+  button {
+    display: block;
+
+    width: 16px;
+    height: 28px;
+    margin: 0 0 10px;
+    padding: 0;
+
+    transition: opacity 500ms linear;
+    text-align: center;
+
+    opacity: 1;
+    border: 0;
+    outline: 0;
+    background: none;
+
+    &.disabled {
+      opacity: 0;
+    }
+
+    svg {
+      display: inline-block;
+
+      width: 12px;
+      margin: 0 auto;
+
+      path {
+        fill: $controls;
+      }
+    }
+  }
+}
+// }

@@ -1,0 +1,155 @@
+/* ==========================================================================
+Site Name: Ninesenses
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: Porters
+========================================================================== */
+
+$project-base: #FDCA58;
+$project-secondary: #272727;
+$text-base: $project-secondary;
+$background-alt: lighten($project-secondary, 75%);
+$gradient-bg: $project-base;
+$gradient-cutoff: 74.75%;
+//
+$colors-1: #374246;
+$colors-2: #744C4F;
+$colors-3: #DCD2C7;
+$colors-4: #A6C1AC;
+//
+$project-next: #753FA1;
+
+.project.porters {
+  .project-section {
+    color: $text-base;
+    .content {
+      color: $text-base;
+    }
+  }
+
+  .project-cover {
+    .cover-inner {
+      background: $project-base;
+    }
+
+    .cover-pullup {
+      background: $gradient-bg; /* Old browsers */
+      background: -moz-linear-gradient(top, $gradient-bg 0%, $gradient-bg $gradient-cutoff, $base $gradient-cutoff, $base 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, $gradient-bg 0%, $gradient-bg $gradient-cutoff, $base $gradient-cutoff, $base 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, $gradient-bg 0%, $gradient-bg $gradient-cutoff, $base $gradient-cutoff, $base 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#555b6e+0,555b6e+50,ffffff+50,ffffff+100 */
+
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-bg', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+    }
+  }
+
+  .project-logo {
+    background: $background-alt;
+
+    header {
+      // color: $base;
+    }
+
+    .col-2:first-child {
+      background: $base;
+    }
+    .col-2:last-child {
+      background: $project-secondary;
+    }
+  }
+
+  .project-pattern {
+    background: $background-alt;
+
+    img {
+      min-width: 600px;
+    }
+  }
+
+  .project-typography {
+    background: $background-alt;
+    .type-one {
+      img {
+        max-width: 1651px;
+        margin: 0 auto;
+      }
+    }
+    .type-two {
+      img {
+        max-width: 450px;
+        margin: 0 auto;
+      }
+    }
+    .type-three {
+      img {
+        max-width: 1024px;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .order {
+    background: $background-alt;
+  }
+
+  .project-colors {
+    background: $background-alt;
+
+    .colors span {
+      background: $background-alt;
+    }
+
+    .primary {
+      li {
+        &:nth-child(1) {
+          background: $project-secondary;
+        }
+
+        &:nth-child(2) {
+          background: $project-base;
+        }
+      }
+    }
+
+    .secondary {
+      li {
+        &:nth-child(1) {
+          background: $colors-1;
+        }
+
+        &:nth-child(2) {
+          background: $colors-2;
+        }
+
+        &:nth-child(3) {
+          background: $colors-3;
+        }
+
+        &:nth-child(4) {
+          background: $colors-4;
+        }
+      }
+    }
+  }
+
+  .labels {
+    img {
+      max-width: 400px;
+    }
+  }
+
+  .booklet {
+    @media screen and (min-width: $tablet ) {
+      .col-2:first-child {
+        padding-right: .5rem;
+      }
+      .col-2:last-child {
+        padding-left: .5rem;
+      }
+    }
+  }
+
+  .project-next {
+    background: $background-alt;
+  }
+}

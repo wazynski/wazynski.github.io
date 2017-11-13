@@ -1,0 +1,62 @@
+/* ==========================================================================
+Site Name: Ninesenses
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: About
+========================================================================== */
+
+.about {
+  h2 {
+    margin-top: 1rem;
+  }
+
+  .like-list {
+    line-height: 1.4;
+
+    li {
+      @include font-size(20);
+
+      display: inline-block;
+
+      line-height: 1.25;
+    }
+  }
+
+  .like-list + h2 {
+    margin-top: 0rem;
+  }
+
+  .col-2 {
+    @include font-size(0);
+
+    img {
+      display: inline-block;
+
+      width: 50%;
+
+      &:first-child {
+        padding-right: 5px;
+      }
+
+      &:last-child {
+        padding-left: 5px;
+      }
+    }
+  }
+
+  .experience {
+    @include clearfix;
+
+    dl {
+      float: left;
+
+      width: 60%;
+    }
+
+    img {
+      float: right;
+
+      width: 40%;
+    }
+  }
+}

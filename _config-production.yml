@@ -1,0 +1,62 @@
+# Site settings ################################################################
+business_name: Ninesenses
+title: Tom Skarbek-Wazynski
+subtitle: Developer, Designer & Brand Consultant
+
+# Contact ######################################################################
+email: tom@ninesenses.co.uk
+obfuscated_email: tom[@]ninesenses.co.uk
+
+tel: +441524542864
+formated_tel: +44 [0] 1524 542 864
+
+twitter_username: wazynski
+instagram_username: wazynski
+
+# Meta #########################################################################
+author: "copyright ©2017 : ninesenses : http://ninesenses.co.uk : tom@ninesenses.co.uk"
+
+# Collections ##################################################################
+collections:
+  projects:
+    output: true
+    permalink: /case-studies/:name
+
+# Open Graph settings ##########################################################
+og_title: Home
+og_type: website
+og_description: >-
+  Ninesenses is an independent creative consultancy producing high
+  quality branding and bespoke development for ...
+og_image: http://ninesenses.co.uk/img/og.png
+og_image_width: 200
+og_image_height: 200
+
+# Footer #######################################################################
+colphon: Typeset in Sofia Pro
+copyright: All rights reserved <span>© Tom Skarbek-Wazynski</span>
+
+# Typekit ID ###################################################################
+typekit: fte0rot
+
+# Analytics ID #################################################################
+ga: UA-60687760-1
+
+# URL ##########################################################################
+baseurl: ""
+url: ""
+
+# Build ########################################################################
+env: production
+
+plugins:
+  - jekyll-babel
+
+gems:
+  - octopress-minify-html
+
+
+# Server Config options
+livereload: true     # You no longer need to include --livereload
+
+exclude: [vendor, _assets, gulpfile.js, README.md, node_modules, yarn.lock, package.json]

@@ -1,0 +1,137 @@
+/* ==========================================================================
+  Menu
+   ========================================================================== */
+
+.project {
+  .menu {
+    display: none;
+  }
+}
+
+.home {
+  position: fixed;
+  z-index: 998;
+  top: 3.125rem;
+  right: 15px;
+  left: auto;
+
+  display: block;
+
+  width: 20px;
+  height: 30px;
+
+  @media screen and (min-width: $tablet) {
+    right: 23px;
+  }
+
+  &:hover {
+    &:before {
+      background: $gainsboro;
+    }
+
+    &:after {
+      background: $mustard;
+    }
+  }
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    bottom: auto;
+    left: 0;
+
+    display: block;
+    visibility: visible;
+
+    width: 20px;
+    height: 20px;
+
+    content: '';
+    transition: all 300ms $easing;
+    transition: all 250ms ease;
+    transform: none;
+    // opacity: .5;
+
+    border-radius: 50%;
+    background: $secondary;
+    background-position: center center;
+    background-size: cover;
+  }
+
+  &:after {
+    top: 10px;
+
+    background: lighten($secondary, 3%);
+
+    mix-blend-mode: multiply;
+  }
+}
+
+.menu {
+  position: fixed;
+  z-index: 997;
+  top: 50%;
+  right: 17px;
+  left: auto;
+
+  display: none;
+  zoom: 1;
+
+  width: 100%;
+  margin-top: -50%;
+
+  transform: rotateX(-90deg);
+  transform: rotate(-90deg);
+  // transform: translate(50%,-50%) rotate(-90deg) translateY(-50%);
+  transform-origin: bottom right;
+  text-align: center;
+
+  @media screen and (min-height: 568px) {
+    display: block;
+  }
+
+  @media screen and (min-width: $tablet) {
+    right: 25px;
+
+    display: block;
+  }
+
+
+  button,
+  a {
+    @include font-size(14);
+
+    display: inline-block;
+
+    min-width: 60px;
+    height: 16px;
+    margin: 0 1rem;
+    padding: 0;
+
+    letter-spacing: .01rem;
+    text-transform: uppercase;
+
+    color: $secondary;
+    border: 0;
+    outline: none;
+    background: none;
+
+    font-weight: 400;
+    line-height: 1;
+
+    &.active {
+      color: lighten($secondary, 30%);
+    }
+
+    &:hover {
+      color: lighten($secondary, 15%);
+    }
+
+    &:after {
+      height: 2px;
+
+      background: lighten($secondary, 15%);
+    }
+  }
+}

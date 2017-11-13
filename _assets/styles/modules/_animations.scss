@@ -1,0 +1,50 @@
+/* ==========================================================================
+Site Name: Ninesenses
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: Animations
+========================================================================== */
+/* ==========================================================================
+  Body
+   ========================================================================== */
+.no-js {
+  body {
+    opacity: 1 !important;
+  }
+}
+
+body {
+  &.faded {
+    transition: opacity 0ms ease-in;
+
+    opacity: 0;
+
+    .scroll-container {
+      opacity: 0;
+    }
+  }
+
+  &.faded-in {
+    transition: opacity 500ms ease-in;
+
+    opacity: 1 !important;;
+
+    .scroll-container {
+      transition: opacity 500ms ease-in;
+
+      opacity: 1 !important;
+    }
+  }
+
+  &.faded-out {
+    transition: opacity 500ms ease-in;
+
+    opacity: 0 !important;;
+
+    .scroll-container {
+      transition: opacity 500ms ease-in;
+
+      opacity: 0 !important;
+    }
+  }
+}

@@ -1,0 +1,71 @@
+/* ==========================================================================
+Site Name: Ninesenses
+Author: Tom Skarbek-Wazynski (ninesenses.co.uk)
+
+Stylesheet: Can Get The Staff
+========================================================================== */
+
+$project-base: #64F66C;
+$project-secondary: #6533E5;
+$text-base: #1E1B2F;
+$background-alt: #E6E6E6;
+$gradient-bg: $project-base;
+$gradient-cutoff: 74.75%;
+$project-next: #FDCA58;
+
+.project.cgts {
+  .project-section {
+    color: $text-base;
+    a {
+      color: $project-secondary;
+
+      &:after {
+        background-color: $project-secondary;
+      }
+    }
+    .content {
+      color: $text-base;
+    }
+  }
+
+  .project-cover {
+    .cover-inner {
+      padding-bottom: 3rem;
+
+      background: $project-base;
+    }
+
+    .cover-logo {
+      img {
+        max-width: 500px;
+        padding: 3rem 0;
+      }
+    }
+
+    .cover-pullup {
+      background: $gradient-bg; /* Old browsers */
+      background: -moz-linear-gradient(top, $gradient-bg 0%, $gradient-bg $gradient-cutoff, $base $gradient-cutoff, $base 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, $gradient-bg 0%, $gradient-bg $gradient-cutoff, $base $gradient-cutoff, $base 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, $gradient-bg 0%, $gradient-bg $gradient-cutoff, $base $gradient-cutoff, $base 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#555b6e+0,555b6e+50,ffffff+50,ffffff+100 */
+
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-bg', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+    }
+  }
+
+  // .project-next {
+  //   background: $project-next;
+  //
+  //   a {
+  //     color: $base;
+  //
+  //     &:after {
+  //       background-color: #252525;
+  //     }
+  //
+  //     span {
+  //       color: #252525;
+  //     }
+  //   }
+  // }
+}

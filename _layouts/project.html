@@ -1,0 +1,20 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  {% include head.html %}
+  <body class="project {{page.project_id}} page">
+    {% include fade.html %}
+
+    {% include menu.html %}
+
+    {{page.content}}
+
+    <script type="text/javascript">
+      window.lazySizesConfig = window.lazySizesConfig || {};
+
+      // lazySizesConfig.preloadAfterLoad = true;
+      // lazySizesConfig.expand = 1000;
+      // lazySizesConfig.ricTimeout = 1000;
+    </script>
+    {% include footer.html %}
+  </body>
+</html>
