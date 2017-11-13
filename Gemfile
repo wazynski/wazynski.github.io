@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 # Plugins
 group :jekyll_plugins do
-  gem 'octopress-minify-html'
   gem 'github-pages'
   gem 'jekyll-babel'
   gem 'jekyll-livereload'

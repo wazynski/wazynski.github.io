@@ -30,7 +30,7 @@
          	{{page.about_text}}
 
          <p>
-           <a href="{{page.about_url}}">{{page.about_url_text}}</a>
+           <a href="{{site.url}}{{page.about_url}}">{{page.about_url_text}}</a>
          </p>
        	</section>
      	</div>
@@ -42,7 +42,7 @@
          {{page.services_text}}
 
          <p>
-           <a href="{{page.services_url}}">{{page.services_url_text}}</a>
+           <a href="{{site.url}}{{page.services_url}}">{{page.services_url_text}}</a>
          </p>
        </section>
      </div>
@@ -52,7 +52,7 @@
           <section class="content">
             <h2>Case Study</h2>
 
-            <h1><a href="{{ item.url }}">{{ item.project_title }}</a></h1>
+            <h1><a href="{{site.url}}{{ item.url }}">{{ item.project_title }}</a></h1>
             <p>
               {{ item.project_description }}
             </p>
@@ -62,7 +62,7 @@
               <dd>{{ item.disciplines }}</dd>
             </dl>
 
-            <a class="more" href="{{ item.url }}">Find out more &rarr;</a>
+            <a class="more" href="{{site.url}}{{ item.url }}">Find out more &rarr;</a>
           </section>
         </div>
       {% endfor %}

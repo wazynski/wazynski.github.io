@@ -52,14 +52,13 @@ ga: UA-60687760-1
 
 # URL ##########################################################################
 baseurl: ""
-url: ""
+url: "http://localhost:3000"
 
 # Build ########################################################################
 env: develop
 
 plugins:
   - jekyll-babel
-  - octopress-minify-html
 
 
 # Server Config options

@@ -1,12 +1,12 @@
 {% if page.project_id %}
-  <a href="/#{{page.project_id}}" class="home"></a>
+  <a href="{{site.url}}/#{{page.project_id}}" class="home"></a>
 {% else %}
-  <a href="/" class="home"></a>
+  <a href="{{site.url}}" class="home"></a>
 {% endif %}
 
 <nav class="menu">
-  <a href="/about">About</a>
-  <a href="/services">Services</a>
+  <a href="{{site.url}}/about">About</a>
+  <a href="{{site.url}}/services">Services</a>
   <!-- <a href="/faq">FAQ</a> -->
   <button id="contact-link">contact</button>
 </nav>
