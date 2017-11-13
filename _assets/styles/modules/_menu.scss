@@ -81,8 +81,7 @@
   top: 50%;
   right: 17px;
   left: auto;
-
-  display: none;
+  // display: none;
 
   width: 100%;
   margin-top: -50%;
@@ -92,11 +91,12 @@
   // transform: translate(50%,-50%) rotate(-90deg) translateY(-50%);
   transform-origin: bottom right;
   text-align: center;
-  @media screen and (min-width: $tablet) {
-    right: 25px;
-  }
+
+
 
   @media screen and (min-width: $tablet) {
+    right: 25px;
+
     display: block;
   }
 

@@ -8,7 +8,11 @@ Stylesheet: Backgrounds
 .four-oh-four {
   .bgs {
     li:first-child {
-      background-image: url('../img/error.jpg');
+      background-image: url('../img/error-multiply.jpg');
+
+      @media screen and (min-width: $tablet) {
+        background-image: url('../img/error.jpg');
+      }
     }
   }
 }
@@ -16,23 +20,23 @@ Stylesheet: Backgrounds
 .bgs {
   margin: 0;
 
-  &::before {
-    position: absolute;
-    top: 0;
-    right: 3.125rem;
-    bottom: 0;
-    left: 0;
-
-    content: '';
-
-    background: lighten($background, 10%);
-
-    mix-blend-mode: multiply;
-
-    @media screen and (min-width: $tablet) {
-      display: none;
-    }
-  }
+  // &::before {
+  //   position: absolute;
+  //   top: 0;
+  //   right: 3.125rem;
+  //   bottom: 0;
+  //   left: 0;
+  //
+  //   content: '';
+  //
+  //   background: lighten($background, 10%);
+  //
+  //   mix-blend-mode: multiply;
+  //
+  //   @media screen and (min-width: $tablet) {
+  //     display: none;
+  //   }
+  // }
 
   // &::after {
   //   position: absolute;
@@ -69,43 +73,75 @@ Stylesheet: Backgrounds
     background-position: center;
     background-size: cover;
 
+    &:nth-child(1) {
+      background-image: url('../img/tom-side-multiply.jpg');
+    }
+
+    &:nth-child(2) {
+      background-image: url('../img/tom-front-multiply.jpg');
+    }
+
+    &:nth-child(3) {
+      background-image: url('../img/services-multiply.jpg');
+    }
+
+    &:nth-child(4) {
+      background-image: url('../img/case-studies/porters/porters-secondary-1-multiply.jpg');
+    }
+
+    &:nth-child(5) {
+      background-image: url('../img/case-studies/majik/majik-secondary-2-multiply.jpg');
+      // background-position: right center;
+    }
+
+    &:nth-child(6) {
+      background-image: url('../img/case-studies/cangetthestaff/cgts-secondary-1-multiply.jpg');
+    }
+
+    &:nth-child(7) {
+      background-image: url('../img/contact-multiply.jpg');
+      // background-position: right center;
+    }
+
     @media screen and (min-width: $tablet) {
       width: 40%;
+
+      &:nth-child(1) {
+        background-image: url('../img/tom-side.jpg');
+      }
+
+      &:nth-child(2) {
+        background-image: url('../img/tom-front.jpg');
+      }
+
+      &:nth-child(3) {
+        background-image: url('../img/services.jpg');
+      }
+
+      &:nth-child(4) {
+        background-image: url('../img/case-studies/porters/porters-secondary-1.jpg');
+      }
+
+      &:nth-child(5) {
+        background-image: url('../img/case-studies/majik/majik-secondary-2.jpg');
+        // background-position: right center;
+      }
+
+      &:nth-child(6) {
+        background-image: url('../img/case-studies/cangetthestaff/cgts-secondary-1.jpg');
+      }
+
+      &:nth-child(7) {
+        background-image: url('../img/contact.jpg');
+        // background-position: right center;
+      }
     }
 
     @media screen and (min-width: $sm-desktop) {
       width: 50%;
     }
 
-    &:nth-child(1) {
-      background-image: url('../img/tom-side.jpg');
-    }
 
-    &:nth-child(2) {
-      background-image: url('../img/tom-front.jpg');
-    }
-
-    &:nth-child(3) {
-      background-image: url('../img/services.jpg');
-    }
-
-    &:nth-child(4) {
-      background-image: url('../img/case-studies/porters/porters-secondary-1.jpg');
-    }
-
-    &:nth-child(5) {
-      background-image: url('../img/case-studies/majik/majik-secondary-2.jpg');
-      // background-position: right center;
-    }
-
-    &:nth-child(6) {
-      background-image: url('../img/case-studies/cangetthestaff/cgts-secondary-1.jpg');
-    }
-
-    &:nth-child(7) {
-      background-image: url('../img/contact.jpg');
-      // background-position: right center;
-    }
 
     &.active {
       z-index: -1;

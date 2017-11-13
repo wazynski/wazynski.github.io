@@ -122,6 +122,18 @@ nine.enableFullscreen = () => {
   Animations
    ========================================================================== */
 
+nine.contactScroll = () => {
+   const contactLink = document.getElementById('contact-link');
+   if (contactLink) {
+     contactLink.onclick = () => {
+       if (nine.fullscreen) {
+         nine.scrollToSection('contact');
+         return false;
+       }
+     };
+   }
+ };
+
 // /**
 //  * [animateLoad description]
 //  * @returns {[type]}
@@ -507,7 +519,7 @@ nine.addBackgrounds = () => {
 nine.addFullscreenNav = () => {
   const controls = document.querySelector('.controls');
 
-  if (controls) {
+  if (controls != null) { // !== breaks this
     controls.classList.add('on');
 
     const nav = document.querySelector('.dots');
@@ -598,33 +610,37 @@ nine.dotClick = (element, repeat) => {
  * @param   {Integer} newIndex Index of the new slide in slides array
  */
 nine.updateControls = newIndex => {
-  if (newIndex === undefined) {
-    newIndex = null;
-  }
+  const dots = document.querySelector('.dots');
 
-  if (newIndex === null && nine.currentPageIndex === null) {
-    newIndex = 0;
-  } else if (newIndex === null && nine.currentPageIndex !== null) {
-    newIndex = nine.currentPageIndex;
-  }
+  if (dots != null) { // !== Breaks this
+    if (newIndex === undefined) {
+      newIndex = null;
+    }
 
-  const active = document.querySelector('.dots li.active');
+    if (newIndex === null && nine.currentPageIndex === null) {
+      newIndex = 0;
+    } else if (newIndex === null && nine.currentPageIndex !== null) {
+      newIndex = nine.currentPageIndex;
+    }
 
-  if (active) {
-    document.querySelector('.dots li.active').classList.remove('active');
-  }
+    const active = document.querySelector('.dots li.active');
 
-  document.querySelectorAll('.dots li')[newIndex].classList.add('active');
+    if (active) {
+      document.querySelector('.dots li.active').classList.remove('active');
+    }
 
-  document.querySelector('.next').classList.remove('disabled');
-  document.querySelector('.prev').classList.remove('disabled');
+    document.querySelectorAll('.dots li')[newIndex].classList.add('active');
 
-  if (newIndex === 0) {
-    document.querySelector('.prev').classList.add('disabled');
-  }
+    document.querySelector('.next').classList.remove('disabled');
+    document.querySelector('.prev').classList.remove('disabled');
 
-  if (newIndex === nine.pages.length - 1) {
-    document.querySelector('.next').classList.add('disabled');
+    if (newIndex === 0) {
+      document.querySelector('.prev').classList.add('disabled');
+    }
+
+    if (newIndex === nine.pages.length - 1) {
+      document.querySelector('.next').classList.add('disabled');
+    }
   }
 };
 
@@ -1081,17 +1097,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // });
 
   nine.fullscreenMode();
-
-  const contactLink = document.getElementById('contact-link');
-  console.log(contactLink);
-  if (contactLink) {
-    contactLink.onclick = () => {
-      if (nine.fullscreen) {
-        nine.scrollToSection('contact');
-        return false;
-      }
-    };
-  }
+  nine.contactScroll();
 });
 
 /* ==========================================================================
