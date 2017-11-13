@@ -1133,11 +1133,13 @@ if (!String.prototype.includes) {
 
 if ('objectFit' in document.documentElement.style === false) {
   // assign HTMLCollection with parents of images with objectFit to variable
-  const container = document.getElementsByClassName('js-box');
+  const container = document.getElementsByClassName('object-fit');
   // Loop through HTMLCollection
   for (let i = 0; i < container.length; i++) {
     // Asign image source to variable
-    const imageSource = container[i].querySelector('img').src;
+    const imageSource = container[i].querySelector('img').getAttribute('data-src');
+
+    container[i].classList.add('on');
     // Hide image
     container[i].querySelector('img').style.display = 'none';
     // Add background-size: cover

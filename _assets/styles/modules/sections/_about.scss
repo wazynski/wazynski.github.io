@@ -14,9 +14,10 @@ Stylesheet: About
     line-height: 1.4;
 
     li {
+      @include font-size(20);
+
       display: inline-block;
 
-      font-size: 1.25rem;
       line-height: 1.25;
     }
   }
@@ -26,7 +27,7 @@ Stylesheet: About
   }
 
   .col-2 {
-    font-size: 0;
+    @include font-size(0);
 
     img {
       display: inline-block;

@@ -7,29 +7,17 @@ Stylesheet: Variables
 /* ==========================================================================
   Colors
 ========================================================================== */
-
-// Branding
-// $platinum: #E6E6E4;
-// $light-grey: #F2F2F2;
-// $paynes-grey: #313B41;
-// $linen: #F5F2E3;
-// $dim-gray: #707070;
-// $saffron: #FCC826;
 $mustard: #FFD657;
-// $beau-blue: #C0DAEA;
 $gainsboro: #D6E4E1;
-// $mango-tango: #FD7F44;
 $white: #FCFCFC;
 $vulcan: #10141B;
-$comet: #555B6E;
+$comet: #555B6E; // Darker but fails WCAG test
+$comet: #A0A6B6;
 //Colors
 $base: $white;
 $secondary: $comet;
 $background: $vulcan;
-// Debug
-// $debug: hotpink;
-// $debug-2: lightblue;
-// $debug-3: lightgreen;
+
 /* ==========================================================================
   Fonts
 ========================================================================== */

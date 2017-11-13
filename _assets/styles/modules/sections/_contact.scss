@@ -4,3 +4,24 @@
 //
 // Stylesheet: Contact
 // ========================================================================== */
+
+.contact {
+  dt,
+  dd {
+    @include font-size(12);
+
+    @media screen and (min-width: $laptop) {
+      @include font-size(14);
+    }
+  }
+
+  dl {
+    dt:last-of-type,
+    dd:last-of-type {
+      display: none;
+      @media screen and (min-height: 800px) {
+        display: block;
+      }
+    }
+  }
+}

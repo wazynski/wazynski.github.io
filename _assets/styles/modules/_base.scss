@@ -134,16 +134,16 @@ body {
 
 @media screen and (min-width: $tablet) {
   .col-2 {
-    font-size: 0;
+    @include font-size(0);
 
     .col,
     dl {
+      @include font-size(16);
+
       display: inline-block;
 
       width: 50%;
       margin: 0;
-
-      font-size: 1rem;
     }
   }
 }

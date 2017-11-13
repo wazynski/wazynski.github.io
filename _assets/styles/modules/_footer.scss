@@ -15,6 +15,6 @@
   }
 
   dl {
-    font-size: .75rem;
+    @include font-size(12);
   }
 }
