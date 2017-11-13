@@ -17,6 +17,7 @@ var runSequence  = require('run-sequence');
 var sass         = require('gulp-ruby-sass');
 var babel        = require('gulp-babel');
 var uglify       = require('gulp-uglify');
+var ghPages      = require('gulp-gh-pages');
 
 // Include paths file.
 var paths = require('./_assets/gulp_config/paths');
@@ -121,6 +122,16 @@ gulp.task('build:jekyll:local', function() {
         .on('error', gutil.log);
 });
 
+// Runs jekyll build command using local config.
+gulp.task('build:jekyll:production', function() {
+    // var shellCommand = 'bundle exec jekyll build --config _config.yml,_config.test.yml,_config.dev.yml';
+    var shellCommand = 'bundle exec jekyll build --config _config.production.yml';
+
+    return gulp.src('')
+        .pipe(run(shellCommand))
+        .on('error', gutil.log);
+});
+
 // Deletes the entire _site directory.
 gulp.task('clean:jekyll', function() {
     return(del(['_site']));
@@ -157,9 +168,22 @@ gulp.task('build:local', function(callback) {
         callback);
 });
 
+gulp.task('build:production', function(callback) {
+    runSequence('clean', 'clean:images',
+        ['build:scripts', 'build:images', 'build:styles'],
+        'build:jekyll:production',
+        callback);
+});
+
 // Default Task: builds site.
 gulp.task('default', ['build']);
 
+// Deploy
+
+gulp.task('deploy', ['build:production'], function() {
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages());
+});
 
 
 // Watch
