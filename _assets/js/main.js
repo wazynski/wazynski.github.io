@@ -1089,29 +1089,12 @@ nine.css = (el, props) => {
   Document Load
    ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
-  nine.supports3d = nine.support3d();
+nine.supports3d = nine.support3d();
+nine.animateLinks();
+nine.fullscreenMode();
+nine.contactScroll();
+nine.animateLoad();
 
-  // nine.masonaryHeight();
-  nine.animateLinks();
-  // nine.animatePortrait();
-
-  // window.addEventListener('resize', () => {
-  //   nine.masonaryHeight();
-  // });
-
-  nine.fullscreenMode();
-  nine.contactScroll();
-});
-
-/* ==========================================================================
-  Window Load
-   ========================================================================== */
-
-window.onload = () => {
-  nine.animateLoad();
-  // nine.masonaryHeight();
-};
 
 /* ==========================================================================
     Polyfils
