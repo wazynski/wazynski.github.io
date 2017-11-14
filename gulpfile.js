@@ -181,7 +181,7 @@ gulp.task('default', ['build']);
 // Deploy
 
 gulp.task('deploy', ['build:production'], function() {
-  return gulp.src('./_site/**/*')
+  return gulp.src(['./_site/**/*', './README.md'])
     .pipe(ghPages({ branch: "master" }));
 });
 
