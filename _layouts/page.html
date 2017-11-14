@@ -6,7 +6,7 @@
 
     {% include page-menu.html %}
 
-    <div class="page-background" {% if page.image %} style="background-image: url(/assets/img/{{page.image}})" {% endif %}></div>
+    <div class="page-background" {% if page.image %} style="background-image: url({{site.url}}/assets/img/{{page.image}})" {% endif %}></div>
 
     <header class="page-header header">
       <h1>{{ page.title }}</h1>
@@ -22,7 +22,7 @@
           <blockquote>
             {{ page.testimonial }}
             <footer>
-              <img src="/assets/img/{{page.credit_image}}" alt="">
+              <img src="{{site.url}}/assets/img/{{page.credit_image}}" alt="">
               <span>{{page.credit}} - <a href="{{page.credit_link}}">{{page.credit_company}}</a>
             </footer>
           </blockquote>
