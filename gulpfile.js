@@ -18,6 +18,9 @@ var sass         = require('gulp-ruby-sass');
 var babel        = require('gulp-babel');
 var uglify       = require('gulp-uglify');
 var ghPages      = require('gulp-gh-pages');
+var replace      = require('gulp-replace');
+var download     = require('gulp-download');
+var fs           = require('fs');
 
 // Include paths file.
 var paths = require('./_assets/gulp_config/paths');
@@ -89,6 +92,19 @@ gulp.task('clean:images', function() {
     return del([paths.jekyllImageFiles, paths.siteImageFiles], {force:true});
 });
 
+gulp.task('include-css', function() {
+  return gulp.src('_site/**/*.html')
+    .pipe(replace(/<link href=\"\/assets\/styles\/style.css\"[^>]*>/, function(s) {
+      var style = fs.readFileSync('_site/assets/styles/style.css', 'utf8');
+      return '<style>\n' + style + '\n</style>';
+    }))
+    .pipe(gulp.dest('_site/'));
+});
+
+gulp.task('fetch-newest-analytics', function() {
+  return download('https://www.google-analytics.com/analytics.js')
+    .pipe(gulp.dest(paths.siteJsFiles));
+});
 
 // Build
 
@@ -147,31 +163,31 @@ gulp.task('clean', ['clean:jekyll',
 // Builds site anew.
 gulp.task('build', function(callback) {
     runSequence('clean',
-        ['build:scripts', 'build:images', 'build:styles'],
-        'build:jekyll',
+        ['build:scripts', 'build:images', 'build:styles', 'fetch-newest-analytics'],
+        'build:jekyll', 'include-css',
         callback);
 });
 
 // Builds site anew using test config.
 gulp.task('build:test', function(callback) {
     runSequence('clean',
-        ['build:scripts', 'build:images', 'build:styles'],
-        'build:jekyll:test',
+        ['build:scripts', 'build:images', 'build:styles', 'fetch-newest-analytics'],
+        'build:jekyll:test', 'include-css',
         callback);
 });
 
 // Builds site anew using local config.
 gulp.task('build:local', function(callback) {
     runSequence('clean', 'clean:images',
-        ['build:scripts', 'build:images', 'build:styles'],
-        'build:jekyll:local',
+        ['build:scripts', 'build:images', 'build:styles', 'fetch-newest-analytics'],
+        'build:jekyll:local', 'include-css',
         callback);
 });
 
 gulp.task('build:production', function(callback) {
     runSequence('clean', 'clean:images',
-        ['build:scripts', 'build:images', 'build:styles'],
-        'build:jekyll:production',
+        ['build:scripts', 'build:images', 'build:styles', 'fetch-newest-analytics'],
+        'build:jekyll:production', 'include-css',
         callback);
 });
 
