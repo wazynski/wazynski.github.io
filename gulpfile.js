@@ -182,7 +182,7 @@ gulp.task('default', ['build']);
 
 gulp.task('deploy', ['build:production'], function() {
   return gulp.src('./_site/**/*')
-    .pipe(ghPages({ branch: "master", push: false }));
+    .pipe(ghPages({ branch: "master" }));
 });
 
 
