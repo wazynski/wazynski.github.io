@@ -4,7 +4,7 @@
   <body class="{{page.title | downcase}} {{page.layout}}">
     {% include fade.html %}
 
-    {% include page-menu.html %}
+
 
     <div class="page-background" {% if page.image %} style="background-image: url({{site.url}}/assets/img/{{page.image}})" {% endif %}></div>
 
@@ -53,6 +53,8 @@
         </div>
       {% endif %}
     </article>
+
+    {% include page-menu.html %}
 
     {% include footer.html %}
   </body>

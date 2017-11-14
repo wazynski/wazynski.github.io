@@ -163,31 +163,31 @@ gulp.task('clean', ['clean:jekyll',
 // Builds site anew.
 gulp.task('build', function(callback) {
     runSequence('clean',
-        ['build:scripts', 'build:images', 'build:styles', 'fetch-newest-analytics'],
-        'build:jekyll', 'include-css',
+        ['build:scripts', 'build:images', 'build:styles'],
+        'build:jekyll', 'include-css', 'fetch-newest-analytics',
         callback);
 });
 
 // Builds site anew using test config.
 gulp.task('build:test', function(callback) {
     runSequence('clean',
-        ['build:scripts', 'build:images', 'build:styles', 'fetch-newest-analytics'],
-        'build:jekyll:test', 'include-css',
+        ['build:scripts', 'build:images', 'build:styles',],
+        'build:jekyll:test', 'include-css', 'fetch-newest-analytics',
         callback);
 });
 
 // Builds site anew using local config.
 gulp.task('build:local', function(callback) {
     runSequence('clean', 'clean:images',
-        ['build:scripts', 'build:images', 'build:styles', 'fetch-newest-analytics'],
-        'build:jekyll:local', 'include-css',
+        ['build:scripts', 'build:images', 'build:styles'],
+        'build:jekyll:local', 'fetch-newest-analytics',
         callback);
 });
 
 gulp.task('build:production', function(callback) {
     runSequence('clean', 'clean:images',
-        ['build:scripts', 'build:images', 'build:styles', 'fetch-newest-analytics'],
-        'build:jekyll:production', 'include-css',
+        ['build:scripts', 'build:images', 'build:styles'],
+        'build:jekyll:production', 'include-css', 'fetch-newest-analytics',
         callback);
 });
 
