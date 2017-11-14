@@ -24,6 +24,7 @@ testimonial: >-
     Timely and on budget and the work is always of a high standard. Would recommend him to anyone.
   </p>
 credit_image: rob.jpg
+credit_image_retina: rob-retina.jpg
 credit: Rob Ellis, Director
 credit_link: http://singlemaltdesign.co.uk
 credit_company: Single Malt
@@ -34,7 +35,7 @@ I work with individuals, start‑ups and established businesses. Offering brand 
 ## BRANDING
 
 *   Naming
-*   Marks + Logo Design 
+*   Logo Design 
 *   Identity Systems
 *   Brand Guidelines
 *   Creative Direction

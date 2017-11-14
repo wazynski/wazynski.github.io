@@ -29,7 +29,7 @@ services_text: >-
     I specialise in brand identity, creative direction, design and bespoke development. Helping companies look their best and make their products exceptional to use.
   </p>
 services_url: /services
-services_url_text: Find out more about my services &rarr;
+services_url_text: Find out about my services &rarr;
 
 # Contact
 contact_title: Contact

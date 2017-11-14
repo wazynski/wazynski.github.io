@@ -15,6 +15,17 @@ Stylesheet: services
       float: left;
 
       width: 50%;
+      margin-bottom: 10px;
+
+      line-height: 1.4;
+
+      &:nth-child(odd) {
+        padding-right: 2px;
+      }
+
+      &:nth-child(odd) {
+        padding-left: 2px;
+      }
     }
   }
 }

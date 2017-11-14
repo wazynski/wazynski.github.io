@@ -338,11 +338,15 @@ $background-alt: #E6E6E6;
           width: 100%;
 
           &.contain {
-            padding: 2rem 1.25rem;
+            padding: 1.25rem 1.25rem;
           }
 
           &:first-child {
             margin-bottom: 1rem;
+          }
+
+          &.small {
+            margin-top: -1.25rem;
           }
 
           @media screen and (min-width: $tablet) {
@@ -350,6 +354,15 @@ $background-alt: #E6E6E6;
 
             &:first-child {
               margin-bottom: 0;
+            }
+
+            &.contain {
+              padding: 2rem 1.25rem;
+            }
+
+            &.small {
+              margin: 0;
+              padding: 2rem 1.25rem;
             }
           }
         }

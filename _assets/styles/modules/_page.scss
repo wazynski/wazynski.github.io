@@ -77,16 +77,14 @@ Stylesheet: Page
 
   .testimonial {
     margin-top: 2rem;
+    padding: 0 0 0 .75rem;
+
+    border-left: 5px solid $comet;
 
     @media screen and (min-width: $tablet) {
-      margin-left: -2rem;
-      padding: 2rem;
+      padding: 1rem;
 
       background: lighten(rgba($background, .75), 4%);
-    }
-
-    @media screen and (min-width: $xl-desktop) {
-      margin-right: -2rem;
     }
 
     h2 {
@@ -106,7 +104,7 @@ Stylesheet: Page
       height: 50px;
       margin-right: .75rem;
 
-      border-radius: 50%;
+      border-radius: 50px;
     }
 
     blockquote {

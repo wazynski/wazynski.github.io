@@ -22,7 +22,7 @@
           <blockquote>
             {{ page.testimonial }}
             <footer>
-              <img src="{{site.url}}/assets/img/{{page.credit_image}}" alt="">
+              <img src="{{site.url}}/assets/img/{{page.credit_image}}" srcset="{{site.url}}/assets/img/{{page.credit_image}} 1x, {{site.url}}/assets/img/{{page.credit_image_retina}} 2x" alt="">
               <span>{{page.credit}} - <a href="{{page.credit_link}}">{{page.credit_company}}</a>
             </footer>
           </blockquote>
