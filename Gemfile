@@ -5,7 +5,6 @@ group :jekyll_plugins do
   gem 'github-pages'
   gem 'jekyll-babel'
   gem 'jekyll-livereload'
-  gem 'octopress-minify-html'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
