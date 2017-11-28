@@ -39,7 +39,7 @@ paths.siteImageFiles = paths.siteAssetsDir + paths.imageFolderName;
 
 // Glob patterns by file type.
 paths.sassPattern     = '/**/*.scss';
-paths.jsPattern       = '/**/*.js';
+paths.jsPattern       = '/**/!(main)*.js';
 paths.imagePattern    = '/**/*.+(jpg|JPG|jpeg|JPEG|png|PNG|svg|SVG|gif|GIF|webp|WEBP|tif|TIF)';
 paths.markdownPattern = '/**/*.+(md|MD|markdown|MARKDOWN)';
 paths.htmlPattern     = '/**/*.html';

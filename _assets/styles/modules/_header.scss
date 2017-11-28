@@ -19,19 +19,14 @@ Stylesheet: Header
   align-self: flex-end;
 
   @media screen and (min-width: $tablet) {
-    position: absolute;
-    left: 40%;
-
     width: 60%;
+    margin: auto 0 auto auto;
     padding: 0 4.6875rem;
 
     align-self: center;
   }
 
   @media screen and (min-width: $sm-desktop) {
-    position: absolute;
-    left: 50%;
-
     width: 50%;
   }
 
