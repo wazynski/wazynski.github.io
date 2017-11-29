@@ -145,7 +145,18 @@ nine.contactScroll = () => {
 nine.animateLoad = () => {
   window.setTimeout(() => {
     document.body.classList.add('faded-in');
+    window.setTimeout(() => {
+      nine.animateHome();
+    }, 1000);
   }, 1000);
+};
+
+nine.animateHome = () => {
+  let cssSelector = anime({
+    targets: '.home span',
+    scale: [1, 2, 1],
+    // elasticity: 1000,
+  });
 };
 
 /**
@@ -414,14 +425,39 @@ nine.animateScroll = (endLocation, element, duration) => {
  * @param {Object} element Element we are scrolling to
  */
 nine.scrollStart = element => {
-  // Delay until part way through scroll to changes make feel smooth.
+  // let cssSelector = anime({
+  //   targets: '.home span',
+  //   scale: [1, 2, 1],
+  //   // elasticity: 1000,
+  // });
+  //
+  //
+
+
+  let cssSelector = anime({
+    targets: '.bgs .active',
+    translateX: '100%',
+    duration: 750,
+    elasticity: 0,
+  });
+
   setTimeout(() => {
     const bgs = document.querySelectorAll('.bgs li');
-    nine.removeClass(document.querySelector('.bgs li.previous'), 'previous');
-    nine.prevBackground = document.querySelector('.bgs li.active');
-    nine.addClass(nine.prevBackground, 'previous');
-    nine.removeClass(nine.prevBackground, 'active');
+    nine.removeClass(document.querySelector('.bgs li.active'), 'active');
     nine.addClass(bgs[nine.getSectionIndex(element)], 'active');
+  }, 750);
+
+
+
+
+  // Delay until part way through scroll to changes make feel smooth.
+  setTimeout(() => {
+    // const bgs = document.querySelectorAll('.bgs li');
+    // nine.removeClass(document.querySelector('.bgs li.previous'), 'previous');
+    // nine.prevBackground = document.querySelector('.bgs li.active');
+    // nine.addClass(nine.prevBackground, 'previous');
+    // nine.removeClass(nine.prevBackground, 'active');
+    // nine.addClass(bgs[nine.getSectionIndex(element)], 'active');
     // Remove other active classes
     const activePages = document.querySelector('.section.active');
     if (activePages) {

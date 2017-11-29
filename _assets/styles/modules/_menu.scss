@@ -50,8 +50,7 @@
     transition: all 300ms $easing;
     transition: all 250ms ease;
     transform: none;
-    // transform: scale(0);
-    // opacity: .5;
+    transform: scale(0);
 
     border-radius: 50%;
     background: $secondary;
