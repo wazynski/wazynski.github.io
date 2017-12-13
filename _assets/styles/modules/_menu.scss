@@ -32,6 +32,10 @@
     span:last-child {
       background: $mustard;
     }
+
+    &::after {
+      display: none;
+    }
   }
 
   span {
