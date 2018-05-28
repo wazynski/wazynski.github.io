@@ -223,17 +223,33 @@
   </button>
 </div>
 
+
+
   <a href="https://ninesenses.co.uk" class="home">
     <span></span>
     <span></span>
   </a>
 
-  <nav class="menu">
-    <a href="https://ninesenses.co.uk/about">About</a>
-    <a href="https://ninesenses.co.uk/services">Services</a>
-    <!-- <a href="/faq">FAQ</a> -->
-    <button id="contact-link">contact</button>
-  </nav>
+
+<nav class="menu">
+  <a href="https://ninesenses.co.uk/about">About</a>
+  <a href="https://ninesenses.co.uk/services">Services</a>
+  <!-- <a href="/faq">FAQ</a> -->
+  <button id="contact-link">contact</button>
+</nav>
+
+<script type="text/javascript">
+  function downloadJSAtOnload() {
+  var element = document.createElement("script");
+  element.src = "https://ninesenses.co.uk/assets/js/main.js";
+  document.body.appendChild(element);
+  }
+  if (window.addEventListener)
+  window.addEventListener("load", downloadJSAtOnload, false);
+  else if (window.attachEvent)
+  window.attachEvent("onload", downloadJSAtOnload);
+  else window.onload = downloadJSAtOnload;
+</script>
 
   </body>
 </html>
