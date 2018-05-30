@@ -79,7 +79,7 @@
   right: 17px;
   left: auto;
 
-  display: block;
+  display: flex;
   zoom: 1;
 
   width: 100%;
@@ -91,26 +91,28 @@
   transform-origin: bottom right;
   text-align: center;
 
+  justify-content: space-between;
+
   @media screen and (min-height: 568px) {
-    display: block;
+    display: flex;
   }
 
   @media screen and (min-width: $tablet) {
     right: 25px;
 
-    display: block;
+    display: flex;
   }
 
 
   button,
   a {
-    @include font-size(14);
+    @include font-size(12);
 
     display: inline-block;
 
     min-width: 60px;
     height: 16px;
-    margin: 0 1rem;
+    margin: 0 .25rem;
     padding: 0;
 
     letter-spacing: .01rem;
@@ -130,6 +132,10 @@
 
     &:hover {
       color: lighten($secondary, 15%);
+    }
+
+    &.secondary {
+      opacity: .5;
     }
 
     &:after {

@@ -101,10 +101,10 @@ gulp.task('include-css', function() {
     .pipe(gulp.dest('_site/'));
 });
 
-gulp.task('fetch-newest-analytics', function() {
-  return download('https://www.google-analytics.com/analytics.js')
-    .pipe(gulp.dest(paths.siteJsFiles));
-});
+// gulp.task('fetch-newest-analytics', function() {
+//   return download('https://www.google-analytics.com/analytics.js')
+//     .pipe(gulp.dest(paths.siteJsFiles));
+// });
 
 // Build
 
@@ -164,7 +164,7 @@ gulp.task('clean', ['clean:jekyll',
 gulp.task('build', function(callback) {
     runSequence('clean',
         ['build:scripts', 'build:images', 'build:styles'],
-        'build:jekyll', 'include-css', 'fetch-newest-analytics',
+        'build:jekyll', 'include-css',
         callback);
 });
 
@@ -172,7 +172,7 @@ gulp.task('build', function(callback) {
 gulp.task('build:test', function(callback) {
     runSequence('clean',
         ['build:scripts', 'build:images', 'build:styles',],
-        'build:jekyll:test', 'include-css', 'fetch-newest-analytics',
+        'build:jekyll:test', 'include-css',
         callback);
 });
 
@@ -180,14 +180,14 @@ gulp.task('build:test', function(callback) {
 gulp.task('build:local', function(callback) {
     runSequence('clean', 'clean:images',
         ['build:scripts', 'build:images', 'build:styles'],
-        'build:jekyll:local', 'fetch-newest-analytics',
+        'build:jekyll:local',
         callback);
 });
 
 gulp.task('build:production', function(callback) {
     runSequence('clean', 'clean:images',
         ['build:scripts', 'build:images', 'build:styles'],
-        'build:jekyll:production', 'include-css', 'fetch-newest-analytics',
+        'build:jekyll:production', 'include-css',
         callback);
 });
 
