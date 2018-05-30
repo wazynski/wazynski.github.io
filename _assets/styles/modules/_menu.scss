@@ -75,38 +75,53 @@
 .menu {
   position: fixed;
   z-index: 997;
-  top: 50%;
-  right: 17px;
+  top: -50px;
+  right: 0;
   left: auto;
 
   display: flex;
   zoom: 1;
 
-  width: 100%;
-  margin-top: -50%;
+  width: 100vh;
+  height: 50px;
+  margin: 0 auto;
 
-  transform: rotateX(-90deg);
   transform: rotate(-90deg);
-  // transform: translate(50%,-50%) rotate(-90deg) translateY(-50%);
   transform-origin: bottom right;
   text-align: center;
+  // background: yellow;
 
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
 
   @media screen and (min-height: 568px) {
     display: flex;
   }
 
   @media screen and (min-width: $tablet) {
-    right: 25px;
+    top: -66px;
 
     display: flex;
+    // right: 22px;
+
+    height: 66px;
+  }
+
+  .menu-wrap {
+    display: flex;
+
+    width: 100%;
+    max-width: 350px;
+    // background: lightblue;
+
+    align-items: center;
+    justify-content: space-around;
   }
 
 
   button,
   a {
-    @include font-size(12);
+    @include font-size(14);
 
     display: inline-block;
 
@@ -135,7 +150,7 @@
     }
 
     &.secondary {
-      opacity: .5;
+      // opacity: .5;
     }
 
     &:after {
