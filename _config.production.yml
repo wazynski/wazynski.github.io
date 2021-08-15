@@ -1,13 +1,13 @@
 # Site settings ################################################################
 business_name: Ninesenses
 title: Tom Skarbek-Wazynski
-subtitle: Developer, Designer & Brand Consultant
+subtitle: Designer & Full Stack Developer
 
 # Contact ######################################################################
 email: tom@ninesenses.co.uk
 obfuscated_email: tom@ninesenses.co.uk
 
-tel: +4407535644344
+tel: +447535644344
 formated_tel: +44 [0] 7535 644 344
 
 # twitter_username: wazynski
@@ -21,7 +21,7 @@ keywords: >-
   Ninesenses, Tom Skarbek-Wazynski, web design, website design, web development, branding,
   digital marketing, online marketing, email marketing
 
-author: "copyright ©2017 : ninesenses : http://ninesenses.co.uk : tom@ninesenses.co.uk"
+author: "copyright ©2021: ninesenses : http://ninesenses.co.uk : tom@ninesenses.co.uk"
 
 # Collections ##################################################################
 collections:
@@ -67,5 +67,6 @@ exclude:
     README.md,
     node_modules,
     yarn.lock,
+    pnpm-lock.yaml,
     package.json,
   ]

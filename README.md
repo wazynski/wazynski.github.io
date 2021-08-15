@@ -17,3 +17,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 To Run:
 
 gulp serve
+
+To Deploy:
+
+gulp deploy
