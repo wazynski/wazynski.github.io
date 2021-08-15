@@ -1,21 +1,20 @@
 {% if page.project_id %}
-  <a href="{{site.url}}/#{{page.project_id}}" class="home">
-    <span></span>
-    <span></span>
-  </a>
+<a href="{{site.url}}/#{{page.project_id}}" class="home">
+  <span></span>
+  <span></span>
+</a>
 {% else %}
-  <a href="{{site.url}}" class="home">
-    <span></span>
-    <span></span>
-  </a>
+<a href="{{site.url}}" class="home">
+  <span></span>
+  <span></span>
+</a>
 {% endif %}
 
 <nav class="menu">
   <div class="menu-wrap">
-    <a href="{{site.url}}/about">About</a>
+    <button class="menu-button" id="contact-link">Contact</button>
+    <button class="menu-button" id="trusted-link">Clients</button>
     <a href="{{site.url}}/services">Services</a>
-    <!-- <a href="/faq">FAQ</a> -->
-    <button id="contact-link">contact</button>
-    <a class="secondary" href="{{site.url}}/privacy">Privacy</a>
+    <a href="{{site.url}}/about">About</a>
   </div>
 </nav>

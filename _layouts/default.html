@@ -1,11 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="en">
   {% include head.html %}
   <body class="default">
     {% include fade.html %}
 
     <div id="fullpage" class="scroll-container page-wrap">
-
       <div id="intro" class="section intro light active">
         <header class="header dark">
           <a class="" href="/">
@@ -16,91 +15,84 @@
       </div>
 
       <div id="about" class="section about">
-       	<section class="content">
-        	 <h2>{{page.about_title}}</h2>
+        <section class="content">
+          <h2>{{page.about_title}}</h2>
 
-         	{{page.about_text}}
+          {{page.about_text}}
 
-         <p>
-           <a href="{{site.url}}{{page.about_url}}">{{page.about_url_text}}</a>
-         </p>
-       	</section>
-     	</div>
+          <p>
+            <a href="{{site.url}}{{page.about_url}}">{{page.about_url_text}}</a>
+          </p>
+        </section>
+      </div>
 
-     <div id="services" class="section services">
-       <section class="content">
-         <h2>{{page.services_title}}</h2>
+      <div id="services" class="section services">
+        <section class="content">
+          <h2>{{page.services_title}}</h2>
 
-         {{page.services_text}}
+          {{page.services_text}}
 
-         <p>
-           <a href="{{site.url}}{{page.services_url}}">{{page.services_url_text}}</a>
-         </p>
-       </section>
-     </div>
+          <p>
+            <a href="{{site.url}}{{page.services_url}}"
+              >{{page.services_url_text}}</a
+            >
+          </p>
+        </section>
+      </div>
 
-     {% for item in site.projects reversed %}
-        <div id="{{ item.project_id }}" class="section case-study project-{{ item.project_id }}">
-          <section class="content">
-            <h2>Case Study</h2>
+      <div id="trusted" class="section trusted">
+        <section class="content">
+          <h2>{{page.trusted_title}}</h2>
 
-            <h1><a href="{{site.url}}{{ item.url }}">{{ item.project_title }}</a></h1>
-            <p>
-              {{ item.project_description }}
-            </p>
-
-            <dl>
-              <dt>Disciplines</dt>
-              <dd>{{ item.disciplines }}</dd>
-            </dl>
-
-            <a class="more" href="{{site.url}}{{ item.url }}">Find out more &rarr;</a>
-          </section>
-        </div>
-      {% endfor %}
+          {{page.trusted_text}}
+        </section>
+      </div>
 
       <div id="contact" class="section contact">
         <section class="content">
-            <h2>{{page.contact_title}}</h2>
+          <h2>{{page.contact_title}}</h2>
 
-            {{page.contact_text}}
+          {{page.contact_text}}
 
-            <div class="col-2">
+          <div class="col-2">
+            <dl>
+              <dt>Mail</dt>
+              <dd>
+                <a href="mailto:{{site.email}}" target="_top">{{site.email}}</a>
+              </dd>
+            </dl>
+
+            <dl>
+              <dt>Telephone</dt>
+              <dd>
+                <a href="tel:{{site.tel}}" target="_top"
+                  >{{site.formated_tel}}</a
+                >
+              </dd>
+            </dl>
+
+            <footer class="footer col-2">
               <dl>
-                <dt>Mail</dt>
-                <dd><a href="mailto:{{site.email}}">{{site.obfuscated_email}}</a></dd>
-                <dt>Twitter</dt>
-                <dd><a href="https://twitter.com/{{site.twitter_username}}">@{{site.twitter_username}}</a></dd>
+                <dt>Copyright</dt>
+                <dd>{{site.copyright}}</dd>
               </dl>
               <dl>
-                <dt>Telephone</dt>
-                <dd><a href="tel:{{site.tel}}">{{site.formated_tel}}</a></dd>
-                <dt>Instagram</dt>
-                <dd><a href="https://www.instagram.com/{{site.instagram_username}}/">{{site.instagram_username}}</a></dd>
+                <dt>Colphon</dt>
+                <dd>{{site.colphon}}</dd>
               </dl>
-              <footer class="footer col-2">
-                <dl>
-                  <dt>Copyright</dt>
-                  <dd>{{site.copyright}}</dd>
-                </dl>
-                <dl>
-                  <dt>Colphon</dt>
-                  <dd>{{site.colphon}}</dd>
-                </dl>
-              </footer>
+              <dl>
+                <dt>Privacy</dt>
+                <dd><a href="{{site.url}}/privacy">Privacy Policy</a></dd>
+              </dl>
+            </footer>
           </div>
         </section>
-
       </div>
     </div>
 
-    <ul class="bgs">
-    </ul>
+    <ul class="bgs"></ul>
 
-    {% include controls.html %}
-
-    {% include menu.html %}
-
-    {% include footer.html %}
+    {% include controls.html %} {% include menu.html %} {% include footer.html
+    %}
   </body>
 </html>

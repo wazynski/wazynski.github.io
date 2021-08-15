@@ -8,21 +8,26 @@ const nine = {
   currentPage: null,
   canScroll: true,
   scrollDuration: 750,
-  scrollContainer: document.getElementById('fullpage'),
-  pages: document.querySelectorAll('.section'),
+  scrollContainer: document.getElementById("fullpage"),
+  pages: document.querySelectorAll(".section"),
   scrollDirection: null,
   prevTime: new Date().getTime(),
   scrollHistory: [],
   fullScreenWidthEnableFrom: 0,
   fullScreenHeightEnableFrom: 0,
   supports3d: false,
-  isTouchDevice: navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/),
-  isTouch: (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints)),
+  isTouchDevice: navigator.userAgent.match(
+    /(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/
+  ),
+  isTouch:
+    "ontouchstart" in window ||
+    navigator.msMaxTouchPoints > 0 ||
+    navigator.maxTouchPoints,
   touchStartY: 0,
   touchEndY: 0,
   touchSensitivity: 5,
-  circles: document.querySelector('.circles'),
-  prevBackground: null
+  circles: document.querySelector(".circles"),
+  prevBackground: null,
 };
 
 /* ==========================================================================
@@ -30,25 +35,25 @@ const nine = {
    ========================================================================== */
 
 /**
-* support3d - Checks for browser support of 3d transforms
-*
-* @returns {boolean}
-*
-* http://stackoverflow.com/questions/5661671/detecting-transform-translate3d-support
-*/
+ * support3d - Checks for browser support of 3d transforms
+ *
+ * @returns {boolean}
+ *
+ * http://stackoverflow.com/questions/5661671/detecting-transform-translate3d-support
+ */
 nine.support3d = () => {
-  if (navigator.userAgent.toLowerCase().indexOf('edge') > -1) {
+  if (navigator.userAgent.toLowerCase().indexOf("edge") > -1) {
     return false;
   }
 
-  const el = document.createElement('p');
+  const el = document.createElement("p");
   let has3d;
   const transforms = {
-    webkitTransform: '-webkit-transform',
-    OTransform: '-o-transform',
-    msTransform: '-ms-transform',
-    MozTransform: '-moz-transform',
-    transform: 'transform'
+    webkitTransform: "-webkit-transform",
+    OTransform: "-o-transform",
+    msTransform: "-ms-transform",
+    MozTransform: "-moz-transform",
+    transform: "transform",
   };
 
   // Add it to the body to get the computed style.
@@ -56,14 +61,14 @@ nine.support3d = () => {
 
   for (const t in transforms) {
     if (el.style[t] !== undefined) {
-      el.style[t] = 'translate3d(1px,1px,1px)';
+      el.style[t] = "translate3d(1px,1px,1px)";
       has3d = window.getComputedStyle(el).getPropertyValue(transforms[t]);
     }
   }
 
   document.body.removeChild(el);
 
-  return (has3d !== undefined && has3d.length > 0 && has3d !== 'none');
+  return has3d !== undefined && has3d.length > 0 && has3d !== "none";
 };
 
 /**
@@ -75,8 +80,11 @@ nine.checkFullscreen = () => {
   const windowHeight = nine.windowSize().h;
   const windowWidth = nine.windowSize().w;
 
-  if (!nine.hasClass(document.body, 'page')) {
-    if (windowHeight >= nine.fullScreenHeightEnableFrom && windowWidth >= nine.fullScreenWidthEnableFrom) {
+  if (!nine.hasClass(document.body, "page")) {
+    if (
+      windowHeight >= nine.fullScreenHeightEnableFrom &&
+      windowWidth >= nine.fullScreenWidthEnableFrom
+    ) {
       return true;
     }
   }
@@ -88,33 +96,33 @@ nine.checkFullscreen = () => {
  * enableFullscreen - Adds CSS classes required for fullscreen supports3
  */
 nine.enableFullscreen = () => {
-  const html = document.getElementsByTagName('html')[0];
+  const html = document.getElementsByTagName("html")[0];
 
   if (nine.checkFullscreen()) {
     nine.fullscreen = true;
-    nine.addClass(document.body, 'fullscreen');
+    nine.addClass(document.body, "fullscreen");
 
     nine.css(html, {
-      overflow: 'hidden'
+      overflow: "hidden",
     });
 
     if (nine.supports3d === false) {
-      nine.addClass(document.body, 'no-css3');
+      nine.addClass(document.body, "no-css3");
     }
 
-    const windowHeight = nine.windowSize().h + 'px';
+    const windowHeight = nine.windowSize().h + "px";
 
-    Array.prototype.forEach.call(nine.pages, el => {
+    Array.prototype.forEach.call(nine.pages, (el) => {
       el.style.height = windowHeight;
       el.style.minHeight = windowHeight;
     });
   } else {
     nine.fullscreen = false;
-    nine.removeClass(document.body, 'fullscreen');
+    nine.removeClass(document.body, "fullscreen");
     nine.css(html, {
-      overflow: 'auto'
+      overflow: "auto",
     });
-    nine.removeClass(document.body, 'no-css3');
+    nine.removeClass(document.body, "no-css3");
   }
 };
 
@@ -126,12 +134,12 @@ nine.enableFullscreen = () => {
  * contactScroll - scroll to contact area on page.
  * @returns {[type]}
  */
-nine.contactScroll = () => {
-  const contactLink = document.getElementById('contact-link');
-  if (contactLink) {
-    contactLink.onclick = () => {
+nine.homeScroll = (elementID, section) => {
+  const link = document.getElementById(elementID);
+  if (link) {
+    link.onclick = () => {
       if (nine.fullscreen) {
-        nine.scrollToSection('contact');
+        nine.scrollToSection(section);
         return false;
       }
     };
@@ -144,7 +152,7 @@ nine.contactScroll = () => {
  */
 nine.animateLoad = () => {
   window.setTimeout(() => {
-    document.body.classList.add('faded-in');
+    document.body.classList.add("faded-in");
   }, 1000);
 };
 
@@ -153,8 +161,8 @@ nine.animateLoad = () => {
  * @param {String} href
  * @param {String} bg Background color
  */
-nine.pageTransisition = href => {
-  document.body.classList.add('faded-out');
+nine.pageTransisition = (href) => {
+  document.body.classList.add("faded-out");
 
   setTimeout(() => {
     window.location.href = href;
@@ -165,12 +173,14 @@ nine.pageTransisition = href => {
  * animateLinks - Gets all anchor elements and adds a call to pageTransisition() on click
  */
 nine.animateLinks = () => {
-  const anchorElements = document.getElementsByTagName('a');
-  Array.prototype.forEach.call(anchorElements, el => {
-    el.onclick = () => {
-      nine.pageTransisition(el.href);
-      return false;
-    };
+  const anchorElements = document.getElementsByTagName("a");
+  Array.prototype.forEach.call(anchorElements, (el) => {
+    if (el.target != "_blank" && el.target != "_top") {
+      el.onclick = () => {
+        nine.pageTransisition(el.href);
+        return false;
+      };
+    }
   });
 };
 
@@ -182,7 +192,7 @@ nine.animateLinks = () => {
  * fullscreenMode - Setups fullscreen slideshow
  * @param   {Boolean} debounced Has be called after being debounced?
  */
-nine.fullscreenMode = debounced => {
+nine.fullscreenMode = (debounced) => {
   if (nine.checkFullscreen() && nine.fullscreen === false) {
     nine.enableFullscreen();
     nine.hashChangeLisener();
@@ -192,7 +202,8 @@ nine.fullscreenMode = debounced => {
     nine.addScrollInput();
     nine.setCurrentPage();
     nine.enableTouch();
-  } else if (nine.checkFullscreen() === false && nine.fullscreen === true) { // Used to be on but now can't be so disable
+  } else if (nine.checkFullscreen() === false && nine.fullscreen === true) {
+    // Used to be on but now can't be so disable
     nine.enableFullscreen(); // Will toggle off due to failing test
     nine.removeFullscreenNav();
     nine.removeKeyboardNav();
@@ -206,7 +217,7 @@ nine.fullscreenMode = debounced => {
     const fullscreenModeDebounced = nine.debounce(() => {
       nine.fullscreenMode(true);
     }, 250);
-    window.addEventListener('resize', fullscreenModeDebounced);
+    window.addEventListener("resize", fullscreenModeDebounced);
   }
 };
 
@@ -229,7 +240,7 @@ nine.setCurrentPage = () => {
       nine.scrollToSection(element.id, 0); // Make sure we are definley at the correct section.
     }
   } else {
-    nine.updateCurrent(document.querySelectorAll('.section')[0]);
+    nine.updateCurrent(document.querySelectorAll(".section")[0]);
   }
 };
 
@@ -237,7 +248,7 @@ nine.setCurrentPage = () => {
  * updateHash - Adds a hash to url
  * @param {String} url The value the hash should be updated to.
  */
-nine.updateHash = url => {
+nine.updateHash = (url) => {
   window.location.hash = url;
 };
 
@@ -246,9 +257,9 @@ nine.updateHash = url => {
  */
 nine.hashChangeLisener = () => {
   if (document.addEventListener) {
-    window.addEventListener('hashchange', nine.hashChangeHandler, false); // IE9, Chrome, Safari, Oper
+    window.addEventListener("hashchange", nine.hashChangeHandler, false); // IE9, Chrome, Safari, Oper
   } else {
-    window.attachEvent('onhashchange', nine.hashChangeHandler); // IE 6/7/8
+    window.attachEvent("onhashchange", nine.hashChangeHandler); // IE 6/7/8
   }
 };
 
@@ -281,9 +292,9 @@ nine.scrollToSection = (elementId, duration) => {
   const newIndex = nine.getSectionIndex(element);
 
   if (newIndex > nine.currentPageIndex) {
-    nine.scrollDirection = 'down';
+    nine.scrollDirection = "down";
   } else if (newIndex < nine.currentPageIndex) {
-    nine.scrollDirection = 'up';
+    nine.scrollDirection = "up";
   }
 
   const destiny = element.offsetTop;
@@ -302,16 +313,16 @@ nine.scrollToSection = (elementId, duration) => {
  * @param {Integer} duration    How long in ms should we take to scroll
  */
 nine.translateScroll = (endLocation, element, duration) => {
-  const translate3d = 'translate3d(0px, -' + endLocation + 'px, 0px)';
+  const translate3d = "translate3d(0px, -" + endLocation + "px, 0px)";
 
   if (duration > 0) {
-    const transition = 'all ' + duration + 'ms ease-in-out';
+    const transition = "all " + duration + "ms ease-in-out";
 
-    nine.removeClass(nine.scrollContainer, 'notransition');
+    nine.removeClass(nine.scrollContainer, "notransition");
 
     nine.css(nine.scrollContainer, {
-      '-webkit-transition': transition,
-      transition
+      "-webkit-transition": transition,
+      transition,
     });
 
     // nine.css(document.querySelector('.portrait'), {
@@ -319,7 +330,7 @@ nine.translateScroll = (endLocation, element, duration) => {
     //   transition
     // });
   } else {
-    nine.addClass(nine.scrollContainer, 'notransition');
+    nine.addClass(nine.scrollContainer, "notransition");
   }
 
   nine.scrollStart(element);
@@ -335,7 +346,7 @@ nine.translateScroll = (endLocation, element, duration) => {
 
   // Syncronously removing the class after the animation has been applied.
   setTimeout(() => {
-    nine.removeClass(nine.scrollContainer, 'notransition');
+    nine.removeClass(nine.scrollContainer, "notransition");
   }, 10);
 };
 
@@ -373,7 +384,10 @@ nine.animateScroll = (endLocation, element, duration) => {
   }
 
   const start = nine.getScrolledPosition();
-  const startTime = 'now' in window.performance ? window.performance.now() : new Date().getTime();
+  const startTime =
+    "now" in window.performance
+      ? window.performance.now()
+      : new Date().getTime();
   const easing = function (t) {
     return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1; // Acceleration until halfway, then deceleration
   };
@@ -383,11 +397,16 @@ nine.animateScroll = (endLocation, element, duration) => {
   function scroll() {
     nine.canScroll = false;
 
-    const now = 'now' in window.performance ? window.performance.now() : new Date().getTime();
-    const time = Math.min(1, ((now - startTime) / duration));
+    const now =
+      "now" in window.performance
+        ? window.performance.now()
+        : new Date().getTime();
+    const time = Math.min(1, (now - startTime) / duration);
     const timeFunction = easing(time);
 
-    const position = Math.ceil((timeFunction * (destinationOffsetToScroll - start)) + start);
+    const position = Math.ceil(
+      timeFunction * (destinationOffsetToScroll - start) + start
+    );
 
     if (nine.scrollContainer.scrollTop !== position) {
       nine.scrollContainer.scrollTop = position;
@@ -413,32 +432,32 @@ nine.animateScroll = (endLocation, element, duration) => {
  * scrollStart - Called at scroll start and setups css classes for active sections, headers, etc
  * @param {Object} element Element we are scrolling to
  */
-nine.scrollStart = element => {
+nine.scrollStart = (element) => {
   // Delay until part way through scroll to changes make feel smooth.
   setTimeout(() => {
-    const bgs = document.querySelectorAll('.bgs li');
-    nine.removeClass(document.querySelector('.bgs li.previous'), 'previous');
-    nine.prevBackground = document.querySelector('.bgs li.active');
-    nine.addClass(nine.prevBackground, 'previous');
-    nine.removeClass(nine.prevBackground, 'active');
-    nine.addClass(bgs[nine.getSectionIndex(element)], 'active');
+    const bgs = document.querySelectorAll(".bgs li");
+    nine.removeClass(document.querySelector(".bgs li.previous"), "previous");
+    nine.prevBackground = document.querySelector(".bgs li.active");
+    nine.addClass(nine.prevBackground, "previous");
+    nine.removeClass(nine.prevBackground, "active");
+    nine.addClass(bgs[nine.getSectionIndex(element)], "active");
     // Remove other active classes
-    const activePages = document.querySelector('.section.active');
+    const activePages = document.querySelector(".section.active");
     if (activePages) {
-      nine.removeClass(activePages, 'active');
-      nine.removeClass(document.body, activePages.id + '-active');
-      nine.addClass(document.body, element.id + '-active');
+      nine.removeClass(activePages, "active");
+      nine.removeClass(document.body, activePages.id + "-active");
+      nine.addClass(document.body, element.id + "-active");
     }
-    nine.addClass(element, 'active');
+    nine.addClass(element, "active");
     nine.updateControls(nine.getSectionIndex(element));
   }, nine.scrollDuration * 0.33);
 };
 
- /**
-  * scrollEnd - Called at scroll end aupdates hash, current page, controls, etc.
-  * @param {Object} element Element we are scrolling to
-  */
-nine.scrollEnd = element => {
+/**
+ * scrollEnd - Called at scroll end aupdates hash, current page, controls, etc.
+ * @param {Object} element Element we are scrolling to
+ */
+nine.scrollEnd = (element) => {
   if (element === null) {
     return;
   } // No element
@@ -446,7 +465,7 @@ nine.scrollEnd = element => {
   // Update to new state.
   nine.updateHash(element.id);
   nine.updateCurrent(element);
-  nine.removeClass(nine.prevBackground, 'previous');
+  nine.removeClass(nine.prevBackground, "previous");
   // nine.addClass(document.body, element.id + '-active');
   nine.updateControls();
 };
@@ -455,7 +474,7 @@ nine.scrollEnd = element => {
  * updateCurrent - Updates globals to current values
  * @param {Object} element Element we are scrolling to
  */
-nine.updateCurrent = element => {
+nine.updateCurrent = (element) => {
   nine.currentPage = element.id;
   nine.currentPageIndex = nine.getSectionIndex(element);
 };
@@ -465,7 +484,11 @@ nine.updateCurrent = element => {
  * @returns {Integer} ScrollTop in pixels
  */
 nine.getScrolledPosition = () => {
-  return document.documentElement.scrollTop || nine.scrollContainer.scrollTop || document.body.scrollTop;
+  return (
+    document.documentElement.scrollTop ||
+    nine.scrollContainer.scrollTop ||
+    document.body.scrollTop
+  );
 };
 
 /**
@@ -476,7 +499,7 @@ nine.resetPosition = () => {
     let section;
 
     if (nine.currentPage === null) {
-      section = document.querySelectorAll('.sections')[0];
+      section = document.querySelectorAll(".sections")[0];
       nine.currentPage = section.id;
       nine.currentPageIndex = 0;
     } else {
@@ -484,9 +507,9 @@ nine.resetPosition = () => {
     }
 
     // Reset height
-    const windowHeight = nine.windowSize().h + 'px';
+    const windowHeight = nine.windowSize().h + "px";
 
-    Array.prototype.forEach.call(nine.pages, el => {
+    Array.prototype.forEach.call(nine.pages, (el) => {
       el.style.height = windowHeight;
       el.style.minHeight = windowHeight;
     });
@@ -506,40 +529,44 @@ nine.resetPosition = () => {
    ========================================================================= */
 
 nine.addBackgrounds = () => {
-  const bgs = document.querySelector('.bgs');
+  const bgs = document.querySelector(".bgs");
 
   Array.prototype.forEach.call(nine.pages, (el, i) => {
-    const bg = document.createElement('li');
+    const bg = document.createElement("li");
     bgs.appendChild(bg);
   });
 
-  document.querySelector('.bgs li').classList.add('active');
-}
-
+  document.querySelector(".bgs li").classList.add("active");
+};
 
 /**
  * addFullscreenNav - adds dots and next & prev controls to site with event handlers
  */
 nine.addFullscreenNav = () => {
-  const controls = document.querySelector('.controls');
+  const controls = document.querySelector(".controls");
 
-  if (controls != null) { // !== breaks this
-    controls.classList.add('on');
+  if (controls != null) {
+    // !== breaks this
+    controls.classList.add("on");
 
-    const nav = document.querySelector('.dots');
+    const nav = document.querySelector(".dots");
 
     if (nav) {
       Array.prototype.forEach.call(nine.pages, (el, i) => {
-        const dot = document.createElement('li');
-        dot.setAttribute('data-page', i);
+        const dot = document.createElement("li");
+        dot.setAttribute("data-page", i);
         nav.appendChild(dot);
-        dot.addEventListener('click', element => nine.dotClick(element));
+        dot.addEventListener("click", (element) => nine.dotClick(element));
       });
 
-      document.querySelector('.dots li').classList.add('active');
+      document.querySelector(".dots li").classList.add("active");
 
-      document.querySelector('.next').addEventListener('click', nine.arrowNextClickHandler);
-      document.querySelector('.prev').addEventListener('click', nine.arrowPrevClickHandler);
+      document
+        .querySelector(".next")
+        .addEventListener("click", nine.arrowNextClickHandler);
+      document
+        .querySelector(".prev")
+        .addEventListener("click", nine.arrowPrevClickHandler);
 
       nine.updateControls();
     }
@@ -550,21 +577,25 @@ nine.addFullscreenNav = () => {
  * removeFullscreenNav - remove dots and next & prev controls to site and event handlers
  */
 nine.removeFullscreenNav = () => {
-  const controls = document.querySelector('.controls');
+  const controls = document.querySelector(".controls");
 
   if (controls) {
-    controls.classList.remove('on');
+    controls.classList.remove("on");
 
-    const nav = document.querySelector('.dots');
-    const dots = document.querySelectorAll('.dots li');
+    const nav = document.querySelector(".dots");
+    const dots = document.querySelectorAll(".dots li");
 
     if (nav && dots) {
-      Array.prototype.forEach.call(dots, el => {
+      Array.prototype.forEach.call(dots, (el) => {
         el.parentNode.removeChild(el);
       });
 
-      document.querySelector('.next').removeEventListener('click', nine.arrowNextClickHandler);
-      document.querySelector('.prev').removeEventListener('click', nine.arrowPrevClickHandler);
+      document
+        .querySelector(".next")
+        .removeEventListener("click", nine.arrowNextClickHandler);
+      document
+        .querySelector(".prev")
+        .removeEventListener("click", nine.arrowPrevClickHandler);
     }
   }
 };
@@ -593,9 +624,9 @@ nine.dotClick = (element, repeat) => {
     repeat = false;
   }
 
-  document.querySelector('.dots li.active').classList.remove('active');
-  const newPageIndex = element.target.getAttribute('data-page');
-  document.querySelectorAll('.dots li')[newPageIndex].classList.add('active');
+  document.querySelector(".dots li.active").classList.remove("active");
+  const newPageIndex = element.target.getAttribute("data-page");
+  document.querySelectorAll(".dots li")[newPageIndex].classList.add("active");
 
   const section = nine.pages[newPageIndex].id;
 
@@ -613,10 +644,11 @@ nine.dotClick = (element, repeat) => {
  * updateControls - Update controls to new values
  * @param   {Integer} newIndex Index of the new slide in slides array
  */
-nine.updateControls = newIndex => {
-  const dots = document.querySelector('.dots');
+nine.updateControls = (newIndex) => {
+  const dots = document.querySelector(".dots");
 
-  if (dots != null) { // !== Breaks this
+  if (dots != null) {
+    // !== Breaks this
     if (newIndex === undefined) {
       newIndex = null;
     }
@@ -627,23 +659,23 @@ nine.updateControls = newIndex => {
       newIndex = nine.currentPageIndex;
     }
 
-    const active = document.querySelector('.dots li.active');
+    const active = document.querySelector(".dots li.active");
 
     if (active) {
-      document.querySelector('.dots li.active').classList.remove('active');
+      document.querySelector(".dots li.active").classList.remove("active");
     }
 
-    document.querySelectorAll('.dots li')[newIndex].classList.add('active');
+    document.querySelectorAll(".dots li")[newIndex].classList.add("active");
 
-    document.querySelector('.next').classList.remove('disabled');
-    document.querySelector('.prev').classList.remove('disabled');
+    document.querySelector(".next").classList.remove("disabled");
+    document.querySelector(".prev").classList.remove("disabled");
 
     if (newIndex === 0) {
-      document.querySelector('.prev').classList.add('disabled');
+      document.querySelector(".prev").classList.add("disabled");
     }
 
     if (newIndex === nine.pages.length - 1) {
-      document.querySelector('.next').classList.add('disabled');
+      document.querySelector(".next").classList.add("disabled");
     }
   }
 };
@@ -652,7 +684,7 @@ nine.updateControls = newIndex => {
  * nextPage - Navigates to next page
  * @param   {Boolean} repeat True if called recurvisley
  */
-nine.nextPage = repeat => {
+nine.nextPage = (repeat) => {
   if (repeat === null) {
     repeat = false;
   }
@@ -661,7 +693,10 @@ nine.nextPage = repeat => {
     const nextPage = nine.pages[nine.currentPageIndex + 1].id;
     nine.scrollToSection(nextPage);
     return true;
-  } else if (nine.currentPageIndex + 1 < nine.pages.length && repeat === false) {
+  } else if (
+    nine.currentPageIndex + 1 < nine.pages.length &&
+    repeat === false
+  ) {
     setTimeout(() => {
       nine.nextPage(true);
     }, nine.scrollDuration);
@@ -673,7 +708,7 @@ nine.nextPage = repeat => {
  * prevPage - Navigates to prev page
  * @param   {Boolean} repeat True if called recurvisley
  */
-nine.prevPage = repeat => {
+nine.prevPage = (repeat) => {
   if (repeat === null) {
     repeat = false;
   }
@@ -753,11 +788,11 @@ nine.addScrollInput = () => {
   const wrapper = window;
 
   if (wrapper.addEventListener) {
-    wrapper.addEventListener('mousewheel', nine.mouseWheelHandler, false); // Ie9, chrome, safari, opera use mousewheel
+    wrapper.addEventListener("mousewheel", nine.mouseWheelHandler, false); // Ie9, chrome, safari, opera use mousewheel
 
-    wrapper.addEventListener('wheel', nine.mouseWheelHandler, false); // firefox
+    wrapper.addEventListener("wheel", nine.mouseWheelHandler, false); // firefox
   } else {
-    wrapper.attachEvent('onmousewheel', nine.mouseWheelHandler); // IE 6/7/8 not really supported anyway
+    wrapper.attachEvent("onmousewheel", nine.mouseWheelHandler); // IE 6/7/8 not really supported anyway
   }
 };
 
@@ -768,11 +803,11 @@ nine.removeScrollInput = () => {
   const wrapper = window;
 
   if (wrapper.addEventListener) {
-    wrapper.removeEventListener('mousewheel', nine.mouseWheelHandler, false); // Ie9, chrome, safari, opera use mousewheel
+    wrapper.removeEventListener("mousewheel", nine.mouseWheelHandler, false); // Ie9, chrome, safari, opera use mousewheel
 
-    wrapper.removeEventListener('wheel', nine.mouseWheelHandler, false); // Firefox
+    wrapper.removeEventListener("wheel", nine.mouseWheelHandler, false); // Firefox
   } else {
-    wrapper.detachEvent('onmousewheel', nine.mouseWheelHandler); // IE 6/7/8 not really supported anyway
+    wrapper.detachEvent("onmousewheel", nine.mouseWheelHandler); // IE 6/7/8 not really supported anyway
   }
 };
 
@@ -782,7 +817,7 @@ nine.removeScrollInput = () => {
  * Line 1099: https://github.com/alvarotrigo/fullPage.js/blob/master/pure%20javascript%20(Alpha)/javascript.fullPage.js
  * https://www.sitepoint.com/html5-javascript-mouse-wheel/
  */
-nine.mouseWheelHandler = e => {
+nine.mouseWheelHandler = (e) => {
   nine.preventDefault(e); // Prevent normall scrolling
 
   const curTime = new Date().getTime();
@@ -829,9 +864,11 @@ nine.mouseWheelHandler = e => {
     const isAccelerating = averageEnd >= averageMiddle;
 
     if (isAccelerating) {
-      if (delta < 0) { // Scrolling down?
+      if (delta < 0) {
+        // Scrolling down?
         nine.nextPage();
-      } else { // Scrolling up?
+      } else {
+        // Scrolling up?
         nine.prevPage();
       }
     }
@@ -849,8 +886,12 @@ nine.mouseWheelHandler = e => {
  */
 nine.enableTouch = () => {
   if (nine.isTouchDevice || nine.isTouch) {
-    window.addEventListener('touchstart', nine.touchStartHandler, {passive: false});
-    window.addEventListener('touchmove', nine.touchMoveHandler, {passive: false});
+    window.addEventListener("touchstart", nine.touchStartHandler, {
+      passive: false,
+    });
+    window.addEventListener("touchmove", nine.touchMoveHandler, {
+      passive: false,
+    });
   }
 };
 
@@ -859,16 +900,20 @@ nine.enableTouch = () => {
  */
 nine.disableTouch = () => {
   if (nine.isTouchDevice || nine.isTouch) {
-    window.removeEventListener('touchstart', nine.touchStartHandler, {passive: false});
-    window.removeEventListener('touchmove', nine.touchMoveHandler, {passive: false});
+    window.removeEventListener("touchstart", nine.touchStartHandler, {
+      passive: false,
+    });
+    window.removeEventListener("touchmove", nine.touchMoveHandler, {
+      passive: false,
+    });
   }
 };
 
 /**
-* touchStartHandler - on touch start record touch start positions
-* @param   {object} event
-*/
-nine.touchStartHandler = event => {
+ * touchStartHandler - on touch start record touch start positions
+ * @param   {object} event
+ */
+nine.touchStartHandler = (event) => {
   const e = window.event || event || event.originalEvent;
 
   if (nine.isReallyTouch(e)) {
@@ -879,10 +924,10 @@ nine.touchStartHandler = event => {
 };
 
 /**
-* touchMoveHandler - on touch move calulate the direction and call next or prev if valid
-* @param   {object} event
-*/
-nine.touchMoveHandler = event => {
+ * touchMoveHandler - on touch move calulate the direction and call next or prev if valid
+ * @param   {object} event
+ */
+nine.touchMoveHandler = (event) => {
   const e = window.event || event || event.originalEvent;
 
   if (nine.isReallyTouch(e)) {
@@ -893,10 +938,15 @@ nine.touchMoveHandler = event => {
     if (nine.canScroll) {
       nine.touchEndY = touchEvents.y;
 
-      if (Math.abs(nine.touchStartY - nine.touchEndY) > (nine.windowSize().h / 100 * nine.touchSensitivity)) {
-        if (nine.touchStartY > nine.touchEndY) { // down
+      if (
+        Math.abs(nine.touchStartY - nine.touchEndY) >
+        (nine.windowSize().h / 100) * nine.touchSensitivity
+      ) {
+        if (nine.touchStartY > nine.touchEndY) {
+          // down
           nine.nextPage();
-        } else if (nine.touchEndY > nine.touchStartY) { // up
+        } else if (nine.touchEndY > nine.touchStartY) {
+          // up
           nine.prevPage();
         }
       }
@@ -905,27 +955,33 @@ nine.touchMoveHandler = event => {
 };
 
 /**
-* isReallyTouch - As IE >= 10 fires both touch and mouse events when using a mouse in a touchscreen
-*                 this way we make sure that is really a touch event what IE is detecting.
-* @param   {object}  e touch event
-* @returns {Boolean}
-*/
-nine.isReallyTouch = e => {
- // If is not IE   ||  IE is detecting `touch` or `pen`
-  return typeof e.pointerType === 'undefined' || e.pointerType !== 'mouse';
+ * isReallyTouch - As IE >= 10 fires both touch and mouse events when using a mouse in a touchscreen
+ *                 this way we make sure that is really a touch event what IE is detecting.
+ * @param   {object}  e touch event
+ * @returns {Boolean}
+ */
+nine.isReallyTouch = (e) => {
+  // If is not IE   ||  IE is detecting `touch` or `pen`
+  return typeof e.pointerType === "undefined" || e.pointerType !== "mouse";
 };
 
 /**
-* getEventsPage - Gets the pageX and pageY properties depending on the browser.
-*                 https://github.com/alvarotrigo/fullPage.js/issues/194#issuecomment-34069854
-* @param   {object} e touch event
-* @returns {object}
-*/
-nine.getEventsPage = e => {
+ * getEventsPage - Gets the pageX and pageY properties depending on the browser.
+ *                 https://github.com/alvarotrigo/fullPage.js/issues/194#issuecomment-34069854
+ * @param   {object} e touch event
+ * @returns {object}
+ */
+nine.getEventsPage = (e) => {
   const events = [];
 
-  events.y = (typeof e.pageY !== 'undefined' && (e.pageY || e.pageX) ? e.pageY : e.touches[0].pageY);
-  events.x = (typeof e.pageX !== 'undefined' && (e.pageY || e.pageX) ? e.pageX : e.touches[0].pageX);
+  events.y =
+    typeof e.pageY !== "undefined" && (e.pageY || e.pageX)
+      ? e.pageY
+      : e.touches[0].pageY;
+  events.x =
+    typeof e.pageX !== "undefined" && (e.pageY || e.pageX)
+      ? e.pageX
+      : e.touches[0].pageX;
 
   return events;
 };
@@ -938,7 +994,7 @@ nine.getEventsPage = e => {
  * getHash - gets current hash value
  */
 nine.getHash = () => {
-  const value = window.location.hash.replace('#', '').split('/');
+  const value = window.location.hash.replace("#", "").split("/");
   return value[0];
 };
 
@@ -953,11 +1009,11 @@ nine.addClass = (element, className) => {
   }
 };
 
- /**
-  * removeClass
-  * @param {Object} element
-  * @param {String} className
-  */
+/**
+ * removeClass
+ * @param {Object} element
+ * @param {String} className
+ */
 nine.removeClass = (element, className) => {
   if (element && nine.hasClass(element, className)) {
     element.classList.remove(className);
@@ -979,7 +1035,7 @@ nine.hasClass = (element, className) => {
  * @param   {Object} element
  * @returns {Integer}
  */
-nine.getSectionIndex = element => {
+nine.getSectionIndex = (element) => {
   let index;
 
   Array.prototype.forEach.call(nine.pages, (el, i) => {
@@ -996,24 +1052,26 @@ nine.getSectionIndex = element => {
  * @param   {Object} w The window to use.
  * @returns {Object} {w: width, h: height}
  */
-nine.windowSize = w => {
+nine.windowSize = (w) => {
   // Use the specified window or the current window if no argument
   w = w || window;
 
   // This works for all browsers except IE8 and before
   if (w.innerWidth !== null) {
-    return {w: w.innerWidth, h: w.innerHeight};
+    return { w: w.innerWidth, h: w.innerHeight };
   }
 
   // For IE (or any browser) in Standards mode
   const d = w.document;
-  if (document.compatMode === 'CSS1Compat') {
-    return {w: d.documentElement.clientWidth,
-      h: d.documentElement.clientHeight};
+  if (document.compatMode === "CSS1Compat") {
+    return {
+      w: d.documentElement.clientWidth,
+      h: d.documentElement.clientHeight,
+    };
   }
 
   // For browsers in Quirks mode
-  return {w: d.body.clientWidth, h: d.body.clientHeight};
+  return { w: d.body.clientWidth, h: d.body.clientHeight };
 };
 
 /**
@@ -1046,7 +1104,7 @@ nine.debounce = (func, wait, immediate) => {
  * preventDefault
  * @param   {Object} event
  */
-nine.preventDefault = event => {
+nine.preventDefault = (event) => {
   if (event.preventDefault) {
     event.preventDefault();
   } else {
@@ -1061,10 +1119,10 @@ nine.preventDefault = event => {
  */
 nine.setTransforms = (element, translate3d) => {
   nine.css(element, {
-    '-webkit-transform': translate3d,
-    '-moz-transform': translate3d,
-    '-ms-transform': translate3d,
-    transform: translate3d
+    "-webkit-transform": translate3d,
+    "-moz-transform": translate3d,
+    "-ms-transform": translate3d,
+    transform: translate3d,
   });
 };
 
@@ -1092,9 +1150,10 @@ nine.css = (el, props) => {
 nine.supports3d = nine.support3d();
 nine.animateLinks();
 nine.fullscreenMode();
-nine.contactScroll();
+nine.homeScroll("trusted-link", "trusted");
+nine.homeScroll("talk-link", "contact");
+nine.homeScroll("contact-link", "contact");
 nine.animateLoad();
-
 
 /* ==========================================================================
     Polyfils
@@ -1102,7 +1161,7 @@ nine.animateLoad();
 
 if (!String.prototype.includes) {
   String.prototype.includes = function (search, start) {
-    if (typeof start !== 'number') {
+    if (typeof start !== "number") {
       start = 0;
     }
 
@@ -1114,22 +1173,24 @@ if (!String.prototype.includes) {
   };
 }
 
-if ('objectFit' in document.documentElement.style === false) {
+if ("objectFit" in document.documentElement.style === false) {
   // assign HTMLCollection with parents of images with objectFit to variable
-  const container = document.getElementsByClassName('object-fit');
+  const container = document.getElementsByClassName("object-fit");
   // Loop through HTMLCollection
   for (let i = 0; i < container.length; i++) {
     // Asign image source to variable
-    const imageSource = container[i].querySelector('img').getAttribute('data-src');
+    const imageSource = container[i]
+      .querySelector("img")
+      .getAttribute("data-src");
 
-    container[i].classList.add('on');
+    container[i].classList.add("on");
     // Hide image
-    container[i].querySelector('img').style.display = 'none';
+    container[i].querySelector("img").style.display = "none";
     // Add background-size: cover
-    container[i].style.backgroundSize = 'cover';
+    container[i].style.backgroundSize = "cover";
     // Add background-image: and put image source here
-    container[i].style.backgroundImage = 'url(' + imageSource + ')';
+    container[i].style.backgroundImage = "url(" + imageSource + ")";
     // Add background-position: center center
-    container[i].style.backgroundPosition = 'center center';
+    container[i].style.backgroundPosition = "center center";
   }
 }

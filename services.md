@@ -2,7 +2,7 @@
 layout: page
 
 description: >-
-  I work with individuals, start‑ups and established businesses. Offering  brand identity, creative direction, design and bespoke development services.
+  I work with individuals, start‑ups and established businesses. Offering creative direction, design and bespoke development services.
 
 id: services
 title: Services
@@ -26,41 +26,39 @@ testimonial: >-
 credit_image: rob.jpg
 credit_image_retina: rob-retina.jpg
 credit: Rob Ellis, Director
-credit_link: http://singlemaltdesign.co.uk
-credit_company: Single Malt
+credit_link: http://twostories.studio
+credit_company: Two Stories
 ---
 
-I work with individuals, start‑ups and established businesses. Offering brand identity, creative direction, design and bespoke development services. Helping companies look their best and make their products extraordinary to use.
+I work with individuals, start‑ups and established businesses. Offering creative direction, design and bespoke development services. Helping companies look their best and make their products extraordinary to use.
 
 ## BRANDING
 
-*   Naming
-*   Logo Design 
-*   Identity Systems
-*   Brand Guidelines
-*   Creative Direction
-
-## PRINT
-
-*   Stationery Systems 
-*   Collateral 
-*   Books
-*   Leaflets & Booklets
-*   Posters
-*   Signage
-*   Apparel
-*   Packaging
+- Naming
+- Logo Design
+- Identity Systems
+- Brand Guidelines
+- Creative Direction
 
 ## DIGITAL DESIGN & DEVELOPMENT
 
-*   Prototyping
-*   Planning + Architecture
-*   Agile Project Management
-*   Websites
-*   Email Templates
-*   Web Applications
-*   Mobile Applications
+- Prototyping
+- Planning + Architecture
+- Agile Project Management
+- Websites
+- Email Templates
+- Web Applications
+- Mobile Applications
 
-Creative problem solving is at the core of what I do. Every project is an opportunity to create some new and exceptional. By listening to your brief, analysing the core issues. Challenging assumptions and building clear strategic foundations. We can create solutions that make things smarter, easier to use and are beautiful. That actually solve the problem. 
+## TECNOLOGIES
 
-Working collaboratively with a network of trusted creatives, no project is too large. I have extensive experience working in the cultural, higher education, food and retail sectors. Yet, I have a wide range of experience with projects in many other areas.
+- Wordpress
+- Woocommerce
+- Jamstack
+- Ruby on Rails
+- Static Sites
+- React
+
+Creative problem solving is at the core of what I do. Every project is an opportunity to create some new and exceptional. By listening to your brief, analysing the core issues. Challenging assumptions and building clear strategic foundations. Togther we can create solutions that make things smarter, easier to use and are beautiful. That actually solve the problem.
+
+Working collaboratively with a network of trusted creatives, no project is too large. I have extensive experience working in the cultural, higher education, tech, food and retail sectors. Yet, I have a wide range of experience with projects in many other areas.

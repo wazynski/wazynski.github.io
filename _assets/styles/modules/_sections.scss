@@ -43,7 +43,6 @@ Stylesheet: Sections
   -webkit-backface-visibility: hidden;
   align-items: flex-end;
 
-
   @media screen and (min-width: $tablet) {
     min-height: 100%; // Fallbacks
     min-height: 100vh; // Fallbacks
@@ -76,11 +75,24 @@ Stylesheet: Sections
   }
 }
 
-
 /* ==========================================================================
   Content
    ========================================================================== */
 
+.trusted {
+  .content {
+    ul {
+      a,
+      span {
+        color: $base;
+
+        &::after {
+          background-color: $base;
+        }
+      }
+    }
+  }
+}
 .content {
   @include font-size(16);
 
@@ -92,7 +104,6 @@ Stylesheet: Sections
   color: $base;
 
   -webkit-backface-visibility: hidden;
-
 
   @media screen and (min-width: $tablet) {
     @include font-size(24);
@@ -132,6 +143,36 @@ Stylesheet: Sections
     color: $secondary;
   }
 
+  .small {
+    font-size: 12px;
+    display: none;
+
+    @media screen and (min-width: $tablet) {
+      @include font-size(16);
+      line-height: 1.5;
+      display: block;
+    }
+
+    @media screen and (min-width: $sm-desktop) {
+      @include font-size(18);
+      line-height: 1.5;
+    }
+
+    ul {
+      list-style: square;
+      padding-left: 1.5rem;
+
+      li {
+        padding: 2px 0;
+      }
+    }
+  }
+
+  ul {
+    span {
+      color: $secondary;
+    }
+  }
 
   dd {
     color: $secondary;

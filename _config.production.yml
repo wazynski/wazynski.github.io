@@ -5,18 +5,17 @@ subtitle: Developer, Designer & Brand Consultant
 
 # Contact ######################################################################
 email: tom@ninesenses.co.uk
-obfuscated_email: tom[@]ninesenses.co.uk
+obfuscated_email: tom@ninesenses.co.uk
 
-tel: +441524542864
+tel: +4407535644344
 formated_tel: +44 [0] 7535 644 344
 
-twitter_username: wazynski
-instagram_username: wazynski
-
+# twitter_username: wazynski
+# instagram_username: wazynski
 
 # Meta #########################################################################
 description: >-
-  Home of developer, designer and brand consultant Tom Skarbek-Wazynski. Tom helps companies look their best and make their products exceptional to use.
+  Home of designer & full stack developer Tom Skarbek-Wazynski. Tom helps companies look their best and make their products exceptional to use.
 
 keywords: >-
   Ninesenses, Tom Skarbek-Wazynski, web design, website design, web development, branding,
@@ -35,7 +34,7 @@ og_title: Home
 og_type: website
 og_description: >-
   Ninesenses is an independent creative consultancy producing high
-  quality branding and bespoke development for ...
+  quality bespoke websites and digital products for ...
 og_image: http://ninesenses.co.uk/img/og.png
 og_image_width: 200
 og_image_height: 200
@@ -46,9 +45,6 @@ copyright: All rights reserved <span>© Tom Skarbek-Wazynski</span>
 
 # Typekit ID ###################################################################
 typekit: fte0rot
-
-# Analytics ID #################################################################
-ga: UA-60687760-1
 
 # URL ##########################################################################
 baseurl: ""
@@ -61,6 +57,15 @@ plugins:
   - jekyll-babel
 
 # Server Config options
-livereload: true     # You no longer need to include --livereload
+livereload: true # You no longer need to include --livereload
 
-exclude: [vendor, _assets, gulpfile.js, README.md, node_modules, yarn.lock, package.json]
+exclude:
+  [
+    vendor,
+    _assets,
+    gulpfile.js,
+    README.md,
+    node_modules,
+    yarn.lock,
+    package.json,
+  ]
