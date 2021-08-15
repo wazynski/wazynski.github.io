@@ -2,7 +2,6 @@
 .publish
 .jekyll-metadata
 /node_modules
-assets
 /_assets/img/case-studies/porters/.DS_Store
 /.DS_Store
 /.vscode
