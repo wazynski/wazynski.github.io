@@ -59,6 +59,6 @@ I work with individuals, start‑ups and established businesses. Offering creati
 - Static Sites
 - React
 
-Creative problem solving is at the core of what I do. Every project is an opportunity to create some new and exceptional. By listening to your brief, analysing the core issues. Challenging assumptions and building clear strategic foundations. Togther we can create solutions that make things smarter, easier to use and are beautiful. That actually solve the problem.
+Creative problem solving is at the core of what I do. Every project is an opportunity to create something new and exceptional. By listening to your brief, analysing the core issues. Challenging assumptions and building clear strategic foundations. Togther we can create solutions that make things smarter, easier to use and are beautiful. That actually solve the problem.
 
 Working collaboratively with a network of trusted creatives, no project is too large. I have extensive experience working in the cultural, higher education, tech, food and retail sectors. Yet, I have a wide range of experience with projects in many other areas.
