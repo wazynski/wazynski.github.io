@@ -51,7 +51,7 @@ All purchases are processed by directly through bank payment or [stripe](https:/
 
 ## Where we store your information
 
-When you contact us by email or through our website, we store your your information in [G Suite](https://cloud.google.com/security/gdpr/), our Email provider and Cloud software. If we do business, we store your information in our accounts software, [Wave](https://www.waveapps.com/privacy) and our eSignature software for digital contracts, [HelloSign](https://www.hellosign.com/). We chose these systems partly for their commitment to security.
+When you contact us by email or through our website, we store your your information in [G Suite](https://cloud.google.com/security/gdpr/), our Email provider and Cloud software. If we do business, we store your information in our accounts software, [Wave](https://www.waveapps.com/privacy) and our eSignature software for digital contracts, [Dropbox Sign](https://www.dropboxsign.com/). We chose these systems partly for their commitment to security.
 
 ## What we use your information for
 
